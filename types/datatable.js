@@ -7,6 +7,28 @@ const tmpFile = require("../utils/file/tmp");
 
 class Datatable {
 
+  static async create(options) {
+    const filePath = await tmpFile();
+
+    const datatable = new Datatable({
+      streamGetter: () => fs.createReadStream(filePath),
+    });
+
+    const stringifier = stringify({
+      header: true,
+      ...options,
+    });
+
+    stringifier
+      .pipe(
+        fs.createWriteStream(filePath)
+      );
+
+    console.log({filePath})
+
+    return datatable;
+  }
+
   constructor({ streamGetter, parserOptions } = {}) {
     if (streamGetter) {
       this.streamGetter = streamGetter;
