@@ -1,7 +1,7 @@
-const utils = require("../../utils");
+const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = function (args) {
-  const regex = utils.text.makeRegexp(args.separator);
+  const regex = makeRegexp(args.separator);
   const text = (args.separator === "\n") ? args.text.replace(/\r\n/g, "\n") : args.text;
   const substrings = (
     text

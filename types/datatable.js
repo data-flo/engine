@@ -15,6 +15,8 @@ class Datatable {
       ...options,
     });
 
+    console.log({filePath})
+
     stringifier
       .pipe(
         fs.createWriteStream(filePath)
