@@ -70,41 +70,42 @@ module.exports = [
           "adaptor": "csv-file-to-datatable",
           "description": null,
         },
-        // {
-        //   "ui": {
-        //     "x": 260,
-        //     "y": 280,
-        //   },
-        //   "binding": [
-        //     {
-        //       "target": "file",
-        //       "type": "input",
-        //       "input": "ID's file",
-        //     },
-        //   ],
-        //   "name": "transformation-2",
-        //   "type": "adaptor",
-        //   "adaptor": "file-to-text",
-        //   "description": null,
-        // },
-        // {
-        //   "ui": {
-        //     "x": 480,
-        //     "y": 280,
-        //   },
-        //   "binding": [
-        //     {
-        //       "target": "text",
-        //       "type": "transformation",
-        //       "transformation": "transformation-2",
-        //       "argument": "text",
-        //     },
-        //   ],
-        //   "name": "transformation-4",
-        //   "type": "adaptor",
-        //   "adaptor": "split-text",
-        //   "description": null,
-        // },
+
+        {
+          "ui": {
+            "x": 260,
+            "y": 280,
+          },
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "ID's file",
+            },
+          ],
+          "name": "transformation-2",
+          "type": "adaptor",
+          "adaptor": "file-to-text",
+          "description": null,
+        },
+        {
+          "ui": {
+            "x": 480,
+            "y": 280,
+          },
+          "binding": [
+            {
+              "target": "text",
+              "type": "transformation",
+              "transformation": "transformation-2",
+              "argument": "text",
+            },
+          ],
+          "name": "transformation-4",
+          "type": "adaptor",
+          "adaptor": "split-text",
+          "description": null,
+        },
         {
           "ui": {
             "x": 670,
@@ -112,21 +113,41 @@ module.exports = [
           },
           "binding": [
             {
-              "target": "csv",
-              "type": "input",
-              "input": "ID's file",
-            },
-            {
-              "target": "columns",
-              "type": "value",
-              "value": [ "value" ],
+              "target": "list",
+              "type": "transformation",
+              "transformation": "transformation-4",
+              "argument": "subtexts",
             },
           ],
           "name": "transformation-5",
           "type": "adaptor",
-          "adaptor": "csv-file-to-datatable",
+          "adaptor": "list-to-datatable",
           "description": null,
         },
+
+        // {
+        //   "ui": {
+        //     "x": 670,
+        //     "y": 280,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "csv",
+        //       "type": "input",
+        //       "input": "ID's file",
+        //     },
+        //     {
+        //       "target": "columns",
+        //       "type": "value",
+        //       "value": [ "value" ],
+        //     },
+        //   ],
+        //   "name": "transformation-5",
+        //   "type": "adaptor",
+        //   "adaptor": "csv-file-to-datatable",
+        //   "description": null,
+        // },
+
         {
           "ui": {
             "x": 540,

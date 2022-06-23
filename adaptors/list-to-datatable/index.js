@@ -1,8 +1,17 @@
-module.exports = function (args) {
-  const data = {
-    columns: [args.column],
-    rows: args.list.map((x) => ({ [args.column]: x })),
-  };
+const { Datatable } = require("../../types/datatable");
+
+module.exports = async function (args) {
+
+  const datatableWriter = await Datatable.create({ columns: [ args.column ] });
+
+  for (const item of args.list) {
+    datatableWriter.write([ item ]);
+  }
+
+  datatableWriter.end();
+
+  const data = await datatableWriter.finalise();
+
   return {
     data,
   };
