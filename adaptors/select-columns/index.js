@@ -1,5 +1,4 @@
 const { transform } = require("csv");
-const { finished } = require("stream/promises");
 
 const { Datatable } = require("../../types/datatable");
 
@@ -16,17 +15,16 @@ module.exports = async function (args) {
     }
   );
 
-  const data = new Datatable();
-
   const inDataReader = await args.data.getReader();
-  const outDataWriter = await data.getWriter({ columns: args.columns });
+  const datatableWriter = await Datatable.create({ columns: args.columns });
 
-  const outStream = inDataReader
+  inDataReader
     .pipe(transformer)
-    .pipe(outDataWriter);
+    .pipe(datatableWriter);
 
-  return (
-    finished(outStream)
-      .then(() => ({ data }))
-  );
+  const data = await datatableWriter.finalise();
+
+  return {
+    data,
+  };
 };

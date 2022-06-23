@@ -1,11 +1,57 @@
-const { parse } = require("csv-parse");
-const { stringify } = require("csv-stringify");
-
 const fs = require("fs");
 
-const tmpFile = require("../utils/file/tmp");
+const { parse, stringify } = require("csv");
+const { finished } = require("stream/promises");
+
+const tmpFilePath = require("../utils/file/tmp-path");
 
 class Datatable {
+
+  static async create(options) {
+    const filePath = await tmpFilePath();
+
+    const stringifier = stringify({
+      header: true,
+      ...options,
+    });
+
+    stringifier
+      .pipe(
+        fs.createWriteStream(filePath)
+      );
+
+    stringifier.finalise = () => {
+      return (
+        finished(stringifier)
+          .then(() => new Datatable(filePath))
+      );
+    };
+
+    return stringifier;
+  }
+
+  constructor(sourceFile) {
+    if (!sourceFile) {
+      throw new Error("Datatable requires a source file");
+    }
+
+    this.source = sourceFile;
+  }
+
+  getReader() {
+    return (
+      fs.createReadStream(this.source)
+        .pipe(
+          parse({
+            columns: true,
+          })
+        )
+    );
+  }
+
+}
+
+class AsyncDatatable {
 
   static async create(options) {
     const filePath = await tmpFile();
@@ -24,16 +70,20 @@ class Datatable {
         fs.createWriteStream(filePath)
       );
 
-    console.log({filePath})
+    stringifier.finalise = () => {
+      return finished(stringifier).then(() => datatable);
+    };
 
-    return datatable;
+    return stringifier;
   }
 
   constructor({ streamGetter, parserOptions } = {}) {
-    if (streamGetter) {
-      this.streamGetter = streamGetter;
-      this.parserOptions = parserOptions || {};
+    if (!streamGetter) {
+      throw new Error("Datatable requires stream getter");
     }
+
+    this.streamGetter = streamGetter;
+    this.parserOptions = parserOptions || {};
   }
 
   async getReader() {
@@ -114,12 +164,12 @@ class Datatable {
 
 }
 
-module.exports = function createDatatable(value) {
-  if (value instanceof Datatable) {
-    return value;
+module.exports = function createDatatable(sourceValue) {
+  if (sourceValue instanceof Datatable) {
+    return sourceValue;
   }
 
-  return new Datatable(value);
+  return new Datatable(sourceValue);
 };
 
 module.exports.Datatable = Datatable;
