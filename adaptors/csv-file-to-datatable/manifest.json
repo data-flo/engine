@@ -11,20 +11,41 @@
       "name": "encoding",
       "type": "text",
       "default": "utf8",
-      "description": "Input file encoding. Supported encodings are: ascii, base64, binary, hex, ucs2, utf8, or latin1. Defaults to \"utf8\"."
+      "description": "Input file encoding",
+      "enum": [
+       "ascii",
+       "base64",
+       "binary",
+       "hex",
+       "ucs2",
+       "utf8",
+       "latin1"
+      ]
     },
     {
       "name": "delimiter",
       "type": "text",
       "default": ",",
-      "description": "Character used as column delimiter. Defaults to \",\" (comma)."
+      "description": "Character used as column delimiter. Defaults to \",\" (comma).",
+      "enum": [
+        [ ",", "Comma (,)" ],
+        [ ";", "Semicolon (;)" ],
+        [ " ", "Space" ],
+        [ "\t", "tab (\\t)" ]
+       ]
+    },
+    {
+      "name": "columns",
+      "type": "list",
+      "default": null,
+      "description": ""
     }
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "An object containing columns and rows."
+      "description": "A DataTable containing columns and rows."
     }
   ]
 }

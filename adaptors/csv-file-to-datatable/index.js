@@ -18,6 +18,7 @@ module.exports = async function (args) {
   args.csv.getReader()
     .pipe(
       parse({
+        trim: true,
         columns(headerCells) {
           return headerCells.map((column) => column.trim());
         },
