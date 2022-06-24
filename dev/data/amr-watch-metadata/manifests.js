@@ -71,59 +71,59 @@ module.exports = [
           "description": null,
         },
 
-        {
-          "ui": {
-            "x": 260,
-            "y": 280,
-          },
-          "binding": [
-            {
-              "target": "file",
-              "type": "input",
-              "input": "ID's file",
-            },
-          ],
-          "name": "transformation-2",
-          "type": "adaptor",
-          "adaptor": "file-to-text",
-          "description": null,
-        },
-        {
-          "ui": {
-            "x": 480,
-            "y": 280,
-          },
-          "binding": [
-            {
-              "target": "text",
-              "type": "transformation",
-              "transformation": "transformation-2",
-              "argument": "text",
-            },
-          ],
-          "name": "transformation-4",
-          "type": "adaptor",
-          "adaptor": "split-text",
-          "description": null,
-        },
-        {
-          "ui": {
-            "x": 670,
-            "y": 280,
-          },
-          "binding": [
-            {
-              "target": "list",
-              "type": "transformation",
-              "transformation": "transformation-4",
-              "argument": "subtexts",
-            },
-          ],
-          "name": "transformation-5",
-          "type": "adaptor",
-          "adaptor": "list-to-datatable",
-          "description": null,
-        },
+        // {
+        //   "ui": {
+        //     "x": 260,
+        //     "y": 280,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "file",
+        //       "type": "input",
+        //       "input": "ID's file",
+        //     },
+        //   ],
+        //   "name": "transformation-2",
+        //   "type": "adaptor",
+        //   "adaptor": "file-to-text",
+        //   "description": null,
+        // },
+        // {
+        //   "ui": {
+        //     "x": 480,
+        //     "y": 280,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "text",
+        //       "type": "transformation",
+        //       "transformation": "transformation-2",
+        //       "argument": "text",
+        //     },
+        //   ],
+        //   "name": "transformation-4",
+        //   "type": "adaptor",
+        //   "adaptor": "split-text",
+        //   "description": null,
+        // },
+        // {
+        //   "ui": {
+        //     "x": 670,
+        //     "y": 280,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "list",
+        //       "type": "transformation",
+        //       "transformation": "transformation-4",
+        //       "argument": "subtexts",
+        //     },
+        //   ],
+        //   "name": "transformation-5",
+        //   "type": "adaptor",
+        //   "adaptor": "list-to-datatable",
+        //   "description": null,
+        // },
 
         // {
         //   "ui": {
@@ -148,58 +148,59 @@ module.exports = [
         //   "description": null,
         // },
 
-        {
-          "ui": {
-            "x": 540,
-            "y": 110,
-          },
-          "binding": [
-            {
-              "target": "data",
-              "type": "transformation",
-              "transformation": "transformation-1",
-              "argument": "data",
-            },
-            {
-              "target": "columns",
-              "type": "value",
-              "value": [
-                "experiment_accession",
-                "run_accession",
-                "accession",
-                "sample_accession",
-                "secondary_sample_accession",
-                "instrument_model",
-                "read_count",
-                "base_count",
-                "center_name",
-                "fastq_bytes",
-                "collected_by",
-                "collection_date",
-                "country",
-                "description",
-                "environmental_sample",
-                "first_public",
-                "isolation_source",
-                "location",
-                "sub_species",
-                "tax_id",
-                "scientific_name",
-                "sample_alias",
-                "center_name",
-                "host",
-                "host_tax_id",
-                "lat",
-                "lon",
-                "collection_date_submitted",
-              ],
-            },
-          ],
-          "name": "transformation-9",
-          "type": "adaptor",
-          "adaptor": "select-columns",
-          "description": null,
-        },
+        // {
+        //   "ui": {
+        //     "x": 540,
+        //     "y": 110,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "data",
+        //       "type": "transformation",
+        //       "transformation": "transformation-1",
+        //       "argument": "data",
+        //     },
+        //     {
+        //       "target": "columns",
+        //       "type": "value",
+        //       "value": [
+        //         "experiment_accession",
+        //         "run_accession",
+        //         "accession",
+        //         "sample_accession",
+        //         "secondary_sample_accession",
+        //         "instrument_model",
+        //         "read_count",
+        //         "base_count",
+        //         "center_name",
+        //         "fastq_bytes",
+        //         "collected_by",
+        //         "collection_date",
+        //         "country",
+        //         "description",
+        //         "environmental_sample",
+        //         "first_public",
+        //         "isolation_source",
+        //         "location",
+        //         "sub_species",
+        //         "tax_id",
+        //         "scientific_name",
+        //         "sample_alias",
+        //         "center_name",
+        //         "host",
+        //         "host_tax_id",
+        //         "lat",
+        //         "lon",
+        //         "collection_date_submitted",
+        //       ],
+        //     },
+        //   ],
+        //   "name": "transformation-9",
+        //   "type": "adaptor",
+        //   "adaptor": "select-columns",
+        //   "description": null,
+        // },
+
         // {
         //   "ui": {
         //     "x": 920,

@@ -9,17 +9,16 @@ async function main() {
     )
     // .pipe(
     //   transform((record) => {
-    //     for (const key of Object.keys(record)) {
-    //       record[key] = record[key].toUpperCase();
-    //     }
+    //     // for (const key of Object.keys(record)) {
+    //     //   record[key] = record[key].toUpperCase();
+    //     // }
     //     return record;
     //   })
     // )
     .pipe(
       stringify({ header: true })
     )
-    .pipe(process.stdout);
-
+    .pipe(fs.createWriteStream(path.resolve(__dirname, "..", "data", "amr-watch-metadata", "all'.csv")));
 }
 
 main()
