@@ -277,42 +277,43 @@ module.exports = [
           "description": null,
         },
 
-        // {
-        //   "ui": {
-        //     "x": 1140,
-        //     "y": 150,
-        //   },
-        //   "name": "transformation-6",
-        //   "type": "adaptor",
-        //   "adaptor": "split-column",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-3",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "source",
-        //       "type": "value",
-        //       "value": "country",
-        //     },
-        //     {
-        //       "target": "separator",
-        //       "type": "value",
-        //       "value": ":",
-        //     },
-        //     {
-        //       "target": "columns",
-        //       "type": "value",
-        //       "value": [
-        //         "split_country",
-        //         "split_city",
-        //       ],
-        //     },
-        //   ],
-        // },
+        {
+          "ui": {
+            "x": 1140,
+            "y": 150,
+          },
+          "name": "transformation-6",
+          "type": "adaptor",
+          "adaptor": "split-column",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-3",
+              "argument": "data",
+            },
+            {
+              "target": "source",
+              "type": "value",
+              "value": "country",
+            },
+            {
+              "target": "separator",
+              "type": "value",
+              "value": ":",
+            },
+            {
+              "target": "columns",
+              "type": "value",
+              "value": [
+                "split_country",
+                "split_city",
+              ],
+            },
+          ],
+        },
+
         // {
         //   "ui": {
         //     "x": 1340,

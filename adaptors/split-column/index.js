@@ -1,30 +1,27 @@
-const utils = require("../../utils");
+const makeRegexp = require("../../utils/text/make-regexp");
 
-module.exports = function (args) {
-  const column = args.data.getColumn(args.source);
-  const regex = utils.text.makeRegexp(args.separator, true, true);
+module.exports = async function (args) {
+  args.data.checkColumns(args.source);
 
-  const rows = [];
-  for (const prevRow of args.data.rows) {
-    let nextRow = prevRow;
-    const value = prevRow[column];
-    if (value) {
-      nextRow = { ...prevRow };
-      const splits = value.toString().split(regex);
-      for (let index = 0; index < args.columns.length && index < splits.length; index++) {
-        nextRow[args.columns[index]] = splits[index];
+  const regex = makeRegexp(args.separator, true, true);
+
+  const data = await args.data.transform(
+    (row, { records }) => {
+      if (records === 1) {
+        for (const column of args.columns) {
+          row[column] = "";
+        }
       }
+      const value = row[args.source];
+      if (value) {
+        const splits = value.toString().split(regex);
+        for (let index = 0; index < args.columns.length && index < splits.length; index++) {
+          row[args.columns[index]] = splits[index];
+        }
+      }
+      return row;
     }
-    rows.push(nextRow);
-  }
+  );
 
-  return {
-    data: {
-      columns: [
-        ...args.data.columns,
-        ...args.columns,
-      ],
-      rows,
-    },
-  };
+  return { data };
 };

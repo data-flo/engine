@@ -16,6 +16,7 @@ class Datatable {
 
     const stringifier = stringify({
       header: true,
+      quoted: true,
       ...options,
     });
 
@@ -96,6 +97,15 @@ class Datatable {
   async hasColumn(columnName) {
     const columns = await this.getColumns();
     return columns.includes(columnName);
+  }
+
+  async checkColumns(...columnsToCheck) {
+    const allColumns = await this.getColumns();
+    for (const columnName of columnsToCheck) {
+      if (!allColumns.includes(columnName)) {
+        throw new Error(`Datatable does not include a column named '${columnName}'`);
+      }
+    }
   }
 
   async transform(transformer) {
