@@ -6,7 +6,9 @@ const inputs = {
   "Metadata ENA": (path.resolve(__dirname, "abaumannii_20220401_V1.csv")),
   // "Metadata ENA": (path.resolve(__dirname, "100k.csv")),
   // "Metadata ENA": (path.resolve(__dirname, "all.csv")),
-  "ID's file": (path.resolve(__dirname, "abaumannii_20220401_V1.csv")),
+  // "Metadata ENA": (path.resolve(__dirname, "mini.csv")),
+  "ID's file": (path.resolve(__dirname, "abaumannii_20220401_ids.txt")),
+  // "ID's file": (path.resolve(__dirname, "ids.txt")),
 };
 
 module.exports = {

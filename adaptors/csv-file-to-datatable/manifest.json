@@ -35,6 +35,12 @@
        ]
     },
     {
+      "name": "trim",
+      "type": "boolean",
+      "default": true,
+      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True."
+    },
+    {
       "name": "columns",
       "type": "list",
       "default": null,

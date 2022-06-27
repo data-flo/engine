@@ -3,12 +3,16 @@ const fs = require("fs");
 const { parse, stringify } = require("csv");
 const { finished } = require("stream/promises");
 
+const { EmptyObject } = require("../constants");
+
 const tmpFilePath = require("../utils/file/tmp-path");
 
 class Datatable {
 
   static async create(options) {
     const filePath = await tmpFilePath();
+
+    console.log({filePath})
 
     const stringifier = stringify({
       header: true,
@@ -38,15 +42,26 @@ class Datatable {
     this.source = sourceFile;
   }
 
-  getReader() {
+  getReader(options = EmptyObject) {
     return (
       fs.createReadStream(this.source)
         .pipe(
           parse({
             columns: true,
+            ...options,
           })
         )
     );
+  }
+
+  async transform(transformer) {
+    const datatableWriter = await Datatable.create();
+
+    this.getReader({ on_record: transformer }).pipe(datatableWriter);
+
+    const data = await datatableWriter.finalise();
+
+    return { data };
   }
 
 }
