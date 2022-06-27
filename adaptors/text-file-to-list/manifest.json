@@ -23,11 +23,13 @@
       ]
     },
     {
-      "name": "delimiter",
+      "name": "separator",
       "type": "text",
-      "default": ",",
-      "description": "Character used as column delimiter. Defaults to \",\" (comma).",
+      "default": "\n",
+      "description": "Character used as column separator. Defaults to `\\n` (newline).",
       "enum": [
+        [ "\n", "Newline (\\n)" ],
+        [ "\r\n", "CRLF (\\r\\n)" ],
         [ ",", "Comma (,)" ],
         [ ";", "Semicolon (;)" ],
         [ " ", "Space" ],
@@ -35,17 +37,17 @@
        ]
     },
     {
-      "name": "columns",
-      "type": "list",
-      "default": null,
-      "description": ""
+      "name": "trim",
+      "type": "boolean",
+      "default": true,
+      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True."
     }
   ],
   "output": [
     {
-      "name": "data",
-      "type": "datatable",
-      "description": "A DataTable containing columns and rows."
+      "name": "list",
+      "type": "list",
+      "description": "A List of strings, split at each point where the `separator` occurs in the given text file, or an empty list if no occurrences found."
     }
   ]
 }

@@ -32,9 +32,9 @@ class FileStream {
     this.source = sourceValue;
   }
 
-  getReader() {
+  getReader(options) {
     return (
-      fs.createReadStream(this.source)
+      fs.createReadStream(this.source, options)
     );
   }
 

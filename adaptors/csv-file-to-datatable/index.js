@@ -3,19 +3,9 @@ const { parse } = require("csv");
 const { Datatable } = require("../../types/datatable");
 
 module.exports = async function (args) {
-  // const data = new Datatable(
-  //   {
-  //     streamGetter: args.csv,
-  //     parserOptions: {
-  //       delimiter: args.delimiter,
-  //       encoding: args.encoding,
-  //     },
-  //   }
-  // );
-
   const datatableWriter = await Datatable.create({ columns: args.columns });
 
-  args.csv.getReader()
+  args.file.getReader({ encoding: args.encoding })
     .pipe(
       parse({
         trim: true,

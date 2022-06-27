@@ -16,7 +16,7 @@
       "name": "encoding",
       "type": "text",
       "default": null,
-      "description": "Input file encoding. Supported encodings are: `ascii`, `base64`, `binary`, `hex`, `ucs2`, `utf8`, or `latin1`."
+      "description": "The character encoding of the input `file`.\nDefaults to `utf8`."
     }
   ],
   "output": [

@@ -11,7 +11,7 @@
       "name": "encoding",
       "type": "text",
       "default": "utf8",
-      "description": "The encoding of text. \nSupported encodings are: `ascii`, `base64`, `binary`, `hex`, `ucs2`, `utf8`, or `latin1` \nDefaults to `utf8`"
+      "description": "The character encoding of the input `file`.\nDefaults to `utf8`."
     },
     {
       "name": "name",

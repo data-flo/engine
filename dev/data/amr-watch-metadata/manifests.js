@@ -60,7 +60,7 @@ module.exports = [
           },
           "binding": [
             {
-              "target": "csv",
+              "target": "file",
               "type": "input",
               "input": "Metadata ENA",
             },
@@ -127,26 +127,62 @@ module.exports = [
 
         // {
         //   "ui": {
+        //     "x": 480,
+        //     "y": 280,
+        //   },
+        //   "binding": [
+        //     {
+        //       "target": "file",
+        //       "type": "input",
+        //       "input": "ID's file",
+        //     },
+        //   ],
+        //   "name": "transformation-4",
+        //   "type": "adaptor",
+        //   "adaptor": "text-file-to-list",
+        //   "description": null,
+        // },
+        // {
+        //   "ui": {
         //     "x": 670,
         //     "y": 280,
         //   },
         //   "binding": [
         //     {
-        //       "target": "csv",
-        //       "type": "input",
-        //       "input": "ID's file",
-        //     },
-        //     {
-        //       "target": "columns",
-        //       "type": "value",
-        //       "value": [ "value" ],
+        //       "target": "list",
+        //       "type": "transformation",
+        //       "transformation": "transformation-4",
+        //       "argument": "list",
         //     },
         //   ],
         //   "name": "transformation-5",
         //   "type": "adaptor",
-        //   "adaptor": "csv-file-to-datatable",
+        //   "adaptor": "list-to-datatable",
         //   "description": null,
         // },
+
+        {
+          "ui": {
+            "x": 670,
+            "y": 280,
+          },
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "ID's file",
+            },
+            {
+              "target": "columns",
+              "type": "value",
+              "value": [ "value" ],
+            },
+          ],
+          "name": "transformation-5",
+          "type": "adaptor",
+          "adaptor": "csv-file-to-datatable",
+          "description": null,
+        },
 
         // {
         //   "ui": {
