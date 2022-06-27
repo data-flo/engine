@@ -31,22 +31,16 @@
       "default": false
     },
     {
-      "name": "columns",
-      "type": "map",
-      "description": "Specifies which columns of `other data` to include.\nIf unassigned, all columns in `other data` will be included.",
-      "default": null
-    },
-    {
-      "name": "overwrite",
+      "name": "case sensitive",
       "type": "boolean",
-      "description": "Specifies whether to overwrite columns which exist in both tables.\nDefaults to `False`.",
+      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent.\nDefaults to `False`.",
       "default": false
     },
     {
-      "name": "distance",
-      "type": "integer",
-      "description": "Specifies whether to use fuzzy matching when joining the rows.\nDefaults to `100` (full match).",
-      "default": 100
+      "name": "columns",
+      "type": "list",
+      "description": "Specifies which columns of `other data` to include.\nIf unassigned, all columns in `other data` will be included.",
+      "default": null
     }
   ],
   "output": [

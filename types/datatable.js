@@ -1,9 +1,9 @@
-const fs = require("fs");
+const fs = require("node:fs");
+const stream = require("node:stream/promises");
 
 const { parse, stringify } = require("csv");
-const { finished } = require("stream/promises");
 
-const { EmptyObject } = require("../constants");
+const { EmptyObject, EmptyArray } = require("../constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
 
@@ -19,17 +19,25 @@ class Datatable {
       ...options,
     });
 
-    stringifier
-      .pipe(
-        fs.createWriteStream(filePath)
-      );
+    const pipeline = stream.pipeline(
+      stringifier,
+      fs.createWriteStream(filePath)
+    );
 
     stringifier.finalise = () => {
-      return (
-        finished(stringifier)
-          .then(() => new Datatable(filePath))
-      );
+      return pipeline.then(() => new Datatable(filePath));
     };
+
+    // stringifier
+    //   .pipe(
+    //     fs.createWriteStream(filePath)
+    //   );
+    // stringifier.finalise = () => {
+    //   return (
+    //     finished(stringifier)
+    //       .then(() => new Datatable(filePath))
+    //   );
+    // };
 
     return stringifier;
   }
@@ -43,15 +51,51 @@ class Datatable {
   }
 
   getReader(options = EmptyObject) {
+    const parserOptions = {
+      columns: true,
+      ...options,
+    };
     return (
       fs.createReadStream(this.source)
         .pipe(
-          parse({
-            columns: true,
-            ...options,
-          })
+          parse(parserOptions)
         )
     );
+  }
+
+  getPartialReader(columns) {
+    return this.getReader({
+      columns: true,
+      on_record(inRow) {
+        for (const columnName of columns) {
+          if (!(columnName in inRow)) {
+            delete inRow[columnName];
+          }
+        }
+        return inRow;
+      },
+    });
+  }
+
+  async getInfo() {
+    const parser = this.getReader({ info: true });
+
+    for await (const { info } of parser) {
+      parser.end();
+      return info;
+    }
+
+    return EmptyObject;
+  }
+
+  async getColumns() {
+    const { columns } = await this.getInfo();
+    return (columns || EmptyArray).map((x) => x.name);
+  }
+
+  async hasColumn(columnName) {
+    const columns = await this.getColumns();
+    return columns.includes(columnName);
   }
 
   async transform(transformer) {
@@ -66,118 +110,118 @@ class Datatable {
 
 }
 
-class AsyncDatatable {
+// class AsyncDatatable {
 
-  static async create(options) {
-    const filePath = await tmpFile();
+//   static async create(options) {
+//     const filePath = await tmpFile();
 
-    const datatable = new Datatable({
-      streamGetter: () => fs.createReadStream(filePath),
-    });
+//     const datatable = new Datatable({
+//       streamGetter: () => fs.createReadStream(filePath),
+//     });
 
-    const stringifier = stringify({
-      header: true,
-      ...options,
-    });
+//     const stringifier = stringify({
+//       header: true,
+//       ...options,
+//     });
 
-    stringifier
-      .pipe(
-        fs.createWriteStream(filePath)
-      );
+//     stringifier
+//       .pipe(
+//         fs.createWriteStream(filePath)
+//       );
 
-    stringifier.finalise = () => {
-      return finished(stringifier).then(() => datatable);
-    };
+//     stringifier.finalise = () => {
+//       return finished(stringifier).then(() => datatable);
+//     };
 
-    return stringifier;
-  }
+//     return stringifier;
+//   }
 
-  constructor({ streamGetter, parserOptions } = {}) {
-    if (!streamGetter) {
-      throw new Error("Datatable requires stream getter");
-    }
+//   constructor({ streamGetter, parserOptions } = {}) {
+//     if (!streamGetter) {
+//       throw new Error("Datatable requires stream getter");
+//     }
 
-    this.streamGetter = streamGetter;
-    this.parserOptions = parserOptions || {};
-  }
+//     this.streamGetter = streamGetter;
+//     this.parserOptions = parserOptions || {};
+//   }
 
-  async getReader() {
-    if (!this.streamGetter) {
-      throw new Error("Datatable is not readable");
-    }
+//   async getReader() {
+//     if (!this.streamGetter) {
+//       throw new Error("Datatable is not readable");
+//     }
 
-    return (
-      (await this.streamGetter())
-        .pipe(
-          parse({
-            columns: true,
-            // columns(headerCells) {
-            //   return headerCells.map((column) => column.trim());
-            // },
-            // ...this.parserOptions,
-          })
-        )
-    );
-  }
+//     return (
+//       (await this.streamGetter())
+//         .pipe(
+//           parse({
+//             columns: true,
+//             // columns(headerCells) {
+//             //   return headerCells.map((column) => column.trim());
+//             // },
+//             // ...this.parserOptions,
+//           })
+//         )
+//     );
+//   }
 
-  async getWriter(options = {}) {
-    if (this.streamGetter) {
-      throw new Error("Datatable is not writable");
-    }
+//   async getWriter(options = {}) {
+//     if (this.streamGetter) {
+//       throw new Error("Datatable is not writable");
+//     }
 
-    const filePath = await tmpFile();
-    this.streamGetter = () => fs.createReadStream(filePath);
+//     const filePath = await tmpFile();
+//     this.streamGetter = () => fs.createReadStream(filePath);
 
-    const stringifier = stringify({
-      header: true,
-      ...options,
-    });
+//     const stringifier = stringify({
+//       header: true,
+//       ...options,
+//     });
 
-    stringifier
-      .pipe(
-        fs.createWriteStream(filePath)
-      );
+//     stringifier
+//       .pipe(
+//         fs.createWriteStream(filePath)
+//       );
 
-    console.log({filePath})
+//     console.log({filePath})
 
-    return stringifier;
-  }
+//     return stringifier;
+//   }
 
-  // addColumn(columnName, valueGetter) {
-  //   if (!this.columns.includes(columnName)) {
-  //     this.columns.push(columnName);
-  //   }
+//   // addColumn(columnName, valueGetter) {
+//   //   if (!this.columns.includes(columnName)) {
+//   //     this.columns.push(columnName);
+//   //   }
 
-  //   for (const row of this.rows) {
-  //     row[columnName] = valueGetter.call(row, row);
-  //   }
-  //   return this;
-  // }
+//   //   for (const row of this.rows) {
+//   //     row[columnName] = valueGetter.call(row, row);
+//   //   }
+//   //   return this;
+//   // }
 
-  // clone() {
-  //   return new Datatable(this.columns, this.rows);
-  // }
+//   // clone() {
+//   //   return new Datatable(this.columns, this.rows);
+//   // }
 
-  // hasColumn(columnName) {
-  //   return this.columns.includes(columnName);
-  // }
+//   // hasColumn(columnName) {
+//   //   return this.columns.includes(columnName);
+//   // }
 
-  // getColumn(columnName) {
-  //   if (!this.columns.includes(columnName)) {
-  //     throw new Error(`datatable does not include a column named ${columnName}. Columns are: ${this.columns}.`);
-  //   }
-  //   return columnName;
-  // }
+//   // getColumn(columnName) {
+//   //   if (!this.columns.includes(columnName)) {
+//   //     throw new Error(`datatable does not include a column named ${columnName}. Columns are: ${this.columns}.`);
+//   //   }
+//   //   return columnName;
+//   // }
 
-  // forEachRow(callback) {
-  //   return this.rows.forEach(callback);
-  // }
+//   // forEachRow(callback) {
+//   //   return this.rows.forEach(callback);
+//   // }
 
-  // map(callback) {
-  //   return this.rows.map(callback);
-  // }
+//   // map(callback) {
+//   //   return this.rows.map(callback);
+//   // }
 
-}
+// }
 
 module.exports = function createDatatable(sourceValue) {
   if (sourceValue instanceof Datatable) {
