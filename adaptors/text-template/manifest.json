@@ -5,7 +5,7 @@
     {
       "name": "template",
       "type": "text",
-      "description": "A mustache (https://mustache.github.io/) template.\nA mustache template is a string that contains any number of mustache variable tags. Tags are indicated by the double mustaches that surround them. `{{ person }}` is a tag."
+      "description": "A mustache (https://mustache.github.io/) template, a text that contains any number of mustache variable tags. Variable tags are indicated by the double mustaches that surround them. `{{ person }}` is a tag."
     },
     {
       "name": "variables",
