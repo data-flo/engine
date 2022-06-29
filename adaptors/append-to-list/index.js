@@ -1,6 +1,8 @@
 module.exports = function (args) {
-  const list = args.list.slice();
-  list.push(args.value);
+  const list = [
+    ...args.list,
+    args.value,
+  ];
   return {
     list,
   };

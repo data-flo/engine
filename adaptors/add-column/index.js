@@ -1,10 +1,10 @@
-module.exports = function (args) {
-  const data = args.data.clone();
-  data.addColumn(
-    args.column,
-    () => args.value || ""
+module.exports = async function (args) {
+  const data = await args.data.transform(
+    (row) => {
+      row[args.column] = args.value || "";
+      return row;
+    }
   );
-  return {
-    data,
-  };
+
+  return { data };
 };

@@ -16,7 +16,7 @@
     {
       "name": "reference format",
       "type": "text",
-      "description": "Format tokens based on https://momentjs.com/docs/#/displaying/format/.\nDefaults to `ISO 8601`.",
+      "description": "Format of the string is based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to `ISO 8601`.",
       "default": "ISO8601"
     },
     {
@@ -31,14 +31,14 @@
       "default": "ISO8601"
     },
     {
-      "name": "difference unit",
-      "type": "text",
-      "description": "The unit of time difference measurement.\nThe supported measurements are `years`, `months`, `weeks`, `days`, `hours`, `minutes`, or `seconds`"
-    },
-    {
       "name": "target column",
       "type": "text",
       "description": "The name of the column to which time difference values will be added."
+    },
+    {
+      "name": "difference unit",
+      "type": "text",
+      "description": "The unit of time difference measurement.\nThe supported measurements are `years`, `months`, `weeks`, `days`, `hours`, `minutes`, or `seconds`"
     }
   ],
   "output": [
