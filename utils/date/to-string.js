@@ -4,9 +4,9 @@ const { format, formatISO, isValid } = require("date-fns");
 const locale = require("date-fns/locale");
 const standardiseFormatString = require("./standardise-format-string");
 
-module.exports = function (dateValue, dirtyFormatString, localeString) {
+module.exports = function (dateValue, formatString, localeString) {
   if (isValid(dateValue)) {
-    const cleanFormatString = standardiseFormatString(dirtyFormatString);
+    const cleanFormatString = standardiseFormatString(formatString);
 
     if (cleanFormatString) {
       return format(
