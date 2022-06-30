@@ -118,6 +118,22 @@ class Datatable {
     return { data };
   }
 
+  async transformAsync(transformer) {
+    const datatableWriter = await Datatable.create();
+
+    this.getReader({ on_record: transformer }).pipe(datatableWriter);
+
+    for await (const row of this.getReader()) {
+      datatableWriter.write(await transformer(row));
+    }
+
+    datatableWriter.end();
+
+    const data = await datatableWriter.finalise();
+
+    return { data };
+  }
+
 }
 
 // class AsyncDatatable {

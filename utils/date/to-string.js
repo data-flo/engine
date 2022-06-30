@@ -1,5 +1,3 @@
-/* eslint no-restricted-globals: 0 */
-
 const { format, isValid } = require("date-fns");
 const locale = require("date-fns/locale");
 const { formatInTimeZone } = require("date-fns-tz");

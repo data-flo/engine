@@ -1,5 +1,3 @@
-/* eslint no-restricted-globals: 0 */
-
 const { parse, parseISO, isValid } = require("date-fns");
 const locale = require("date-fns/locale");
 const standardiseFormatString = require("./standardise-format-string");
