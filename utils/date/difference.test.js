@@ -2,6 +2,12 @@ const tap = require("tap");
 
 const difference = require("./difference");
 
+tap.test("given an invalid unit, should return undefined", async (t) => {
+  const expected = undefined;
+  const actual = difference(new Date(2015, 1, 11), new Date(2013, 11, 31), "");
+  t.equal(actual, expected);
+});
+
 tap.test("given two dates, should return difference in years", async (t) => {
   const expected = 1;
   const actual = difference(new Date(2015, 1, 11), new Date(2013, 11, 31), "years");
@@ -21,7 +27,7 @@ tap.test("given two dates, should return difference in months", async (t) => {
 });
 
 tap.test("given two dates, should return difference in weeks", async (t) => {
-  const expected = 8;
+  const expected = 2;
   const actual = difference(new Date(2014, 6, 20), new Date(2014, 6, 5), "weeks");
   t.equal(actual, expected);
 });
