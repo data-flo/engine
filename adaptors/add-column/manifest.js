@@ -1,30 +1,33 @@
-{
+module.exports = {
   "description": "Adds a new column to an existing datatable.",
   "category": "Data Tables",
   "input": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable to which the new column will be added."
-
+      "description": "A datatable to which the new column will be added.",
+      "required": true,
     },
     {
       "name": "column",
       "type": "text",
-      "description": "The name of the new column to be added."
+      "description": "The name of the new column to be added.",
+      "required": true,
+      "subtype": { "column": "data" },
     },
     {
       "name": "value",
       "type": "text",
       "description": "A value to be added to the column cells.\nIf unspecified, empty values will be added.",
-      "default": null
-    }
+      "required": false,
+      "default": "",
+    },
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A new datatable with target column added."
-    }
-  ]
-}
+      "description": "A new datatable with target column added.",
+    },
+  ],
+};
