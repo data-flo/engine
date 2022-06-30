@@ -1,39 +1,30 @@
-import { describe, Try } from 'riteway';
+const tap = require("tap");
+const toString = require("./to-string");
 
-// a function to test
-const sum = (...args) => {
-  if (args.some(v => Number.isNaN(v))) throw new TypeError('NaN');
-  return args.reduce((acc, n) => acc + n, 0);
-};
+tap.test("given a string, should return undefined", async (t) => {
+  const input = "2022-06-29T09:33:49-00:00";
+  const expected = undefined;
+  const actual = toString(input);
+  t.equal(actual, expected);
+});
 
-describe('sum()', async assert => {
-  const should = 'return the correct sum';
+tap.test("given an ISO string, should return the same string", async (t) => {
+  const expected = "2022-06-29T09:33:49+00:00";
+  const input = new Date(expected);
+  const actual = toString(input);
+  t.equal(actual, expected);
+});
 
-  assert({
-    given: 'no arguments',
-    should: 'return 0',
-    actual: sum(),
-    expected: 0
-  });
+tap.test("given a date and a format, should return the formatted string", async (t) => {
+  const expected = "2022-06-29";
+  const input = new Date(2022, (6 - 1 /* zero-based month */), 29);
+  const actual = toString(input, "YYYY-MM-DD");
+  t.equal(actual, expected);
+});
 
-  assert({
-    given: 'zero',
-    should,
-    actual: sum(2, 0),
-    expected: 2
-  });
-
-  assert({
-    given: 'negative numbers',
-    should,
-    actual: sum(1, -4),
-    expected: -3
-  });
-
-  assert({
-    given: 'NaN',
-    should: 'throw',
-    actual: Try(sum, 1, NaN).toString(),
-    expected: 'TypeError: NaN'
-  });  
+tap.test("given a date, a format, and a locale string, should return the formatted string", async (t) => {
+  const expected = "29 jun 2022";
+  const input = new Date(2022, (6 - 1 /* zero-based month */), 29);
+  const actual = toString(input, "DD MMM YYYY", "es");
+  t.equal(actual, expected);
 });

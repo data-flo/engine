@@ -1,23 +1,29 @@
 /* eslint no-restricted-globals: 0 */
 
-const { format, formatISO, isValid } = require("date-fns");
+const { parse, parseISO, isValid } = require("date-fns");
 const locale = require("date-fns/locale");
 const standardiseFormatString = require("./standardise-format-string");
 
-module.exports = function (dateValue, dirtyFormatString, localeString) {
-  if (isValid(dateValue)) {
-    const cleanFormatString = standardiseFormatString(dirtyFormatString);
+module.exports = function (stringValue, formatString, localeString) {
+  const cleanFormatString = standardiseFormatString(formatString);
+  let dateValue;
 
-    if (cleanFormatString) {
-      return format(
-        dateValue,
-        cleanFormatString,
-        localeString ? { locale: locale[localeString.replace("-", "")] } : undefined,
-      );
-    }
-    else {
-      return formatISO(dateValue);
-    }
+  if (cleanFormatString) {
+    dateValue = parse(
+      stringValue,
+      cleanFormatString,
+      new Date(),
+      localeString ? { locale: locale[localeString.replace("-", "")] } : undefined,
+    );
+  }
+  else {
+    dateValue = parseISO(
+      stringValue,
+    );
+  }
+
+  if (isValid(dateValue)) {
+    return dateValue;
   }
   else {
     return undefined;

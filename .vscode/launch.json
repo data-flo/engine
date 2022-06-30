@@ -12,6 +12,24 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/dev/index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Test",
+      "program": "${workspaceFolder}/node_modules/.bin/tap",
+      "args": [
+        "-no-cov",
+        "--no-coverage-report",
+        "${file}"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Tap current file",
+      "program": "${workspaceFolder}/${relativeFile}",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
