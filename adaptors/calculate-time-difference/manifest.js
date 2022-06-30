@@ -1,3 +1,5 @@
+const { DateFormats, DurationUnits } = require("../../enums");
+
 module.exports = {
   "description": "Calculates the time difference (in a specified unit of measurement) between two datatable columns.",
   "category": "Data Manipulation",
@@ -18,14 +20,7 @@ module.exports = {
       "description": "The format of data in reference column based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date and time in UTC.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
-      "values": [
-        [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34+00:00)" ],
-        [ "yyyy-MM-dd", "ISO 8601 date (e.g. 2022-06-30)" ],
-        [ "dd/MM/yyyy", "date/month/year (e.g. 30/06/2022)" ],
-        [ "MM/dd/yyyy", "month/date/year (e.g. 06/30/2022)" ],
-        [ "yyyy/MM/dd", "year/month/date (e.g. 06/30/2022)" ],
-        [ "dd.MM.yyyy", "date.month.year (e.g. 30.06.2022)" ],
-      ],
+      "values": DateFormats,
     },
     {
       "name": "value column",
@@ -38,14 +33,7 @@ module.exports = {
       "description": "The format of data in value column based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date and time in UTC.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
-      "values": [
-        [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34+00:00)" ],
-        [ "yyyy-MM-dd", "ISO 8601 date (e.g. 2022-06-30)" ],
-        [ "dd/MM/yyyy", "date/month/year (e.g. 30/06/2022)" ],
-        [ "MM/dd/yyyy", "month/date/year (e.g. 06/30/2022)" ],
-        [ "yyyy/MM/dd", "year/month/date (e.g. 06/30/2022)" ],
-        [ "dd.MM.yyyy", "date.month.year (e.g. 30.06.2022)" ],
-      ],
+      "values": DateFormats,
     },
     {
       "name": "target column",
@@ -56,6 +44,7 @@ module.exports = {
       "name": "difference unit",
       "type": "text",
       "description": "The unit of time difference measurement.\nThe supported measurements are `years`, `quarter`, `months`, `weeks`, `days`, `hours`, `minutes`, `seconds`, or `milliseconds`",
+      "values": DurationUnits,
     },
   ],
   "output": [
