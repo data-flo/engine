@@ -3,7 +3,7 @@ module.exports = async function (args) {
     (row) => {
       row[args.column] = args.value || "";
       return row;
-    }
+    },
   );
 
   return { data };
