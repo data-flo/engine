@@ -1,38 +1,32 @@
 const fromString = require("../../utils/date/from-string");
-const toString = require("../../utils/date/to-string");
+const difference = require("../../utils/date/difference");
 
-module.exports = function (args) {
-  const referenceColumn = args.data.getColumn(args["reference column"]);
-  const valueColumn = args.data.getColumn(args["value column"]);
-
-  const data = args.data.clone();
-
-  data.addColumn(
-    args["target column"],
+module.exports = async function (args) {
+  const data = await args.data.transform(
     (row) => {
-      const refMoment = (
-        (args["reerence format"] === "ISO8601") ?
-          moment(row[referenceColumn]) :
-          moment(row[referenceColumn], args["reference format"])
+      const referenceDate = fromString(
+        row[args["reference column"]],
+        args["reference format"],
       );
-      const valueMoment = (
-        (args["value format"] === "ISO8601") ?
-          moment(row[valueColumn]) :
-          moment(row[valueColumn], args["value format"])
+      const valueDate = fromString(
+        row[args["value column"]],
+        args["value format"],
       );
 
-      if (valueMoment.isValid() && refMoment.isValid()) {
-        return valueMoment.diff(
-          refMoment,
+      if (referenceDate && valueDate) {
+        row["target column"] = difference(
+          referenceDate,
+          valueDate,
           args["difference unit"]
         );
       }
+      else {
+        row["target column"] = "";
+      }
 
-      return undefined;
+      return row;
     }
   );
 
-  return {
-    data,
-  };
+  return { data };
 };
