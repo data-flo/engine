@@ -7,7 +7,7 @@ module.exports = {
     {
       "name": "file",
       "type": "file",
-      "description": "A file containing a .csv or .tsv formatted data.",
+      "description": "A file containing [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) or delimited text.",
       "required": true,
     },
     {
