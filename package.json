@@ -53,7 +53,7 @@
     "yn": "^3.1.0"
   },
   "devDependencies": {
-    "eslint-config-cgps": "cgps-dev/eslint-config",
+    "eslint-config-cgps": "github:cgps-dev/eslint-config",
     "esm": "^3.2.25",
     "riteway": "^6.3.1",
     "tap": "^14.11.0",
