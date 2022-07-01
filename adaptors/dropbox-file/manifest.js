@@ -1,0 +1,18 @@
+module.exports = {
+  "description": "Imports a file from Dropbox.",
+  "category": "Data Sources",
+  "input": [
+    {
+      "name": "url",
+      "type": "text",
+      "description": "The url of the target Dropbox file."
+    }
+  ],
+  "output": [
+    {
+      "name": "file",
+      "type": "file",
+      "description": "The imported Dropbox file."
+    }
+  ]
+}
