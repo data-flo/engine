@@ -1,17 +1,18 @@
-{
+module.exports = {
   "description": "Converts the case of text values of a datatable column.",
   "category": "Data Tables",
   "input": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable to be converted."
-
+      "description": "A datatable to be converted.",
+      "required": true,
     },
     {
       "name": "column",
       "type": "text",
-      "description": "The name of a column in data to be converted."
+      "description": "The name of a column in data to be converted.",
+      "required": true,
     },
     {
       "name": "case",
@@ -35,21 +36,22 @@
         "constant",
         "sentence",
         "upperfirst",
-        "lowerfirst"
-      ]
+        "lowerfirst",
+      ],
+      "required": true,
     },
     {
       "name": "target",
       "type": "text",
       "description": "The name of the column to which converted values are added.\nIf unspecified, it defaults to the value of `column`.",
-      "default": null
-    }
+      "default": null,
+    },
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A new datatable with target column added."
-    }
-  ]
-}
+      "description": "A new datatable with target column added.",
+    },
+  ],
+};
