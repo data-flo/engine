@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Merges rows of two datatables into a new datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "first data",

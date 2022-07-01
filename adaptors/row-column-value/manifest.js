@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Returns the value of datatable column at a specified row.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

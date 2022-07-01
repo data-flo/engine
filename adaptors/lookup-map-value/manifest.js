@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Looks up a value in a map.",
-  "category": "Map Manipulation",
+  "group": "Transformations",
+  "subgroup": "Map Manipulation",
   "input": [
     {
       "name": "dictionary",

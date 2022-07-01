@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Replaces each element in a list of text according to the given pattern, returning the new list",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

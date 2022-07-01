@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Returns a portion of a list into a new list selected from begin to end.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

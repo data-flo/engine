@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Splits a list into two lists at the frist instance of a specified separator element.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

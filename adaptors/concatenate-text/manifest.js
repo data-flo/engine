@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Concatenates text to the left and/or the right of the input, then returns the combined text as an output.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "left",

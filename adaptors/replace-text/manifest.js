@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Replaces values in a text with some or all matches of a pattern replaced by a replacement.\nThe pattern can be a test or a regular expression.\nIf pattern is a text, only the first occurrence will be replaced.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "text",

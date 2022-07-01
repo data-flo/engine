@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Removes specified columns from a datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

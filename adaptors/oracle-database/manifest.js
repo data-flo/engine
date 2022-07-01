@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Runs an SQL query on an Oracle Database and returns the results as a datatable.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "connectionString",

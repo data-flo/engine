@@ -2,7 +2,8 @@ const { DateFormats, DurationUnits } = require("../../enums");
 
 module.exports = {
   "description": "Calculates the time difference (in a specified unit of measurement) between two datatable columns.",
-  "category": "Data Manipulation",
+  "group": "Transformations",
+  "subgroup": "Data Manipulation",
   "input": [
     {
       "name": "data",

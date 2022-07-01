@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Gets the leaf labels from a Newick tree.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "newick",

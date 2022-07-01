@@ -1,7 +1,8 @@
 
 module.exports = {
   "description": "Splits date values into new columns.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

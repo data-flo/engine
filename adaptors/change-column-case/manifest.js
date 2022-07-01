@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts the case of text values of a datatable column.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

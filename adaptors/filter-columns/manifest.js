@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Removes columns whose name contains a string or matches regular expression from a datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

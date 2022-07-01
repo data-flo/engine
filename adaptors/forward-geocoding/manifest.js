@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Forward geocode a place into latitude & longitude.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "mapboxApiKey",

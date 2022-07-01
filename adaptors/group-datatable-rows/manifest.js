@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Groups rows by specified columns and puts them in a collection.",
-  "category": "Data Manipulation",
+  "group": "Transformations",
+  "subgroup": "Data Manipulation",
   "input": [
     {
       "name": "data",

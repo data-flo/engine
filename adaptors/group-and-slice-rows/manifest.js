@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Sums rows in specified columns",
-  "category": "Data Manipulation",
+  "group": "Transformations",
+  "subgroup": "Data Manipulation",
   "input": [
     {
       "name": "data",

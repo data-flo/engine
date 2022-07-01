@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Reads a datatable from a SQLite DB file.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "sqlite",

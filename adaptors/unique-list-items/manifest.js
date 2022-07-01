@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Returns unique list items",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

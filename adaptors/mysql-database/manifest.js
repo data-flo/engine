@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Connect to and query a MySQL database and convert the result to a datatable; SELECT statements only.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "hostname",

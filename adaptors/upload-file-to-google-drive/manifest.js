@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Saves a file to a folder in Google Drive.\nThe folder should be shared to with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "file",

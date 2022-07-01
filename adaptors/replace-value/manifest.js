@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Finds and replaces a value in specified columns of a datatable.\nThe pattern can be a test or a regular expression.\nIf pattern is a text, only the first occurrence will be replaced.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

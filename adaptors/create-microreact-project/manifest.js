@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Creates Microreact projects.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "name",

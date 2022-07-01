@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Extracts data from an Epicollect5 project.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

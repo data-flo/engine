@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Replaces values in source column with some or all matches of a pattern replaced by a replacement. The pattern can be a test or a regular expression. If pattern is a text, only the first occurrence will be replaced. Replacement values are added to target column.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

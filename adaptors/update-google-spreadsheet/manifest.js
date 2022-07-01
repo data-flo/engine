@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Saves data to a Google Spreadsheet.\nThe Spreadsheet should be shared to with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "url",

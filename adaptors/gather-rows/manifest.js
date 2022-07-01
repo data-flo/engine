@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Gathers rows in wide format to long format. See http://www.milanor.net/blog/reshape-data-r-tidyr-vs-reshape2.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

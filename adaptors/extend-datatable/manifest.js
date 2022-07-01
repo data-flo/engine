@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Add a column to a datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

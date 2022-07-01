@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Imports a file from Dropbox.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

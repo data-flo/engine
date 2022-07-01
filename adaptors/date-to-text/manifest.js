@@ -1,7 +1,8 @@
 
 module.exports = {
   "description": "Formats a date value as a text.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "value",

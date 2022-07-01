@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts lists of text to a list of files.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

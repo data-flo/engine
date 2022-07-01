@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Downloads a file on the web.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

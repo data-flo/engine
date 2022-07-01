@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Applies forces to a graph to produce a layout based on node and edge relationships.",
-  "category": "Graph Manipulation",
+  "group": "Transformations",
+  "subgroup": "Graph Manipulation",
   "input": [
     {
       "name": "graph",

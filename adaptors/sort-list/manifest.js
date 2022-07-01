@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Sorts elements in a list.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

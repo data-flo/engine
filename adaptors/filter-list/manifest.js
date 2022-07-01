@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Finds values in a list that match a search string or regular expression.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

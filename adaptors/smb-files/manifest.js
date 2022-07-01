@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Retrieves a list of files from a SMB/CIFS server.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "share",

@@ -1,6 +1,7 @@
 module.exports = {
   "description": "retreives data from a PostgreSQL database.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "hostname",

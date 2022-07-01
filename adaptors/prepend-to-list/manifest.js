@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Adds one element to the beginning of a list.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",

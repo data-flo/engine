@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Retrieves a remote file from a remote network server.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "address",

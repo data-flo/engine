@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Concatenate a columns values into a new column.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

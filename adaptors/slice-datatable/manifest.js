@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Returns a portion of a datatable into a new datatable selected from `begin` to `end`.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

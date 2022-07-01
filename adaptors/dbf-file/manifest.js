@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Reads data from a dBASE (`.dbf`) file.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "dbf",

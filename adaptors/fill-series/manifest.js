@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Fills empty values of a datatable column with series of values.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

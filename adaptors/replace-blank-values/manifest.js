@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Replaces blank values in a datatable column.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

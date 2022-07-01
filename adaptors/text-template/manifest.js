@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Renders a Mustache template and returns rendered text.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "template",

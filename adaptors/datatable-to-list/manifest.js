@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Creates a list from values of a datatable column.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "data",

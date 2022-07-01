@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Splits values in source column into a number of columns using a specified separator text to determine where to make each split.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Sorts a datatable by one or more columns",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

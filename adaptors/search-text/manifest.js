@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Searches for a pattern in a text using a regular expression.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "text",

@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Finds rows in a datatable that match a numeric comparison using teh `>`, `>=`, `<` or `<=` operators.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

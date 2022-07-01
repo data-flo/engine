@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Finds rows in a datatable that match a search string or regular expression.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

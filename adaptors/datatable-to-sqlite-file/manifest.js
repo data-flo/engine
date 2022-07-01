@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Writes a datatable to a SQLite DB file.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "sqlite",

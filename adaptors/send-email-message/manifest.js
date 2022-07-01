@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Renders a Mustache template and returns rendered text.",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "stmp host",

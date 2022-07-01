@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Renames an existing column in a datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

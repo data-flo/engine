@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts an URL to text.",
-  "category": "URL Manipulation",
+  "group": "Transformations",
+  "subgroup": "URL Manipulation",
   "input": [
     {
       "name": "url",

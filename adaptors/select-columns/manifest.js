@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Selects a list of columns from datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

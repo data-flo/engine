@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Merges the entries of two collections.",
-  "category": "JSON Manipulation",
+  "group": "Transformations",
+  "subgroup": "JSON Manipulation",
   "input": [
     {
       "name": "first collection",

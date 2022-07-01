@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Merges two lists into one.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "first",

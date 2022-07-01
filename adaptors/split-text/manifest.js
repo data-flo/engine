@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Splits a text into a list of texts using a specified separator text to determine where to make each split.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "text",

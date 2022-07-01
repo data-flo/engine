@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts a datatable to a graph.",
-  "category": "Graph Manipulation",
+  "group": "Transformations",
+  "subgroup": "Graph Manipulation",
   "input": [
     {
       "name": "data",

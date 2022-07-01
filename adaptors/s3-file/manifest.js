@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Downloads a file from an S3 endpoint",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

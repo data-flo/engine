@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Extracts data from a Microreact project.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

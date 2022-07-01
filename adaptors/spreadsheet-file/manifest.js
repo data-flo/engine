@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Imports a spreadsheet file and converts to a datatable.\nSupported file formats: `.xlsx`, `.xlsm`, `.xlsb`, `.xls`, `.xls`, `.xls`, `.xls`, `.ods`, `.fods`, `.csv`, `.txt`, `.sylk`, `.html`, `.dif`, `.dbf`, `.rtf`, `.prn`, and `.eth`.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "file",

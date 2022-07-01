@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Finds rows in a datatable that are duplicated and removes the duplicates into a duplicates datatable.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

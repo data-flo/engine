@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Creates an URL from a input text.",
-  "category": "URL Manipulation",
+  "group": "Transformations",
+  "subgroup": "URL Manipulation",
   "input": [
     {
       "name": "input",

@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts text a text to a file stream.",
-  "category": "Text Manipulation",
+  "group": "Transformations",
+  "subgroup": "Text Manipulation",
   "input": [
     {
       "name": "text",

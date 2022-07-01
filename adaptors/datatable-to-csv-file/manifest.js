@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Converts a datatable to a CSV string.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",

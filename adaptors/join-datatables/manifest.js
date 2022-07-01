@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Joins rows of two datatables that have the same value for a specified column.",
-  "category": "Data Tables",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
   "input": [
     {
       "name": "main data",

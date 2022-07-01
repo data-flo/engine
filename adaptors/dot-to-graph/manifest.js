@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Parses a DOT string as a graph.",
-  "category": "Graph Manipulation",
+  "group": "Transformations",
+  "subgroup": "Graph Manipulation",
   "input": [
     {
       "name": "dot",

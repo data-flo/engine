@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Imports a Google sheet and convert it to a datatable.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "url",

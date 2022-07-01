@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Returns an element of list at a specified index.",
-  "category": "List Manipulation",
+  "group": "Transformations",
+  "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",
