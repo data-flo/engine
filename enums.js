@@ -1,3 +1,10 @@
+module.exports.CommonDelimiters = Object.freeze([
+  [ ",", "Comma" ],
+  [ ";", "Semicolon" ],
+  [ "\\u0020", "Space" ],
+  [ "\\u0009", "tab" ],
+]);
+
 module.exports.DateFormats = Object.freeze([
   [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34+00:00)" ],
   [ "yyyy-MM-dd", "ISO 8601 date (e.g. 2022-06-30)" ],
@@ -14,13 +21,6 @@ module.exports.DurationUnits = Object.freeze([
   "years", "quarter", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds",
 ]);
 
-module.exports.CommonDelimiters = Object.freeze([
-  [ ",", "Comma" ],
-  [ ";", "Semicolon" ],
-  [ "\\u0020", "Space" ],
-  [ "\\u0009", "tab" ],
-]);
-
 module.exports.FileEncodings = Object.freeze([
   "ascii",
   "base64",
@@ -29,4 +29,25 @@ module.exports.FileEncodings = Object.freeze([
   "ucs2",
   "utf8",
   "latin1",
+]);
+
+module.exports.LetterCases = Object.freeze([
+  [ "camel", "camel case (`OfMice and men` → `ofMiceAndMen`)", "text with the separator denoted by the next word capitalised" ],
+  [ "capital", "capital case (`OfMice and men` → `Of Mice And Men`)", "space separated text with each word capitalised" ],
+  [ "constant", "constant case (`OfMice and men` → `OF_MICE_AND_MEN`)", "upper case text with an underscore between words" ],
+  [ "dot", "dot case (`OfMice and men` → `of.mice.and.men`)", "lower case string with a period between words" ],
+  [ "header", "header case (`OfMice and men` → `Of-Mice-And-Men`)", "dash separated string of capitalised words" ],
+  [ "hyphen", "hyphen case (`OfMice and men` → `of-mice-and-men`)", "lower cased string with dashes between words (same as kebab case)" ],
+  [ "kebab", "kebab case (`OfMice and men` → `of-mice-and-men`)", "lower cased string with dashes between words" ],
+  [ "lower", "lower case (`OfMice and men` → `ofmice and men`)", "text with all letters lower case" ],
+  [ "no", "no case (`OfMice and men` → `of mice and men`)", "lower cased string with spaces between words" ],
+  [ "param", "param case (`OfMice and men` → `of-mice-and-men`)", "lower cased string with dashes between words (same as kebab case)" ],
+  [ "pascal", "pascal case (`OfMice and men` → `OfMiceAndMen`)", "string of capitalised words without separators" ],
+  [ "path", "path case (`OfMice and men` → `of/mice/and/men`)", "lower case string with slashes between words" ],
+  [ "sentence", "sentence case (`OfMice and men` → `Of mice and men`)", "lower case with spaces between words and capitalised first letter" ],
+  [ "snake", "snake case (`OfMice and men` → `of_mice_and_men`)", "lower case string with underscores between words" ],
+  [ "sponge", "sponge case (`OfMice and men` → `oFmiCe anD mEN`)", "string with random capitalisation applied" ],
+  [ "swap", "swap case (`OfMice and men` → `oFmICE AND MEN`)", "swaps every character from upper to lower case, or lower to upper case" ],
+  [ "title", "title case (`OfMice and men` → `OfMice and Men`)", "a mixed-case style following English language rules" ],
+  [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);

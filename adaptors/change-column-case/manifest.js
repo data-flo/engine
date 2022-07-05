@@ -1,3 +1,5 @@
+const { LetterCases } = require("../../enums");
+
 module.exports = {
   "description": "Converts the case of text values in a datatable column.",
   "group": "Transformations",
@@ -19,28 +21,9 @@ module.exports = {
     {
       "name": "case",
       "type": "text",
-      "description": "One of the following supported case patterns:\n- `no`\n- `dot`\n- `swap`\n- `path`\n- `upper`\n- `lower`\n- `camel`\n- `snake`\n- `title`\n- `param`\n- `kebab`\n- `hyphen`\n- `header`\n- `pascal`\n- `constant`\n- `sentence`\n- `upperfirst`\n- `lowerfirst`",
-      "enum": [
-        "no",
-        "dot",
-        "swap",
-        "path",
-        "upper",
-        "lower",
-        "camel",
-        "snake",
-        "title",
-        "param",
-        "kebab",
-        "hyphen",
-        "header",
-        "pascal",
-        "constant",
-        "sentence",
-        "upperfirst",
-        "lowerfirst",
-      ],
+      "description": "One of the supported case patterns.",
       "required": true,
+      "ui": { oneOf: LetterCases },
     },
   ],
   "output": [

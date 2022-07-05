@@ -5,7 +5,7 @@ module.exports = async function (args) {
 
   const regex = makeRegexp(args.separator, true, true);
 
-  const data = await args.data.transform(
+  const data = await args.data.transformSync(
     (row, { records }) => {
       if (records === 1) {
         for (const column of args.columns) {

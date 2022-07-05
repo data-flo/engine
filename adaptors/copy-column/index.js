@@ -1,6 +1,6 @@
 module.exports = async function (args) {
   //TODO: error when column already in data
-  const data = await args.data.transform(
+  const data = await args.data.transformSync(
     (row) => {
       row[args.column] = args.value || "";
       return row;
