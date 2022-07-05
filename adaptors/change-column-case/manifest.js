@@ -1,19 +1,20 @@
 module.exports = {
-  "description": "Converts the case of text values of a datatable column.",
+  "description": "Converts the case of text values in a datatable column.",
   "group": "Transformations",
   "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable to be converted.",
+      "description": "The datatable containing the column to be converted.",
       "required": true,
     },
     {
       "name": "column",
       "type": "text",
-      "description": "The name of a column in data to be converted.",
+      "description": "The column to be converted.",
       "required": true,
+      "ui": { "column": "data" },
     },
     {
       "name": "case",
@@ -40,12 +41,6 @@ module.exports = {
         "lowerfirst",
       ],
       "required": true,
-    },
-    {
-      "name": "target",
-      "type": "text",
-      "description": "The name of the column to which converted values are added.\nIf unspecified, it defaults to the value of `column`.",
-      "default": null,
     },
   ],
   "output": [

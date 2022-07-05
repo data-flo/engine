@@ -53,7 +53,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable the new column added.",
+      "description": "A new datatable with the new column added.",
     },
   ],
   "keywords": [
