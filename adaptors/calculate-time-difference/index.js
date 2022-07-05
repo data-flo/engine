@@ -2,6 +2,7 @@ const fromString = require("../../utils/date/from-string");
 const difference = require("../../utils/date/difference");
 
 module.exports = async function (args) {
+  //TODO: error when difference column
   const data = await args.data.transform(
     (row) => {
       const referenceDate = fromString(

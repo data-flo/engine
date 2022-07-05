@@ -33,6 +33,8 @@ module.exports = function (doc) {
           columnsBindings.value = columnsBindings.value.map(([ key ]) => key);
         }
       }
+
+      // append-to-list
     }
   }
 
