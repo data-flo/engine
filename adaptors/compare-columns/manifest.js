@@ -6,30 +6,30 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "The input datatable."
+      "description": "The datatable containing columns to compare.",
     },
     {
       "name": "columns",
       "type": "list",
-      "description": "A list of columns to compare."
+      "description": "A list of columns to be compared.",
     },
     {
       "name": "case sensitive",
       "type": "boolean",
-      "description": "Whether lowercase and uppercase letters should be treated as equivalent.\nDefaults to `False`.",
-      "default": false
-    }
+      "description": "Whether lowercase and uppercase letters should be treated as equivalent.\nDefaults to `False` (lowercase and uppercase letters are treated as equivalent).",
+      "default": false,
+    },
   ],
   "output": [
     {
       "name": "same",
       "type": "datatable",
-      "description": "A datatable containing rows which have the same values in selected columns."
+      "description": "A datatable containing rows which have the same values in selected columns.",
     },
     {
       "name": "different",
       "type": "datatable",
-      "description": "A datatable containing rows which have different values in selected columns."
-    }
-  ]
-}
+      "description": "A datatable containing rows which have different values in selected columns.",
+    },
+  ],
+};
