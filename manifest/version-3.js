@@ -34,7 +34,25 @@ module.exports = function (doc) {
         }
       }
 
-      // append-to-list
+      if (step.adaptor === "calculate-time-difference") {
+        for (const binding of step.bindings) {
+          if (binding.target === "reference column") {
+            binding.target = "column two";
+          }
+          if (binding.target === "reference format") {
+            binding.target = "column two format";
+          }
+          if (binding.target === "value column") {
+            binding.target = "column one";
+          }
+          if (binding.target === "value format") {
+            binding.target = "column one format";
+          }
+          if (binding.target === "target column") {
+            binding.target = "difference column";
+          }
+        }
+      }
     }
   }
 

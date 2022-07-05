@@ -1,5 +1,5 @@
-const fs = require("node:fs");
-const stream = require("node:stream/promises");
+const fs = require("fs");
+const stream = require("stream/promises");
 
 const { parse, stringify } = require("csv");
 
@@ -51,6 +51,10 @@ class Datatable {
     this.source = sourceFile;
   }
 
+  getSource() {
+    return this.source;
+  }
+
   getReader(options = EmptyObject) {
     const parserOptions = {
       columns: true,
@@ -99,11 +103,20 @@ class Datatable {
     return columns.includes(columnName);
   }
 
-  async checkColumns(...columnsToCheck) {
+  async shouldIncludeColumns(...columnsToCheck) {
     const allColumns = await this.getColumns();
     for (const columnName of columnsToCheck) {
       if (!allColumns.includes(columnName)) {
-        throw new Error(`Datatable does not include a column named '${columnName}'`);
+        throw new Error(`Datatable does not include a column named ${columnName}`);
+      }
+    }
+  }
+
+  async shouldExcludeColumns(...columnsToCheck) {
+    const allColumns = await this.getColumns();
+    for (const columnName of columnsToCheck) {
+      if (allColumns.includes(columnName)) {
+        throw new Error(`Datatable already includes a column named ${columnName}`);
       }
     }
   }
@@ -115,23 +128,31 @@ class Datatable {
 
     const data = await datatableWriter.finalise();
 
-    return { data };
+    return data;
   }
 
   async transformAsync(transformer) {
     const datatableWriter = await Datatable.create();
 
-    this.getReader({ on_record: transformer }).pipe(datatableWriter);
-
     for await (const row of this.getReader()) {
       datatableWriter.write(await transformer(row));
     }
-
     datatableWriter.end();
 
     const data = await datatableWriter.finalise();
 
-    return { data };
+    return data;
+  }
+
+  async addColumnSync(newColumn, valueGetter) {
+    await this.shouldExcludeColumns(newColumn);
+    const data = await this.transform(
+      (row, context) => {
+        row[newColumn] = valueGetter(row, context);
+        return row;
+      },
+    );
+    return data;
   }
 
 }

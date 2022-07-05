@@ -18,7 +18,7 @@ module.exports = {
     {
       "name": "column one format",
       "type": "text",
-      "description": "The format of data in column one based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date and time in UTC.",
+      "description": "The format of data in column one based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date/time.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
       "values": DateFormats,
@@ -31,7 +31,7 @@ module.exports = {
     {
       "name": "column two format",
       "type": "text",
-      "description": "The format of data in value column based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date and time in UTC.",
+      "description": "The format of data in value column based on Unicode Technical Standard #35: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nDefaults to ISO 8601 date/time.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
       "values": DateFormats,
@@ -45,8 +45,10 @@ module.exports = {
     {
       "name": "difference unit",
       "type": "text",
-      "description": "The unit of time measurement.\nThe supported measurements are `years`, `quarters`, `months`, `weeks`, `days`, `hours`, `minutes`, `seconds`, or `milliseconds`",
-      "values": DurationUnits,
+      "description": "The unit of time measurement.\nDefaults to `days`.",
+      "required": true,
+      "default": "days",
+      "ui": { oneOf: DurationUnits },
     },
   ],
   "output": [

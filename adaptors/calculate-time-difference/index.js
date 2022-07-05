@@ -1,32 +1,37 @@
 const fromString = require("../../utils/date/from-string");
 const difference = require("../../utils/date/difference");
 
+const { EmptyString } = require("../../constants");
+
 module.exports = async function (args) {
-  //TODO: error when difference column
-  const data = await args.data.transform(
+  await args.data.shouldIncludeColumns(
+    args["column one"],
+    args["column two"],
+  );
+
+  const data = await args.data.addColumnSync(
+    args["difference column"],
     (row) => {
       const referenceDate = fromString(
-        row[args["reference column"]],
-        args["reference format"],
+        row[args["column one"]],
+        args["column one format"],
       );
       const valueDate = fromString(
-        row[args["value column"]],
-        args["value format"],
+        row[args["column two"]],
+        args["column two format"],
       );
 
       if (referenceDate && valueDate) {
-        row["target column"] = difference(
+        return difference(
           referenceDate,
           valueDate,
           args["difference unit"]
         );
       }
       else {
-        row["target column"] = EmptyString;
+        return EmptyString;
       }
-
-      return row;
-    }
+    },
   );
 
   return { data };

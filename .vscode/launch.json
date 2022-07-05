@@ -25,11 +25,16 @@
       ]
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "Tap current file",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "program": "${workspaceFolder}/${relativeFile}",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "outputCapture": "std"
     }
   ]
 }

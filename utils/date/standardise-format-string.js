@@ -6,7 +6,9 @@ module.exports = function standardiseFormatString(formatString) {
     ||
     formatString.toUpperCase() === "ISO8601"
     ||
-    formatString === "yyyy-MM-dd'T'hh:mm:ss'Z'"
+    formatString === "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    ||
+    formatString === "yyyy-MM-dd'T'HH:mm:ssxxx"
   ) {
     return "";
   }

@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Adds one or more text values to the end of a list.",
+  "description": "Adds a text value to the end of a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",
   "input": [
@@ -10,9 +10,9 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "values",
-      "type": "list",
-      "description": "The values to be appended to the list.",
+      "name": "value",
+      "type": "text",
+      "description": "The value to be appended to the list.",
       "required": true,
     },
   ],
@@ -20,7 +20,7 @@ module.exports = {
     {
       "name": "list",
       "type": "list",
-      "description": "A new list with the values appended.",
+      "description": "A new list with the value appended.",
     },
   ],
 };
