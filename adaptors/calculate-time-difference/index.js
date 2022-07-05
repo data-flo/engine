@@ -21,7 +21,7 @@ module.exports = async function (args) {
         );
       }
       else {
-        row["target column"] = "";
+        row["target column"] = EmptyString;
       }
 
       return row;
