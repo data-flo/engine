@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "The datatable to which the new column will be added.",
+      "description": "A datatable to which the new column will be added.",
       "required": true,
     },
     {
@@ -28,7 +28,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A new datatable with the new column added.",
+      "description": "A new datatable with target column added.",
     },
   ],
 };
