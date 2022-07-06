@@ -1,15 +1,17 @@
-module.exports = function (args) {
+const { Datatable } = require("../../types/datatable");
+
+module.exports = async function (args) {
   if (args.columns.length < 2) {
     throw new Error("At least two columns are required");
   }
 
-  const equal = [];
-  const notequal = [];
+  const sameWriter = await Datatable.create();
+  const differentWriter = await Datatable.create();
 
   const sensitivity = (!args["case sensitive"]) ? "base" : undefined;
 
-  for (const row of args.data.rows) {
-    let allTheSame = true;
+  for await (const row of args.data.getReader()) {
+    let allColumnValuesAreSame = true;
     for (let index = 1; index < args.columns.length; index++) {
       const same = (
         row[args.columns[0]] === row[args.columns[index]]
@@ -22,27 +24,27 @@ module.exports = function (args) {
       );
       if (!same)
       {
-        allTheSame = false;
+        allColumnValuesAreSame = false;
         break;
       }
     }
 
-    if (allTheSame) {
-      equal.push(row);
+    if (allColumnValuesAreSame) {
+      sameWriter.write(row);
     }
     else {
-      notequal.push(row);
+      differentWriter.write(row);
     }
   }
 
+  sameWriter.end();
+  differentWriter.end();
+
+  const same = await sameWriter.finalise();
+  const different = await differentWriter.finalise();
+
   return {
-    same: {
-      columns: args.data.columns,
-      rows: equal,
-    },
-    different: {
-      columns: args.data.columns,
-      rows: notequal,
-    },
+    same,
+    different,
   };
 };
