@@ -61,10 +61,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
-    "eslint-config-cgps": "github:cgps-dev/eslint-config",
+    "eslint-config-cgps": "github:cgps-group/eslint-config",
     "esm": "^3.2.25",
-    "riteway": "^6.3.1",
-    "tap": "^14.11.0",
-    "tap-nirvana": "^1.1.0"
+    "tap": "^14.11.0"
   }
 }

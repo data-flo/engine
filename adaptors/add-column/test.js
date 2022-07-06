@@ -1,23 +1,26 @@
 const tap = require("tap");
-const path = require("path");
 const fs = require("fs");
 
-const parseInputArguments = require("../../runner/parse-input-arguments");
-const manifest = require("./manifest");
 const adaptor = require("./index");
+const createTmpTextFile = require("../../utils/file/tmp-text");
+const createDatatable = require("../../types/datatable");
 
 tap.test("add-column adaptor", async () => {
+  const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
+"Bovine","de",,"Jan 29, 2007","2007-01-28"
+"Gibbon","fr",,,
+"Orangutan",,,,
+"Gorilla",,,,
+"Human","gb",,,
+"Mouse","gb",,,
+`);
 
   tap.test("given a datatable, it should add a column", async (t) => {
-    const input = parseInputArguments(
-      manifest.input,
-      {
-        data: path.resolve(__dirname, "..", "..", "data", "test.csv"),
-        column: "ones",
-        value: "1",
-      },
-    );
-    const output = await adaptor(input);
+    const output = await adaptor({
+      data: createDatatable(testCsvFilePath),
+      column: "ones",
+      value: "1",
+    });
     t.ok(output.data);
     const actual = fs.readFileSync(output.data.getSource(), "utf8");
     const expected = `"id","Country","empty","date a","date b","ones"
@@ -32,14 +35,10 @@ tap.test("add-column adaptor", async () => {
   });
 
   tap.test("given no value, it should add an empty column", async (t) => {
-    const input = parseInputArguments(
-      manifest.input,
-      {
-        data: path.resolve(__dirname, "..", "..", "data", "test.csv"),
-        column: "ones",
-      },
-    );
-    const output = await adaptor(input);
+    const output = await adaptor({
+      data: createDatatable(testCsvFilePath),
+      column: "ones",
+    });
     t.ok(output.data);
     const actual = fs.readFileSync(output.data.getSource(), "utf8");
     const expected = `"id","Country","empty","date a","date b","ones"
@@ -54,16 +53,11 @@ tap.test("add-column adaptor", async () => {
   });
 
   tap.test("given an existing column, it should throw an error", async (t) => {
-    const input = parseInputArguments(
-      manifest.input,
-      {
-        data: path.resolve(__dirname, "..", "..", "data", "test.csv"),
-        column: "id",
-        value: "1",
-      },
-    );
     await t.rejects(
-      adaptor(input),
+      adaptor({
+        data: createDatatable(testCsvFilePath),
+        column: "id",
+      }),
       new Error("Datatable already includes a column named id"),
     );
   });

@@ -3,7 +3,6 @@ module.exports = function (args) {
     ...args.list,
     args.value,
   ];
-  return {
-    list,
-  };
+
+  return { list };
 };

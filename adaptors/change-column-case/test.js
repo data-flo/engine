@@ -1,5 +1,4 @@
 const tap = require("tap");
-const path = require("path");
 const fs = require("fs");
 
 const tmpPath = require("../../utils/file/tmp-path");

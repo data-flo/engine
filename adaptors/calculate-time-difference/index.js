@@ -22,11 +22,12 @@ module.exports = async function (args) {
       );
 
       if (referenceDate && valueDate) {
-        return difference(
+        const diff = difference(
           referenceDate,
           valueDate,
           args["difference unit"]
         );
+        return diff;
       }
       else {
         return EmptyString;

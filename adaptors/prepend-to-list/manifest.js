@@ -1,24 +1,24 @@
 module.exports = {
-  "description": "Adds one element to the beginning of a list.",
+  "description": "Adds a text value to the  beginning of a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",
       "type": "list",
-      "description": "A list to which the value will be prepended."
+      "description": "The list to which the values will be prepended.",
     },
     {
       "name": "value",
       "type": "text",
-      "description": "A value to append to the list."
-    }
+      "description": "The value to be prepended to the list.",
+    },
   ],
   "output": [
     {
       "name": "list",
       "type": "list",
-      "description": "A new list with the value prepended."
-    }
-  ]
-}
+      "description": "A new list with the value prepended.",
+    },
+  ],
+};
