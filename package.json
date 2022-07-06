@@ -41,6 +41,7 @@
     "mysql2": "^1.5.3",
     "nodemailer": "^6.7.0",
     "odbc": "^2.4.1",
+    "opencage-api-client": "^1.0.0",
     "oracledb": "^5.2.0",
     "papaparse": "^4.6.0",
     "pg": "^8.7.1",

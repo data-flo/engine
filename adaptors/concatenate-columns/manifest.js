@@ -14,6 +14,7 @@ module.exports = {
       "type": "list",
       "description": "A list of columns to be concatenated. The output value matches the listed order.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "separator",
@@ -26,6 +27,7 @@ module.exports = {
       "name": "concatenated column",
       "type": "text",
       "description": "The new column containing concatenated values.",
+      "required": true,
     },
   ],
   "output": [

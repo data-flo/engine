@@ -7,11 +7,20 @@ module.exports = {
       "name": "left",
       "type": "text",
       "description": "Text to be joined to the left of the input. Defaults to \"\"",
+      "required": true,
     },
     {
       "name": "right",
       "type": "text",
       "description": "Text to be joined to the right of the input. Defaults to \"\"",
+      "required": true,
+    },
+    {
+      "name": "separator",
+      "type": "text",
+      "description": "Specifies text to separate each concatenated value. Defaults to `\"\"` (blank).",
+      "required": false,
+      "default": "",
     },
   ],
   "output": [

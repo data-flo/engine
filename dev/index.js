@@ -3,6 +3,7 @@ const path = require("path");
 const { generate, parse, transform, stringify } = require ('csv');
 
 const createEngine = require("../index");
+const updateManifestSchema = require("../manifest/index");
 
 const { manifest, inputs } = require("./data/amr-watch-metadata/index");
 
@@ -27,8 +28,10 @@ async function main() {
   //   )
   //   .pipe(process.stdout);
 
+  const convertedManifest = updateManifestSchema(manifest);
+
   const outputs = await engine.runDataflow(
-    manifest,
+    convertedManifest,
     inputs,
   );
   // console.log({ outputs })

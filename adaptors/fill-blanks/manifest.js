@@ -14,7 +14,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the new column to be added.",
       "required": true,
-      "subtype": { "column": "data" },
+      "ui": { "column-in": "data" },
     },
     {
       "name": "value",

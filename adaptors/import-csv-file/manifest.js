@@ -17,7 +17,7 @@ module.exports = {
       "description": "The character encoding of the input `file`.\nDefaults to `utf8`.",
       "required": true,
       "default": "utf8",
-      "enum": FileEncodings,
+      "ui": { "must-be-one-of": FileEncodings },
     },
     {
       "name": "delimiter",
@@ -25,7 +25,7 @@ module.exports = {
       "description": "Character used as column delimiter. Defaults to \",\" (comma).",
       "required": true,
       "default": ",",
-      "enum": CommonDelimiters,
+      "ui": { "can-be-one-of": CommonDelimiters },
     },
     {
       "name": "trim",

@@ -1,6 +1,3 @@
 module.exports = function (args) {
-  const combination = args.left + args.right;
-  return {
-    combination,
-  };
+  return { combination: `${args.left}${args.separator}${args.right}` };
 };

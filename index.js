@@ -1,30 +1,35 @@
+/* eslint-disable class-methods-use-this */
+
 const path = require("path");
 const Filehound = require("filehound");
 // const globalTunnel = require("global-tunnel-ng");
 
 const runAdaptor = require("./runner/run-adaptor");
 const runDataflow = require("./runner/run-dataflow");
-// const request = require("./utils/request");
-const cache = require("./utils/cache");
-// const utils = require("./utils");
+const mapFile = require("./utils/file/map");
 
 // globalTunnel.initialize();
 
-const defaultConfig = {
-  adaptors: "./adaptors",
-  defaults: {},
-  fsMappings: {},
-};
-
 class Engine {
-  constructor(config = {}) {
-    this.options = { ...defaultConfig, ...config };
-    // this.request = config.request || request;
-    this.cache = config.cache || cache;
-    // this.utils = utils;
-    // this.utils.file.map = require("./utils/file/map").bind(this, this.options.fsMappings);
+  defaults = {};
 
-    this.getDataflowManifest = this.getDataflowManifest.bind(this);
+  fsMappings = {};
+
+  constructor(config = {}) {
+    Object.assign(this, config);
+    // TODO: remove .bind
+    // this.getDataflowManifest = this.getDataflowManifest.bind(this);
+  }
+
+  cache(key, valueGetter) {
+    return valueGetter();
+  }
+
+  mapFile(filePath) {
+    return mapFile(
+      filePath,
+      this.fsMappings,
+    );
   }
 
   getDataflowManifest(name) {
@@ -36,46 +41,49 @@ class Engine {
   }
 
   getAdaptorsFolder() {
-    return path.join(__dirname, this.options.adaptors);
-  }
-
-  getAdaptorsList() {
-    return Filehound.create()
-      .path(this.getAdaptorsFolder())
-      .depth(1)
-      .directory()
-      .find()
-      .then((subdirectories) =>
-        subdirectories.map((dir) => {
-          const name = path.basename(dir);
-          return {
-            name,
-            manifest: this.getAdaptorManifest(name),
-          };
-        })
-      );
+    return path.join(
+      __dirname,
+      "adaptors",
+    );
   }
 
   getAdaptorManifest(name) {
-    const manifest = require(path.join(this.getAdaptorsFolder(), name, "manifest.json"));
-    if (typeof this.options.defaults[name] !== "undefined") {
-      for (const [key, value] of Object.entries(this.options.defaults[name])) {
-        const input = manifest.input.find((x) => x.name === key);
-        if (typeof input !== "undefined") {
-          if (typeof input.default !== "undefined" && input.default !== "") {
-            input.description = input.description.replace(`\`${input.default}\``, value);
-          }
-          input.default = value;
-        } else {
-          throw new Error(`Cannot override default value for input argument ${key} of ${name} adaptor.`);
-        }
-      }
-    }
+    const manifest = require(
+      path.join(
+        this.getAdaptorsFolder(),
+        name,
+        "manifest.js",
+      ),
+    );
+
+    // TODO: override defaults
+    // if (typeof this.options.defaults[name] !== "undefined") {
+    //   for (const [key, value] of Object.entries(this.options.defaults[name])) {
+    //     const input = manifest.input.find((x) => x.name === key);
+    //     if (typeof input !== "undefined") {
+    //       if (typeof input.default !== "undefined" && input.default !== "") {
+    //         input.description = input.description.replace(`\`${input.default}\``, value);
+    //       }
+    //       input.default = value;
+    //     }
+    //     else {
+    //       throw new Error(`Cannot override default value for input argument ${key} of ${name} adaptor.`);
+    //     }
+    //   }
+    // }
+
     return manifest;
   }
 
   getAdaptorExecutable(name) {
-    return require(path.join(this.getAdaptorsFolder(), name, "index.js"));
+    const executable = require(
+      path.join(
+        this.getAdaptorsFolder(),
+        name,
+        "index.js",
+      ),
+    );
+    return executable;
   }
 
   runAdaptor(name, args) {

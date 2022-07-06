@@ -588,6 +588,7 @@ module.exports = [
         //   ],
         // },
       ],
+      "version": 2,
     },
     "name": "AMR Landscape to Microreact SA16/6 2",
   },

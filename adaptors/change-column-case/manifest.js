@@ -16,14 +16,14 @@ module.exports = {
       "type": "text",
       "description": "The column to be converted.",
       "required": true,
-      "ui": { "column": "data" },
+      "ui": { "column-in": "data" },
     },
     {
       "name": "case",
       "type": "text",
       "description": "One of the supported case patterns.",
       "required": true,
-      "ui": { oneOf: LetterCases },
+      "ui": { "must-be-one-of": LetterCases },
     },
   ],
   "output": [
