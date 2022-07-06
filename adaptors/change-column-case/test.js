@@ -282,5 +282,17 @@ tap.test(
         t.equal(actual, expected);
       },
     );
+
+    tap.test("given a wrong case name, it should throw an error", async (t) => {
+      await t.rejects(
+        adaptor({
+          "data": createDatatable(tmpCsvFilePath),
+          "column": "text",
+          "case": "invalid",
+        }),
+        new Error("Invalid case converion. Supported converions are: `camel`, `capital`, `constant`, `dot`, `header`, `hyphen`, `kebab`, `lower`, `no`, `param`, `pascal`, `path`, `sentence`, `snake`, `sponge`, `swap`, `title`, `upper`"),
+      );
+    });
+
   },
 );
