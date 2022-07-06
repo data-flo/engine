@@ -105,7 +105,7 @@ class Datatable {
 
   async shouldIncludeColumns(...columnsToCheck) {
     const allColumns = await this.getColumns();
-    for (const columnName of columnsToCheck) {
+    for (const columnName of (Array.isArray(columnsToCheck[0]) ? columnsToCheck[0] : columnsToCheck)) {
       if (!allColumns.includes(columnName)) {
         throw new Error(`Datatable does not include a column named ${columnName}`);
       }

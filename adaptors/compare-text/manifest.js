@@ -6,25 +6,25 @@ module.exports = {
     {
       "name": "text",
       "type": "text",
-      "description": "A text value to be searched."
+      "description": "A text value to be searched.",
     },
     {
       "name": "pattern",
       "type": "text",
-      "description": "A text or a regular expression to be replaced.\nRegular expressions must be wrapped with `/` character (e.g. `/.*/`)."
+      "description": "A text or a regular expression to be replaced.\nRegular expressions must be wrapped with `/` character (e.g. `/.*/`).",
     },
     {
       "name": "ignore case",
       "type": "boolean",
       "default": true,
-      "description": "Whether lowercase and uppercase letters should be treated as equivalent. Defaults to `True`."
-    }
+      "description": "Whether lowercase and uppercase letters should be treated as equivalent. Defaults to `True`.",
+    },
   ],
   "output": [
     {
       "name": "match",
       "type": "boolean",
-      "description": "Whether the given text matches the pattern."
-    }
-  ]
-}
+      "description": "Whether the given text matches the pattern.",
+    },
+  ],
+};

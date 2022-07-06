@@ -7,268 +7,118 @@ const { EmptyObject, EmptyArray } = require("../constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
 
-class Datatable {
+class AsyncDatatable {
 
   static async create(options) {
-    const filePath = await tmpFilePath();
+    const filePath = await tmpFile();
 
-    console.log({filePath})
+    const datatable = new Datatable({
+      streamGetter: () => fs.createReadStream(filePath),
+    });
 
     const stringifier = stringify({
       header: true,
-      quoted: true,
       ...options,
     });
 
-    const pipeline = stream.pipeline(
-      stringifier,
-      fs.createWriteStream(filePath)
-    );
+    stringifier
+      .pipe(
+        fs.createWriteStream(filePath)
+      );
 
     stringifier.finalise = () => {
-      return pipeline.then(() => new Datatable(filePath));
+      return finished(stringifier).then(() => datatable);
     };
-
-    // stringifier
-    //   .pipe(
-    //     fs.createWriteStream(filePath)
-    //   );
-    // stringifier.finalise = () => {
-    //   return (
-    //     finished(stringifier)
-    //       .then(() => new Datatable(filePath))
-    //   );
-    // };
 
     return stringifier;
   }
 
-  constructor(sourceFile) {
-    if (!sourceFile) {
-      throw new Error("Datatable requires a source file");
+  constructor({ streamGetter, parserOptions } = {}) {
+    if (!streamGetter) {
+      throw new Error("Datatable requires stream getter");
     }
 
-    this.source = sourceFile;
+    this.streamGetter = streamGetter;
+    this.parserOptions = parserOptions || {};
   }
 
-  getSource() {
-    return this.source;
-  }
+  async getReader() {
+    if (!this.streamGetter) {
+      throw new Error("Datatable is not readable");
+    }
 
-  getReader(options = EmptyObject) {
-    const parserOptions = {
-      columns: true,
-      ...options,
-    };
     return (
-      fs.createReadStream(this.source)
+      (await this.streamGetter())
         .pipe(
-          parse(parserOptions)
+          parse({
+            columns: true,
+            // columns(headerCells) {
+            //   return headerCells.map((column) => column.trim());
+            // },
+            // ...this.parserOptions,
+          })
         )
     );
   }
 
-  getPartialReader(columns) {
-    return this.getReader({
-      columns: true,
-      on_record(inRow) {
-        for (const columnName of columns) {
-          if (!(columnName in inRow)) {
-            delete inRow[columnName];
-          }
-        }
-        return inRow;
-      },
+  async getWriter(options = {}) {
+    if (this.streamGetter) {
+      throw new Error("Datatable is not writable");
+    }
+
+    const filePath = await tmpFile();
+    this.streamGetter = () => fs.createReadStream(filePath);
+
+    const stringifier = stringify({
+      header: true,
+      ...options,
     });
+
+    stringifier
+      .pipe(
+        fs.createWriteStream(filePath)
+      );
+
+    console.log({filePath})
+
+    return stringifier;
   }
 
-  async getInfo() {
-    const parser = this.getReader({ info: true });
+  // addColumn(columnName, valueGetter) {
+  //   if (!this.columns.includes(columnName)) {
+  //     this.columns.push(columnName);
+  //   }
 
-    for await (const { info } of parser) {
-      parser.end();
-      return info;
-    }
+  //   for (const row of this.rows) {
+  //     row[columnName] = valueGetter.call(row, row);
+  //   }
+  //   return this;
+  // }
 
-    return EmptyObject;
-  }
+  // clone() {
+  //   return new Datatable(this.columns, this.rows);
+  // }
 
-  async getColumns() {
-    const { columns } = await this.getInfo();
-    return (columns || EmptyArray).map((x) => x.name);
-  }
+  // hasColumn(columnName) {
+  //   return this.columns.includes(columnName);
+  // }
 
-  async hasColumn(columnName) {
-    const columns = await this.getColumns();
-    return columns.includes(columnName);
-  }
+  // getColumn(columnName) {
+  //   if (!this.columns.includes(columnName)) {
+  //     throw new Error(`datatable does not include a column named ${columnName}. Columns are: ${this.columns}.`);
+  //   }
+  //   return columnName;
+  // }
 
-  async shouldIncludeColumns(...columnsToCheck) {
-    const allColumns = await this.getColumns();
-    for (const columnName of columnsToCheck) {
-      if (!allColumns.includes(columnName)) {
-        throw new Error(`Datatable does not include a column named ${columnName}`);
-      }
-    }
-  }
+  // forEachRow(callback) {
+  //   return this.rows.forEach(callback);
+  // }
 
-  async shouldExcludeColumns(...columnsToCheck) {
-    const allColumns = await this.getColumns();
-    for (const columnName of columnsToCheck) {
-      if (allColumns.includes(columnName)) {
-        throw new Error(`Datatable already includes a column named ${columnName}`);
-      }
-    }
-  }
-
-  async transformSync(transformer) {
-    const datatableWriter = await Datatable.create();
-
-    this.getReader({ on_record: transformer }).pipe(datatableWriter);
-
-    const data = await datatableWriter.finalise();
-
-    return data;
-  }
-
-  async transformAsync(transformer) {
-    const datatableWriter = await Datatable.create();
-
-    for await (const row of this.getReader()) {
-      datatableWriter.write(await transformer(row));
-    }
-    datatableWriter.end();
-
-    const data = await datatableWriter.finalise();
-
-    return data;
-  }
-
-  async addColumnSync(newColumn, valueGetter) {
-    await this.shouldExcludeColumns(newColumn);
-    const data = await this.transformSync(
-      (row, context) => {
-        row[newColumn] = valueGetter(row, context);
-        return row;
-      },
-    );
-    return data;
-  }
+  // map(callback) {
+  //   return this.rows.map(callback);
+  // }
 
 }
-
-// class AsyncDatatable {
-
-//   static async create(options) {
-//     const filePath = await tmpFile();
-
-//     const datatable = new Datatable({
-//       streamGetter: () => fs.createReadStream(filePath),
-//     });
-
-//     const stringifier = stringify({
-//       header: true,
-//       ...options,
-//     });
-
-//     stringifier
-//       .pipe(
-//         fs.createWriteStream(filePath)
-//       );
-
-//     stringifier.finalise = () => {
-//       return finished(stringifier).then(() => datatable);
-//     };
-
-//     return stringifier;
-//   }
-
-//   constructor({ streamGetter, parserOptions } = {}) {
-//     if (!streamGetter) {
-//       throw new Error("Datatable requires stream getter");
-//     }
-
-//     this.streamGetter = streamGetter;
-//     this.parserOptions = parserOptions || {};
-//   }
-
-//   async getReader() {
-//     if (!this.streamGetter) {
-//       throw new Error("Datatable is not readable");
-//     }
-
-//     return (
-//       (await this.streamGetter())
-//         .pipe(
-//           parse({
-//             columns: true,
-//             // columns(headerCells) {
-//             //   return headerCells.map((column) => column.trim());
-//             // },
-//             // ...this.parserOptions,
-//           })
-//         )
-//     );
-//   }
-
-//   async getWriter(options = {}) {
-//     if (this.streamGetter) {
-//       throw new Error("Datatable is not writable");
-//     }
-
-//     const filePath = await tmpFile();
-//     this.streamGetter = () => fs.createReadStream(filePath);
-
-//     const stringifier = stringify({
-//       header: true,
-//       ...options,
-//     });
-
-//     stringifier
-//       .pipe(
-//         fs.createWriteStream(filePath)
-//       );
-
-//     console.log({filePath})
-
-//     return stringifier;
-//   }
-
-//   // addColumn(columnName, valueGetter) {
-//   //   if (!this.columns.includes(columnName)) {
-//   //     this.columns.push(columnName);
-//   //   }
-
-//   //   for (const row of this.rows) {
-//   //     row[columnName] = valueGetter.call(row, row);
-//   //   }
-//   //   return this;
-//   // }
-
-//   // clone() {
-//   //   return new Datatable(this.columns, this.rows);
-//   // }
-
-//   // hasColumn(columnName) {
-//   //   return this.columns.includes(columnName);
-//   // }
-
-//   // getColumn(columnName) {
-//   //   if (!this.columns.includes(columnName)) {
-//   //     throw new Error(`datatable does not include a column named ${columnName}. Columns are: ${this.columns}.`);
-//   //   }
-//   //   return columnName;
-//   // }
-
-//   // forEachRow(callback) {
-//   //   return this.rows.forEach(callback);
-//   // }
-
-//   // map(callback) {
-//   //   return this.rows.map(callback);
-//   // }
-
-// }
 
 module.exports = function createDatatable(sourceValue) {
   if (sourceValue instanceof Datatable) {

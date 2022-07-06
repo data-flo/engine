@@ -1,21 +1,21 @@
-module.exports = function (args) {
-  const missingColumns = args.columns.filter((column) => (!args.data.hasColumn(column)));
-  if (missingColumns.length) {
-    throw new Error(`Data is missing columns '${missingColumns}'.`);
+module.exports = async function (args) {
+  if (args.columns.length < 2) {
+    throw new Error("At least two columns are required");
   }
 
-  const data = args.data.addColumn(
-    args.target,
+  await args.data.shouldIncludeColumns(args.columns);
+
+  const data = await args.data.addColumnSync(
+    args["concatenated column"],
     (row) => {
-      const concatenated = Array.prototype.join.call(
-        args.columns.map((col) => row[col]),
-        args.delimiter
-      );
-      return `${args.prefix}${concatenated}${args.postfix}`;
+      const values = [];
+      for (const column of args.columns) {
+        values.push(row[column]);
+      }
+      const concatenated = values.join(args.separator);
+      return concatenated;
     }
   );
 
-  return {
-    data,
-  };
+  return { data };
 };

@@ -53,6 +53,18 @@ module.exports = function (doc) {
           }
         }
       }
+
+      if (step.adaptor === "columns-concatenation") {
+        step.adaptor = "concatenate-columns";
+        for (const binding of step.bindings) {
+          if (binding.target === "delimiter") {
+            binding.target = "separator";
+          }
+          if (binding.target === "target") {
+            binding.target = "concatenated column";
+          }
+        }
+      }
     }
   }
 
