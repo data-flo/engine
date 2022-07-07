@@ -48,6 +48,30 @@ module.exports = function (doc) {
           }
         }
       }
+
+      if (step.adaptor === "reverse-geocoding") {
+        for (const binding of step.binding) {
+          if (binding.target === "resultColumn") {
+            binding.target = "result column";
+          }
+          if (binding.target === "mapboxApiKey") {
+            binding.target = "api key";
+          }
+          if (binding.target === "longitudeColumn") {
+            binding.target = "longitude column";
+          }
+          if (binding.target === "latitudeColumn") {
+            binding.target = "latitude column";
+          }
+          if (binding.target === "placeType") {
+            binding.target = "feature type";
+          }
+          if (binding.target === "resultColumn") {
+            binding.target = "feature column";
+          }
+        }
+      }
+
     }
   }
 

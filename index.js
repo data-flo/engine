@@ -1,11 +1,11 @@
 /* eslint-disable class-methods-use-this */
 
-const path = require("path");
-const Filehound = require("filehound");
-// const globalTunnel = require("global-tunnel-ng");
+// const Filehound = require("filehound");
 
 const runAdaptor = require("./runner/run-adaptor");
 const runDataflow = require("./runner/run-dataflow");
+const getAdaptorExecutable = require("./runner/get-adaptor-executable");
+const getAdaptorManifest = require("./runner/get-adaptor-manifest");
 const mapFile = require("./utils/file/map");
 
 // globalTunnel.initialize();
@@ -15,14 +15,14 @@ class Engine {
 
   fsMappings = {};
 
+  getAdaptorManifest = getAdaptorManifest;
+
+  getAdaptorExecutable = getAdaptorExecutable;
+
   constructor(config = {}) {
     Object.assign(this, config);
     // TODO: remove .bind
     // this.getDataflowManifest = this.getDataflowManifest.bind(this);
-  }
-
-  cache(key, valueGetter) {
-    return valueGetter();
   }
 
   mapFile(filePath) {
@@ -38,52 +38,6 @@ class Engine {
     } else {
       throw new Error(`Cannot resolve manifest for dataflow ${name}.`);
     }
-  }
-
-  getAdaptorsFolder() {
-    return path.join(
-      __dirname,
-      "adaptors",
-    );
-  }
-
-  getAdaptorManifest(name) {
-    const manifest = require(
-      path.join(
-        this.getAdaptorsFolder(),
-        name,
-        "manifest.js",
-      ),
-    );
-
-    // TODO: override defaults
-    // if (typeof this.options.defaults[name] !== "undefined") {
-    //   for (const [key, value] of Object.entries(this.options.defaults[name])) {
-    //     const input = manifest.input.find((x) => x.name === key);
-    //     if (typeof input !== "undefined") {
-    //       if (typeof input.default !== "undefined" && input.default !== "") {
-    //         input.description = input.description.replace(`\`${input.default}\``, value);
-    //       }
-    //       input.default = value;
-    //     }
-    //     else {
-    //       throw new Error(`Cannot override default value for input argument ${key} of ${name} adaptor.`);
-    //     }
-    //   }
-    // }
-
-    return manifest;
-  }
-
-  getAdaptorExecutable(name) {
-    const executable = require(
-      path.join(
-        this.getAdaptorsFolder(),
-        name,
-        "index.js",
-      ),
-    );
-    return executable;
   }
 
   runAdaptor(name, args) {

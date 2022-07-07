@@ -1,46 +1,37 @@
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const reverseGeocode = require("../../utils/data/reverse-geocode");
+const geocodedPlaceToFeature = require("../../utils/data/geocoded-place-to-feature");
 
-module.exports = async function (args, context) {
-  const geocodingClient = mbxGeocoding({ accessToken: args.mapboxApiKey });
-  const data = args.data.clone();
-  const geocoder = (row) => {
-    if (row[args.longitudeColumn] && row[args.latitudeColumn]) {
-      const latitude = Number.parseFloat(row[args.latitudeColumn]);
-      const longitude = Number.parseFloat(row[args.longitudeColumn]);
-      if (!Number.isNaN(latitude) && !Number.isNaN(longitude)) {
-        const query = [longitude, latitude];
-        return context.cache(
-          `adaptors/reverse-geocoding/${longitude},${latitude}`,
+const cache = require("../../utils/cache");
+
+module.exports = async function (args) {
+  const data = await args.data.addColumnAsync(
+    args["feature column"],
+    async (row) => {
+      if (row[args["latitude column"]] && row[args["longitude column"]]) {
+        const coordinates = `${row[args["latitude column"]]}, ${row[args["longitude column"]]}`;
+        const cacheKey = `adaptors/reverse-geocoding/${coordinates}`;
+        const place = await cache(
+          cacheKey,
           360 * 24,
-          () => geocodingClient.reverseGeocode({ query }).send()
-            .then((results) => (results.body.features.length ? results.body.features : undefined))
+          () => reverseGeocode(
+            args["api key"],
+            coordinates,
+          )
         );
+        // const place = await reverseGeocode(
+        //   args["api key"],
+        //   `${row[args["latitude column"]]} ${row[args["ongitude column"]]}`,
+        // );
+        const feature = geocodedPlaceToFeature(place, args["feature type"]);
+        return feature || "";
       }
-    }
-    return Promise.resolve(undefined);
-  };
-  const locations = new Map();
-  for (const row of data.rows) {
-    const location = await geocoder(row);
-    if (location) {
-      locations.set(row, location);
-    }
-  }
-  data.addColumn(
-    args.resultColumn,
-    (row) => {
-      const location = locations.get(row);
-      if (location) {
-        const feature = location.find((x) => x.place_type.includes(args.placeType));
-        if (feature && feature.text) {
-          return feature.text;
-        }
+      else {
+        return "";
       }
-      return "";
-    }
+    },
   );
 
-  return {
-    data,
-  };
+  return { data };
 };
+
+module.exports.manifest = require("./manifest");

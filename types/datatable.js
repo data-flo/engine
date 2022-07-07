@@ -155,6 +155,17 @@ class Datatable {
     return data;
   }
 
+  async addColumnAsync(newColumn, valueGetter) {
+    await this.shouldExcludeColumns(newColumn);
+    const data = await this.transformAsync(
+      async (row, context) => {
+        row[newColumn] = await valueGetter(row, context);
+        return row;
+      },
+    );
+    return data;
+  }
+
   async modifyColumnSync(existingColumn, valueGetter) {
     await this.shouldIncludeColumns(existingColumn);
     const data = await this.transformSync(

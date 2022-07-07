@@ -1,18 +1,15 @@
 const parseInputArguments = require("./parse-input-arguments");
 const parseOutputArguments = require("./parse-output-arguments");
 
-module.exports = async function runAdaptor(name, rawValues, engineInstance) {
-  const manifest = engineInstance.getAdaptorManifest(name);
-  const executable = engineInstance.getAdaptorExecutable(name);
-
+module.exports = async function runAdaptor(adaptorExecutable, rawValues) {
   // check input against manifest
-  const input = parseInputArguments(manifest.input, rawValues);
+  const input = parseInputArguments(adaptorExecutable.manifest.input, rawValues);
 
   // execute adaptor function
-  const rawOutput = await executable(input);
+  const rawOutput = await adaptorExecutable(input);
 
   // check output against manifest
-  const output = parseOutputArguments(manifest.output, rawOutput);
+  const output = parseOutputArguments(adaptorExecutable.manifest.output, rawOutput);
 
   return output;
 };
