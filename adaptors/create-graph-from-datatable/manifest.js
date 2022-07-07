@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       "name": "directed",
-      "type": "text",
+      "type": "boolean",
       "description": "Specifies whether the graph is directed or not.\nIf unspecified, defaults to `False`.",
       "required": false,
       "default": false,
