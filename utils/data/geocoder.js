@@ -7,7 +7,7 @@ module.exports = function reverseGeocode(opencageApiKey, query, confidenceSorce,
       key: opencageApiKey,
       limit: 1,
       min_confidence: confidenceSorce,
-      no_annotations: true,
+      no_annotations: 1,
     })
     .then((data) => {
       // console.log(JSON.stringify(data));
@@ -23,5 +23,6 @@ module.exports = function reverseGeocode(opencageApiKey, query, confidenceSorce,
       if (error.status.code === 402) {
         throw new Error("OpenCage limit exceeded, see https://opencagedata.com/pricing");
       }
+      throw new Error(`OpenCage error ${error.status.code}`);
     });
 };

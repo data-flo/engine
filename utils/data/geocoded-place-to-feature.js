@@ -1,31 +1,43 @@
-const featureMap = {
-  "house number": "house_number",
-  "address": "road",
-  "postcode": "postcode",
-  "locality": "village",
-  "village": "village",
-  "town": "town",
-  "place": "town",
-  "neighborhood": "suburb",
-  "district": "city",
-  "city": "city",
-  "county": "county",
-  "region": "state",
-  "state": "state",
+// const featureMap = {
+//   "house number": "house_number",
+//   "address": "road",
+//   "postcode": "postcode",
+//   "locality": "village",
+//   "village": "village",
+//   "town": "town",
+//   "place": "town",
+//   "neighborhood": "suburb",
+//   "district": "city",
+//   "city": "city",
+//   "county": "county",
+//   "region": "state",
+//   "state": "state",
+//   "country": "country",
+//   "country code": "country_code",
+//   "ISO 3166-1 alpha 2": "ISO_3166-1_alpha-2",
+//   "ISO 3166-1 alpha 3": "ISO_3166-1_alpha-3",
+//   "continent": "continent",
+//   "poi": "",
+//   "full": "",
+//   "what3words": "",
+//   "flag": "",
+//   "timezone code": "",
+//   "timezone name": "",
+//   "currency code": "",
+//   "currency name": "",
+//   "geometry": "",
+// };
+
+const mapbox = {
   "country": "country",
-  "country code": "country_code",
-  "ISO 3166-1 alpha 2": "ISO_3166-1_alpha-2",
-  "ISO 3166-1 alpha 3": "ISO_3166-1_alpha-3",
-  "continent": "continent",
-  "poi": "",
-  "full": "",
-  "what3words": "",
-  "flag": "",
-  "timezone code": "",
-  "timezone name": "",
-  "currency code": "",
-  "currency name": "",
-  "geometry": "",
+  "region": "region",
+  "postcode": "postcode",
+  "district": "county",
+  "place": "city",
+  "locality": "locality",
+  "neighborhood": "neighborhood",
+  "address": "road",
+  "poi": "full",
 };
 
 const componentsMap = {
@@ -119,7 +131,7 @@ const componentsMap = {
     "country",
     "country_name",
   ],
-  "country_code": [
+  "country code": [
     "country_code",
   ],
   "continent": [
@@ -133,19 +145,17 @@ module.exports = function geocodedPlaceToFeature(place, feature) {
   }
 
   if (feature === "geometry") {
-    return place.geometry;
+    return [ place.geometry.lat, place.geometry.lng, place.components._type ];
   }
 
-  if (!(feature in featureMap)) {
+  if (!(feature in componentsMap)) {
     throw new Error("Invalid feature");
   }
 
-  for (const iterator of object) {
-    
-  }
-
-  if (featureMap[feature]) {
-    return place?.components[featureMap[feature]];
+  for (const componentName of componentsMap[feature]) {
+    if (place.components[componentName]) {
+      return place.components[componentName];
+    }
   }
 
   // if (feature === "flag") {

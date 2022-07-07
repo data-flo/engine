@@ -6,30 +6,36 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "An object containing columns and rows."
+      "description": "An object containing columns and rows.",
+      "required": true,
     },
     {
-      "name": "placeColumn",
+      "name": "place column",
       "type": "text",
-      "description": "The source column with the place query."
+      "description": "The source column with the place query.",
+      "required": true,
     },
+
     {
-      "name": "longitudeColumn",
+      "name": "longitude column",
       "type": "text",
+      "description": "The target column for the longitude result.\nIf unspecified, defaults to \"longitude\".",
+      "required": false,
       "default": "longitude",
-      "description": "The target column for the longitude result. Defaults to \"longitude\"."
     },
     {
-      "name": "latitudeColumn",
+      "name": "latitude column",
       "type": "text",
+      "description": "The target column for the latitude result.\nIf unspecified, defaults to \"latitude\".",
+      "required": false,
       "default": "latitude",
-      "description": "The target column for the latitude result. Defaults to \"latitude\"."
     },
     {
-      "name": "typeColumn",
+      "name": "type column",
       "type": "text",
+      "description": "The name of the column to hold the place type.\nIf unspecified, defaults to \"type\".",
+      "required": false,
       "default": "type",
-      "description": "The name of the column to hold the place type. Defaults to \"type\"."
     },
 
     {
@@ -43,7 +49,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "An object containing columns and rows."
-    }
-  ]
-}
+      "description": "An object containing columns and rows.",
+    },
+  ],
+};

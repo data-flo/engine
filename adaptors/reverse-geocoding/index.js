@@ -18,12 +18,16 @@ module.exports = async function (args) {
             coordinates,
           )
         );
-        const feature = geocodedPlaceToFeature(place, args["feature type"]);
-        return feature || "";
+
+        if (place) {
+          const feature = geocodedPlaceToFeature(place, args["feature type"]);
+          if (feature) {
+            return feature;
+          }
+        }
       }
-      else {
-        return "";
-      }
+
+      return "";
     },
   );
 

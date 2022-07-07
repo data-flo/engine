@@ -3,26 +3,31 @@ const geocodedPlaceToFeature = require("../../utils/data/geocoded-place-to-featu
 
 const cache = require("../../utils/cache");
 
-module.exports = async function (args, context) {
+module.exports = async function (args) {
   const data = await args.data.transformAsync(
     args["feature column"],
     async (row) => {
-      if (row[args["latitude column"]] && row[args["longitude column"]]) {
-        const coordinates = `${row[args["latitude column"]]}, ${row[args["longitude column"]]}`;
-        const cacheKey = `adaptors/reverse-geocoding/${coordinates}`;
+      if (row[args["place column"]]) {
+        const query = `${row[args["place column"]]}`;
+        const cacheKey = `adaptors/forward-geocoding/${query}`;
+
         const place = await cache(
           cacheKey,
           360 * 24,
           () => geocoder(
             args["api key"],
-            coordinates,
+            query,
           )
         );
-        const feature = geocodedPlaceToFeature(place, args["feature type"]);
-        return feature || "";
-      }
-      else {
-        return "";
+
+        if (place) {
+          const [ latitude, longitude, type ] = geocodedPlaceToFeature(place, "geometry");
+          row[args["latitude column"]] = latitude;
+          row[args["longitude column"]] = longitude;
+          if (row[args["type column"]]) {
+            row[args["type column"]] = type;
+          }
+        }
       }
 
       return row;
@@ -30,8 +35,4 @@ module.exports = async function (args, context) {
   );
 
   return { data };
-
-  return {
-    data,
-  };
 };

@@ -6,7 +6,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("reverse-geocoding adaptor", async () => {
+tap.test("forward-geocoding adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"latitude","longitude"
 "52.12670207561581","0.17255181706350176"
 "37.4396","-122.1864"

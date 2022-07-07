@@ -1,7 +1,8 @@
-// const { transform } = require("csv");
-
 const { Datatable } = require("../../types/datatable");
 
+//#region using transform
+
+// const { transform } = require("csv");
 // module.exports = async function (args) {
 //   const transformer = transform(
 //     (inRow) => {
@@ -29,6 +30,10 @@ const { Datatable } = require("../../types/datatable");
 //   };
 // };
 
+//#endregion
+
+//#region using writer
+
 // module.exports = async function (args) {
 //   const datatableWriter = await Datatable.create({ columns: args.columns });
 
@@ -41,6 +46,10 @@ const { Datatable } = require("../../types/datatable");
 //     data,
 //   };
 // };
+
+//#endregion
+
+//#region manual selection of columns
 
 // module.exports = async function (args) {
 //   const transformer = (inRow) => {
@@ -59,6 +68,8 @@ const { Datatable } = require("../../types/datatable");
 //     data,
 //   };
 // };
+
+//#endregion
 
 module.exports = async function (args) {
   const datatableWriter = await Datatable.create();
