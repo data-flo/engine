@@ -8,3 +8,5 @@ module.exports = function (args) {
     values,
   };
 };
+
+module.exports.manifest = require("./manifest");

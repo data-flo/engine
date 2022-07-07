@@ -7,3 +7,5 @@ module.exports = function (args) {
     merged,
   };
 };
+
+module.exports.manifest = require("./manifest");

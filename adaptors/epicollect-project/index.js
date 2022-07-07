@@ -41,3 +41,5 @@ module.exports = async function (args, context) {
     data: await fetchEntries(getBaseUrl(slug, args["map index"], "csv", pageSize), options, pageSize, context),
   };
 };
+
+module.exports.manifest = require("./manifest");

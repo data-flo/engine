@@ -45,3 +45,5 @@ module.exports = function extendDatatable(args) {
     },
   };
 };
+
+module.exports.manifest = require("./manifest");

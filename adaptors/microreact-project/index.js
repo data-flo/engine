@@ -17,3 +17,5 @@ module.exports = async function (args, context) {
     sourceUrl,
   };
 };
+
+module.exports.manifest = require("./manifest");

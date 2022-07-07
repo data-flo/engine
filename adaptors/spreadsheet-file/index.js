@@ -33,3 +33,5 @@ module.exports = async function (args, context) {
     },
   };
 };
+
+module.exports.manifest = require("./manifest");

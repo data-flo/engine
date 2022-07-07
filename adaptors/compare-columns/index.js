@@ -48,3 +48,5 @@ module.exports = async function (args) {
     different,
   };
 };
+
+module.exports.manifest = require("./manifest");

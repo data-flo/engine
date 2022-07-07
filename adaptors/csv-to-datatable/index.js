@@ -14,3 +14,5 @@ module.exports = function (args, context) {
     },
   };
 };
+
+module.exports.manifest = require("./manifest");

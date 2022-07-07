@@ -22,3 +22,5 @@ module.exports = async function (args) {
     },
   };
 };
+
+module.exports.manifest = require("./manifest");

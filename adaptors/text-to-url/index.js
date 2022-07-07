@@ -3,3 +3,5 @@ module.exports = function (args) {
     url: args.input,
   };
 };
+
+module.exports.manifest = require("./manifest");

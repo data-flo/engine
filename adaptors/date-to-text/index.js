@@ -22,3 +22,5 @@ module.exports = function (args) {
     text: null,
   };
 };
+
+module.exports.manifest = require("./manifest");

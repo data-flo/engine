@@ -101,3 +101,5 @@ module.exports = async function createMicroreactProject(args, context) {
     url: response.url,
   };
 };
+
+module.exports.manifest = require("./manifest");

@@ -37,3 +37,5 @@ module.exports = async function uploadToMicroreact(args, context) {
     url: response.url,
   };
 };
+
+module.exports.manifest = require("./manifest");

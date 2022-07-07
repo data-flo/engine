@@ -8,3 +8,5 @@ module.exports = async function (args) {
   file.mediaType = args["media type"];
   return { file };
 };
+
+module.exports.manifest = require("./manifest");

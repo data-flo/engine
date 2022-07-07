@@ -29,3 +29,5 @@ module.exports = async function (args) {
   const file = await smb2Client.createReadStream(filePath);
   return { file };
 };
+
+module.exports.manifest = require("./manifest");

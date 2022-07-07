@@ -43,3 +43,5 @@ module.exports = async function (args, context) {
 
   return { "files list": filesGenerator() };
 };
+
+module.exports.manifest = require("./manifest");

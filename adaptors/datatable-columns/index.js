@@ -3,3 +3,5 @@ module.exports = function createDatatable(args) {
     columns: args.data.columns,
   };
 };
+
+module.exports.manifest = require("./manifest");

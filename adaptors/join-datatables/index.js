@@ -101,3 +101,5 @@ module.exports = async function adaptorJoinDatatable(args) {
     skipped,
   };
 };
+
+module.exports.manifest = require("./manifest");

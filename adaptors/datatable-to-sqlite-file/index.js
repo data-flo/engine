@@ -56,3 +56,5 @@ module.exports = async function (args, context) {
     "updated ids": updatedIds,
   };
 };
+
+module.exports.manifest = require("./manifest");

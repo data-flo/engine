@@ -17,3 +17,5 @@ module.exports = function (args) {
     labels,
   };
 };
+
+module.exports.manifest = require("./manifest");

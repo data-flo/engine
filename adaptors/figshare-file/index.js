@@ -15,3 +15,5 @@ module.exports = async function (args, context) {
 
   throw new Error("Invalid Figshare file URL.");
 };
+
+module.exports.manifest = require("./manifest");

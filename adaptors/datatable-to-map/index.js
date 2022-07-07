@@ -13,3 +13,5 @@ module.exports = function (args) {
     map: dictionary,
   };
 };
+
+module.exports.manifest = require("./manifest");

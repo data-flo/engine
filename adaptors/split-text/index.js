@@ -14,3 +14,5 @@ module.exports = function (args) {
     occurrences: substrings.length,
   };
 };
+
+module.exports.manifest = require("./manifest");

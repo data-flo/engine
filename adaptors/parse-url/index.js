@@ -15,3 +15,5 @@ module.exports = function (args) {
     hash: url.hash,
   };
 };
+
+module.exports.manifest = require("./manifest");

@@ -23,3 +23,5 @@ module.exports = function (args) {
   const dot = `graph G { ${nodes.join("; ")}; ${edges.join("; ")}; }`;
   return { dot };
 };
+
+module.exports.manifest = require("./manifest");

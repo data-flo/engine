@@ -9,3 +9,5 @@ module.exports = function extendDatatable(args) {
     data,
   };
 };
+
+module.exports.manifest = require("./manifest");

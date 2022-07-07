@@ -10,3 +10,5 @@ module.exports = async function (args, context) {
     throw new Error("Invalid Google Drive URL.");
   }
 };
+
+module.exports.manifest = require("./manifest");

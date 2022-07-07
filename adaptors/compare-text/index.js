@@ -10,3 +10,5 @@ module.exports = function (args) {
     match: args.text && regex.test(args.text),
   };
 };
+
+module.exports.manifest = require("./manifest");

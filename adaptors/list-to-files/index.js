@@ -13,3 +13,5 @@ module.exports = async function (args) {
   }
   return { files };
 };
+
+module.exports.manifest = require("./manifest");

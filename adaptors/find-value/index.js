@@ -16,3 +16,5 @@ module.exports = function (args) {
     index: (index >= 0) ? index + 1 : null,
   };
 };
+
+module.exports.manifest = require("./manifest");

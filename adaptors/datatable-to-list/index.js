@@ -5,3 +5,5 @@ module.exports = function (args) {
     list,
   };
 };
+
+module.exports.manifest = require("./manifest");

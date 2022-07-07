@@ -15,3 +15,5 @@ module.exports = function createDatatable(args) {
     csv,
   };
 };
+
+module.exports.manifest = require("./manifest");

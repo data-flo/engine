@@ -56,3 +56,5 @@ module.exports = function (args) {
     data,
   };
 };
+
+module.exports.manifest = require("./manifest");
