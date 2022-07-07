@@ -1,24 +1,24 @@
 module.exports = {
-  "description": "Concatenates text to the left and/or the right of the input, then returns the combined text as an output.",
+  "description": "Concatenates two texts.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",
   "input": [
     {
-      "name": "left",
+      "name": "text one",
       "type": "text",
-      "description": "Text to be joined to the left of the input. Defaults to \"\"",
+      "description": "First text to be concatenated.",
       "required": true,
     },
     {
-      "name": "right",
+      "name": "text two",
       "type": "text",
-      "description": "Text to be joined to the right of the input. Defaults to \"\"",
+      "description": "Second text to be concatenated.",
       "required": true,
     },
     {
       "name": "separator",
       "type": "text",
-      "description": "Specifies text to separate each concatenated value. Defaults to `\"\"` (blank).",
+      "description": "Specifies text to separate the concatenated texts.\nIf unspecified, defaults to blank.",
       "required": false,
       "default": "",
     },
@@ -27,7 +27,7 @@ module.exports = {
     {
       "name": "combination",
       "type": "text",
-      "description": "The combined text.",
+      "description": "The concatenated text.",
     },
   ],
 };

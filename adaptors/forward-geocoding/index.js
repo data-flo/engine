@@ -1,53 +1,35 @@
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const geocoder = require("../../utils/data/geocoder");
+const geocodedPlaceToFeature = require("../../utils/data/geocoded-place-to-feature");
+
+const cache = require("../../utils/cache");
 
 module.exports = async function (args, context) {
-  const geocodingClient = mbxGeocoding({ accessToken: args.mapboxApiKey });
-  const data = args.data.clone();
-  const geocoder = (row) => {
-    const query = row[args.placeColumn] || " ";
-    return context.cache(
-      `adaptors/forward-geocoding/${(args["feature types"] || []).join(",")}${query}`,
-      360 * 24,
-      () => (
-        geocodingClient.forwardGeocode({
-          query,
-          limit: 1,
-          types: args["feature types"] || undefined,
-        })
-          .send()
-          .then((results) => (results.body.features.length ? results.body.features[0] : null))
-          .then((feature) => (feature ? [feature.center, feature.place_type] : null))
-      )
-    );
-  };
-  const features = new Map();
-  for (const row of data.rows) {
-    const feature = await geocoder(row);
-    if (feature) {
-      features.set(row, feature);
-    }
-  }
-  data.addColumn(
-    args.latitudeColumn,
-    (row) => {
-      const feature = features.get(row);
-      return feature ? feature[0][1] : "";
-    }
+  const data = await args.data.transformAsync(
+    args["feature column"],
+    async (row) => {
+      if (row[args["latitude column"]] && row[args["longitude column"]]) {
+        const coordinates = `${row[args["latitude column"]]}, ${row[args["longitude column"]]}`;
+        const cacheKey = `adaptors/reverse-geocoding/${coordinates}`;
+        const place = await cache(
+          cacheKey,
+          360 * 24,
+          () => geocoder(
+            args["api key"],
+            coordinates,
+          )
+        );
+        const feature = geocodedPlaceToFeature(place, args["feature type"]);
+        return feature || "";
+      }
+      else {
+        return "";
+      }
+
+      return row;
+    },
   );
-  data.addColumn(
-    args.longitudeColumn,
-    (row) => {
-      const feature = features.get(row);
-      return feature ? feature[0][0] : "";
-    }
-  );
-  data.addColumn(
-    args.typeColumn,
-    (row) => {
-      const feature = features.get(row);
-      return feature ? feature[1][0] : "";
-    }
-  );
+
+  return { data };
 
   return {
     data,

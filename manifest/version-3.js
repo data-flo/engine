@@ -49,10 +49,41 @@ module.exports = function (doc) {
         }
       }
 
+      if (step.adaptor === "concatenate-columns") {
+        for (const binding of step.binding) {
+          if (binding.target === "left") {
+            binding.target = "text one";
+          }
+          if (binding.target === "right") {
+            binding.target = "text two";
+          }
+        }
+      }
+
       if (step.adaptor === "reverse-geocoding") {
         for (const binding of step.binding) {
+          if (binding.target === "mapboxApiKey") {
+            binding.target = "api key";
+          }
+          if (binding.target === "longitudeColumn") {
+            binding.target = "longitude column";
+          }
+          if (binding.target === "latitudeColumn") {
+            binding.target = "latitude column";
+          }
+          if (binding.target === "placeType") {
+            binding.target = "feature type";
+          }
           if (binding.target === "resultColumn") {
-            binding.target = "result column";
+            binding.target = "feature column";
+          }
+        }
+      }
+
+      if (step.adaptor === "forward-geocoding") {
+        for (const binding of step.binding) {
+          if (binding.target === "placeColumn") {
+            binding.target = "query column";
           }
           if (binding.target === "mapboxApiKey") {
             binding.target = "api key";
