@@ -58,6 +58,7 @@
     "upper-case": "^2.0.2",
     "vis": "^4.21.0",
     "xlsx": "^0.17.3",
+    "yamljs": "^0.3.0",
     "yn": "^3.1.0"
   },
   "devDependencies": {

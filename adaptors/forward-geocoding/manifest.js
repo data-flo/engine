@@ -4,11 +4,6 @@ module.exports = {
   "subgroup": "Data Tables",
   "input": [
     {
-      "name": "mapboxApiKey",
-      "type": "text",
-      "description": "A Mapbox API key from https://www.mapbox.com/." 
-    },
-    {
       "name": "data",
       "type": "datatable",
       "description": "An object containing columns and rows."
@@ -35,7 +30,14 @@ module.exports = {
       "type": "text",
       "default": "type",
       "description": "The name of the column to hold the place type. Defaults to \"type\"."
-    }
+    },
+
+    {
+      "name": "api key",
+      "type": "text",
+      "description": "A Mapbox API key from https://www.mapbox.com/.",
+      "required": true,
+    },
   ],
   "output": [
     {

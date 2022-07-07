@@ -10,6 +10,7 @@ tap.test("add-column adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"latitude","longitude"
 "52.12670207561581","0.17255181706350176"
 "37.4396","-122.1864"
+,
 `);
 
   tap.test("given a latitude and longitude columns, it should return full address", async (t) => {
@@ -29,6 +30,7 @@ tap.test("add-column adaptor", async () => {
     const expected = `"latitude","longitude","address"
 "52.12670207561581","0.17255181706350176","Babraham Road, Sawston, CB22 3DQ, United Kingdom"
 "37.4396","-122.1864","1330 Middle Avenue, Menlo Park, CA 94025, United States of America"
+,,
 `;
     t.equal(actual, expected);
   });

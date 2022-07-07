@@ -1,4 +1,4 @@
-const reverseGeocode = require("../../utils/data/reverse-geocode");
+const geocoder = require("../../utils/data/geocoder");
 const geocodedPlaceToFeature = require("../../utils/data/geocoded-place-to-feature");
 
 const cache = require("../../utils/cache");
@@ -13,15 +13,11 @@ module.exports = async function (args) {
         const place = await cache(
           cacheKey,
           360 * 24,
-          () => reverseGeocode(
+          () => geocoder(
             args["api key"],
             coordinates,
           )
         );
-        // const place = await reverseGeocode(
-        //   args["api key"],
-        //   `${row[args["latitude column"]]} ${row[args["ongitude column"]]}`,
-        // );
         const feature = geocodedPlaceToFeature(place, args["feature type"]);
         return feature || "";
       }

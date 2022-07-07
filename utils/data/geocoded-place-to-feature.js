@@ -28,12 +28,107 @@ const featureMap = {
   "geometry": "",
 };
 
-module.exports = function geocodedPlaceToFeature(place, feature) {
-  if (!(feature in featureMap)) {
-    throw new Error("Invalid feature");
-  }
+const componentsMap = {
+  "house number": [
+    "house_number",
+    "street_number",
+    "housenumber",
+  ],
+  "building": [
+    "house",
+    "building",
+    "public_building",
+    "isolated_dwelling",
+    "farmland",
+    "allotments",
+  ],
+  "road": [
+    "road",
+    "footway",
+    "street",
+    "street_name",
+    "residential",
+    "path",
+    "pedestrian",
+    "road_reference",
+    "road_reference_intl",
+    "square",
+    "place",
+  ],
+  "locality": [
+    "hamlet",
+    "locality",
+    "croft",
+    "village",
+  ],
+  "neighbourhood": [
+    "neighbourhood",
+    "suburb",
+    "city_district",
+    "district",
+    "quarter",
+    "borough",
+    "city_block",
+    "residential",
+    "commercial",
+    "industrial",
+    "houses",
+    "subdistrict",
+    "subdivision",
+    "ward",
+  ],
+  "city": [
+    "city",
+    "town",
+    "township",
+    "postal_city",
+  ],
+  "municipality": [
+    "municipality",
+    "local_administrative_area",
+    "subcounty",
+  ],
+  "county": [
+    "county",
+    "county_code",
+    "department",
+  ],
+  "state_district": [
+    "state_district",
+  ],
+  "postcode": [
+    "postcode",
+    "postal_code",
+    "partial_postcode",
+  ],
+  "state": [
+    "state",
+    "province",
+    "state_code",
+  ],
+  "region": [
+    "region",
+  ],
+  "island": [
+    "island",
+  ],
+  "archipelago": [
+    "archipelago",
+  ],
+  "country": [
+    "country",
+    "country_name",
+  ],
+  "country_code": [
+    "country_code",
+  ],
+  "continent": [
+    "continent",
+  ],
+};
 
-  if (feature === "poi" || feature === "full") {
+module.exports = function geocodedPlaceToFeature(place, feature) {
+  if (feature === "full" || feature === "") {
     return place.formatted;
   }
 
@@ -41,31 +136,39 @@ module.exports = function geocodedPlaceToFeature(place, feature) {
     return place.geometry;
   }
 
+  if (!(feature in featureMap)) {
+    throw new Error("Invalid feature");
+  }
+
+  for (const iterator of object) {
+    
+  }
+
   if (featureMap[feature]) {
     return place?.components[featureMap[feature]];
   }
 
-  if (feature === "flag") {
-    return place?.annotations?.flag;
-  }
+  // if (feature === "flag") {
+  //   return place?.annotations?.flag;
+  // }
 
-  if (feature === "currency code") {
-    return place?.annotations?.currency?.code;
-  }
-  if (feature === "currency name") {
-    return place?.annotations?.currency?.name;
-  }
+  // if (feature === "currency code") {
+  //   return place?.annotations?.currency?.code;
+  // }
+  // if (feature === "currency name") {
+  //   return place?.annotations?.currency?.name;
+  // }
 
-  if (feature === "what3words") {
-    return place?.annotations?.what3words?.words;
-  }
+  // if (feature === "what3words") {
+  //   return place?.annotations?.what3words?.words;
+  // }
 
-  if (feature === "timezone code") {
-    return place?.annotations?.timezone?.short_name;
-  }
-  if (feature === "timezone name") {
-    return place?.annotations?.timezone?.name;
-  }
+  // if (feature === "timezone code") {
+  //   return place?.annotations?.timezone?.short_name;
+  // }
+  // if (feature === "timezone name") {
+  //   return place?.annotations?.timezone?.name;
+  // }
 
   throw new Error("Invalid feature");
 };

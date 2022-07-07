@@ -7,7 +7,7 @@ module.exports = function reverseGeocode(opencageApiKey, query, confidenceSorce,
       key: opencageApiKey,
       limit: 1,
       min_confidence: confidenceSorce,
-      // no_annotations: true,
+      no_annotations: true,
     })
     .then((data) => {
       // console.log(JSON.stringify(data));

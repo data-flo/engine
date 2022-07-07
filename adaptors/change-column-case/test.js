@@ -10,7 +10,7 @@ tap.test(
   async () => {
     // create a tmp CSV file
     const tmpCsvFilePath = await tmpPath();
-    fs.writeFileSync(tmpCsvFilePath, "\"text\"\n\"OfMice and men\"\n");
+    fs.writeFileSync(tmpCsvFilePath, "\"text\"\n\"OfMice and men\"\n\n");
 
     tap.test(
       "given a text, it should change its case to camel case",
@@ -22,7 +22,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"ofMiceAndMen\"\n";
+        const expected = "\"text\"\n\"ofMiceAndMen\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -37,7 +37,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"Of Mice And Men\"\n";
+        const expected = "\"text\"\n\"Of Mice And Men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -52,7 +52,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"OF_MICE_AND_MEN\"\n";
+        const expected = "\"text\"\n\"OF_MICE_AND_MEN\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -67,7 +67,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of.mice.and.men\"\n";
+        const expected = "\"text\"\n\"of.mice.and.men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -82,7 +82,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"Of-Mice-And-Men\"\n";
+        const expected = "\"text\"\n\"Of-Mice-And-Men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -97,7 +97,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of-mice-and-men\"\n";
+        const expected = "\"text\"\n\"of-mice-and-men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -112,7 +112,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of-mice-and-men\"\n";
+        const expected = "\"text\"\n\"of-mice-and-men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -127,7 +127,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"ofmice and men\"\n";
+        const expected = "\"text\"\n\"ofmice and men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -142,7 +142,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of mice and men\"\n";
+        const expected = "\"text\"\n\"of mice and men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -157,7 +157,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of-mice-and-men\"\n";
+        const expected = "\"text\"\n\"of-mice-and-men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -172,7 +172,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"OfMiceAndMen\"\n";
+        const expected = "\"text\"\n\"OfMiceAndMen\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -187,7 +187,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of/mice/and/men\"\n";
+        const expected = "\"text\"\n\"of/mice/and/men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -202,7 +202,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"Of mice and men\"\n";
+        const expected = "\"text\"\n\"Of mice and men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -217,7 +217,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"of_mice_and_men\"\n";
+        const expected = "\"text\"\n\"of_mice_and_men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -232,7 +232,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"ofmice and men\"\n";
+        const expected = "\"text\"\n\"ofmice and men\"\n\n";
         t.equal(actual.toLowerCase(), expected.toLowerCase());
       },
     );
@@ -247,7 +247,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"oFmICE AND MEN\"\n";
+        const expected = "\"text\"\n\"oFmICE AND MEN\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -262,7 +262,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"OfMice and Men\"\n";
+        const expected = "\"text\"\n\"OfMice and Men\"\n\n";
         t.equal(actual, expected);
       },
     );
@@ -277,7 +277,7 @@ tap.test(
         });
         t.ok(output.data);
         const actual = fs.readFileSync(output.data.getSource(), "utf8");
-        const expected = "\"text\"\n\"OFMICE AND MEN\"\n";
+        const expected = "\"text\"\n\"OFMICE AND MEN\"\n\n";
         t.equal(actual, expected);
       },
     );
