@@ -23,7 +23,7 @@ module.exports = {
       "name": "delimiter",
       "type": "text",
       "description": "Character used as column delimiter. Defaults to \",\" (comma).",
-      "required": true,
+      "required": false,
       "default": ",",
       "ui": { "can-be-one-of": CommonDelimiters },
     },

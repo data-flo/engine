@@ -60,6 +60,69 @@ module.exports = function (doc) {
         }
       }
 
+      if (step.adaptor === "create-google-drive-folder") {
+        for (const binding of step.binding) {
+          if (binding.target === "parent") {
+            binding.target = "parent folder";
+          }
+          if (binding.target === "name") {
+            binding.target = "folder name";
+          }
+        }
+      }
+
+      if (step.adaptor === "csv-to-datatable") {
+        step.adaptor = "convert-text-to-datatable";
+        for (const binding of step.binding) {
+          if (binding.target === "separator") {
+            binding.target = "delimiter";
+          }
+        }
+      }
+
+      if (step.adaptor === "datatable-columns") {
+        step.adaptor = "list-datatable-columns";
+        for (const binding of step.binding) {
+          if (binding.target === "separator") {
+            binding.target = "delimiter";
+          }
+        }
+        // TODO: columns => column names
+      }
+
+      if (step.adaptor === "datatable-to-csv") {
+        step.adaptor = "export-to-csv-file";
+        for (const binding of step.binding) {
+          if (binding.target === "separator") {
+            binding.target = "delimiter";
+          }
+          if (binding.target === "filename") {
+            binding.target = "output file name";
+          }
+        }
+        // TODO: csv => file
+      }
+
+      if (step.adaptor === "datatable-to-graph") {
+        step.adaptor = "create-graph-from-datatable";
+        for (const binding of step.binding) {
+          if (binding.target === "from") {
+            binding.target = "from column";
+          }
+          if (binding.target === "to") {
+            binding.target = "to column";
+          }
+          if (binding.target === "direction") {
+            binding.target = "directed";
+            if (binding.type === "value") {
+              binding.value = (binding.value !== "none");
+            }
+          }
+        }
+        // TODO: csv => file
+      }
+
+
       if (step.adaptor === "reverse-geocoding") {
         for (const binding of step.binding) {
           if (binding.target === "mapboxApiKey") {
