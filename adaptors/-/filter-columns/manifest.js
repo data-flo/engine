@@ -1,0 +1,29 @@
+module.exports = {
+  "description": "Removes columns whose name contains a string or matches regular expression from a datatable.",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
+  "input": [
+    {
+      "name": "data",
+      "type": "datatable",
+      "description": "A datatable from which the columns will be removed.",
+    },
+    {
+      "name": "pattern",
+      "type": "text",
+      "description": "A string or a regular expression to be searched for within the column names. Regular expressions must be wrapped with / character (e.g. /.*/).",
+    },
+  ],
+  "output": [
+    {
+      "name": "data",
+      "type": "datatable",
+      "description": "A datatable with the columns matching the string or regular expression removed.",
+    },
+    {
+      "name": "complementary",
+      "type": "datatable",
+      "description": "A datatable with the columns matching the string or regular expression kept.",
+    },
+  ],
+};

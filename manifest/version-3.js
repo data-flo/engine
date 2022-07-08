@@ -1,3 +1,37 @@
+function renameAdaptor(oldName, newName) {
+  for (const step of doc.transform) {
+    if (step.type === "adaptor") {
+      if (step.adaptor === oldName) {
+        step.adaptor = newName;
+      }
+    }
+  }
+}
+
+function renameAdaptorInput(adaptorName, oldName, newName) {
+  for (const step of doc.transform) {
+    if (step.type === "adaptor") {
+      if (step.adaptor === adaptorName) {
+        for (const binding of step.binding) {
+          if (binding.target === oldName) {
+            binding.target = newName;
+          }
+        }
+      }
+    }
+  }
+}
+
+function renameAdaptorOutput(adaptorName, oldName, newName) {
+  for (const step of doc.transform) {
+    if (step.type === "adaptor") {
+      if (step.adaptor === oldName) {
+        step.adaptor = newName;
+      }
+    }
+  }
+}
+
 module.exports = function (doc) {
   for (const step of doc.transform) {
     if (step.type === "adaptor") {
@@ -103,6 +137,19 @@ module.exports = function (doc) {
         // TODO: csv => file
       }
 
+      if (step.adaptor === "datatable-to-dbf-file") {
+        step.adaptor = "export-to-dbf-file";
+        for (const binding of step.binding) {
+          if (binding.target === "columns") {
+            binding.target = "column types";
+          }
+          if (binding.target === "filename") {
+            binding.target = "output file name";
+          }
+        }
+        // TODO: dbf => file
+      }
+
       if (step.adaptor === "datatable-to-graph") {
         step.adaptor = "create-graph-from-datatable";
         for (const binding of step.binding) {
@@ -122,7 +169,8 @@ module.exports = function (doc) {
         // TODO: csv => file
       }
 
-
+      /******/
+      
       if (step.adaptor === "reverse-geocoding") {
         for (const binding of step.binding) {
           if (binding.target === "mapboxApiKey") {
@@ -168,6 +216,29 @@ module.exports = function (doc) {
 
     }
   }
+
+  renameAdaptor("datatable-to-list", "create-list-from-datatable");
+  renameAdaptor("create-list-from-datatable", "column", "column name");
+
+  renameAdaptor("datatable-to-map", "create-map-from-datatable");
+
+  renameAdaptor("date-to-text", "convert-date-to-text");
+
+  renameAdaptor("dot-to-graph", "create-graph-from-dot");
+
+  renameAdaptor("download-file", "import-file-from-url");
+
+  renameAdaptor("dropbox-file", "import-file-from-dropbox");
+
+  renameAdaptor("epicollect-project", "import-epicollect-project");
+
+  renameAdaptor("figshare-file", "import-file-from-figshare");
+
+  renameAdaptor("filter-blank-values", "filter-blank-rows");
+
+  renameAdaptor("find-value", "find-value-in-list");
+
+  renameAdaptor("", "");
 
   doc.version = 3;
 

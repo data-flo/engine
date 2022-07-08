@@ -24,7 +24,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A new datatable.",
+      "description": "A datatable.",
     },
   ],
 };

@@ -30,7 +30,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A new datatable with target column added.",
+      "description": "A datatable with target column added.",
     },
   ],
 };

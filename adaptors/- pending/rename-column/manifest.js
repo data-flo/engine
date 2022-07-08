@@ -1,0 +1,30 @@
+module.exports = {
+  "description": "Renames an existing column in a datatable.",
+  "group": "Transformations",
+  "subgroup": "Data Tables",
+  "input": [
+    {
+      "name": "data",
+      "type": "datatable",
+      "description": "A datatable which contains the column to be renamed."
+
+    },
+    {
+      "name": "source",
+      "type": "text",
+      "description": "The name of an existing column to be renamed."
+    },
+    {
+      "name": "target",
+      "type": "text",
+      "description": "The new name of the column."
+    }
+  ],
+  "output": [
+    {
+      "name": "data",
+      "type": "datatable",
+      "description": "A datatable with the column renamed."
+    }
+  ]
+}
