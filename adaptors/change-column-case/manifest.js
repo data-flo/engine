@@ -12,7 +12,7 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "column",
+      "name": "column name",
       "type": "text",
       "description": "The column to be converted.",
       "required": true,

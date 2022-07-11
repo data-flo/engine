@@ -250,7 +250,15 @@ module.exports = function (doc) {
 
   renameAdaptor("ftp-file", "import-file-from-url");
 
-  renameAdaptor("", "");
+  renameAdaptor("force-directed-layout", "apply-force-directed-layout");
+
+  renameAdaptor("gather-rows", "reshape-wide-to-long");
+
+  renameAdaptor("google-drive-file", "import-file-from-google-drive");
+
+  renameAdaptor("google-spreadsheet", "");
+
+  renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
 
   doc.version = 3;
 
