@@ -1,6 +1,14 @@
 const moment = require("moment");
 
+const toString = require("../../utils/date/to-string");
+
 module.exports = function (args) {
+
+  toString(
+    args.value || new Date(),
+    
+  )
+
   const momentValue = moment(args.value || new Date());
 
   if (momentValue.isValid()) {

@@ -238,6 +238,8 @@ module.exports = function (doc) {
 
   renameAdaptor("find-value", "find-value-in-list");
 
+  renameAdaptor("ftp-file", "import-file-from-url");
+
   renameAdaptor("", "");
 
   doc.version = 3;

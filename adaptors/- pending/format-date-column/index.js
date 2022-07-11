@@ -28,7 +28,7 @@ module.exports = function (args) {
           dateValue = parse(
             rawValue,
             args["source format"],
-            new Date(2000, 0, 1)
+            Date.UTC(2000, 0, 1)
           );
         }
 

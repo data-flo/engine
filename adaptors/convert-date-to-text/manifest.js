@@ -7,7 +7,7 @@ module.exports = {
   "input": [
     {
       "name": "value",
-      "type": "date",
+      "type": "text",
       "description": "The input date/time value.\nIf unspecified, the current date/time will be used.",
       "default": null,
     },

@@ -22,7 +22,7 @@ module.exports = {
     },
     {
       "name": "index",
-      "type": "integer",
+      "type": "number",
       "description": "The one-based index of first match in the list.",
     },
   ],
