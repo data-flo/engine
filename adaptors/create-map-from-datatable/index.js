@@ -1,32 +1,24 @@
-module.exports = function (args) {
-  const keyColumn = args.data.getColumn(args["key column"]);
-  const valueColumn = args.data.getColumn(args["value column"]);
+module.exports = async function (args) {
+  await args.data.shouldIncludeColumns(
+    args["key column"],
+    args["value column"],
+  );
+
   const dictionary = new Map();
 
-  for (const row of args.data.rows) {
-    if (keyColumn in row) {
-      dictionary.set(row[keyColumn], row[valueColumn]);
+  for await (const row of args.data.getPartialReader([ args["key column"], args["value column"] ])) {
+    const key = row[args["key column"]];
+    if (key !== null && key !== undefined && key !== "" && !dictionary.has(key)) {
+      dictionary.set(
+        key,
+        row[args["value column"]],
+      );
     }
   }
 
   return {
     map: dictionary,
   };
-};
-
-module.exports = async function (args) {
-  await args.data.shouldIncludeColumns(args["column name"]);
-
-  const list = [];
-
-  for await (const row of args.data.getReader([ args["column name"] ])) {
-    const value = row[args["column name"]];
-    if (value !== null && value !== undefined && value !== "") {
-      list.push(value);
-    }
-  }
-
-  return { list };
 };
 
 module.exports.manifest = require("./manifest");
