@@ -9,7 +9,7 @@ module.exports = {
       "name": "value",
       "type": "text",
       "description": "The input date/time value.\nIf unspecified, the current date/time will be used.",
-      "default": null,
+      "required": false,
     },
     {
       "name": "format",
@@ -22,13 +22,15 @@ module.exports = {
     {
       "name": "locale",
       "type": "text",
-      "description": "A language locale to be used when formatting the values.\nSee https://date-fns.org/v2.28.0/docs/Locale.\nIf unspecified, it defaults to `en-GB`.",
-      "default": "en-GB",
+      "description": "A language locale to be used when formatting the values.\nSee https://date-fns.org/v2.28.0/docs/Locale.\nIf unspecified, it defaults to `en-US`.",
+      "required": false,
+      "default": "en-US",
     },
     {
       "name": "timezone",
       "type": "text",
       "description": "The three letter code of the timezone (e.g. UTC).",
+      "required": false,
       "default": "UTC",
     },
   ],

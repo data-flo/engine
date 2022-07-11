@@ -1,3 +1,13 @@
+/*
+
+      "ui": { "column-in": "data" },
+      "required": true,
+      "required": false,
+      "ui": { "can-be-one-of": DateFormats },
+      "ui": { "must-be-one-of": DurationUnits },
+\nIf unspecified, defaults to
+*/
+
 function renameAdaptor(oldName, newName) {
   for (const step of doc.transform) {
     if (step.type === "adaptor") {

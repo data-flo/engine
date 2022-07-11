@@ -7,6 +7,7 @@ module.exports = {
       "name": "dot",
       "type": "text",
       "description": "The text in DOT language format.\n See: https://en.wikipedia.org/wiki/DOT_(graph_description_language).",
+      "required": true,
     },
   ],
   "output": [

@@ -14,7 +14,7 @@ module.exports = {
     {
       "name": "delimiter",
       "type": "text",
-      "description": "Character used as column delimiter. Defaults to \",\" (comma).",
+      "description": "Character used as column delimiter.\nIf unspecified, defaults to \",\" (comma).",
       "required": false,
       "default": ",",
       "ui": { "can-be-one-of": CommonDelimiters },
