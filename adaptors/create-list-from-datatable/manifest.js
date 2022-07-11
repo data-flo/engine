@@ -14,6 +14,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the column from which the list will be created.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
   ],
   "output": [

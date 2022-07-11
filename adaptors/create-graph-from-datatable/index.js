@@ -4,10 +4,10 @@ module.exports = async function (args) {
     args["to column"],
   );
 
-  const attributeColumns = (
-    (await args.data.getColumns())
-      .filter((x) => x !== args.from && x !== args.to)
-  );
+  // const attributeColumns = (
+  //   (await args.data.getColumns())
+  //     .filter((x) => x !== args.from && x !== args.to)
+  // );
 
   const nodeIds = new Set();
 
