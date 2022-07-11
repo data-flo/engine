@@ -7,8 +7,8 @@ function runForceDirectedLayout(graph, options) {
       options.stiffness,
       options.repulsion,
       options.damping,
-      options.minEnergyThreshold,
-      options.maxSpeed,
+      options["min energy threshold"],
+      options["max speed"],
     );
     const output = {};
     const renderer = new Springy.Renderer(

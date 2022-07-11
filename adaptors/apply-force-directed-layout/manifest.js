@@ -12,33 +12,38 @@ module.exports = {
     {
       "name": "stiffness",
       "type": "number",
-      "default": 400.0,
       "description": "Defaults to 400.0.",
+      "required": false,
+      "default": 400.0,
     },
     {
       "name": "repulsion",
       "type": "number",
-      "default": 400.0,
       "description": "How much each node should node push each other away.\nIf unspecified, defaults to 400.0.",
+      "required": false,
+      "default": 400.0,
     },
     {
       "name": "damping",
       "type": "number",
-      "default": 0.5,
       "description": "The amount to lessen the force to be applied.\nIf unspecified, defaults to 0.5.",
+      "required": false,
+      "default": 0.5,
 
     },
     {
       "name": "min energy threshold",
       "type": "number",
-      "default": null,
       "description": "The minimum amount of force that should be applied.\nIf unspecified, defaults to null.",
+      "required": false,
+      "default": null,
     },
     {
       "name": "max speed",
       "type": "number",
-      "default": null,
       "description": "The maximum amount of speed that should be applied.\nIf unspecified, defaults to null.",
+      "required": false,
+      "default": null,
     },
   ],
   "output": [
