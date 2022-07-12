@@ -1,5 +1,5 @@
 {
-  "description": "Creates DBF files from a datatable.",
+  "description": "Exports a datatable as a dBase database file (https://en.wikipedia.org/wiki/.dbf).",
   "category": "Data Destinations",
   "input": [
     {
@@ -15,7 +15,7 @@
     {
       "name": "output file name",
       "type": "text",
-      "description": "The name of the file to create.\nDefaults to `file.dbf`.",
+      "description": "The name of the file to create.\nIf unspecified, defaults to `file.dbf`.",
       "default": "file.dbf"
     }
   ],
@@ -23,7 +23,7 @@
     {
       "name": "dbf",
       "type": "file",
-      "description": ""
+      "description": "Exported file DBF format"
     }
   ]
 }

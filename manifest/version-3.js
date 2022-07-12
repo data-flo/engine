@@ -134,19 +134,6 @@ module.exports = function (doc) {
         // TODO: columns => column names
       }
 
-      if (step.adaptor === "datatable-to-dbf-file") {
-        step.adaptor = "export-to-dbf-file";
-        for (const binding of step.binding) {
-          if (binding.target === "columns") {
-            binding.target = "column types";
-          }
-          if (binding.target === "filename") {
-            binding.target = "output file name";
-          }
-        }
-        // TODO: dbf => file
-      }
-
       if (step.adaptor === "datatable-to-graph") {
         step.adaptor = "create-graph-from-datatable";
         for (const binding of step.binding) {
@@ -213,6 +200,11 @@ module.exports = function (doc) {
 
     }
   }
+
+  renameAdaptor("datatable-to-dbf-file", "export-to-dbf-file");
+  renameAdaptorInput("export-to-dbf-file", "columns", "column types");
+  renameAdaptorInput("export-to-dbf-file", "filename", "output file name");
+  renameAdaptorOutput("export-to-csv-file", "dbf", "file");
 
   renameAdaptor("datatable-to-csv", "export-to-csv-file");
   renameAdaptorInput("export-to-csv-file", "separator", "delimiter");

@@ -1,6 +1,8 @@
 const tmp = require("tmp-promise");
 
-module.exports = async function (options) {
-  const { fd, path, cleanup } = await tmp.file({ discardDescriptor: true });
+const { EmptyObject } = require("../../constants");
+
+module.exports = async function (options = EmptyObject) {
+  const { fd, path, cleanup } = await tmp.file({ discardDescriptor: true, ...options });
   return path;
 };

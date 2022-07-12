@@ -51,7 +51,7 @@ module.exports = async function adaptorJoinDatatable(args) {
         ?
         rightTable.getPartialReader(args.columns)
         :
-        rightTable.getReader(args.columns)
+        rightTable.getReader()
     );
     for await (const row of rightTableReader) {
       if (row[rightIdColumn]) {
