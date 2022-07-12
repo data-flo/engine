@@ -2,7 +2,7 @@ const tap = require("tap");
 
 const fs = require("fs");
 
-tap.compare = function (filePath, expectedFileContent) {
+tap.compareFile = function (filePath, expectedFileContent) {
   let actual = fs.readFileSync(filePath, "utf8");
   if (actual.startsWith("\ufeff")) {
     actual = actual.substring(1);

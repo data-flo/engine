@@ -34,7 +34,9 @@
       "program": "${workspaceFolder}/${relativeFile}",
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
-      "outputCapture": "std"
+      "outputCapture": "std",
+      "env": {
+      }
     }
   ]
 }

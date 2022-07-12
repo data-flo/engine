@@ -1,3 +1,4 @@
+const FS = require("fs");
 const Path = require("path");
 const { URL } = require("url");
 const StreamPromises = require("stream/promises");
@@ -31,7 +32,8 @@ module.exports = async function (args) {
     await client.connect({
       host: parsedUrlInfo.host,
       username: parsedUrlInfo.username,
-      password: parsedUrlInfo.password,
+      privateKey: FS.readFileSync(`${process.env.HOME}/.ssh/id_rsa`),
+      // password: parsedUrlInfo.password,
     });
 
     file = await FileStream.createEmpty();
@@ -45,7 +47,6 @@ module.exports = async function (args) {
       {
         curlyStreamResponse: true,
         FOLLOWLOCATION: true,
-        [Curl.option.SSH_AUTH_TYPES]: Curl.ssh_auth.PASSWORD,
       },
     );
 
@@ -59,7 +60,7 @@ module.exports = async function (args) {
       throw new Error(`Request status code ${statusCode}`);
     }
 
-    const fileWriter = await FileStream.create();
+    const fileWriter = await FileStream.createWriter();
 
     await StreamPromises.pipeline(
       data,
