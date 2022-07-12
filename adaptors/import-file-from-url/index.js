@@ -1,8 +1,10 @@
+const Path = require("path");
 const { URL } = require("url");
 const StreamPromises = require("stream/promises");
 const contentDisposition = require("content-disposition");
 
-const { curly } = require("node-libcurl");
+const { Curl, curly } = require("node-libcurl");
+const SFTPClient = require("ssh2-sftp-client");
 
 const { FileStream } = require("../../types/file");
 const { EmptyObject } = require("../../constants");
@@ -12,49 +14,75 @@ const allowedProtocols = [
   "ftp:",
   "http:",
   "https:",
+  "sftp:",
 ];
 
 module.exports = async function (args) {
-  const url = new URL(args.url);
+  const parsedUrlInfo = new URL(args.url);
 
-  if (!allowedProtocols.includes(url.protocol)) {
+  if (!allowedProtocols.includes(parsedUrlInfo.protocol)) {
     throw new Error("Unsupported protocol");
   }
 
-  const { statusCode, data, headers } = await curly.get(
-    args.url,
-    {
-      curlyStreamResponse: true,
-      FOLLOWLOCATION: true,
-    },
-  );
+  let file;
 
-  if (statusCode !== 200) {
-    throw new Error(`Request status code ${statusCode}`);
+  if (parsedUrlInfo.protocol === "sftp:") {
+    const client = new SFTPClient();
+    await client.connect({
+      host: parsedUrlInfo.host,
+      username: parsedUrlInfo.username,
+      password: parsedUrlInfo.password,
+    });
+
+    file = await FileStream.createEmpty();
+
+    await client.fastGet(parsedUrlInfo.pathname, file.getSource());
+    await client.end();
   }
+  else {
+    const { statusCode, data, headers } = await curly(
+      args.url,
+      {
+        curlyStreamResponse: true,
+        FOLLOWLOCATION: true,
+        [Curl.option.SSH_AUTH_TYPES]: Curl.ssh_auth.PASSWORD,
+      },
+    );
 
-  const fileWriter = await FileStream.create();
+    if (
+      (parsedUrlInfo.protocol === "ftp:" && statusCode !== 150 /* File status okay */)
+      ||
+      (parsedUrlInfo.protocol === "http:" && statusCode !== 200 /* File status okay */)
+      ||
+      (parsedUrlInfo.protocol === "https:" && statusCode !== 200 /* File status okay */)
+    ) {
+      throw new Error(`Request status code ${statusCode}`);
+    }
 
-  await StreamPromises.pipeline(
-    data,
-    fileWriter,
-  );
+    const fileWriter = await FileStream.create();
 
-  const file = await fileWriter.finalise();
+    await StreamPromises.pipeline(
+      data,
+      fileWriter,
+    );
 
-  const lastHequestHeaders = headers.length ? headers[headers.length - 1] : EmptyObject;
+    file = await fileWriter.finalise();
 
-  file.mediaType = lastHequestHeaders["content-type"] || "application/octet-stream";
+    const lastHequestHeaders = headers.length ? headers[headers.length - 1] : EmptyObject;
+
+    file.mediaType = lastHequestHeaders["content-type"] || "application/octet-stream";
+
+    if (lastHequestHeaders["content-disposition"]) {
+      const { parameters } = contentDisposition.parse(lastHequestHeaders["content-disposition"]);
+      file.name = parameters.filename;
+    }
+  }
 
   if (args["output file name"]) {
     file.name = args["output file name"];
   }
-  else if (lastHequestHeaders["content-disposition"]) {
-    const { parameters } = contentDisposition.parse(lastHequestHeaders["content-disposition"]);
-    file.name = parameters.filename;
-  }
   else {
-    file.name = "file";
+    file.name = Path.basename(parsedUrlInfo.pathname) || "file";
   }
 
   return { file };
