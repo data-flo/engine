@@ -6,14 +6,15 @@ module.exports = {
     {
       "name": "dbf",
       "type": "file",
-      "description": "A dBASE (`.dbf`) file."
-    }
+      "description": "A dBASE (`.dbf`) file.",
+      "required": true,
+    },
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "Data read from the file."
-    }
-  ]
-}
+      "description": "Data read from the file.",
+    },
+  ],
+};
