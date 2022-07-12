@@ -3,6 +3,7 @@ const stream = require("stream/promises");
 
 const { parse, stringify } = require("csv");
 
+const { FileStream } = require("./file");
 const { EmptyObject, EmptyArray } = require("../constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
@@ -17,13 +18,11 @@ class Datatable {
     const stringifier = stringify({
       header: true,
       quoted: true,
+      bom: true, // Add universal BOM to force excel to read CSV in utf-8 https://stackoverflow.com/questions/42462764/javascript-export-csv-encoding-utf-8-issue
       ...options,
     });
 
     const fileStream = fs.createWriteStream(filePath);
-    // Add universal BOM to force excel to read CSV in utf-8
-    // https://stackoverflow.com/questions/42462764/javascript-export-csv-encoding-utf-8-issue
-    fileStream.push("\uFEFF", "utf8");
 
     const pipeline = stream.pipeline(
       stringifier,
@@ -126,6 +125,90 @@ class Datatable {
     }
   }
 
+  async clone(columns, options = EmptyObject) {
+    //#region using transform
+
+    // const { transform } = require("csv");
+    // module.exports = async function (args) {
+    //   const transformer = transform(
+    //     (inRow) => {
+    //       const outRow = {};
+    //       for (const columnName of args.columns) {
+    //         if (columnName in inRow) {
+    //           outRow[columnName] = inRow[columnName];
+    //         }
+    //       }
+    //       return outRow;
+    //     }
+    //   );
+
+    //   const inDataReader = await args.data.getReader();
+    //   const datatableWriter = await Datatable.create();
+
+    //   inDataReader
+    //     .pipe(transformer)
+    //     .pipe(datatableWriter);
+
+    //   const data = await datatableWriter.finalise();
+
+    //   return {
+    //     data,
+    //   };
+    // };
+
+    //#endregion
+
+    //#region manual selection of columns
+
+    // module.exports = async function (args) {
+    //   const transformer = (inRow) => {
+    //     const outRow = {};
+    //     for (const columnName of args.columns) {
+    //       if (columnName in inRow) {
+    //         outRow[columnName] = inRow[columnName];
+    //       }
+    //     }
+    //     return outRow;
+    //   };
+
+    //   const data = await args.data.transform(transformer);
+
+    //   return {
+    //     data,
+    //   };
+    // };
+
+    //#endregion
+
+    //#region using partial reader
+
+    // const datatableWriter = await Datatable.create();
+
+    // if (columns) {
+    //   this.getPartialReader(columns)
+    //     .pipe(datatableWriter);
+    // }
+    // else {
+    //   this.getReader()
+    //     .pipe(datatableWriter);
+    // }
+
+    // const clonedDatatable = await datatableWriter.finalise();
+    //#endregion
+
+    const datatableWriter = await Datatable.create({
+      columns,
+      ...options,
+    });
+
+    this.getReader()
+      .pipe(datatableWriter);
+
+    const clonedDatatable = await datatableWriter.finalise();
+
+    return clonedDatatable;
+  }
+
   async transformSync(transformer) {
     const datatableWriter = await Datatable.create();
 
@@ -180,6 +263,11 @@ class Datatable {
       },
     );
     return data;
+  }
+
+  async toFileStream() {
+    const file = new FileStream(this.getSource());
+    return file;
   }
 
 }

@@ -9,14 +9,12 @@ module.exports = function inputArguments(manifest, rawValues) {
       throw new Error(`required is missing from ${spec.name}`);
     }
 
-    if (spec.required) {
-      const rawValue = rawValues[spec.name];
-      if (rawValue !== undefined) {
-        input[spec.name] = castType(spec.type, rawValue);
-      }
-      else {
-        throw new Error(`A value is required for input argument ${spec.name}`);
-      }
+    const rawValue = rawValues[spec.name];
+    if (rawValue !== undefined) {
+      input[spec.name] = castType(spec.type, rawValue);
+    }
+    else if (spec.required) {
+      throw new Error(`A value is required for input argument ${spec.name}`);
     }
     else if (spec.default !== undefined) {
       input[spec.name] = castType(spec.type, spec.default);

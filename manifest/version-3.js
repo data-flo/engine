@@ -134,19 +134,6 @@ module.exports = function (doc) {
         // TODO: columns => column names
       }
 
-      if (step.adaptor === "datatable-to-csv") {
-        step.adaptor = "export-to-csv-file";
-        for (const binding of step.binding) {
-          if (binding.target === "separator") {
-            binding.target = "delimiter";
-          }
-          if (binding.target === "filename") {
-            binding.target = "output file name";
-          }
-        }
-        // TODO: csv => file
-      }
-
       if (step.adaptor === "datatable-to-dbf-file") {
         step.adaptor = "export-to-dbf-file";
         for (const binding of step.binding) {
@@ -227,7 +214,13 @@ module.exports = function (doc) {
     }
   }
 
+  renameAdaptor("datatable-to-csv", "export-to-csv-file");
+  renameAdaptorInput("export-to-csv-file", "separator", "delimiter");
+  renameAdaptorInput("export-to-csv-file", "filename", "output file name");
+  renameAdaptorOutput("export-to-csv-file", "csv", "file");
+
   renameAdaptor("datatable-to-list", "create-list-from-datatable");
+
   renameAdaptor("create-list-from-datatable", "column", "column name");
 
   renameAdaptor("datatable-to-map", "create-map-from-datatable");

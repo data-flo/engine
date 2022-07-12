@@ -23,14 +23,14 @@ module.exports = {
       "name": "columns",
       "type": "list",
       "description": "A list of columns to be exported to the CSV file.\nIf unspecified, all columns will be exported.",
-      "required": true,
-      "default": null,
+      "required": false,
     },
     {
       "name": "output file name",
       "type": "text",
-      "default": "data.csv",
       "description": "The name of the output file.\nIf unspecified, defaults to `data.csv`.",
+      "required": false,
+      "default": "data.csv",
     },
   ],
   "output": [
