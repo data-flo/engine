@@ -7,11 +7,13 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list to be searched.",
+      "required": true,
     },
     {
       "name": "pattern",
       "type": "text",
       "description": "A text or a regular expression to be searched for within the list.",
+      "required": true,
     },
   ],
   "output": [
