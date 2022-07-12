@@ -7,6 +7,7 @@ module.exports = {
       "name": "graph",
       "type": "graph",
       "description": "The graph structure to be exported.",
+      "required": true,
     },
   ],
   "output": [

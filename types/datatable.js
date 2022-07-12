@@ -20,9 +20,14 @@ class Datatable {
       ...options,
     });
 
+    const fileStream = fs.createWriteStream(filePath);
+    // Add universal BOM to force excel to read CSV in utf-8
+    // https://stackoverflow.com/questions/42462764/javascript-export-csv-encoding-utf-8-issue
+    fileStream.push("\uFEFF", "utf8");
+
     const pipeline = stream.pipeline(
       stringifier,
-      fs.createWriteStream(filePath)
+      fileStream,
     );
 
     stringifier.finalise = () => {
