@@ -7,6 +7,13 @@ module.exports = {
       "name": "url",
       "type": "text",
       "description": "The URL of the file to be imported.",
+      "required": true,
+    },
+    {
+      "name": "output file name",
+      "type": "text",
+      "description": "The name of the output file.\nIf unspecified, defaults to the remote file name.",
+      "required": false,
     },
   ],
   "output": [

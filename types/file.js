@@ -6,7 +6,7 @@ const tmpFilePath = require("../utils/file/tmp-path");
 class FileStream {
 
   static async create(options) {
-    const filePath = await tmpFilePath();
+    const filePath = await tmpFilePath(options);
 
     const writeStream = fs.createWriteStream(filePath);
 
