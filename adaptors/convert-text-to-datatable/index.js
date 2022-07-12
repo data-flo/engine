@@ -13,22 +13,21 @@ module.exports = async function (args) {
       (headerCells) => headerCells.map((column) => column.trim())
   );
 
-  args.file.getReader({ encoding: args.encoding })
-    .pipe(
-      parse({
-        trim: args.trim,
-        columns,
-      })
-    )
+  parse(
+    args.csv,
+    {
+      trim: args.trim,
+      delimiter: args.delimiter,
+      columns,
+    },
+  )
     .pipe(
       datatableWriter
     );
 
   const data = await datatableWriter.finalise();
 
-  return {
-    data,
-  };
+  return { data };
 };
 
 module.exports.manifest = require("./manifest");

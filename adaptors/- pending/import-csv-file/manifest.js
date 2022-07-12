@@ -31,15 +31,14 @@ module.exports = {
       "name": "trim",
       "type": "boolean",
       "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True.",
-      "required": true,
+      "required": false,
       "default": true,
     },
     {
       "name": "columns",
       "type": "list",
       "description": "",
-      "required": true,
-      "default": null,
+      "required": false,
     },
   ],
   "output": [
