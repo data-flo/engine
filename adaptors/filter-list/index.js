@@ -1,12 +1,4 @@
-const escapeStringRegexp = require("escape-string-regexp");
-
-const makeRegexp = (pattern) => {
-  if (pattern.startsWith("/") && pattern.endsWith("/")) {
-    return new RegExp(pattern.substring(1, pattern.length - 1));
-  } else {
-    return new RegExp(escapeStringRegexp(pattern));
-  }
-};
+const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = function (args) {
   const regexp = makeRegexp(args.pattern);

@@ -6,35 +6,35 @@ module.exports = {
     {
       "name": "main data",
       "type": "datatable",
-      "description": "The main datatable.",
+      "description": "The main (left) datatable. When `inner join` is `False`, all rows from this datatable will be included.",
     },
     {
       "name": "main column",
       "type": "text",
-      "description": "The name of the column in the `main data` that is used to join rows of `other data`.",
+      "description": "The column in `main data` containing values shared by `other column` in `other data`.",
     },
     {
       "name": "other data",
       "type": "datatable",
-      "description": "The other datatable to be joined.",
+      "description": "The other (right) datatable, to be joined to main datatable.",
     },
     {
       "name": "other column",
       "type": "text",
-      "description": "The name the column in the `other data` on that is used to join rows of `main data`.\nIf unassigned, the value of `main column` will be used.",
+      "description": "The column in `other data` containing values shared by `main column` in `main data`.\nIf more than one row match main column value, only the first matching row will be joined.\nIf unassigned, the name of `main column` will be used.",
       "default": null,
     },
 
     {
       "name": "inner join",
       "type": "boolean",
-      "description": "Specifies whether to include rows that have matching values in both tables.\nDefaults to `False`.",
+      "description": "Specifies whether to only include the rows from `main data` that are also in `other data`.\nWhen set to `True`, rows from `main data` that do not have matches in `other data` will be excluded.\nIf unspecified, defaults to `False`.",
       "default": false,
     },
     {
       "name": "case sensitive",
       "type": "boolean",
-      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent.\nDefaults to `False`.",
+      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent.\nIf unspecified, defaults to `False`.",
       "default": false,
     },
     {
