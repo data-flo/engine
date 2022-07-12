@@ -1,13 +1,12 @@
+const tap = require("tap");
 const fs = require("fs");
 
 const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-let testCsvFilePath;
-
-beforeEach(async function () {
-   testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
+tap.test("add-column adaptor", async () => {
+  const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
 "Orangutan",,,,
@@ -15,11 +14,8 @@ beforeEach(async function () {
 "Human","gb",,,
 "Mouse","gb",,,
 `);
-});
 
-describe("add-column adaptor", () => {
-
-  it("given a datatable, it should add a column", async (t) => {
+  tap.test("given a datatable, it should add a column", async (t) => {
     const output = await adaptor({
       data: createDatatable(testCsvFilePath),
       column: "ones",
@@ -38,7 +34,7 @@ describe("add-column adaptor", () => {
     t.equal(actual, expected);
   });
 
-  it("given no value, it should add an empty column", async (t) => {
+  tap.test("given no value, it should add an empty column", async (t) => {
     const output = await adaptor({
       data: createDatatable(testCsvFilePath),
       column: "ones",
@@ -56,7 +52,7 @@ describe("add-column adaptor", () => {
     t.equal(actual, expected);
   });
 
-  it("given an existing column, it should throw an error", async (t) => {
+  tap.test("given an existing column, it should throw an error", async (t) => {
     await t.rejects(
       adaptor({
         data: createDatatable(testCsvFilePath),
