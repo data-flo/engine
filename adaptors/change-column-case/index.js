@@ -35,7 +35,7 @@ module.exports = async function (args) {
 
   const data = await args.data.modifyColumnSync(
     args.column,
-    (sourceValue) => {
+    (row, context, sourceValue) => {
       if (sourceValue) {
         return converion(sourceValue);
       }
