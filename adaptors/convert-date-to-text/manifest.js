@@ -1,4 +1,4 @@
-const { DateFormats } = require("../../enums");
+const { DateFormats, LanguageLocales } = require("../../enums");
 
 module.exports = {
   "description": "Converts a date/time value to text in a specified format.",
@@ -25,6 +25,7 @@ module.exports = {
       "description": "A language locale to be used when formatting the values.\nSee https://date-fns.org/v2.28.0/docs/Locale.\nIf unspecified, it defaults to `en-US`.",
       "required": false,
       "default": "en-US",
+      "ui": { "must-be-one-of": LanguageLocales },
     },
     {
       "name": "timezone",
