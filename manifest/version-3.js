@@ -8,198 +8,123 @@
 \nIf unspecified, defaults to
 */
 
-function renameAdaptor(oldName, newName) {
-  for (const step of doc.transform) {
-    if (step.type === "adaptor") {
-      if (step.adaptor === oldName) {
-        step.adaptor = newName;
-      }
-    }
-  }
-}
-
-function renameAdaptorInput(adaptorName, oldName, newName) {
-  for (const step of doc.transform) {
-    if (step.type === "adaptor") {
-      if (step.adaptor === adaptorName) {
-        for (const binding of step.binding) {
-          if (binding.target === oldName) {
-            binding.target = newName;
-          }
-        }
-      }
-    }
-  }
-}
-
-function renameAdaptorOutput(adaptorName, oldName, newName) {
-  for (const step of doc.transform) {
-    if (step.type === "adaptor") {
-      if (step.adaptor === oldName) {
-        step.adaptor = newName;
-      }
-    }
-  }
-}
-
 module.exports = function (doc) {
-  for (const step of doc.transform) {
-    if (step.type === "adaptor") {
-      if (step.adaptor === "csv-file-to-datatable") {
-        step.adaptor = "import-csv-file";
-        for (const binding of step.binding) {
-          if (binding.target === "separator") {
-            binding.target = "delimiter";
-          }
+
+  function renameAdaptor(oldName, newName) {
+    for (const step of doc.transform) {
+      if (step.type === "adaptor") {
+        if (step.adaptor === oldName) {
+          step.adaptor = newName;
         }
       }
+    }
+  }
 
-      if (step.adaptor === "join-datatables") {
-        const columnsBindings = step.binding.find((x) => x.target === "columns");
-        if (columnsBindings && columnsBindings.type === "value") {
-          columnsBindings.value = columnsBindings.value.map(([ key ]) => key);
-        }
-      }
-
-      if (step.adaptor === "calculate-time-difference") {
-        for (const binding of step.binding) {
-          if (binding.target === "reference column") {
-            binding.target = "column two";
-          }
-          if (binding.target === "reference format") {
-            binding.target = "column two format";
-          }
-          if (binding.target === "value column") {
-            binding.target = "column one";
-          }
-          if (binding.target === "value format") {
-            binding.target = "column one format";
-          }
-          if (binding.target === "target column") {
-            binding.target = "difference column";
-          }
-        }
-      }
-
-      if (step.adaptor === "columns-concatenation") {
-        step.adaptor = "concatenate-columns";
-        for (const binding of step.binding) {
-          if (binding.target === "delimiter") {
-            binding.target = "separator";
-          }
-          if (binding.target === "target") {
-            binding.target = "concatenated column";
-          }
-        }
-      }
-
-      if (step.adaptor === "concatenate-columns") {
-        for (const binding of step.binding) {
-          if (binding.target === "left") {
-            binding.target = "text one";
-          }
-          if (binding.target === "right") {
-            binding.target = "text two";
-          }
-        }
-      }
-
-      if (step.adaptor === "create-google-drive-folder") {
-        for (const binding of step.binding) {
-          if (binding.target === "parent") {
-            binding.target = "parent folder";
-          }
-          if (binding.target === "name") {
-            binding.target = "folder name";
-          }
-        }
-      }
-
-      if (step.adaptor === "csv-to-datatable") {
-        step.adaptor = "convert-text-to-datatable";
-        for (const binding of step.binding) {
-          if (binding.target === "separator") {
-            binding.target = "delimiter";
-          }
-        }
-      }
-
-      if (step.adaptor === "datatable-columns") {
-        step.adaptor = "list-datatable-columns";
-        for (const binding of step.binding) {
-          if (binding.target === "separator") {
-            binding.target = "delimiter";
-          }
-        }
-        // TODO: columns => column names
-      }
-
-      if (step.adaptor === "datatable-to-graph") {
-        step.adaptor = "create-graph-from-datatable";
-        for (const binding of step.binding) {
-          if (binding.target === "from") {
-            binding.target = "from column";
-          }
-          if (binding.target === "to") {
-            binding.target = "to column";
-          }
-          if (binding.target === "direction") {
-            binding.target = "directed";
-            if (binding.type === "value") {
-              binding.value = (binding.value !== "none");
+  function renameAdaptorInput(adaptorName, oldName, newName) {
+    for (const step of doc.transform) {
+      if (step.type === "adaptor") {
+        if (step.adaptor === adaptorName) {
+          for (const binding of step.binding) {
+            if (binding.target === oldName) {
+              binding.target = newName;
             }
           }
         }
-        // TODO: csv => file
       }
-
-      /******/
-      
-      if (step.adaptor === "reverse-geocoding") {
-        for (const binding of step.binding) {
-          if (binding.target === "mapboxApiKey") {
-            binding.target = "api key";
-          }
-          if (binding.target === "longitudeColumn") {
-            binding.target = "longitude column";
-          }
-          if (binding.target === "latitudeColumn") {
-            binding.target = "latitude column";
-          }
-          if (binding.target === "placeType") {
-            binding.target = "feature type";
-          }
-          if (binding.target === "resultColumn") {
-            binding.target = "feature column";
-          }
-        }
-      }
-
-      if (step.adaptor === "forward-geocoding") {
-        for (const binding of step.binding) {
-          if (binding.target === "placeColumn") {
-            binding.target = "query column";
-          }
-          if (binding.target === "mapboxApiKey") {
-            binding.target = "api key";
-          }
-          if (binding.target === "longitudeColumn") {
-            binding.target = "longitude column";
-          }
-          if (binding.target === "latitudeColumn") {
-            binding.target = "latitude column";
-          }
-          if (binding.target === "placeType") {
-            binding.target = "feature type";
-          }
-          if (binding.target === "resultColumn") {
-            binding.target = "feature column";
-          }
-        }
-      }
-
     }
   }
+
+  function changeAdaptorInput(adaptorName, oldName, func) {
+    for (const step of doc.transform) {
+      if (step.type === "adaptor") {
+        if (step.adaptor === adaptorName) {
+          for (const binding of step.binding) {
+            if (binding.target === oldName) {
+              func(binding);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function renameAdaptorOutput(adaptorName, oldName, newName) {
+    const renamedStepNames = [];
+
+    // Find all the steps which use the renamed adaptor
+    for (const step of doc.transform) {
+      if (step.type === "adaptor" && step.adaptor === adaptorName) {
+        renamedStepNames.push(step.name);
+      }
+    }
+
+    // Find the steps which having bindings to the renamed steps
+    for (const step of doc.transform) {
+      for (const binding of step.binding) {
+        if (
+          binding.type === "transformation"
+          &&
+          binding.argument === oldName
+          &&
+          renamedStepNames.includes(step.transformation)
+        ) {
+          binding.name = newName;
+        }
+      }
+    }
+
+    // Find the outputs which having bindings to the renamed steps
+    for (const binding of doc.output) {
+      if (
+        binding.argument === oldName
+        &&
+        renamedStepNames.includes(binding.transformation)
+      ) {
+        binding.name = newName;
+      }
+    }
+  }
+
+  renameAdaptor("csv-file-to-datatable", "import-csv-file");
+  renameAdaptorInput("import-csv-file", "separator", "delimiter");
+
+  changeAdaptorInput("join-datatables", "columns", (binding) => {
+    if (binding.type === "value") {
+      binding.value = binding.value.map(([ key ]) => key);
+    }
+  });
+
+  renameAdaptorInput("calculate-time-difference", "reference column", "column two");
+  renameAdaptorInput("calculate-time-difference", "reference format", "column two format");
+  renameAdaptorInput("calculate-time-difference", "value column", "column one");
+  renameAdaptorInput("calculate-time-difference", "value format", "column one format");
+  renameAdaptorInput("calculate-time-difference", "target column", "difference column");
+
+  renameAdaptor("columns-concatenation", "concatenate-columns");
+  renameAdaptorInput("concatenate-columns", "delimiter", "separator");
+  renameAdaptorInput("concatenate-columns", "target", "concatenated column");
+
+  renameAdaptorInput("concatenate-columns", "left", "text one");
+  renameAdaptorInput("concatenate-columns", "right", "text two");
+
+  renameAdaptorInput("create-google-drive-folder", "parent", "parent folder");
+  renameAdaptorInput("create-google-drive-folder", "name", "folder name");
+
+  renameAdaptor("csv-to-datatable", "convert-text-to-datatable");
+  renameAdaptorInput("convert-text-to-datatable", "separator", "delimiter");
+
+  renameAdaptor("datatable-columns", "list-datatable-columns");
+  renameAdaptorOutput("list-datatable-columns", "columns", "column names");
+
+  renameAdaptor("datatable-to-graph", "create-graph-from-datatable");
+  renameAdaptorInput("create-graph-from-datatable", "from", "from column");
+  renameAdaptorInput("create-graph-from-datatable", "to", "to column");
+  renameAdaptorInput("create-graph-from-datatable", "direction", "directed");
+  changeAdaptorInput("create-graph-from-datatable", "directed", (binding) => {
+    if (binding.type === "value") {
+      binding.value = (binding.value !== "none");
+    }
+  });
 
   renameAdaptor("datatable-to-dbf-file", "export-to-dbf-file");
   renameAdaptorInput("export-to-dbf-file", "columns", "column types");
@@ -212,13 +137,12 @@ module.exports = function (doc) {
   renameAdaptorOutput("export-to-csv-file", "csv", "file");
 
   renameAdaptor("datatable-to-list", "create-list-from-datatable");
-
-  renameAdaptorOutput("format-date-column", "source column", "original column name");
-  renameAdaptorOutput("format-date-column", "source format", "original format");
-  renameAdaptorOutput("format-date-column", "target column", "new column name");
-  renameAdaptorOutput("format-date-column", "target format", "new format");
-
   renameAdaptor("create-list-from-datatable", "column", "column name");
+
+  renameAdaptorInput("format-date-column", "source column", "original column name");
+  renameAdaptorInput("format-date-column", "source format", "original format");
+  renameAdaptorInput("format-date-column", "target column", "new column name");
+  renameAdaptorInput("format-date-column", "target format", "new format");
 
   renameAdaptor("datatable-to-map", "create-map-from-datatable");
 
@@ -249,6 +173,21 @@ module.exports = function (doc) {
   renameAdaptor("google-spreadsheet", "");
 
   renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
+
+  /* ******************** */
+
+  renameAdaptorInput("reverse-geocoding", "mapboxApiKey", "api key");
+  renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
+  renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
+  renameAdaptorInput("reverse-geocoding", "placeType", "feature type");
+  renameAdaptorInput("reverse-geocoding", "resultColumn", "feature column");
+
+  renameAdaptorInput("forward-geocoding", "placeColumn", "query column");
+  renameAdaptorInput("forward-geocoding", "mapboxApiKey", "api key");
+  renameAdaptorInput("forward-geocoding", "longitudeColumn", "longitude column");
+  renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
+  renameAdaptorInput("forward-geocoding", "placeType", "feature type");
+  renameAdaptorInput("forward-geocoding", "resultColumn", "feature column");
 
   doc.version = 3;
 
