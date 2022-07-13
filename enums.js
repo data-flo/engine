@@ -31,6 +31,10 @@ module.exports.FileEncodings = Object.freeze([
   "latin1",
 ]);
 
+module.exports.LanguageLocales = Object.freeze([
+  "af", "ar", "ar-DZ", "ar-EG", "ar-MA", "ar-SA", "ar-TN", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de-AT", "el", "en-AU", "en-CA", "en-GB", "en-IE", "en-IN", "en-NZ", "en-US", "en-ZA", "eo", "es", "et", "eu", "fa-IR", "fi", "fr", "fr-CA", "fr-CH", "fy", "gd", "gl", "gu", "he", "hi", "hr", "ht", "hu", "hy", "id", "is", "it", "ja", "ja-Hira", "ka", "kk", "km", "kn", "ko", "lb", "lt", "lv", "mk", "mn", "ms", "mt", "nb", "nl", "nl-BE", "nn", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sl", "sq", "sr", "sr-Latn", "sv", "ta", "te", "th", "tr", "ug", "uk", "uz", "uz-Cyrl", "vi", "zh-CN", "zh-HK", "zh-TW",
+]);
+
 module.exports.LetterCases = Object.freeze([
   [ "camel", "camel case (`OfMice and men` → `ofMiceAndMen`)", "text with the separator denoted by the next word capitalised" ],
   [ "capital", "capital case (`OfMice and men` → `Of Mice And Men`)", "space separated text with each word capitalised" ],
