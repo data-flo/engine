@@ -14,15 +14,13 @@ module.exports = async function (args) {
     });
   }
 
-  const path = await createTmpFilePath({ postfix: ".dbf" });
+  const file = await FileStream.createEmpty({ postfix: ".dbf" });
 
-  const dbf = await DBFFile.create(path, fieldDescriptors);
+  const dbf = await DBFFile.create(file.getSource(), fieldDescriptors);
 
   for await (const row of args.data.getReader()) {
     await dbf.append([ row ]);
   }
-
-  const file = new FileStream(path);
 
   file.name = args["output file name"];
   file.mediaType = "application/dbf";
