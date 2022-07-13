@@ -210,10 +210,13 @@ module.exports = function (doc) {
   renameAdaptorInput("export-to-csv-file", "separator", "delimiter");
   renameAdaptorInput("export-to-csv-file", "filename", "output file name");
   renameAdaptorOutput("export-to-csv-file", "csv", "file");
-  
+
   renameAdaptor("datatable-to-list", "create-list-from-datatable");
-  
-  renameAdaptorOutput("format-date-column", "csv", "file");
+
+  renameAdaptorOutput("format-date-column", "source column", "original column name");
+  renameAdaptorOutput("format-date-column", "source format", "original format");
+  renameAdaptorOutput("format-date-column", "target column", "new column name");
+  renameAdaptorOutput("format-date-column", "target format", "new format");
 
   renameAdaptor("create-list-from-datatable", "column", "column name");
 

@@ -258,7 +258,11 @@ class Datatable {
     await this.shouldIncludeColumns(existingColumn);
     const data = await this.transformSync(
       (row, context) => {
-        row[existingColumn] = valueGetter(row[existingColumn], row, context);
+        row[existingColumn] = valueGetter(
+          row,
+          context,
+          row[existingColumn],
+        );
         return row;
       },
     );

@@ -6,8 +6,9 @@ module.exports.CommonDelimiters = Object.freeze([
 ]);
 
 module.exports.DateFormats = Object.freeze([
-  [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34+00:00)" ],
-  [ "yyyy-MM-dd", "ISO 8601 date (e.g. 2022-06-30)" ],
+  [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time + timezone (e.g. 2022-06-30T16:20:34+00:00)" ],
+  [ "yyyy-MM-dd'T'HH:mm:ss'Z'", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34Z)" ],
+  [ "yyyy-MM-dd", "ISO 8601 date without time (e.g. 2022-06-30)" ],
   [ "dd/MM/yyyy", "date/month/year (e.g. 30/06/2022)" ],
   [ "MM/dd/yyyy", "month/date/year (e.g. 06/30/2022)" ],
   [ "yyyy/MM/dd", "year/month/date (e.g. 06/30/2022)" ],
