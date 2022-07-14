@@ -41,14 +41,7 @@ module.exports = async function (args) {
   else {
     const data = await getRequestAsStream(args.url);
 
-    const fileWriter = await FileStream.createWriter();
-
-    await StreamPromises.pipeline(
-      data,
-      fileWriter,
-    );
-
-    file = await fileWriter.finalise();
+    file = await FileStream.createFromStream(data);
 
     file.name = data.name;
     file.mediaType = data.mediaType;

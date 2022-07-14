@@ -1,5 +1,3 @@
-const StreamPromises = require("stream/promises");
-
 const { FileStream } = require("../../types/file");
 const getRequestAsStream = require("../../utils/request/get-as-stream");
 
@@ -16,14 +14,7 @@ module.exports = async function (args) {
 
   const data = await getRequestAsStream(url);
 
-  const fileWriter = await FileStream.createWriter();
-
-  await StreamPromises.pipeline(
-    data,
-    fileWriter,
-  );
-
-  const file = await fileWriter.finalise();
+  const file = await FileStream.createFromStream(data);
 
   file.name = data.name;
   file.mediaType = data.mediaType;

@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { finished } = require("stream/promises");
+const FS = require("fs");
+const StreamPromises = require("stream/promises");
 
 const tmpFilePath = require("../utils/file/tmp-path");
 
@@ -12,18 +12,31 @@ class FileStream {
   }
 
   static async createWriter(options) {
-    const filePath = await tmpFilePath(options);
+    const file = await FileStream.createEmpty(options);
 
-    const writeStream = fs.createWriteStream(filePath);
+    const writeStream = FS.createWriteStream(file.getSource());
 
     writeStream.finalise = () => {
       return (
-        finished(writeStream)
-          .then(() => new FileStream(filePath))
+        StreamPromises.finished(writeStream)
+          .then(() => file)
       );
     };
 
     return writeStream;
+  }
+
+  static async createFromStream(stream) {
+    const fileWriter = await FileStream.createWriter();
+
+    await StreamPromises.pipeline(
+      stream,
+      fileWriter,
+    );
+
+    const file = await fileWriter.finalise();
+
+    return file;
   }
 
   constructor(sourceValue) {
@@ -44,7 +57,7 @@ class FileStream {
 
   getReader(options) {
     return (
-      fs.createReadStream(this.source, options)
+      FS.createReadStream(this.source, options)
     );
   }
 
