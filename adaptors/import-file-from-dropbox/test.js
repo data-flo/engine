@@ -7,7 +7,7 @@ const adaptor = require("./index");
 
 tap.test("import-file-from-dropbox adaptor", async () => {
 
-  tap.test("given a Dropbox https URL, it should download it", async () => {
+  tap.test("given a Dropbox URL, it should download it", async () => {
     const output = await runAdaptor(
       adaptor,
       {

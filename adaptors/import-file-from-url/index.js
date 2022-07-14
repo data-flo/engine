@@ -42,9 +42,6 @@ module.exports = async function (args) {
     const data = await getRequestAsStream(args.url);
 
     file = await FileStream.createFromStream(data);
-
-    file.name = data.name;
-    file.mediaType = data.mediaType;
   }
 
   if (args["output file name"]) {

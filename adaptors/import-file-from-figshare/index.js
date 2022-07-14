@@ -18,8 +18,7 @@ module.exports = async function (args) {
 
     const file = await FileStream.createFromStream(data);
 
-    file.name = info?.files?.[0]?.name || data.name;
-    file.mediaType = data.mediaType;
+    file.name = info?.files?.[0]?.name || file.name;
 
     return { file };
   }

@@ -7,6 +7,7 @@ module.exports = {
       "name": "url",
       "type": "text",
       "description": "The URL of the file to be imported.",
+      "required": true,
     },
   ],
   "output": [

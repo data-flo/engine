@@ -36,6 +36,9 @@ class FileStream {
 
     const file = await fileWriter.finalise();
 
+    file.name = stream.name;
+    file.mediaType = stream.mediaType;
+
     return file;
   }
 
