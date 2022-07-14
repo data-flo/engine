@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { EmptyObject } = require("../../constants");
+const { EmptyObject } = require("../constants");
 
 module.exports = async function getJson(url, data, options = EmptyObject) {
   const response = await axios({

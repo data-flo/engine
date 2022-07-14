@@ -4,7 +4,7 @@ const stream = require("stream/promises");
 const { parse, stringify } = require("csv");
 
 const { FileStream } = require("./file");
-const { EmptyObject, EmptyArray } = require("../constants");
+const { EmptyObject, EmptyArray } = require("../utils/constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
 

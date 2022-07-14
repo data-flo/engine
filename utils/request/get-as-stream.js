@@ -3,7 +3,7 @@ const { URL } = require("url");
 const { curly } = require("node-libcurl");
 const contentDisposition = require("content-disposition");
 
-const { EmptyObject } = require("../../constants");
+const { EmptyObject } = require("../constants");
 
 module.exports = async function (url) {
   const { statusCode, data, headers } = await curly(
