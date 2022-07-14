@@ -3,7 +3,7 @@ const StreamPromises = require("stream/promises");
 const { FileStream } = require("../../types/file");
 const getRequestAsStream = require("../../utils/request/get-as-stream");
 
-module.exports = async function (args, context) {
+module.exports = async function (args) {
   const validUrl = /^https:\/\/www\.dropbox\.com\/s\/(.+)\/?/i;
 
   const match = validUrl.exec(args.url);

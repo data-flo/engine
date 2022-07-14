@@ -7,6 +7,7 @@ module.exports = {
       "name": "url",
       "type": "text",
       "description": "The URL of the Figshare file to be imported (e.g. https://figshare.com/articles/Tree/4080564).",
+      "required": true,
     },
   ],
   "output": [
