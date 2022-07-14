@@ -1,4 +1,4 @@
-const getJsonRequest = require("../../utils/request/get-json");
+const getJsonRequest = require("../../utils/request/get-as-json");
 
 module.exports = async function (clientId, clientSecret) {
   if (!clientId || !clientSecret) {

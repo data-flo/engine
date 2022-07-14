@@ -1,14 +1,11 @@
-const FS = require("fs");
 const Path = require("path");
 const { URL } = require("url");
 const StreamPromises = require("stream/promises");
-const contentDisposition = require("content-disposition");
 
-const { Curl, curly } = require("node-libcurl");
 const SFTPClient = require("ssh2-sftp-client");
 
 const { FileStream } = require("../../types/file");
-const { EmptyObject } = require("../../constants");
+const getRequestAsStream = require("../../utils/request/get-as-stream");
 
 const allowedProtocols = [
   "data:",
@@ -32,8 +29,8 @@ module.exports = async function (args) {
     await client.connect({
       host: parsedUrlInfo.host,
       username: parsedUrlInfo.username,
-      privateKey: FS.readFileSync(`${process.env.HOME}/.ssh/id_rsa`),
-      // password: parsedUrlInfo.password,
+      password: parsedUrlInfo.password,
+      // privateKey: FS.readFileSync(`${process.env.HOME}/.ssh/id_rsa`),
     });
 
     file = await FileStream.createEmpty();
@@ -42,23 +39,7 @@ module.exports = async function (args) {
     await client.end();
   }
   else {
-    const { statusCode, data, headers } = await curly(
-      args.url,
-      {
-        curlyStreamResponse: true,
-        FOLLOWLOCATION: true,
-      },
-    );
-
-    if (
-      (parsedUrlInfo.protocol === "ftp:" && statusCode !== 150 /* File status okay */)
-      ||
-      (parsedUrlInfo.protocol === "http:" && statusCode !== 200 /* File status okay */)
-      ||
-      (parsedUrlInfo.protocol === "https:" && statusCode !== 200 /* File status okay */)
-    ) {
-      throw new Error(`Request status code ${statusCode}`);
-    }
+    const data = await getRequestAsStream(args.url);
 
     const fileWriter = await FileStream.createWriter();
 
@@ -69,22 +50,15 @@ module.exports = async function (args) {
 
     file = await fileWriter.finalise();
 
-    const lastHequestHeaders = headers.length ? headers[headers.length - 1] : EmptyObject;
-
-    file.mediaType = lastHequestHeaders["content-type"] || "application/octet-stream";
-
-    if (lastHequestHeaders["content-disposition"]) {
-      const { parameters } = contentDisposition.parse(lastHequestHeaders["content-disposition"]);
-      file.name = parameters.filename;
-    }
+    file.name = data.name;
+    file.mediaType = data.mediaType;
   }
 
   if (args["output file name"]) {
     file.name = args["output file name"];
   }
-  else {
-    file.name = Path.basename(parsedUrlInfo.pathname) || "file";
-  }
+
+  file.name = file.name || Path.basename(parsedUrlInfo.pathname) || "file";
 
   return { file };
 };
