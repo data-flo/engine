@@ -10,7 +10,7 @@
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.1",
     "@marsaud/smb2": "cgps-dev/marsaud-smb2",
-    "axios": "^0.19.2",
+    "axios": "^0.27.2",
     "biojs-io-newick": "^1.5.0",
     "cgps-application-server": "cgps-dev/application-server#v18.0.0",
     "cgps-utils": "github:cgps-group/cgps-utils",

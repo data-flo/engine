@@ -1,4 +1,6 @@
-module.exports = async function (projectUrl, clientId, clientSecret, context) {
+const getJsonRequest = require("../../utils/request/get-json");
+
+module.exports = async function (clientId, clientSecret) {
   if (!clientId || !clientSecret) {
     throw new Error("Both `client id` and `client secret` are required.");
   }
@@ -9,8 +11,7 @@ module.exports = async function (projectUrl, clientId, clientSecret, context) {
     client_id: clientId,
     client_secret: clientSecret,
   };
-  const response = await context.request.postHttp(url, data);
-  const token = response.access_token;
+  const response = await getJsonRequest(url, data);
 
-  return { Authorization: `Bearer ${token}` };
+  return { Authorization: `Bearer ${response.access_token}` };
 };

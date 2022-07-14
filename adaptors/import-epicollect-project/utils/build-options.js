@@ -1,6 +1,6 @@
 const getAuthorisationHeader = require("./get-authorisation-header");
 
-module.exports = async function (args, context) {
+module.exports = async function (args) {
   const options = {};
 
   if ((args["client id"] || args["client secret"]) && !(args["client id"] && args["client secret"])) {
