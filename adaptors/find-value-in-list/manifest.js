@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Finds a value in a list that matches a search pattern. https://en.wikipedia.org/wiki/Force-directed_graph_drawing",
+  "description": "Finds a value in a list that matches a search pattern.",
   "group": "Transformations",
   "subgroup": "List Manipulation",
   "input": [

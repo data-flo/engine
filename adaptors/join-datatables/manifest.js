@@ -15,6 +15,7 @@ module.exports = {
       "type": "text",
       "description": "The column in `main data` containing values shared by `other column` in `other data`.",
     },
+
     {
       "name": "other data",
       "type": "datatable",
@@ -24,7 +25,6 @@ module.exports = {
       "name": "other column",
       "type": "text",
       "description": "The column in `other data` containing values shared by `main column` in `main data`.\nIf more than one row match main column value, only the first matching row will be joined.\nIf unspecified, the name of `main column` will be used.",
-      "default": null,
     },
 
     {
@@ -45,6 +45,11 @@ module.exports = {
       "type": "list",
       "description": "Specifies which columns of `other data` to include in the output datatable.\nIf unassigned, all columns in `other data` will be included.",
     },
+    {
+      "name": "prefix",
+      "type": "text",
+      "description": "An optional text to be prepended to `other data` column names in the output datatable.\nIf unspecified, column names remain unchanged.",
+    },
   ],
   "output": [
     {
@@ -53,9 +58,9 @@ module.exports = {
       "description": "A datatable containing joined rows and columns.",
     },
     {
-      "name": "skipped",
+      "name": "unmatched",
       "type": "datatable",
-      "description": "A datatable containing rows which have not been joined.",
+      "description": "A datatable containing `main data` rows which do not have a match in `other data`.",
     },
   ],
 };

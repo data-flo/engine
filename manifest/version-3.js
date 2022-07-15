@@ -93,6 +93,7 @@ module.exports = function (doc) {
       binding.value = binding.value.map(([ key ]) => key);
     }
   });
+  changeAdaptorOutput("join-datatable", "skipped", "unmatched");
 
   renameAdaptorInput("calculate-time-difference", "reference column", "column two");
   renameAdaptorInput("calculate-time-difference", "reference format", "column two format");
@@ -188,6 +189,20 @@ module.exports = function (doc) {
   renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("forward-geocoding", "placeType", "feature type");
   renameAdaptorInput("forward-geocoding", "resultColumn", "feature column");
+
+  renameAdaptor("list-to-datatable", "convert-list-to-datatable");
+  renameAdaptorInput("list-to-datatable", "column", "column name");
+
+  renameAdaptor("lookup-map-value", "find-value-in-map");
+  renameAdaptorInput("find-value-in-map", "dictionary", "map");
+  renameAdaptorInput("find-value-in-map", "query", "key");
+  renameAdaptorInput("find-value-in-map", "default", "default value");
+
+  renameAdaptor("map-columns", "rename-columns");
+  
+  renameAdaptor("merge-datatables", "append-datatables");
+  renameAdaptorInput("append-datatables", "intersect columns", "exclude unmatched columns");
+
 
   doc.version = 3;
 
