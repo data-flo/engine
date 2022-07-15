@@ -85,15 +85,15 @@ module.exports = function (doc) {
     }
   }
 
-  renameAdaptor("csv-file-to-datatable", "import-csv-file");
-  renameAdaptorInput("import-csv-file", "separator", "delimiter");
+  renameAdaptor("csv-file-to-datatable", "import-from-csv-file");
+  renameAdaptorInput("import-from-csv-file", "separator", "delimiter");
 
   changeAdaptorInput("join-datatables", "columns", (binding) => {
     if (binding.type === "value") {
       binding.value = binding.value.map(([ key ]) => key);
     }
   });
-  changeAdaptorOutput("join-datatable", "skipped", "unmatched");
+  renameAdaptorOutput("join-datatable", "skipped", "unmatched");
 
   renameAdaptorInput("calculate-time-difference", "reference column", "column two");
   renameAdaptorInput("calculate-time-difference", "reference format", "column two format");
@@ -140,14 +140,11 @@ module.exports = function (doc) {
   renameAdaptor("datatable-to-list", "create-list-from-datatable");
   renameAdaptor("create-list-from-datatable", "column", "column name");
 
-  renameAdaptorInput("format-date-column", "source column", "original column name");
-  renameAdaptorInput("format-date-column", "source format", "original format");
-  renameAdaptorInput("format-date-column", "target column", "new column name");
-  renameAdaptorInput("format-date-column", "target format", "new format");
-
   renameAdaptor("datatable-to-map", "create-map-from-datatable");
 
   renameAdaptor("date-to-text", "convert-date-to-text");
+
+  renameAdaptor("dbf-file", "import-from-dbf-file");
 
   renameAdaptor("dot-to-graph", "create-graph-from-dot");
 
@@ -155,7 +152,7 @@ module.exports = function (doc) {
 
   renameAdaptor("dropbox-file", "import-file-from-dropbox");
 
-  renameAdaptor("epicollect-project", "import-epicollect-project");
+  renameAdaptor("epicollect-project", "import-from-epicollect-project");
 
   renameAdaptor("figshare-file", "import-file-from-figshare");
 
@@ -167,11 +164,16 @@ module.exports = function (doc) {
 
   renameAdaptor("force-directed-layout", "apply-force-directed-layout");
 
+  renameAdaptorInput("format-date-column", "source column", "original column name");
+  renameAdaptorInput("format-date-column", "source format", "original format");
+  renameAdaptorInput("format-date-column", "target column", "new column name");
+  renameAdaptorInput("format-date-column", "target format", "new format");
+
   renameAdaptor("gather-rows", "reshape-wide-to-long");
 
   renameAdaptor("google-drive-file", "import-file-from-google-drive");
 
-  renameAdaptor("google-spreadsheet", "");
+  renameAdaptor("google-spreadsheet", "import-from-google-spreadsheet");
 
   renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
 
