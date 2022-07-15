@@ -35,9 +35,9 @@ module.exports = {
       "default": true,
     },
     {
-      "name": "columns",
+      "name": "column names",
       "type": "list",
-      "description": "",
+      "description": "List of column names to be added. If unspecified, first row of the file will be used as column names.",
       "required": false,
     },
   ],

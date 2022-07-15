@@ -1,3 +1,5 @@
+const { JoinTypes } = require("../../../enums");
+
 module.exports = {
   "description": "Joins two datatables based on a common column between them.",
   "group": "Transformations",
@@ -26,22 +28,22 @@ module.exports = {
     },
 
     {
-      "name": "inner join",
-      "type": "boolean",
-      "description": "Specifies whether to only include the rows from `main data` that are also in `other data`.\nWhen set to `True`, rows from `main data` that do not have matches in `other data` will be excluded.\nIf unspecified, defaults to `False`.",
-      "default": false,
+      "name": "join type",
+      "type": "text",
+      "description": "Specifies the joining method\n See https://www.datasciencemadesimple.com/join-in-r-merge-in-r/.\nIf unspecified, defaults to `Left Join`.",
+      "default": "Left Join",
+      "ui": { "must-be-one-of": JoinTypes },
     },
     {
       "name": "case sensitive",
       "type": "boolean",
-      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent.\nIf unspecified, defaults to `False`.",
+      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `False`.",
       "default": false,
     },
     {
       "name": "columns",
       "type": "list",
-      "description": "Specifies which columns of `other data` to include.\nIf unassigned, all columns in `other data` will be included.",
-      "default": null,
+      "description": "Specifies which columns of `other data` to include in the output datatable.\nIf unassigned, all columns in `other data` will be included.",
     },
   ],
   "output": [

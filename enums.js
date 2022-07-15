@@ -32,6 +32,12 @@ module.exports.FileEncodings = Object.freeze([
   "latin1",
 ]);
 
+module.exports.JoinTypes = Object.freeze([
+  [ "Left Join", "All rows from `main data` will be included, along with matching rows from `other data`" ],
+  [ "Inner Join", "Rows from `main data` that do not have matches in `other data` will be excluded" ],
+  [ "Full Join", "All rows from `main data` and `other data` will be included" ],
+]);
+
 module.exports.LanguageLocales = Object.freeze([
   "af", "ar", "ar-DZ", "ar-EG", "ar-MA", "ar-SA", "ar-TN", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de-AT", "el", "en-AU", "en-CA", "en-GB", "en-IE", "en-IN", "en-NZ", "en-US", "en-ZA", "eo", "es", "et", "eu", "fa-IR", "fi", "fr", "fr-CA", "fr-CH", "fy", "gd", "gl", "gu", "he", "hi", "hr", "ht", "hu", "hy", "id", "is", "it", "ja", "ja-Hira", "ka", "kk", "km", "kn", "ko", "lb", "lt", "lv", "mk", "mn", "ms", "mt", "nb", "nl", "nl-BE", "nn", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sl", "sq", "sr", "sr-Latn", "sv", "ta", "te", "th", "tr", "ug", "uk", "uz", "uz-Cyrl", "vi", "zh-CN", "zh-HK", "zh-TW",
 ]);

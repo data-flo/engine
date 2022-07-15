@@ -14,7 +14,18 @@ module.exports = {
       "description": "The names of columns in the datatable to be searched.",
     },
     {
-      "name": "pattern",
+      "name": "filter type",
+      "type": "text",
+      "description": "One of `<`, `<=`, `>`, or  `>=`.",
+      "enum": [
+        "Equals",
+        "Exact match",
+        "Partial match",
+        "RegEx",
+      ],
+    },
+    {
+      "name": "filter value",
       "type": "text",
       "description": "A text or a regular expression to be searched for within the datatable columns.",
     },
