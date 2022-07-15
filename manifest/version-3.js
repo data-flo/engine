@@ -76,6 +76,7 @@ module.exports = function (doc) {
   }
 
   renameAdaptor("csv-file-to-datatable", "import-from-csv-file");
+  renameAdaptorInput("import-from-csv-file", "csv", "file");
   renameAdaptorInput("import-from-csv-file", "separator", "delimiter");
 
   changeAdaptorInput("join-datatables", "columns", (binding) => {
