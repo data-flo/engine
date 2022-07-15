@@ -1,4 +1,4 @@
-const tap = require("tap");
+const tap = require("../../utils/testing/unit");
 
 const difference = require("./difference");
 

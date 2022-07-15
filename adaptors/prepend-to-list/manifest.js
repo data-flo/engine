@@ -7,11 +7,13 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list to which the values will be prepended.",
+      "required": true,
     },
     {
       "name": "value",
       "type": "text",
       "description": "The value to be prepended to the list.",
+      "required": true,
     },
   ],
   "output": [

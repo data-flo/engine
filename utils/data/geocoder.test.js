@@ -1,4 +1,4 @@
-const tap = require("tap");
+const tap = require("../../utils/testing/unit");
 const reverseGeocode = require("./geocoder");
 
 tap.test("given an invalid string, it should return undefined", async (t) => {

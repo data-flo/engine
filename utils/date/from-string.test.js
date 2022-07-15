@@ -1,4 +1,4 @@
-const tap = require("tap");
+const tap = require("../../utils/testing/unit");
 const fromString = require("./from-string");
 
 tap.test("given an invalid string, it should return undefined", async (t) => {
