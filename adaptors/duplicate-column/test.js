@@ -1,5 +1,6 @@
-const tap = require("../../utils/testing/unit");
 const fs = require("fs");
+
+const tap = require("../../utils/testing/unit");
 
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");

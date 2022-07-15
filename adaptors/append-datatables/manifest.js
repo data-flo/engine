@@ -7,11 +7,13 @@ module.exports = {
       "name": "first data",
       "type": "datatable",
       "description": "The first datatable.",
+      "required": true,
     },
     {
       "name": "second data",
       "type": "datatable",
       "description": "The second datatable.",
+      "required": true,
     },
     {
       "name": "case sensitive",
@@ -24,6 +26,7 @@ module.exports = {
       "name": "exclude unmatched columns",
       "type": "boolean",
       "description": "Specifies whether to exclude columns which do not exist in both datatables.\nIf unspecified, defaults to `False` (all columns from both datatable will be included).",
+      "required": false,
       "default": false,
     },
   ],
