@@ -5,7 +5,7 @@ const adaptor = require("./index");
 
 tap.test("import-csv-file adaptor", async () => {
 
-  tap.test("given a list, it should return a databale", async () => {
+  tap.test("given a list, it should return a database", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -19,7 +19,7 @@ tap.test("import-csv-file adaptor", async () => {
     );
   });
 
-  tap.test("given a list and a column name, it should return a databale", async () => {
+  tap.test("given a list and a column name, it should return a database", async () => {
     const output = await runAdaptor(
       adaptor,
       {

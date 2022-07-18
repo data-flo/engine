@@ -8,7 +8,7 @@ const createFile = require("../../types/file");
 
 tap.test("import-csv-file adaptor", async () => {
 
-  tap.test("given a csv text, it should return a databale", async () => {
+  tap.test("given a csv text, it should return a database", async () => {
     const testCsvFilePath = await createTmpTextFile(`"id","Country"
 "Bovine","de"
 "Gibbon","fr"
@@ -31,7 +31,7 @@ tap.test("import-csv-file adaptor", async () => {
     );
   });
 
-  tap.test("given a csv text with bars, it should return a databale", async () => {
+  tap.test("given a csv text with bars, it should return a database", async () => {
     const testCsvFilePath = await createTmpTextFile(`"id"|"Country"
 "Bovine"|"de"
 "Gibbon"|"fr"
@@ -55,7 +55,7 @@ tap.test("import-csv-file adaptor", async () => {
     );
   });
 
-  tap.test("given a csv text without headers, it should return a databale", async () => {
+  tap.test("given a csv text without headers, it should return a database", async () => {
     const testCsvFilePath = await createTmpTextFile(`"1"\n"2"\n"3"\n`);
 
     const output = await runAdaptor(

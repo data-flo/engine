@@ -45,7 +45,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A DataTable containing columns and rows.",
+      "description": "A datatable containing the imported data.",
     },
   ],
 };

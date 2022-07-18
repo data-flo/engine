@@ -10,38 +10,27 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   const leftColumns = await leftTable.getColumns();
   if (!leftColumns.includes(leftIdColumn)) {
-    throw new Error(`Main datatable does not include a column named '${leftIdColumn}'`);
+    throw new Error(`Main datatable does not include a column named \`${leftIdColumn}\``);
   }
 
   const rightColumns = await rightTable.getColumns();
   if (!rightColumns.includes(rightIdColumn)) {
-    throw new Error(`Other datatable does not include a column named '${rightIdColumn}'`);
+    throw new Error(`Other datatable does not include a column named \`${rightIdColumn}\``);
   }
 
-  const joinedColumnNames = Array.from(
-    new Set([
-      ...leftColumns,
-      ...rightColumns,
-    ])
-  );
-
-  // const joinedColumnMap = new Map();
-  // const joinedColumnNames = [];
-  // if (args.columns) {
-  //   for (const [ oldName, newName ] of args.columns) {
-  //     if (args.overwrite === true || !leftTable.columns.includes(newName)) {
-  //       joinedColumnMap.set(oldName, newName);
-  //       joinedColumnNames.push(newName);
-  //     }
-  //   }
-  // }
-  // else {
-  //   const columns = rightTable.columns.filter((x) => args.overwrite === true || !leftTable.columns.includes(x));
-  //   for (const columnName of columns) {
-  //     joinedColumnMap.set(columnName, columnName);
-  //     joinedColumnNames.push(columnName);
-  //   }
-  // }
+  const joinedColumnNames = [];
+  for (const columnName of leftColumns) {
+    joinedColumnNames.push({ key: columnName, header: columnName });
+  }
+  for (const columnName of (args.columns || rightColumns)) {
+    if (!rightColumns.includes(columnName)) {
+      throw new Error(`Other datatable does not include a column named \`${columnName}\``);
+    }
+    if (leftColumns.includes(columnName)) {
+      throw new Error(`Main datatable already includes a column named \`${columnName}\``);
+    }
+    joinedColumnNames.push({ key: columnName, header: `${args.prefix || ""}${columnName}` });
+  }
 
   // Read other table and store its rows
   const rightRows = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();

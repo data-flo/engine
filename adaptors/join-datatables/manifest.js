@@ -1,4 +1,4 @@
-const { JoinTypes } = require("../../../enums");
+const { JoinTypes } = require("../../enums");
 
 module.exports = {
   "description": "Joins two datatables based on a common column between them.",
@@ -9,11 +9,13 @@ module.exports = {
       "name": "main data",
       "type": "datatable",
       "description": "The main (left) datatable. When `inner join` is `False`, all rows from this datatable will be included.",
+      "required": true,
     },
     {
       "name": "main column",
       "type": "text",
       "description": "The column in `main data` containing values shared by `other column` in `other data`.",
+      "required": true,
     },
 
     {
@@ -38,6 +40,7 @@ module.exports = {
       "name": "case sensitive",
       "type": "boolean",
       "description": "When set `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `False`.",
+      "required": false,
       "default": false,
     },
     {

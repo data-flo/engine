@@ -221,6 +221,21 @@ module.exports = function (doc) {
 
   renameAdaptor("smb-file", "import-file-from-smb");
 
+  renameAdaptor("merge-lists", "append-lists");
+  renameAdaptorInput("append-lists", "first list", "first");
+  renameAdaptorInput("append-lists", "second list", "second");
+  renameAdaptorOutput("append-lists", "merged", "list");
+
+  renameAdaptor("microreact-project", "import-from-microreact-project");
+
+  renameAdaptor("", "new");
+  renameAdaptorInput("new", "", "");
+  renameAdaptorOutput("new", "", "");
+
+  renameAdaptor("mysql-database", "import-from-mysql");
+  renameAdaptorInput("import-from-mysql", "", "");
+  renameAdaptorOutput("import-from-mysql", "", "");
+
   doc.version = 3;
 
   return doc;
