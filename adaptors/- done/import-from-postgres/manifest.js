@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Imports data from a MySQL database.",
+  "description": "Imports data from a PostgreSQL database.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
@@ -12,9 +12,9 @@ module.exports = {
     {
       "name": "port",
       "type": "integer",
-      "description": "The port of the database server.\nIf unspecified, defaults to `3306`.",
+      "description": "The port of the database server.\nIf unspecified, defaults to `5432`.",
       "required": false,
-      "default": 3306,
+      "default": 5432,
     },
     {
       "name": "database",

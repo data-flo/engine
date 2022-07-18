@@ -228,13 +228,23 @@ module.exports = function (doc) {
 
   renameAdaptor("microreact-project", "import-from-microreact-project");
 
-  renameAdaptor("", "new");
-  renameAdaptorInput("new", "", "");
-  renameAdaptorOutput("new", "", "");
-
   renameAdaptor("mysql-database", "import-from-mysql");
   renameAdaptorInput("import-from-mysql", "", "");
   renameAdaptorOutput("import-from-mysql", "", "");
+
+  renameAdaptor("oracle-database", "import-from-oracle");
+  renameAdaptorInput("import-from-oracle", "connectionString", "connection string");
+
+  renameAdaptor("postgres-database", "import-from-postgres");
+
+  renameAdaptor("sql-server-database", "import-from-sql-server");
+
+  renameAdaptor("sqlite-database", "import-from-sqlite");
+  renameAdaptorInput("import-from-sqlite", "sqlite", "sqlite file");
+
+  renameAdaptor("", "new");
+  renameAdaptorInput("new", "", "");
+  renameAdaptorOutput("new", "", "");
 
   doc.version = 3;
 

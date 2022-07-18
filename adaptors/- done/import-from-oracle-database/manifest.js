@@ -1,25 +1,12 @@
 module.exports = {
-  "description": "Imports data from a MySQL database.",
+  "description": "Imports data from an Oracle Database and returns the results as a datatable.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
     {
-      "name": "hostname",
+      "name": "connection string",
       "type": "text",
-      "description": "The hostname or the IP address of the database server.",
-      "required": true,
-    },
-    {
-      "name": "port",
-      "type": "integer",
-      "description": "The port of the database server.\nIf unspecified, defaults to `3306`.",
-      "required": false,
-      "default": 3306,
-    },
-    {
-      "name": "database",
-      "type": "text",
-      "description": "The name of the database.",
+      "description": "An Easy Connect string (e.g. hostname:port/service), a Connect Descriptor string, or the SID of a local Oracle Database instance.\nIf unspecified, defaults to `localhost:1521/XEPDB1`.",
       "required": true,
     },
     {
