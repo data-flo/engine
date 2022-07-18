@@ -13,7 +13,7 @@ module.exports = {
       "name": "column name",
       "type": "text",
       "description": "The name of the datatable column containing the list.\nIf unspecified, defaults to `value`.",
-      "required": true,
+      "required": false,
       "default": "value",
     },
   ],
