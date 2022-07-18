@@ -2,7 +2,7 @@ const { Datatable } = require("../../types/datatable");
 
 module.exports = async function (args) {
 
-  const datatableWriter = await Datatable.create({ columns: [ args.column ] });
+  const datatableWriter = await Datatable.create({ columns: [ args["column name"] ] });
 
   for (const item of args.list) {
     datatableWriter.write([ item ]);

@@ -7,11 +7,13 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list to be converted to a datatable.",
+      "required": true,
     },
     {
       "name": "column name",
       "type": "text",
       "description": "The name of the datatable column containing the list.\nIf unspecified, defaults to `value`.",
+      "required": true,
       "default": "value",
     },
   ],

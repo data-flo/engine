@@ -192,10 +192,9 @@ module.exports = function (doc) {
   renameAdaptorInput("find-value-in-map", "default", "default value");
 
   renameAdaptor("map-columns", "rename-columns");
-  
+
   renameAdaptor("merge-datatables", "append-datatables");
   renameAdaptorInput("append-datatables", "intersect columns", "exclude unmatched columns");
-
 
   doc.version = 3;
 
