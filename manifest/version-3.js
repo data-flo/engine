@@ -1,3 +1,13 @@
+/*
+
+      "ui": { "column-in": "data" },
+      "required": true,
+      "required": false,
+      "ui": { "can-be-one-of": DateFormats },
+      "ui": { "must-be-one-of": DurationUnits },
+\nIf unspecified, defaults to
+*/
+
 module.exports = function (doc) {
 
   function renameAdaptor(oldName, newName) {

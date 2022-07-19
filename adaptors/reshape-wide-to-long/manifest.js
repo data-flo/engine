@@ -7,6 +7,7 @@ module.exports = {
       "name": "data",
       "type": "datatable",
       "description": "The datatable in wide format.",
+      "required": true,
     },
     {
       "name": "static columns",

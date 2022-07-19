@@ -1,13 +1,3 @@
-/*
-
-      "ui": { "column-in": "data" },
-      "required": true,
-      "required": false,
-      "ui": { "can-be-one-of": DateFormats },
-      "ui": { "must-be-one-of": DurationUnits },
-\nIf unspecified, defaults to
-*/
-
 /* eslint-disable class-methods-use-this */
 
 // const Filehound = require("filehound");
