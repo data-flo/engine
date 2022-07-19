@@ -10,7 +10,7 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "place column",
+      "name": "location column",
       "type": "text",
       "description": "The name of the column containing location names.",
       "required": true,

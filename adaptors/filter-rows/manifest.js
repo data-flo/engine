@@ -1,3 +1,5 @@
+const { FilterTypes } = require("../../enums");
+
 module.exports = {
   "description": "Finds rows in a datatable that match a search pattern.",
   "group": "Transformations",
@@ -7,27 +9,34 @@ module.exports = {
       "name": "data",
       "type": "datatable",
       "description": "A datatable to be searched.",
+      "required": true,
     },
     {
-      "name": "column names",
-      "type": "list",
-      "description": "The names of columns in the datatable to be searched.",
+      "name": "column name",
+      "type": "text",
+      "description": "The name of column in the datatable to be searched.",
+      "required": true,
     },
     {
       "name": "filter type",
       "type": "text",
       "description": "One of `<`, `<=`, `>`, or  `>=`.",
-      "enum": [
-        "Equals",
-        "Exact match",
-        "Partial match",
-        "RegEx",
-      ],
+      "required": false,
+      "default": "eqauls",
+      "ui": { "must-be-one-of": FilterTypes },
     },
     {
       "name": "filter value",
       "type": "text",
       "description": "A text or a regular expression to be searched for within the datatable columns.",
+      "required": true,
+    },
+    {
+      "name": "case sensitive",
+      "type": "boolean",
+      "description": "When set to `True`, lowercase and uppercase letters are treated as different when comparing text values. When set to `False`, lowercase and uppercase letters are treated as equivalent, and `first data` column names will be used in the output datatable.\nIf unspecified, defaults to `True`",
+      "required": false,
+      "default": true,
     },
   ],
   "output": [

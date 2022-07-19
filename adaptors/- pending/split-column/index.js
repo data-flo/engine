@@ -1,7 +1,7 @@
 const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = async function (args) {
-  args.data.shouldIncludeColumns(args.source);
+  await args.data.shouldIncludeColumns(args.source);
 
   const regex = makeRegexp(args.separator, true, true);
 

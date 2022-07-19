@@ -242,6 +242,15 @@ module.exports = function (doc) {
   renameAdaptor("sqlite-database", "import-from-sqlite");
   renameAdaptorInput("import-from-sqlite", "sqlite", "sqlite file");
 
+  renameAdaptor("newick-leaf-labels", "list-newick-leaf-labels");
+
+  renameAdaptorInput("rename-columns", "mapping", "column names");
+  renameAdaptorInput("rename-columns", "discard", "discard unmapped");
+
+  renameAdaptor("s3-file", "import-file-from-s3");
+  renameAdaptorInput("import-file-from-s3", "key", "access key");
+  renameAdaptorInput("import-file-from-s3", "secret", "secret key");
+
   renameAdaptor("", "new");
   renameAdaptorInput("new", "", "");
   renameAdaptorOutput("new", "", "");

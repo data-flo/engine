@@ -32,6 +32,27 @@ module.exports.FileEncodings = Object.freeze([
   "latin1",
 ]);
 
+module.exports.FilterTypes = Object.freeze([
+  [ "is-blank", "Value is blank" ],
+  [ "not-blank", "Value is not blank" ],
+  [ "equals", "Text is equal to" ],
+  [ "not-equals", "Text is not equal to" ],
+  [ "includes", "Text contains" ],
+  [ "excludes", "Text does not contain" ],
+  [ "starts-with", "Text starts with" ],
+  [ "not-starts-with", "Text does not start with" ],
+  [ "ends-with", "Text ends with" ],
+  [ "not-ends-with", "Text does not end with" ],
+  [ "regex", "Text matches a regular expression" ],
+  [ "not-regex", "Text does not match a regular expression" ],
+  [ "greater-than", "Number is greater than" ],
+  [ "greater-than-or-equal", "Number is greater than or equal to" ],
+  [ "less-than", "Number is less than" ],
+  [ "less-than-or-equal", "Number is less than or equal to" ],
+  [ "between", "Number is is between" ],
+  [ "not-between", "Number is is not between" ],
+]);
+
 module.exports.JoinTypes = Object.freeze([
   [ "Left Join", "All rows from `main data` will be included, along with matching rows from `other data`" ],
   [ "Inner Join", "Rows from `main data` that do not have matches in `other data` will be excluded" ],

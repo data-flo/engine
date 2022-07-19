@@ -6,14 +6,15 @@ module.exports = {
     {
       "name": "newick",
       "type": "text",
-      "description": "A tree in Newick format."
-    }
+      "description": "A tree in Newick format.",
+      "required": true,
+    },
   ],
   "output": [
     {
       "name": "labels",
       "type": "list",
-      "description": "A list of leaf labels."
-    }
-  ]
-}
+      "description": "A list of leaf labels.",
+    },
+  ],
+};

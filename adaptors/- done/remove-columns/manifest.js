@@ -6,20 +6,19 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable to be searched."
+      "description": "The datatable containing the columns to be removed.",
     },
     {
       "name": "columns",
       "type": "list",
-      "description": "A list of columns in `data` to be removed.",
-      "default": null
-    }
+      "description": "The list of columns to be removed.",
+    },
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable with the specified columns removed."
-    }
-  ]
-}
+      "description": "A datatable with the specified columns removed.",
+    },
+  ],
+};

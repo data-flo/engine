@@ -1,12 +1,12 @@
 module.exports = function (args) {
-  if (args.dictionary.has(args.query)) {
+  if (args.map.has(args.key)) {
     return {
-      value: args.dictionary.get(args.query),
+      value: args.map.get(args.key),
     };
   }
   else {
     return {
-      value: args.default,
+      value: args["default value"],
     };
   }
 };

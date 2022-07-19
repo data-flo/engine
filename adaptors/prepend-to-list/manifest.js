@@ -1,12 +1,12 @@
 module.exports = {
-  "description": "Adds a text value to the  beginning of a list.",
+  "description": "Adds a text value to the end of a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",
   "input": [
     {
       "name": "list",
       "type": "list",
-      "description": "The list to which the values will be prepended.",
+      "description": "The list to which the value will be prepended.",
       "required": true,
     },
     {
@@ -20,7 +20,7 @@ module.exports = {
     {
       "name": "list",
       "type": "list",
-      "description": "A new list with the value prepended.",
+      "description": "A list with the value prepended.",
     },
   ],
 };
