@@ -205,6 +205,21 @@ module.exports = function (doc) {
 
   renameAdaptor("merge-datatables", "append-datatables");
   renameAdaptorInput("append-datatables", "intersect columns", "exclude unmatched columns");
+  
+  renameAdaptorInput("select-columns", "columns", "column names");
+  
+  renameAdaptorInput("send-email-message", "stmp host", "smto host");
+  renameAdaptorInput("send-email-message", "stmp port", "smto port");
+  renameAdaptorInput("send-email-message", "stmp username", "smto username");
+  renameAdaptorInput("send-email-message", "stmp password", "smto password");
+  renameAdaptorInput("send-email-message", "stmp secure", "smto secure");
+  renameAdaptorOutput("send-email-message", "response", "status code");
+  
+  renameAdaptor("slice-datatable", "select-rows");
+
+  renameAdaptor("slice-list", "select-list-values");
+
+  renameAdaptor("smb-file", "import-file-from-smb");
 
   doc.version = 3;
 

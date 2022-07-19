@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "address",
       "type": "text",
-      "description": "The the full address of file on the network.\nTakes the form of `\\\\server\\path\\file.txt` or `//server/path/file.text` where server is either a host name or an IP address."
+      "description": "The full address of file on the network.\nTakes the form of `\\\\server\\path\\file.txt` or `//server/path/file.text` where server is either a host name or an IP address."
     },
     {
       "name": "file",

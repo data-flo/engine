@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "share",
       "type": "text",
-      "description": "The the name of the service to which you want to connect.\nTakes the form of `\\\\server\\service`, `//server/service`, or `smb://server/service` where server is the host name or IP address of the SMB/CIFS server, the service is the name of the service offered by the server."
+      "description": "The name of the service to which you want to connect.\nTakes the form of `\\\\server\\service`, `//server/service`, or `smb://server/service` where server is the host name or IP address of the SMB/CIFS server, the service is the name of the service offered by the server."
     },
     {
       "name": "port",
