@@ -170,28 +170,22 @@ module.exports = function (doc) {
   renameAdaptorInput("format-date-column", "target column", "new column name");
   renameAdaptorInput("format-date-column", "target format", "new format");
 
-  renameAdaptor("gather-rows", "reshape-wide-to-long");
-
-  renameAdaptor("google-drive-file", "import-file-from-google-drive");
-
-  renameAdaptor("google-spreadsheet", "import-from-google-spreadsheet");
-
-  renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
-
-  /* ******************** */
-
-  renameAdaptorInput("reverse-geocoding", "mapboxApiKey", "api key");
-  renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
-  renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
-  renameAdaptorInput("reverse-geocoding", "placeType", "feature type");
-  renameAdaptorInput("reverse-geocoding", "resultColumn", "feature column");
-
   renameAdaptorInput("forward-geocoding", "placeColumn", "query column");
   renameAdaptorInput("forward-geocoding", "mapboxApiKey", "api key");
   renameAdaptorInput("forward-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("forward-geocoding", "placeType", "feature type");
   renameAdaptorInput("forward-geocoding", "resultColumn", "feature column");
+
+  renameAdaptor("gather-rows", "reshape-wide-to-long");
+  renameAdaptorInput("reshape-wide-to-long", "key", "key column name");
+  renameAdaptorInput("reshape-wide-to-long", "value", "value column name");
+
+  renameAdaptor("google-drive-file", "import-file-from-google-drive");
+
+  renameAdaptor("google-spreadsheet", "import-from-google-spreadsheet");
+
+  renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
 
   renameAdaptor("list-to-datatable", "convert-list-to-datatable");
   renameAdaptorInput("list-to-datatable", "column", "column name");
@@ -205,21 +199,6 @@ module.exports = function (doc) {
 
   renameAdaptor("merge-datatables", "append-datatables");
   renameAdaptorInput("append-datatables", "intersect columns", "exclude unmatched columns");
-  
-  renameAdaptorInput("select-columns", "columns", "column names");
-  
-  renameAdaptorInput("send-email-message", "stmp host", "smto host");
-  renameAdaptorInput("send-email-message", "stmp port", "smto port");
-  renameAdaptorInput("send-email-message", "stmp username", "smto username");
-  renameAdaptorInput("send-email-message", "stmp password", "smto password");
-  renameAdaptorInput("send-email-message", "stmp secure", "smto secure");
-  renameAdaptorOutput("send-email-message", "response", "status code");
-  
-  renameAdaptor("slice-datatable", "select-rows");
-
-  renameAdaptor("slice-list", "select-list-values");
-
-  renameAdaptor("smb-file", "import-file-from-smb");
 
   renameAdaptor("merge-lists", "append-lists");
   renameAdaptorInput("append-lists", "first list", "first");
@@ -232,6 +211,8 @@ module.exports = function (doc) {
   renameAdaptorInput("import-from-mysql", "", "");
   renameAdaptorOutput("import-from-mysql", "", "");
 
+  renameAdaptor("newick-leaf-labels", "list-newick-leaf-labels");
+
   renameAdaptor("oracle-database", "import-from-oracle");
   renameAdaptorInput("import-from-oracle", "connectionString", "connection string");
 
@@ -239,10 +220,33 @@ module.exports = function (doc) {
 
   renameAdaptor("sql-server-database", "import-from-sql-server");
 
+  renameAdaptorInput("reverse-geocoding", "mapboxApiKey", "api key");
+  renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
+  renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
+  renameAdaptorInput("reverse-geocoding", "placeType", "feature type");
+  renameAdaptorInput("reverse-geocoding", "resultColumn", "feature column");
+
   renameAdaptor("sqlite-database", "import-from-sqlite");
   renameAdaptorInput("import-from-sqlite", "sqlite", "sqlite file");
 
-  renameAdaptor("newick-leaf-labels", "list-newick-leaf-labels");
+  renameAdaptorInput("select-columns", "columns", "column names");
+
+  renameAdaptorInput("send-email-message", "stmp host", "smto host");
+  renameAdaptorInput("send-email-message", "stmp port", "smto port");
+  renameAdaptorInput("send-email-message", "stmp username", "smto username");
+  renameAdaptorInput("send-email-message", "stmp password", "smto password");
+  renameAdaptorInput("send-email-message", "stmp secure", "smto secure");
+  renameAdaptorOutput("send-email-message", "response", "status code");
+
+  renameAdaptor("slice-datatable", "select-rows");
+
+  renameAdaptor("slice-list", "select-list-values");
+
+  renameAdaptor("smb-file", "import-file-from-smb");
+
+  renameAdaptor("spread-rows", "reshape-long-to-wide");
+  renameAdaptorInput("reshape-long-to-wide", "key", "key column name");
+  renameAdaptorInput("reshape-long-to-wide", "value", "value column name");
 
   renameAdaptorInput("rename-columns", "mapping", "column names");
   renameAdaptorInput("rename-columns", "discard", "discard unmapped");
