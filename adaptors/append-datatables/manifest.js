@@ -15,13 +15,13 @@ module.exports = {
       "description": "The second datatable.",
       "required": true,
     },
-    {
-      "name": "case sensitive",
-      "type": "boolean",
-      "description": "When set to `True`, lowercase and uppercase letters are treated as different. When set to `False`, lowercase and uppercase letters are treated as equivalent, and `first data` column names will be used in the output datatable.\nIf unspecified, defaults to `True`",
-      "required": false,
-      "default": true,
-    },
+    // {
+    //   "name": "case sensitive",
+    //   "type": "boolean",
+    //   "description": "When set to `True`, lowercase and uppercase letters are treated as different. When set to `False`, lowercase and uppercase letters are treated as equivalent, and `first data` column names will be used in the output datatable.\nIf unspecified, defaults to `True`",
+    //   "required": false,
+    //   "default": true,
+    // },
     {
       "name": "exclude unmatched columns",
       "type": "boolean",
