@@ -1,10 +1,10 @@
 module.exports = function (args) {
-  const merged = [
-    ...args.first,
-    ...args.second,
+  const list = [
+    ...args["first list"],
+    ...args["second list"],
   ];
   return {
-    merged,
+    list,
   };
 };
 
