@@ -1,11 +1,11 @@
-const { test } = require("tap");
+const tap = require("../../utils/testing/unit");
 
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 
-test("find-value-in-list adaptor", async (t) => {
+tap.test("find-value-in-list adaptor", async () => {
 
-  await t.test("should find a text value in a list", async ({ same }) => {
+  await tap.test("should find a text value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
@@ -13,7 +13,7 @@ test("find-value-in-list adaptor", async (t) => {
         pattern: "green",
       }
     );
-    same(
+    tap.same(
       result,
       {
         value: "green",
@@ -21,7 +21,7 @@ test("find-value-in-list adaptor", async (t) => {
       }
     );
   });
-  await t.test("should find a value in a list by using a regex", async ({ same }) => {
+  await tap.test("should find a value in a list by using a regex", async ({ same }) => {
     const result = await runAdaptor(
       adaptor,
       {
@@ -37,7 +37,7 @@ test("find-value-in-list adaptor", async (t) => {
       }
     );
   });
-  await t.test("should not find a non-existing value in a list", async ({ same }) => {
+  await tap.test("should not find a non-existing value in a list", async ({ same }) => {
     const result = await runAdaptor(
       adaptor,
       {

@@ -1,5 +1,5 @@
-const tap = require("../../utils/testing/unit");
 const fs = require("fs");
+const tap = require("../../utils/testing/unit");
 
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
