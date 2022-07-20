@@ -13,9 +13,7 @@ module.exports = function (args) {
       labels.push(node.name);
     }
   }
-  return {
-    labels,
-  };
+  return { labels };
 };
 
 module.exports.manifest = require("./manifest");
