@@ -7,11 +7,13 @@ module.exports = {
       "name": "data",
       "type": "datatable",
       "description": "The datatable containing the columns to be removed.",
+      "required": true,
     },
     {
       "name": "columns",
       "type": "list",
       "description": "The list of columns to be removed.",
+      "required": true,
     },
   ],
   "output": [
