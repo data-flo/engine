@@ -20,6 +20,40 @@ module.exports = function (doc) {
     }
   }
 
+  function changeAdaptor(oldName, func) {
+    for (const step of doc.transform) {
+      if (step.type === "adaptor") {
+        if (step.adaptor === oldName) {
+          func(step);
+        }
+      }
+    }
+  }
+
+  function renameStepInput(step, oldName, newName) {
+    for (const binding of step.binding) {
+      if (binding.target === oldName) {
+        binding.target = newName;
+      }
+    }
+  }
+
+  function changeStepInput(step, oldName, func) {
+    for (const binding of step.binding) {
+      if (binding.target === oldName) {
+        func(binding);
+      }
+    }
+  }
+
+  function addInput(step, inputName, value) {
+    step.binding.push({
+      target: inputName,
+      type: "value",
+      value,
+    });
+  }
+
   function renameAdaptorInput(adaptorName, oldName, newName) {
     for (const step of doc.transform) {
       if (step.type === "adaptor") {
@@ -157,7 +191,31 @@ module.exports = function (doc) {
 
   renameAdaptor("figshare-file", "import-file-from-figshare");
 
-  renameAdaptor("filter-blank-values", "filter-blank-rows");
+  changeAdaptor("filter-blank-values", (step) => {
+    step.adaptor = "filter-rows";
+    renameStepInput(step, "column", "column name");
+    addInput(step, "filter type", "is-blank");
+  });
+
+  changeAdaptor("filter-rows-numerically", (step) => {
+    step.adaptor = "filter-rows";
+    renameStepInput(step, "column", "column name");
+    changeStepInput(step, "operator", (binding) => {
+      if (binding.type === "value") {
+        binding.target = "filter type";
+        binding.value = ({
+          "<": "less-than",
+          "<=": "less-than-or-equal",
+          ">": "greater-than",
+          ">=": "greater-than-or-equal",
+        })[binding.value];
+      }
+      else {
+        throw new Error("Invalid binding type");
+      }
+    });
+    renameStepInput(step, "check", "filter value");
+  });
 
   renameAdaptor("find-value", "find-value-in-list");
 
