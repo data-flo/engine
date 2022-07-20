@@ -1,7 +1,15 @@
 const { Datatable } = require("../../types/datatable");
 
 module.exports = async function extendDatatable(args) {
-  const datatableWriter = await Datatable.create();
+  const columns = {};
+  for (const column of (await args["first data"].getColumns())) {
+    columns.push({ key: column, header: column });
+  }
+  for (const column of (await args["second data"].getColumns())) {
+    columns.push({ key: column, header: column });
+  }
+
+  const datatableWriter = await Datatable.create({ columns });
 
   for await (const row of args["first data"].getReader()) {
     datatableWriter.write(row);

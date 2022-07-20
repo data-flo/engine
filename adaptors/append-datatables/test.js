@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const tap = require("../../utils/testing/unit");
 
 const runAdaptor = require("../../runner/run-adaptor");
@@ -8,7 +6,7 @@ const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
 tap.test("append-datatables adaptor", async () => {
-  const testCsvFilePath = await createTmpTextFile(`"id","name","Country"
+  const testCsvFilePath = await createTmpTextFile(`"id","name","country"
 "1","Bovine","de"
 "2","Gibbon","fr"
 "3","Orangutan",
@@ -37,7 +35,7 @@ tap.test("append-datatables adaptor", async () => {
     tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
-      `"id","name","Country"
+      `"id","name","country"
 "1","Bovine","de"
 "2","Gibbon","fr"
 "3","Orangutan",
