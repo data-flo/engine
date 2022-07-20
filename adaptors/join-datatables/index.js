@@ -33,7 +33,7 @@ module.exports = async function adaptorJoinDatatable(args) {
   }
 
   // Read other table and store its rows
-  const rightRows = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
+  const rightRowsMap = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
   {
     const rightTableReader = (
       args.columns
@@ -43,51 +43,65 @@ module.exports = async function adaptorJoinDatatable(args) {
         rightTable.getReader()
     );
     for await (const row of rightTableReader) {
-      if (row[rightIdColumn]) {
-        rightRows.set(row[rightIdColumn], row);
+      if (row[rightIdColumn] && !rightRowsMap.get(row[rightIdColumn])) {
+        rightRowsMap.set(row[rightIdColumn], row);
       }
     }
   }
 
   const dataWriter = await Datatable.create({ columns: joinedColumnNames });
-  const skippedWriter = await Datatable.create({ columns: leftColumns });
+  const unmatchedWriter = await Datatable.create({ columns: leftColumns });
 
-  const isNotInnerJoin = (args["inner join"] === false);
+  const isInnerJoin = (args["join type"] === "Inner Join");
+  const isFullJoin = (args["join type"] === "Full Join");
+  const isLeftJoin = (args["join type"] === "Left Join");
+  const matchedValues = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
 
   for await (const leftRow of leftTable.getReader()) {
     const rightRow = (
       leftRow[leftIdColumn]
         ?
-        rightRows.get(leftRow[leftIdColumn])
+        rightRowsMap.get(leftRow[leftIdColumn])
         :
         undefined
     );
 
     if (rightRow) {
       dataWriter.write({ ...leftRow, ...rightRow });
+      if (isFullJoin && leftRow[leftIdColumn]) {
+        matchedValues.set(leftRow[leftIdColumn]);
+      }
     }
-    else if (isNotInnerJoin) {
+    else if (isLeftJoin || isFullJoin) {
       dataWriter.write(leftRow);
     }
     else {
-      skippedWriter.write(leftRow);
+      unmatchedWriter.write(leftRow);
+    }
+  }
+
+  if (isFullJoin) {
+    for (const [ rightValue, rightRow ] of rightRowsMap.entries()) {
+      if (!matchedValues.has(rightValue)) {
+        dataWriter.write(rightRow);
+      }
     }
   }
 
   dataWriter.end();
-  skippedWriter.end();
+  unmatchedWriter.end();
 
-  const data = await dataWriter.finalise();
-  const skipped = await skippedWriter.finalise();
+  // const data = await dataWriter.finalise();
+  // const unmatched = await unmatchedWriter.finalise();
 
-  // const [ data, skipped ] = await Promise.all([
-  //   datatWriter.finalise(),
-  //   skippedWriter.finalise(),
-  // ]);
+  const [ data, unmatched ] = await Promise.all([
+    dataWriter.finalise(),
+    unmatchedWriter.finalise(),
+  ]);
 
   return {
     data,
-    skipped,
+    unmatched,
   };
 };
 
