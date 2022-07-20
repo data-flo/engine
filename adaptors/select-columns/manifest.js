@@ -13,6 +13,7 @@ module.exports = {
       "name": "column names",
       "type": "list",
       "description": "The list of columns to be included in the specified order.",
+      "required": true,
     },
   ],
   "output": [
