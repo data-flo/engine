@@ -4,7 +4,8 @@ function rewriteUrl(url) {
   const match = validRegexp.exec(url);
   if (match) {
     return `https://${match[1]}/api/viewer/data?project=${match[2]}`;
-  } else {
+  }
+  else {
     throw new Error("Invalid Microreact project URL.");
   }
 }
