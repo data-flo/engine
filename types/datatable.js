@@ -270,6 +270,16 @@ class Datatable {
     return data;
   }
 
+  async readAllRows() {
+    const rows = [];
+
+    for await (const row of this.getReader()) {
+      rows.push(row);
+    }
+
+    return rows;
+  }
+
   async toFileStream() {
     const file = new FileStream(this.getSource());
     return file;

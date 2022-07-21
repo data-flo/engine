@@ -83,3 +83,8 @@ module.exports.LetterCases = Object.freeze([
   [ "title", "title case (`OfMice and men` → `OfMice and Men`)", "a mixed-case style following English language rules" ],
   [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);
+
+module.exports.SortDirections = Object.freeze([
+  [ "asc", "Ascending order" ],
+  [ "desc", "Descending order" ],
+]);

@@ -7,7 +7,12 @@ module.exports = function (value) {
 
   if (Array.isArray(value)) {
     for (const row of value) {
-      map.set(row.key, row.value);
+      if (Array.isArray(row)) {
+        map.set(row[0], row[1]);
+      }
+      else {
+        map.set(row.key, row.value);
+      }
     }
   }
   else {

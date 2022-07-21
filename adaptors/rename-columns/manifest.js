@@ -14,6 +14,9 @@ module.exports = {
       "type": "map",
       "description": "The mapping of old column names to new ones.",
       "required": true,
+      "ui": {
+        "keys": { "column-in": "data" },
+      },
     },
     {
       "name": "discard unmapped",
