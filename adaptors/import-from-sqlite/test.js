@@ -3,16 +3,18 @@ const tap = require("../../utils/testing/unit");
 
 const runAdaptor = require("../../runner/run-adaptor");
 const createFile = require("../../types/file");
+const tmpFilePath = require("../../utils/file/tmp-path");
 
 const adaptor = require("./index");
 
 tap.test("import-from-sql-server adaptor", async () => {
+  const filePath = await tmpFilePath();
 
   tap.test("given a query, it should a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "sqlite file": createFile(path.join(process.env.HOME, "Downloads", "chinook.db")),
+        "sqlite file": createFile(filePath),
         "query": `
           SELECT 1 AS field1, 'a' AS field2
           UNION
