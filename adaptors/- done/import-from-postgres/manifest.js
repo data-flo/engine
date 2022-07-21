@@ -4,17 +4,18 @@ module.exports = {
   "subgroup": "Data Sources",
   "input": [
     {
-      "name": "hostname",
+      "name": "host",
       "type": "text",
-      "description": "The hostname or the IP address of the database server.",
+      "description": "The hostname (.e.g `localhost`) or the IP address (e.g. `127.0.0.1`) of the database server.",
       "required": true,
     },
     {
       "name": "port",
-      "type": "integer",
+      "type": "number",
       "description": "The port of the database server.\nIf unspecified, defaults to `5432`.",
       "required": false,
       "default": 5432,
+      "ui": { "integer": true },
     },
     {
       "name": "database",

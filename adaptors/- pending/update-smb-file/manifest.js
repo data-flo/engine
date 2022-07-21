@@ -10,7 +10,7 @@ module.exports = {
     },
     {
       "name": "port",
-      "type": "integer",
+      "type": "number",
       "description": "The port of the SMB server.\nDefaults to `445`.",
       "default": 445
     },

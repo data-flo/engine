@@ -47,6 +47,20 @@ class Datatable {
     return stringifier;
   }
 
+  static async createFromIterable(rows, options) {
+    const dataWriter = await Datatable.create(options);
+
+    for await (const row of rows) {
+      dataWriter.write(row);
+    }
+
+    dataWriter.end();
+
+    const data = await dataWriter.finalise();
+
+    return { data };
+  }
+
   constructor(sourceFile) {
     if (!sourceFile) {
       throw new Error("Datatable requires a source file");

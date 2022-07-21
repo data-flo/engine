@@ -24,7 +24,7 @@ tap.test("select-columns adaptor", async () => {
         "column names": [ "Country" ],
       },
     );
-    t.ok(output.data, "adaptor should return column names");
+    t.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"Country"
@@ -46,7 +46,7 @@ tap.test("select-columns adaptor", async () => {
         "column names": [ "Country", "id" ],
       },
     );
-    t.ok(output.data, "adaptor should return column names");
+    t.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"Country","id"

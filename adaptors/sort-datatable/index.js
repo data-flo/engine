@@ -26,15 +26,7 @@ module.exports = async function (args) {
     sortOrders,
   );
 
-  const dataWriter = await Datatable.create();
-
-  for await (const row of sortedRows) {
-    dataWriter.write(row);
-  }
-
-  dataWriter.end();
-
-  const data = await dataWriter.finalise();
+  const data = await Datatable.createFromIterable(sortedRows);
 
   return { data };
 };

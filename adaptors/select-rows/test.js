@@ -25,7 +25,7 @@ tap.test("select-rows adaptor", async () => {
         "end": 3,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
@@ -43,7 +43,7 @@ tap.test("select-rows adaptor", async () => {
         "begin": 3,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
@@ -64,7 +64,7 @@ tap.test("select-rows adaptor", async () => {
         "limit": 2,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
@@ -83,7 +83,7 @@ tap.test("select-rows adaptor", async () => {
         "limit": 1000,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
@@ -103,7 +103,7 @@ tap.test("select-rows adaptor", async () => {
         "begin": -4,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
@@ -124,7 +124,7 @@ tap.test("select-rows adaptor", async () => {
         "end": -2,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"

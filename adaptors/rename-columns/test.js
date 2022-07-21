@@ -27,7 +27,7 @@ tap.test("rename-columns adaptor", async () => {
         ]),
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"Sample","Country","blank","date a","date b"
@@ -53,7 +53,7 @@ tap.test("rename-columns adaptor", async () => {
         "discard unmapped": true,
       },
     );
-    tap.ok(output.data, "adaptor should return column names");
+    tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
       `"Sample","blank"

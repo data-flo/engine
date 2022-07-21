@@ -317,6 +317,9 @@ module.exports = function (doc) {
   renameAdaptorInput("new", "", "");
   renameAdaptorOutput("new", "", "");
 
+  renameAdaptor("mysql-database", "import-from-mysql");
+  renameAdaptorInput("import-from-mysql", "hostname", "host");
+
   doc.version = 3;
 
   return doc;

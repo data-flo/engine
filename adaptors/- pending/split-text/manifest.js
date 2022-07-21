@@ -16,9 +16,10 @@ module.exports = {
     },
     {
       "name": "limit",
-      "type": "integer",
+      "type": "number",
       "default": null,
-      "description": "A positive integer specifying a limit on the number of splits to be found. \nDefaults to `null` (no limit)."
+      "description": "A positive integer specifying a limit on the number of splits to be found. \nDefaults to `null` (no limit).",
+      "ui": { "integer": true },
     }
   ],
   "output": [
