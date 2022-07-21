@@ -21,5 +21,5 @@ module.exports = function inputArguments(manifest, rawValues) {
     }
   }
 
-  return input;
+  return Object.freeze(input);
 };
