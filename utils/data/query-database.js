@@ -8,6 +8,7 @@ module.exports = function queryDatabase(client, connection, query) {
   const instance = knex({
     client,
     connection,
+    useNullAsDefault: true,
   });
 
   const stream = instance.raw(query).stream();
