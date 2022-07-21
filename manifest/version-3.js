@@ -266,8 +266,6 @@ module.exports = function (doc) {
   renameAdaptor("microreact-project", "import-from-microreact-project");
 
   renameAdaptor("mysql-database", "import-from-mysql");
-  renameAdaptorInput("import-from-mysql", "", "");
-  renameAdaptorOutput("import-from-mysql", "", "");
 
   renameAdaptor("newick-leaf-labels", "list-newick-leaf-labels");
 
@@ -318,7 +316,6 @@ module.exports = function (doc) {
   renameAdaptorOutput("new", "", "");
 
   renameAdaptor("mysql-database", "import-from-mysql");
-  renameAdaptorInput("import-from-mysql", "hostname", "host");
 
   doc.version = 3;
 

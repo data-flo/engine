@@ -3,7 +3,7 @@ const { Datatable } = require("../../types/datatable");
 const queryDatabase = require("../../utils/data/query-database");
 
 module.exports = async function (args) {
-  const client = "mysql";
+  const client = "pg";
   const connection = {
     host: args.hostname,
     port: args.port,

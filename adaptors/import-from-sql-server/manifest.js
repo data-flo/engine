@@ -1,10 +1,10 @@
 module.exports = {
-  "description": "Imports data from a PostgreSQL database.",
+  "description": "Imports data from a Microsoft SQl Server database.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
     {
-      "name": "host",
+      "name": "hostname",
       "type": "text",
       "description": "The hostname (.e.g `localhost`) or the IP address (e.g. `127.0.0.1`) of the database server.",
       "required": true,
@@ -12,9 +12,9 @@ module.exports = {
     {
       "name": "port",
       "type": "number",
-      "description": "The port of the database server.\nIf unspecified, defaults to `5432`.",
+      "description": "The port of the database server.\nIf unspecified, defaults to `1433`.",
       "required": false,
-      "default": 5432,
+      "default": 1433,
       "ui": { "integer": true },
     },
     {

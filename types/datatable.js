@@ -50,6 +50,20 @@ class Datatable {
   static async createFromIterable(rows, options) {
     const dataWriter = await Datatable.create(options);
 
+    for (const row of rows) {
+      dataWriter.write(row);
+    }
+
+    dataWriter.end();
+
+    const data = await dataWriter.finalise();
+
+    return data;
+  }
+
+  static async createFromAsyncIterable(rows, options) {
+    const dataWriter = await Datatable.create(options);
+
     for await (const row of rows) {
       dataWriter.write(row);
     }
@@ -58,7 +72,7 @@ class Datatable {
 
     const data = await dataWriter.finalise();
 
-    return { data };
+    return data;
   }
 
   constructor(sourceFile) {

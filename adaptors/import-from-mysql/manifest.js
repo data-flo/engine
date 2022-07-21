@@ -4,7 +4,7 @@ module.exports = {
   "subgroup": "Data Sources",
   "input": [
     {
-      "name": "host",
+      "name": "hostname",
       "type": "text",
       "description": "The hostname (.e.g `localhost`) or the IP address (e.g. `127.0.0.1`) of the database server.",
       "required": true,
