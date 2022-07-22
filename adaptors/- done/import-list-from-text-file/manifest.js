@@ -1,12 +1,12 @@
 module.exports = {
-  "description": "Imports a CSV file and converts to a datatable.",
+  "description": "Imports a list from a text file.",
   "group": "Transformations",
   "subgroup": "Data Tables",
   "input": [
     {
       "name": "file",
       "type": "file",
-      "description": "A file containing a .csv or .tsv formatted data."
+      "description": "The text file to be converted.",
     },
     {
       "name": "encoding",
@@ -14,14 +14,14 @@ module.exports = {
       "default": "utf8",
       "description": "The character encoding of the input `file`.\nDefaults to `utf8`.",
       "enum": [
-       "ascii",
-       "base64",
-       "binary",
-       "hex",
-       "ucs2",
-       "utf8",
-       "latin1"
-      ]
+        "ascii",
+        "base64",
+        "binary",
+        "hex",
+        "ucs2",
+        "utf8",
+        "latin1",
+      ],
     },
     {
       "name": "separator",
@@ -34,21 +34,21 @@ module.exports = {
         [ ",", "Comma (,)" ],
         [ ";", "Semicolon (;)" ],
         [ " ", "Space" ],
-        [ "\t", "tab (\\t)" ]
-       ]
+        [ "\t", "tab (\\t)" ],
+      ],
     },
     {
       "name": "trim",
       "type": "boolean",
       "default": true,
-      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True."
-    }
+      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True.",
+    },
   ],
   "output": [
     {
       "name": "list",
       "type": "list",
-      "description": "A List of strings, split at each point where the `separator` occurs in the given text file, or an empty list if no occurrences found."
-    }
-  ]
-}
+      "description": "A list of values.",
+    },
+  ],
+};

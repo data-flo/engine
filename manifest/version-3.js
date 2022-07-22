@@ -119,6 +119,8 @@ module.exports = function (doc) {
     }
   }
 
+  renameAdaptorInput("add-column", "column", "column name");
+
   renameAdaptor("csv-file-to-datatable", "import-from-csv-file");
   renameAdaptorInput("import-from-csv-file", "csv", "file");
   renameAdaptorInput("import-from-csv-file", "separator", "delimiter");
@@ -312,11 +314,23 @@ module.exports = function (doc) {
   renameAdaptorInput("import-file-from-s3", "key", "access key");
   renameAdaptorInput("import-file-from-s3", "secret", "secret key");
 
+  renameAdaptor("mysql-database", "import-from-mysql");
+
+  renameAdaptorInput("split-column", "source", "column name");
+  renameAdaptorOutput("split-column", "columns", "new column names");
+
+  renameAdaptor("split-text", "convert-text-to-list");
+  renameAdaptorOutput("convert-text-to-list", "subtexts", "list");
+
+  renameAdaptor("text-template", "create-text-from-template");
+  renameAdaptorOutput("create-text-from-template", "output", "text");
+
+  renameAdaptor("unique-list-items", "remove-duplicate-list-values");
+  renameAdaptorOutput("remove-duplicate-list-values", "set", "list");
+
   renameAdaptor("", "new");
   renameAdaptorInput("new", "", "");
   renameAdaptorOutput("new", "", "");
-
-  renameAdaptor("mysql-database", "import-from-mysql");
 
   doc.version = 3;
 

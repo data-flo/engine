@@ -10,7 +10,7 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "column",
+      "name": "column name",
       "type": "text",
       "description": "The name of the new column to be added.",
       "required": true,

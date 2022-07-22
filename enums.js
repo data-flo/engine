@@ -85,6 +85,8 @@ module.exports.LetterCases = Object.freeze([
 ]);
 
 module.exports.SortDirections = Object.freeze([
-  [ "asc", "Ascending order" ],
-  [ "desc", "Descending order" ],
+  [ "asc alphabetical", "Ascending alphabetical order" ],
+  [ "desc alphabetical", "Descending alphabetical order" ],
+  [ "asc numerical", "Ascending numerical order" ],
+  [ "desc numerical", "Descending numerical order" ],
 ]);

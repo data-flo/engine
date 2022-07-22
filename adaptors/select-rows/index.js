@@ -4,7 +4,7 @@ module.exports = async function (args) {
   let totalRows = 0;
 
   if (args.begin === 0) {
-    throw new Error("The position of the frist row cannot be zero.");
+    throw new Error("The position of the first row cannot be zero.");
   }
 
   if (args.end === 0) {
