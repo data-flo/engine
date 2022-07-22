@@ -7,6 +7,7 @@ module.exports = {
       "name": "template",
       "type": "text",
       "description": "The Mustache template text that contains any number of Mustache variable tags. Variable tags are indicated by the double mustaches that surround them, e.g. `{{ person }}` is a tag.",
+      "required": true,
     },
     {
       "name": "variables",
