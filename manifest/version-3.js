@@ -299,6 +299,7 @@ module.exports = function (doc) {
   renameAdaptor("slice-list", "select-list-values");
 
   renameAdaptor("smb-file", "import-file-from-smb");
+  renameAdaptorInput("import-file-from-smb", "share", "share address");
 
   renameAdaptor("spread-rows", "reshape-long-to-wide");
   renameAdaptorInput("reshape-long-to-wide", "key", "key column name");
