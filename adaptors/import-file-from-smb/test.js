@@ -9,8 +9,9 @@ tap.test("import-file-from-smb adaptor", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "share address": "\\\\samba\\share",
+        "share address": "\\\\localhost\\share",
         "file path": "data\\demo.nwk",
+        "port": 8445,
       }
     );
     tap.ok(output.file, "adaptor should return file");
