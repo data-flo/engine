@@ -1,6 +1,17 @@
 module.exports.CommonDelimiters = Object.freeze([
-  [ ",", "Comma" ],
-  [ ";", "Semicolon" ],
+  [ ",", "Comma (`,`)" ],
+  [ ";", "Semicolon (`;`)" ],
+  [ ":", "Colon (`:`)" ],
+  [ "|", "Vertical bar (`\`)" ],
+  [ "\\u0020", "Space" ],
+  [ "\\u0009", "tab" ],
+]);
+
+module.exports.CommonLineEndings = Object.freeze([
+  [ "\n", "Newline (\\n)" ],
+  [ "\r\n", "CRLF (\\r\\n)" ],
+  [ ",", "Comma (`,`)" ],
+  [ ";", "Semicolon (`;`)" ],
   [ "\\u0020", "Space" ],
   [ "\\u0009", "tab" ],
 ]);

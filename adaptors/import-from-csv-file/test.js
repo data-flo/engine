@@ -2,7 +2,6 @@ const tap = require("../../utils/testing/unit");
 
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
-const compareFileContent = require("../../utils/file/compare");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createFile = require("../../types/file");
 

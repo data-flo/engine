@@ -8,13 +8,14 @@ module.exports = async function (args) {
       parse({
         columns: false,
         delimiter: args.separator,
+        record_delimiter: args.separator,
         trim: args.trim,
         quote: null,
       })
     );
 
   for await (const item of iterator) {
-    list.push(item);
+    list.push(item[0]);
   }
 
   return {
