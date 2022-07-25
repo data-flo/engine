@@ -342,6 +342,12 @@ module.exports = function (doc) {
   renameAdaptorOutput("export-to-google-sheet", "created", "created row ids");
   renameAdaptorOutput("export-to-google-sheet", "skipped", "skipped row ids");
 
+  renameAdaptor("create-microreact-project", "export-to-microreact-project");
+  renameAdaptorInput("export-to-microreact-project", "name", "project name");
+
+  renameAdaptor("update-microreact-project", "export-to-microreact-project");
+  renameAdaptorInput("export-to-microreact-project", "name", "project name");
+
   renameAdaptor("", "new");
   renameAdaptorInput("new", "", "");
   renameAdaptorOutput("new", "", "");
