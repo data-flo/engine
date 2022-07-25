@@ -18,7 +18,7 @@ module.exports = {
     {
       "name": "pattern",
       "type": "text",
-      "description": "Specifies the pattern (a text or a regular expression) to select columns whose name matches that pattern.\nMatching columns will be added after any columns specified in `column names`, and in the order in which they appear in the original datatable.\nThe pattern is treated as a regular expression if it begins and ends with `/` (e.g. /.*/).\n",
+      "description": "Specifies the pattern (a text or a regular expression) to select columns whose name matches that pattern.\nMatching columns will be added after any columns specified in `column names`, and in the order in which they appear in the original datatable.\nThe pattern is treated as a regular expression if it begins and ends with `/` (e.g. /.*/).",
     },
   ],
   "output": [
