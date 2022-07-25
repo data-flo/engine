@@ -1,4 +1,5 @@
 const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map");
+const CaseInsensitiveSet = require("../../utils/structures/case-insensitive-set");
 
 const { Datatable } = require("../../types/datatable");
 
@@ -52,10 +53,10 @@ module.exports = async function adaptorJoinDatatable(args) {
   const dataWriter = await Datatable.create({ columns: joinedColumnNames });
   const unmatchedWriter = await Datatable.create({ columns: leftColumns });
 
-  const isInnerJoin = (args["join type"] === "Inner Join");
+  // const isInnerJoin = (args["join type"] === "Inner Join");
   const isFullJoin = (args["join type"] === "Full Join");
   const isLeftJoin = (args["join type"] === "Left Join");
-  const matchedValues = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
+  const matchedValues = !args["case sensitive"] ? new CaseInsensitiveSet() : new Set();
 
   for await (const leftRow of leftTable.getReader()) {
     const rightRow = (
@@ -69,7 +70,7 @@ module.exports = async function adaptorJoinDatatable(args) {
     if (rightRow) {
       dataWriter.write({ ...leftRow, ...rightRow });
       if (isFullJoin && leftRow[leftIdColumn]) {
-        matchedValues.set(leftRow[leftIdColumn]);
+        matchedValues.add(leftRow[leftIdColumn]);
       }
     }
     else if (isLeftJoin || isFullJoin) {

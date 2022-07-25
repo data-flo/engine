@@ -9,7 +9,14 @@ const includesWithIsEqual = function (rows, itemToCompare) {
   return false;
 };
 
-module.exports = function (args) {
+module.exports = async function (args) {
+  const hashes = new Set();
+  for await (const row of args.data.gerReader()) {
+    if (row[rightIdColumn] && !rightRowsMap.get(row[rightIdColumn])) {
+      rightRowsMap.set(row[rightIdColumn], row);
+    }
+  }
+
   const rows = [];
   const duplicates = [];
   for (const row of args.data.rows) {
