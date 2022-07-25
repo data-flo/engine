@@ -1,4 +1,4 @@
-const CaseInsensitiveMap = require("cgps-utils/case-insensitive-map");
+const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map");
 
 const { Datatable } = require("../../types/datatable");
 

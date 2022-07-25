@@ -7,6 +7,7 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list containing duplicate values to be removed.",
+      "required": true,
     },
     {
       "name": "case sensitive",
