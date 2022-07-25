@@ -15,6 +15,7 @@ module.exports = async function (args) {
             :
             (headerCells) => headerCells.map((column) => column.trim())
         ),
+        record_delimiter: args.newline,
         delimiter: args.delimiter,
         trim: args.trim,
       })

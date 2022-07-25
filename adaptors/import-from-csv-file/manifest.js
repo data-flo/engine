@@ -1,4 +1,4 @@
-const { FileEncodings, CommonDelimiters } = require("../../enums");
+const { FileEncodings, CommonDelimiters, CommonLineEndings } = require("../../enums");
 
 module.exports = {
   "description": "Imports a CSV file and converts to a datatable.",
@@ -26,6 +26,14 @@ module.exports = {
       "required": false,
       "ui": { "can-be-one-of": CommonDelimiters },
       "default": ",",
+    },
+    {
+      "name": "newline",
+      "type": "text",
+      "description": "Character used as line separator.\nIf unspecified, defaults to `\\n` (newline).",
+      "required": false,
+      "default": "\n",
+      "ui": { "can-be-one-of": CommonLineEndings },
     },
     {
       "name": "trim",

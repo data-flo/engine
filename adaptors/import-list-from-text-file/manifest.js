@@ -22,7 +22,7 @@ module.exports = {
     {
       "name": "separator",
       "type": "text",
-      "description": "Character used as column separator. Defaults to `\\n` (newline).",
+      "description": "Character used as line separator.\nIf unspecified, defaults to `\\n` (newline).",
       "required": false,
       "default": "\n",
       "ui": { "can-be-one-of": CommonLineEndings },

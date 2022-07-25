@@ -7,7 +7,7 @@ const createFile = require("../../types/file");
 
 tap.test("import-csv-file adaptor", async () => {
 
-  tap.test("given a csv text, it should return a database", async () => {
+  tap.test("given a csv text, it should return a datatable", async () => {
     const testCsvFilePath = await createTmpTextFile(`"id","Country"
 "Bovine","de"
 "Gibbon","fr"
@@ -30,7 +30,7 @@ tap.test("import-csv-file adaptor", async () => {
     );
   });
 
-  tap.test("given a csv text with bars, it should return a database", async () => {
+  tap.test("given a csv text with bars, it should return a datatable", async () => {
     const testCsvFilePath = await createTmpTextFile(`"id"|"Country"
 "Bovine"|"de"
 "Gibbon"|"fr"
@@ -54,14 +54,32 @@ tap.test("import-csv-file adaptor", async () => {
     );
   });
 
-  tap.test("given a csv text without headers, it should return a database", async () => {
+  tap.test("given a csv text with newline, it should return a datatable", async () => {
+    const testCsvFilePath = await createTmpTextFile(`"one";"two","1";"1","2";"2","3";"3"`);
+
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "file": createFile(testCsvFilePath),
+        "delimiter": ";",
+        "newline": ",",
+      },
+    );
+    tap.ok(output.data, "adaptor should return data");
+    tap.compareFile(
+      output.data.getSource(),
+      `"one","two"\n"1","1"\n"2","2"\n"3","3"\n`,
+    );
+  });
+
+  tap.test("given a csv text without headers, it should return a datatable", async () => {
     const testCsvFilePath = await createTmpTextFile(`"1"\n"2"\n"3"\n`);
 
     const output = await runAdaptor(
       adaptor,
       {
-        file: createFile(testCsvFilePath),
-        columns: "id",
+        "file": createFile(testCsvFilePath),
+        "column names": [ "id" ],
       },
     );
     tap.ok(output.data, "adaptor should return data");

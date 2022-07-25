@@ -17,7 +17,7 @@ tap.test("duplicate-column adaptor", async () => {
 "Mouse","gb"
 `);
 
-  tap.test("given a column in a datatable, it should return a database with the duplicated column", async (t) => {
+  tap.test("given a column in a datatable, it should return a datatable with the duplicated column", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

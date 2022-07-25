@@ -6,7 +6,7 @@ const adaptor = require("./index");
 
 tap.test("import-epicollect-project", async () => {
 
-  tap.test("given a csv text, it should return a database", async () => {
+  tap.test("given a csv text, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
