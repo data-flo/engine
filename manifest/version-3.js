@@ -300,8 +300,8 @@ module.exports = function (doc) {
 
   renameAdaptor("slice-list", "select-list-values");
 
-  renameAdaptor("smb-file", "import-file-from-smb");
-  renameAdaptorInput("import-file-from-smb", "share", "share address");
+  renameAdaptor("smb-file", "import-file-from-shared-drive");
+  renameAdaptorInput("import-file-from-shared-drive", "share", "drive address");
 
   renameAdaptor("spread-rows", "reshape-long-to-wide");
   renameAdaptorInput("reshape-long-to-wide", "key", "key column name");
@@ -327,6 +327,20 @@ module.exports = function (doc) {
 
   renameAdaptor("unique-list-items", "remove-duplicate-list-values");
   renameAdaptorOutput("remove-duplicate-list-values", "set", "list");
+
+  renameAdaptor("update-smb-file", "export-file-to-share-drive");
+  renameAdaptorInput("export-file-to-share-drive", "share", "drive address");
+  renameAdaptorInput("export-file-to-share-drive", "update", "drive");
+
+  renameAdaptor("upload-file-to-google-drive", "export-file-to-google-drive");
+  renameAdaptorInput("export-file-to-google-drive", "folder", "folder url");
+  renameAdaptorOutput("export-file-to-google-drive", "name", "output file name");
+
+  renameAdaptor("update-google-spreadsheet", "export-to-google-sheet");
+  renameAdaptorInput("export-to-google-sheet", "sheetname", "sheet name");
+  renameAdaptorOutput("export-to-google-sheet", "updated", "updated row ids");
+  renameAdaptorOutput("export-to-google-sheet", "created", "created row ids");
+  renameAdaptorOutput("export-to-google-sheet", "skipped", "skipped row ids");
 
   renameAdaptor("", "new");
   renameAdaptorInput("new", "", "");

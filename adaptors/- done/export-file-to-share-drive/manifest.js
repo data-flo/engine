@@ -1,8 +1,13 @@
 module.exports = {
-  "description": "Imports a file from a shared network drive using standard SMB/CIFS protocol.",
+  "description": "Exports a file to a shared network drive using standard SMB/CIFS protocol.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
+    {
+      "name": "file",
+      "type": "file",
+      "description": "The file to be exported.",
+    },
     {
       "name": "drive address",
       "type": "text",
@@ -12,40 +17,44 @@ module.exports = {
     {
       "name": "port",
       "type": "number",
-      "description": "The port of the SMB server.\nIf unspecified, defaults to `445`.",
-      "required": false,
+      "description": "The port of the SMB server.\nDefaults to `445`.",
       "default": 445,
     },
     {
       "name": "domain",
       "type": "text",
-      "description": "The domain on which the user is registered.\ne.g. `WORKGROUP`.",
+      "description": "the domain of which the user is registered.\ne.g. `WORKGROUP`.",
       "required": false,
     },
     {
       "name": "username",
       "type": "text",
       "description": "The username required to access the specified service on the server.\nIf unspecified, defaults to `guest`.",
-      "required": false,
+      "default": "",
     },
     {
       "name": "password",
       "type": "text",
       "description": "The password required to access the specified service on the server.",
-      "required": false,
+      "default": "",
     },
     {
       "name": "file path",
       "type": "text",
-      "description": "The relative path (e.g. `folder\\file.txt`) or the absolute path (e.g. `\\\\server\\service\\folder\\file.txt`) of the file to be imported.",
-      "required": true,
+      "description": "The relative path (e.g. `folder\\file.txt`) or the absolute path (e.g. `\\\\server\\service\\folder\\file.txt`) of the destination file.",
+    },
+    {
+      "name": "overwrite",
+      "type": "boolean",
+      "description": "Specifies whether to overwrite any existing file.\nIf unspecified, defaults to `False`.",
+      "default": false,
     },
   ],
   "output": [
     {
       "name": "file",
       "type": "file",
-      "description": "The imported file.",
+      "description": "The exported file.",
     },
   ],
 };

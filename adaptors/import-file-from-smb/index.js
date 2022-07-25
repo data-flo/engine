@@ -22,13 +22,13 @@ module.exports = async function (args) {
   });
 
   let remoteFilePath = args["file path"];
-  // if (remoteFilePath.startsWith(args.share)) {
-  //   remoteFilePath = remoteFilePath.substr(args.share.length);
-  // }
-  // remoteFilePath = remoteFilePath.replace(/\\/g, "/");
-  // if (remoteFilePath.startsWith("/")) {
-  //   remoteFilePath = remoteFilePath.substr(1);
-  // }
+  if (remoteFilePath.startsWith(args.share)) {
+    remoteFilePath = remoteFilePath.substr(args.share.length);
+  }
+  remoteFilePath = remoteFilePath.replace(/\\/g, "/");
+  if (remoteFilePath.startsWith("/")) {
+    remoteFilePath = remoteFilePath.substr(1);
+  }
 
   const file = await FileStream.createEmpty();
 
@@ -38,7 +38,7 @@ module.exports = async function (args) {
     path.dirname(file.getSource()),
   );
 
-  await sleep(1000);
+  // await sleep(1000);
 
   return { file };
 };

@@ -12,7 +12,7 @@ module.exports = {
     {
       "name": "sheet name",
       "type": "text",
-      "description": "The title of sheet (tab) from which data will be imported.\nIf unspecified, the first sheet in the spreadsheet will be imported.",
+      "description": "The title of the sheet (tab) from which data will be imported.\nIf unspecified, the first sheet in the spreadsheet will be used.",
       "required": false,
     },
     {

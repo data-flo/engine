@@ -1,12 +1,14 @@
 const FS = require("fs");
 const StreamPromises = require("stream/promises");
+const { EmptyObject } = require("../utils/constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
 
 class FileStream {
 
-  static async createEmpty(options) {
-    const filePath = await tmpFilePath(options);
+  static async createEmpty(options = EmptyObject) {
+    const { fileName, ...rest } = options;
+    const filePath = await tmpFilePath(rest);
 
     return new FileStream(filePath);
   }
