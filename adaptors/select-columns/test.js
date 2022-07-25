@@ -38,7 +38,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two column, it should a datatable", async (t) => {
+  tap.test("given two columns in a datatable, it should a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -56,6 +56,52 @@ tap.test("select-columns adaptor", async () => {
 ,"Gorilla"
 "gb","Human"
 "gb","Mouse"
+`
+    );
+  });
+
+  tap.test("given two columns in a datatable and a pattern, it should a datatable", async (t) => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": [ "Country", "id" ],
+        "pattern": "date",
+      },
+    );
+    t.ok(output.data, "adaptor should return data");
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","Country","date a","date b"
+"Bovine","de","Jan 29, 2007","2007-01-28"
+"Gibbon","fr",,
+"Orangutan",,,
+"Gorilla",,,
+"Human","gb",,
+"Mouse","gb",,
+`
+    );
+  });
+
+  tap.test("given two columns in a datatable and a pattern, it should a datatable", async (t) => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": [ "Country", "id" ],
+        "pattern": "/date?a?/",
+      },
+    );
+    t.ok(output.data, "adaptor should return data");
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","Country","date a","date b"
+"Bovine","de","Jan 29, 2007","2007-01-28"
+"Gibbon","fr",,
+"Orangutan",,,
+"Gorilla",,,
+"Human","gb",,
+"Mouse","gb",,
 `
     );
   });
