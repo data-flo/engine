@@ -5,20 +5,7 @@ module.exports = function (args) {
   const list = (
     [ ...args.list ]
       .sort(
-        (a, b) => {
-          return sign * naturalCompare(a.toLowerCase(), b.toLowerCase());
-
-          // if (a < b) {
-          //   return forwardOrder;
-          // }
-
-          // if (a > b) {
-          //   return reverseOrder;
-          // }
-
-          // // names must be equal
-          // return 0;
-        }
+        (a, b) => sign * naturalCompare(a, b)
       )
   );
 
