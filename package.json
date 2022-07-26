@@ -21,6 +21,7 @@
     "dbffile": "^0.7.6",
     "escape-string-regexp": "^1.0.5",
     "eslint": "^8.19.0",
+    "exceljs": "^4.3.0",
     "fast-csv": "^4.3.6",
     "filehound": "^1.16.4",
     "ftp": "^0.3.10",

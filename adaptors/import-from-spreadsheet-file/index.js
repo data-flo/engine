@@ -1,6 +1,31 @@
 const XLSX = require("xlsx");
+const ExcelJS = require("exceljs");
+
 // TODO: use https://github.com/exceljs/exceljs
 module.exports = async function (args, context) {
+  const options = {
+    entries: 'ignore',
+    styles: 'ignore',
+    sharedStrings: 'ignore',
+    hyperlinks: 'ignore',
+    // worksheets: 'ignore',
+  };
+
+  const workbook = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource(), options);
+  for await (const {eventType, value} of workbook.parse()) {
+    console.log(eventType, value)
+    for await (const row of value) {
+      console.log(row)
+    }
+  }
+
+  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
+  for await (const worksheetReader of workbookReader) {
+    for await (const row of worksheetReader) {
+      console.log(row)
+    }
+  }
+  /*
   const filePath = await context.utils.file.path(args.file);
   const workbook = XLSX.readFile(
     filePath, {
@@ -32,6 +57,7 @@ module.exports = async function (args, context) {
       rows,
     },
   };
+  */
 };
 
 module.exports.manifest = require("./manifest");
