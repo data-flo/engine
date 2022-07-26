@@ -42,7 +42,7 @@ module.exports = function parseRange(input) {
   let range;
 
   if (isInteger(input)) {
-    range = rangeToIndex(`A${input}:`);
+    range = rangeToIndex(`${input}:`);
   }
   else if (input.indexOf(":") < 0) {
     range = rangeToIndex(`${input}:`);
@@ -51,10 +51,30 @@ module.exports = function parseRange(input) {
     range = rangeToIndex(input);
   }
 
-  // range.start.col += 1;
-  // range.start.row += 1;
-  // range.end.col += 1;
-  // range.end.row += 1;
+  if (range.start.col === -1) {
+    range.start.col = null;
+  }
+  else {
+    range.start.col += 1;
+  }
+  if (range.start.row === -1) {
+    range.start.row = null;
+  }
+  else {
+    range.start.row += 1;
+  }
+  if (range.end.col === -1) {
+    range.end.col = null;
+  }
+  else {
+    range.end.col += 1;
+  }
+  if (range.end.row === -1) {
+    range.end.row = null;
+  }
+  else {
+    range.end.row += 1;
+  }
 
   return range;
 };

@@ -4,14 +4,20 @@ const { Datatable } = require("../../types/datatable");
 
 const parseRange = require("../../utils/spreadsheets/parse-range");
 
-async function checkRange(worksheetReader, sheetRange) {
+function checkRange(worksheetReader, sheetRange) {
   const requiredRange = parseRange(sheetRange);
-  const fullRange = parseRange(worksheetReader.dimensions);
+  const fullRange = parseRange(worksheetReader.dimensions.toString());
 
-  if (requiredRange.end.col === 0) {
+  if (requiredRange.start.col === null) {
+    requiredRange.start.col = fullRange.start.col;
+  }
+  if (requiredRange.start.row === null) {
+    requiredRange.start.row = fullRange.start.row;
+  }
+  if (requiredRange.end.col === null) {
     requiredRange.end.col = fullRange.end.col;
   }
-  if (requiredRange.end.row === 0) {
+  if (requiredRange.end.row === null) {
     requiredRange.end.row = fullRange.end.row;
   }
 
@@ -30,20 +36,39 @@ async function checkRange(worksheetReader, sheetRange) {
   return requiredRange;
 }
 
-async function extractWorksheet(worksheetReader, range) {
+async function extractWorksheet(worksheetReader, sheetRange) {
   const dataWriter = await Datatable.create();
 
-  let columns = null;
+  let range;
+  let columnNames = null;
   for await (const sheetRow of worksheetReader) {
-    if (!columns) {
-      for (let index = range.start.col; index < range.end.col; index++) {
+    if (!range) {
+      range = checkRange(worksheetReader, sheetRange);
+    }
 
+    if (sheetRow.number >= range.start.row) {
+      if (!columnNames) {
+        columnNames = [];
+        for (let index = range.start.col; index <= range.end.col; index++) {
+          columnNames.push(sheetRow.getCell(index).text);
+        }
+      }
+      else {
+        const dataRow = {};
+        for (let index = range.start.col; index <= range.end.col; index++) {
+          const columnNameIndex = index - range.start.col;
+          dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).text;
+        }
+        dataWriter.write(dataRow);
       }
     }
-    const dataRow = {};
 
-    dataWriter.write(dataRow);
+    if (sheetRow.number >= range.end.row) {
+      break;
+    }
   }
+
+  dataWriter.end();
 
   const data = await dataWriter.finalise();
 
@@ -51,66 +76,36 @@ async function extractWorksheet(worksheetReader, range) {
 }
 
 module.exports = async function (args) {
-  
+
   const options = {
-    // entries: "ignore",
-    // styles: "ignore",
-    // sharedStrings: "ignore",
-    // hyperlinks: "ignore",
-    // worksheets: 'ignore',
+    entries: "ignore",
+    styles: "ignore",
+    sharedStrings: "ignore",
+    hyperlinks: "ignore",
+    worksheets: 'emit',
   };
 
-  const workbook = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource(), options);
-  // for await (const {eventType, value} of workbook.parse()) {
-  //   console.log(eventType, value)
-  //   for await (const row of value) {
-  //     console.log(row)
-  //   }
-  // }
+  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
 
-  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource(), options);
+  let data;
   for await (const worksheetReader of workbookReader) {
-    if (!args.sheetname || worksheetReader.name === args.sheetname) {
-      const range = checkRange(worksheetReader, args.range || "A1:");
-      await extractWorksheet(worksheetReader, range)
-      for await (const row of worksheetReader) {
-        console.log(typeof row);
-      }
+    if (workbookReader.model.sheets.length === 0) {
+      throw new Error("Spreadsheets does not contain any sheets");
+    }
+
+    const sheetname = args.sheetname || workbookReader.model.sheets[0].name;
+
+    if (!workbookReader.model.sheets.some((x) => x.name === sheetname)) {
+      throw new Error(`Cannot find a sheet named \`${sheetname}\``);
+    }
+
+    if (worksheetReader.name === sheetname) {
+      data = await extractWorksheet(worksheetReader, args.range || "A1:");
+      break;
     }
   }
-  /*
-  const filePath = await context.utils.file.path(args.file);
-  const workbook = XLSX.readFile(
-    filePath, {
-      raw: true,
-    });
-  if (args.sheetname && !workbook.SheetNames.includes(args.sheetname)) {
-    throw new Error(`Workbook does not include a sheet named '${args.sheetname}'`);
-  }
-  const worksheet = workbook.Sheets[args.sheetname || workbook.SheetNames[0]];
-  const range = (Number.parseInt(args.range, 10) - 1) || args.range || undefined;
-  const rows = XLSX.utils.sheet_to_json(
-    worksheet,
-    {
-      range,
-      raw: false,
-      header: 0,
-    }
-  );
-  const [ columns ] = XLSX.utils.sheet_to_json(
-    worksheet,
-    {
-      range,
-      header: 1,
-    }
-  );
-  return {
-    data: {
-      columns,
-      rows,
-    },
-  };
-  */
+
+  return { data };
 };
 
 module.exports.manifest = require("./manifest");
