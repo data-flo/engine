@@ -7,18 +7,20 @@ module.exports = {
       "name": "data",
       "type": "datatable",
       "description": "The datatable containing duplicate rows.",
+      "required": true,
     },
     {
-      "name": "columns",
+      "name": "column names",
       "type": "list",
       "description": "A list of columns to compare for duplicate values.\nIf unspecified, entire rows will be compared.",
+      "required": false,
     },
     {
       "name": "case sensitive",
       "type": "boolean",
       "description": "When set to `True`, lowercase and uppercase letters are treated as different. When set to `False`, lowercase and uppercase letters are treated as equivalent.\nIf unspecified, defaults to `False`",
       "required": false,
-      "default": false,
+      "default": true,
     },
   ],
   "output": [

@@ -16,7 +16,7 @@ Mouse
 Bovine
 `);
 
-  tap.test("given a datatable and one column, it should a sorted datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {

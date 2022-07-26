@@ -16,7 +16,7 @@ tap.test("select-rows adaptor", async () => {
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 `);
 
-  tap.test("given a datatable and one column, it should a sorted datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -40,7 +40,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two columns, it should a sorted datatable", async () => {
+  tap.test("given a datatable and two columns, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -65,7 +65,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two columns, it should a sorted datatable", async () => {
+  tap.test("given a datatable and two columns, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {

@@ -6,7 +6,7 @@ const adaptor = require("./index");
 
 tap.test("sort-list adaptor", async () => {
 
-  tap.test("given a datatable and one column, it should a sorted datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -20,7 +20,7 @@ tap.test("sort-list adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and one column, it should a sorted datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {

@@ -145,6 +145,9 @@ module.exports = function (doc) {
   renameAdaptorInput("concatenate-columns", "left", "text one");
   renameAdaptorInput("concatenate-columns", "right", "text two");
 
+  renameAdaptor("create-microreact-project", "export-to-microreact-project");
+  renameAdaptorInput("export-to-microreact-project", "name", "project name");
+
   renameAdaptorInput("create-google-drive-folder", "parent", "parent folder");
   renameAdaptorInput("create-google-drive-folder", "name", "folder name");
 
@@ -278,6 +281,11 @@ module.exports = function (doc) {
 
   renameAdaptor("sql-server-database", "import-from-sql-server");
 
+  renameAdaptorInput("rename-columns", "mapping", "column names");
+  renameAdaptorInput("rename-columns", "discard", "discard unmapped");
+
+  renameAdaptorInput("remove-duplicate-rows", "columns", "column names");
+
   renameAdaptorInput("reverse-geocoding", "mapboxApiKey", "api key");
   renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
@@ -306,9 +314,6 @@ module.exports = function (doc) {
   renameAdaptor("spread-rows", "reshape-long-to-wide");
   renameAdaptorInput("reshape-long-to-wide", "key", "key column name");
   renameAdaptorInput("reshape-long-to-wide", "value", "value column name");
-
-  renameAdaptorInput("rename-columns", "mapping", "column names");
-  renameAdaptorInput("rename-columns", "discard", "discard unmapped");
 
   renameAdaptor("s3-file", "import-file-from-s3");
   renameAdaptorInput("import-file-from-s3", "key", "access key");
@@ -341,9 +346,6 @@ module.exports = function (doc) {
   renameAdaptorOutput("export-to-google-sheet", "updated", "updated row ids");
   renameAdaptorOutput("export-to-google-sheet", "created", "created row ids");
   renameAdaptorOutput("export-to-google-sheet", "skipped", "skipped row ids");
-
-  renameAdaptor("create-microreact-project", "export-to-microreact-project");
-  renameAdaptorInput("export-to-microreact-project", "name", "project name");
 
   renameAdaptor("update-microreact-project", "export-to-microreact-project");
   renameAdaptorInput("export-to-microreact-project", "name", "project name");

@@ -1,42 +1,48 @@
-const lodash = require("lodash");
+const crypto = require("crypto");
 
-const includesWithIsEqual = function (rows, itemToCompare) {
-  for (const item of rows) {
-    if (lodash.isEqual(item, itemToCompare)) {
-      return true;
-    }
-  }
-  return false;
-};
+const { Datatable } = require("../../types/datatable");
 
 module.exports = async function (args) {
+  const columns = await args.data.getColumns();
+  const dataWriter = await Datatable.create({ columns });
+  const duplicatesWriter = await Datatable.create({ columns });
+
   const hashes = new Set();
-  for await (const row of args.data.gerReader()) {
-    if (row[rightIdColumn] && !rightRowsMap.get(row[rightIdColumn])) {
-      rightRowsMap.set(row[rightIdColumn], row);
+
+  for await (const row of args.data.getReader()) {
+    const hash = crypto.createHash("md5");
+    for (const columnName of (args["column names"] || columns)) {
+      if (args["case sensitive"] || typeof row[columnName] !== "string") {
+        hash.update(row[columnName]);
+      }
+      else {
+        hash.update(row[columnName].toLowerCase());
+      }
+    }
+    const digest = hash.digest("hex");
+
+    if (hashes.has(digest)) {
+      duplicatesWriter.write(row);
+    }
+    else {
+      dataWriter.write(row);
+      hashes.add(digest);
     }
   }
 
-  const rows = [];
-  const duplicates = [];
-  for (const row of args.data.rows) {
-    if (!includesWithIsEqual(rows, row)) {
-      rows.push(row);
-    }
-    else {
-      duplicates.push(row);
-    }
-  }
+  dataWriter.end();
+  duplicatesWriter.end();
+
+  const [ data, duplicates ] = await Promise.all([
+    dataWriter.finalise(),
+    duplicatesWriter.finalise(),
+  ]);
+
   return {
-    duplicates: {
-      columns: args.data.columns,
-      rows: duplicates,
-    },
-    data: {
-      columns: args.data.columns,
-      rows,
-    },
+    data,
+    duplicates,
   };
+
 };
 
 module.exports.manifest = require("./manifest");

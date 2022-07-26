@@ -6,86 +6,126 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("select-rows adaptor", async () => {
-  const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
-"Human","gb",,,
-"Gibbon","fr",,,
-"Orangutan",,,,
-"Gorilla",,,,
-"Mouse","gb",,,
-"Bovine","de",,"Jan 29, 2007","2007-01-28"
+tap.test("remove-duplicate-rows adaptor", async () => {
+  const testCsvFilePath = await createTmpTextFile(`"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+"Gorilla",,
+"Mouse","GB","2001"
+"HUMAN","gb","2000"
 `);
 
-  tap.test("given a datatable and one column, it should a sorted datatable", async () => {
+  tap.test("given id column, it should return the same datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
         "column names": [
-          [ "id", "asc" ],
+          "id",
         ],
       },
     );
     tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
-      `"id","Country","empty","date a","date b"
-"Bovine","de",,"Jan 29, 2007","2007-01-28"
-"Gibbon","fr",,,
-"Gorilla",,,,
-"Human","gb",,,
-"Mouse","gb",,,
-"Orangutan",,,,
+      `"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+"Gorilla",,
+"Mouse","GB","2001"
+"HUMAN","gb","2000"
 `
     );
   });
 
-  tap.test("given a datatable and two columns, it should a sorted datatable", async () => {
+  tap.test("given no columns and case sensitive set to false, it should return 5 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column names": [
-          [ "Country", "asc" ],
-          [ "id", "desc" ],
-        ],
+        "case sensitive": false,
       },
     );
     tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
-      `"id","Country","empty","date a","date b"
-"Orangutan",,,,
-"Gorilla",,,,
-"Bovine","de",,"Jan 29, 2007","2007-01-28"
-"Gibbon","fr",,,
-"Mouse","gb",,,
-"Human","gb",,,
+      `"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+"Gorilla",,
+"Mouse","GB","2001"
 `
     );
   });
 
-  tap.test("given a datatable and two columns, it should a sorted datatable", async () => {
+  tap.test("given country column, it should return 4 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
         "column names": [
-          [ "id", "desc" ],
-          [ "Country", "asc" ],
+          "country",
         ],
       },
     );
     tap.ok(output.data, "adaptor should return data");
     tap.compareFile(
       output.data.getSource(),
-      `"id","Country","empty","date a","date b"
-"Orangutan",,,,
-"Mouse","gb",,,
-"Human","gb",,,
-"Gorilla",,,,
-"Gibbon","fr",,,
-"Bovine","de",,"Jan 29, 2007","2007-01-28"
+      `"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+"Mouse","GB","2001"
+`
+    );
+  });
+
+  tap.test("given country column and case sensitive set to false, it should return 3 rows", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": [
+          "country",
+        ],
+        "case sensitive": false,
+      },
+    );
+    tap.ok(output.data, "adaptor should return data");
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+`
+    );
+  });
+
+  tap.test("given id and country columns, and case sensitive set to false, it should return 5 rows", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": [
+          "id",
+          "country",
+        ],
+        "case sensitive": false,
+      },
+    );
+    tap.ok(output.data, "adaptor should return data");
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","country","year"
+"Human","gb","2000"
+"Gibbon","fr",
+"Orangutan",,
+"Gorilla",,
+"Mouse","GB","2001"
 `
     );
   });
