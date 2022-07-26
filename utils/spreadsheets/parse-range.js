@@ -1,32 +1,60 @@
-module.exports = function parseRange(range) {
-	var o = {s:{c:0,r:0},e:{c:0,r:0}};
-	var idx = 0, i = 0, cc = 0;
-	var len = range.length;
-	for(idx = 0; i < len; ++i) {
-		if((cc=range.charCodeAt(i)-64) < 1 || cc > 26) break;
-		idx = 26*idx + cc;
-	}
-	o.s.c = --idx;
+/* eslint-disable eqeqeq */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-cond-assign */
 
-	for(idx = 0; i < len; ++i) {
-		if((cc=range.charCodeAt(i)-48) < 0 || cc > 9) break;
-		idx = 10*idx + cc;
-	}
-	o.s.r = --idx;
+const isInteger = require("../numbers/is-integer");
 
-	if(i === len || cc != 10) { o.e.c=o.s.c; o.e.r=o.s.r; return o; }
-	++i;
+function rangeToIndex(range) {
+  const o = { start: { col: 0, row: 0 }, end: { col: 0, row: 0 } };
+  let idx = 0; let i = 0; let
+    cc = 0;
+  const len = range.length;
+  for (idx = 0; i < len; ++i) {
+    if ((cc = range.charCodeAt(i) - 64) < 1 || cc > 26) break;
+    idx = 26 * idx + cc;
+  }
+  o.start.col = --idx;
 
-	for(idx = 0; i != len; ++i) {
-		if((cc=range.charCodeAt(i)-64) < 1 || cc > 26) break;
-		idx = 26*idx + cc;
-	}
-	o.e.c = --idx;
+  for (idx = 0; i < len; ++i) {
+    if ((cc = range.charCodeAt(i) - 48) < 0 || cc > 9) break;
+    idx = 10 * idx + cc;
+  }
+  o.start.row = --idx;
 
-	for(idx = 0; i != len; ++i) {
-		if((cc=range.charCodeAt(i)-48) < 0 || cc > 9) break;
-		idx = 10*idx + cc;
-	}
-	o.e.r = --idx;
-	return o;
+  if (i === len || cc != 10) { o.end.col = o.start.col; o.end.row = o.start.row; return o; }
+  ++i;
+
+  for (idx = 0; i != len; ++i) {
+    if ((cc = range.charCodeAt(i) - 64) < 1 || cc > 26) break;
+    idx = 26 * idx + cc;
+  }
+  o.end.col = --idx;
+
+  for (idx = 0; i != len; ++i) {
+    if ((cc = range.charCodeAt(i) - 48) < 0 || cc > 9) break;
+    idx = 10 * idx + cc;
+  }
+  o.end.row = --idx;
+  return o;
+}
+
+module.exports = function parseRange(input) {
+  let range;
+
+  if (isInteger(input)) {
+    range = rangeToIndex(`A${input}:`);
+  }
+  else if (input.indexOf(":") < 0) {
+    range = rangeToIndex(`${input}:`);
+  }
+  else {
+    range = rangeToIndex(input);
+  }
+
+  // range.start.col += 1;
+  // range.start.row += 1;
+  // range.end.col += 1;
+  // range.end.row += 1;
+
+  return range;
 };

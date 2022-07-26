@@ -1,28 +1,81 @@
-const XLSX = require("xlsx");
 const ExcelJS = require("exceljs");
 
-// TODO: use https://github.com/exceljs/exceljs
-module.exports = async function (args, context) {
+const { Datatable } = require("../../types/datatable");
+
+const parseRange = require("../../utils/spreadsheets/parse-range");
+
+async function checkRange(worksheetReader, sheetRange) {
+  const requiredRange = parseRange(sheetRange);
+  const fullRange = parseRange(worksheetReader.dimensions);
+
+  if (requiredRange.end.col === 0) {
+    requiredRange.end.col = fullRange.end.col;
+  }
+  if (requiredRange.end.row === 0) {
+    requiredRange.end.row = fullRange.end.row;
+  }
+
+  if (
+    requiredRange.start.col < fullRange.start.col
+    ||
+    requiredRange.start.row < fullRange.start.row
+    ||
+    requiredRange.end.col > fullRange.end.col
+    ||
+    requiredRange.end.row > fullRange.end.row
+  ) {
+    throw new Error(`Invalid sheet range ${sheetRange}. Range must be within ${worksheetReader.dimensions}`);
+  }
+
+  return requiredRange;
+}
+
+async function extractWorksheet(worksheetReader, range) {
+  const dataWriter = await Datatable.create();
+
+  let columns = null;
+  for await (const sheetRow of worksheetReader) {
+    if (!columns) {
+      for (let index = range.start.col; index < range.end.col; index++) {
+
+      }
+    }
+    const dataRow = {};
+
+    dataWriter.write(dataRow);
+  }
+
+  const data = await dataWriter.finalise();
+
+  return data;
+}
+
+module.exports = async function (args) {
+  
   const options = {
-    entries: 'ignore',
-    styles: 'ignore',
-    sharedStrings: 'ignore',
-    hyperlinks: 'ignore',
+    // entries: "ignore",
+    // styles: "ignore",
+    // sharedStrings: "ignore",
+    // hyperlinks: "ignore",
     // worksheets: 'ignore',
   };
 
   const workbook = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource(), options);
-  for await (const {eventType, value} of workbook.parse()) {
-    console.log(eventType, value)
-    for await (const row of value) {
-      console.log(row)
-    }
-  }
+  // for await (const {eventType, value} of workbook.parse()) {
+  //   console.log(eventType, value)
+  //   for await (const row of value) {
+  //     console.log(row)
+  //   }
+  // }
 
-  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
+  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource(), options);
   for await (const worksheetReader of workbookReader) {
-    for await (const row of worksheetReader) {
-      console.log(row)
+    if (!args.sheetname || worksheetReader.name === args.sheetname) {
+      const range = checkRange(worksheetReader, args.range || "A1:");
+      await extractWorksheet(worksheetReader, range)
+      for await (const row of worksheetReader) {
+        console.log(typeof row);
+      }
     }
   }
   /*

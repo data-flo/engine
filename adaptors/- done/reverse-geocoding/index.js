@@ -1,5 +1,5 @@
 const geocoder = require("../../utils/data/geocoder");
-const geocodedPlaceToFeature = require("../../utils/data/geocoded-place-to-feature");
+const geocodedPlaceToFeature = require("../../utils/geocoding/geocoded-place-to-feature");
 
 const cache = require("../../utils/cache");
 
