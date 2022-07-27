@@ -1,5 +1,3 @@
-/* eslint-disable quotes */
-
 const Path = require("path");
 
 const tap = require("../../utils/testing/unit");
@@ -47,7 +45,7 @@ tap.test("import-from-excel-file adaptor", async () => {
       {
         "file": createFile(Path.resolve(__dirname, "..", "..", "dev", "data", "microreact-project-H1mdhyO3l-data.xlsx")),
         "sheetname": "Sheet1",
-        "range": "A2:",
+        "range": "2",
       },
     );
     tap.ok(output.data, "adaptor should return data");
@@ -57,7 +55,7 @@ tap.test("import-from-excel-file adaptor", async () => {
     );
   });
 
-  tap._test("given an excel file, it should return a datatable", async () => {
+  tap.test("given an excel file, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
