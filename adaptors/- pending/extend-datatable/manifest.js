@@ -6,29 +6,29 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "The columns and rows."
+      "description": "The columns and rows.",
     },
     {
       "name": "source",
       "type": "text",
-      "description": "The name of an existing column."
+      "description": "The name of an existing column.",
     },
     {
       "name": "target",
       "type": "text",
-      "description": "The name of the new column to create."
+      "description": "The name of the new column to create.",
     },
     {
       "name": "values",
       "type": "map",
-      "description": "A mapping such that for a given value in the source column, a corresponding value should appear in the target column"
-    }
+      "description": "A mapping such that for a given value in the source column, a corresponding value should appear in the target column",
+    },
   ],
   "output": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "The new columns and rows."
-    }
-  ]
-}
+      "description": "The new columns and rows.",
+    },
+  ],
+};

@@ -60,8 +60,12 @@ module.exports.FilterTypes = Object.freeze([
   [ "greater-than-or-equal", "Number is greater than or equal to" ],
   [ "less-than", "Number is less than" ],
   [ "less-than-or-equal", "Number is less than or equal to" ],
-  [ "between", "Number is is between" ],
-  [ "not-between", "Number is is not between" ],
+  [ "between", "Number is between" ],
+  [ "not-between", "Number is not between" ],
+  [ "equals", "Number is equal to" ],
+  [ "not-equals", "Number is not equal to" ],
+  [ "is-number", "Value is a number" ],
+  [ "not-number", "Value is not a number" ],
 ]);
 
 module.exports.JoinTypes = Object.freeze([

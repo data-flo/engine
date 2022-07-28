@@ -20,9 +20,9 @@ module.exports = {
     {
       "name": "filter type",
       "type": "text",
-      "description": "One of `<`, `<=`, `>`, or  `>=`.",
+      "description": "The type of filter applied.",
       "required": false,
-      "default": "eqauls",
+      "default": "equals",
       "ui": { "must-be-one-of": FilterTypes },
     },
     {

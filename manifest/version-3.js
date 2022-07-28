@@ -324,6 +324,8 @@ module.exports = function (doc) {
   renameAdaptorInput("split-column", "source", "column name");
   renameAdaptorOutput("split-column", "columns", "new column names");
 
+  renameAdaptorInput("replace-blank-values", "replacement", "new value");
+
   renameAdaptor("split-text", "convert-text-to-list");
   renameAdaptorOutput("convert-text-to-list", "subtexts", "list");
 
