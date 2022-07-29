@@ -16,7 +16,7 @@ tap.test("rename-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and one column, it should a datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -41,7 +41,7 @@ tap.test("rename-columns adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and one column, it should a datatable", async () => {
+  tap.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {

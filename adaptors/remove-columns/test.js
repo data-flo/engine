@@ -16,7 +16,7 @@ tap.test("remove-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and one column, it should a datatable", async (t) => {
+  tap.test("given a datatable and one column, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -38,7 +38,7 @@ tap.test("remove-columns adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two column, it should a datatable", async (t) => {
+  tap.test("given a datatable and two column, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

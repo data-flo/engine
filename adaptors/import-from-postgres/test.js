@@ -16,7 +16,7 @@ const adaptor = require("./index");
 
 tap.test("import-from-postgres adaptor", async () => {
 
-  tap.test("given a query, it should a datatable with 3 rows", async () => {
+  tap.test("given a query, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {

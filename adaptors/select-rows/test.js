@@ -16,7 +16,7 @@ tap.test("select-rows adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and positive begin and end row numbers, it should a datatable with 2 rows", async () => {
+  tap.test("given a datatable and positive begin and end row numbers, it should return a datatable with 2 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -35,7 +35,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and positive begin row number, it should a datatable with 4 rows", async () => {
+  tap.test("given a datatable and positive begin row number, it should return a datatable with 4 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -55,7 +55,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and positive begin row number and a limit, it should a datatable with 2 rows", async () => {
+  tap.test("given a datatable and positive begin row number and a limit, it should return a datatable with 2 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -74,7 +74,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and positive begin row number and a large limit, it should a datatable with 4 rows", async () => {
+  tap.test("given a datatable and positive begin row number and a large limit, it should return a datatable with 4 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -95,7 +95,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and negative begin row number, it should a datatable with 3 rows", async () => {
+  tap.test("given a datatable and negative begin row number, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -115,7 +115,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and negative begin and end row numbers, it should a datatable with 3 rows", async () => {
+  tap.test("given a datatable and negative begin and end row numbers, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {

@@ -16,7 +16,7 @@ tap.test("select-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and one column, it should a datatable", async (t) => {
+  tap.test("given a datatable and one column, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -38,7 +38,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given two columns in a datatable, it should a datatable", async (t) => {
+  tap.test("given two columns in a datatable, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -60,7 +60,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given two columns in a datatable and a pattern, it should a datatable", async (t) => {
+  tap.test("given two columns in a datatable and a pattern, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -83,7 +83,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given two columns in a datatable and a pattern, it should a datatable", async (t) => {
+  tap.test("given two columns in a datatable and a pattern, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

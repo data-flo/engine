@@ -33,7 +33,7 @@ module.exports = {
     },
     {
       "name": "tree file",
-      "type": "text",
+      "type": "file",
       "default": null,
       "description": "A phylogenetic tree file in Newick format.\nLeave empty if using `tree url`.",
     },
@@ -45,7 +45,7 @@ module.exports = {
     },
     {
       "name": "network file",
-      "type": "text",
+      "type": "file",
       "default": null,
       "description": "A network file in DOT format.\nLeave empty if using `network url`.",
     },
