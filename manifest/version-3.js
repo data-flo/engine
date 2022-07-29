@@ -192,6 +192,10 @@ module.exports = function (doc) {
 
   renameAdaptor("dropbox-file", "import-file-from-dropbox");
 
+  renameAdaptor("extend-datatable", "map-column-values");
+  renameAdaptorInput("map-column-values", "source", "original column");
+  renameAdaptorInput("map-column-values", "target", "new column");
+
   renameAdaptor("epicollect-project", "import-from-epicollect-project");
 
   renameAdaptor("figshare-file", "import-file-from-figshare");

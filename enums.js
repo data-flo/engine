@@ -103,3 +103,8 @@ module.exports.SortDirections = Object.freeze([
   [ "asc", "Ascending order" ],
   [ "desc", "Descending order" ],
 ]);
+
+module.exports.UnmappedValues = Object.freeze([
+  [ "blank", "Replace original value with blank" ],
+  [ "include", "Keep original value" ],
+]);
