@@ -1,16 +1,11 @@
-const utils = require("../../utils");
+const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = function (args) {
-  const pattern = utils.text.makeRegexp(args.pattern, true, true);
+  const pattern = makeRegexp(args.pattern, true, true);
 
-  let text = null;
-  if (args.text) {
-    text = args.text.replace(pattern, args.replacement);
-  }
+  const text = args.text.replace(pattern, args.replacement);
 
-  return {
-    text,
-  };
+  return { text };
 };
 
 module.exports.manifest = require("./manifest");

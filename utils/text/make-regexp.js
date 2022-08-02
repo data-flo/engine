@@ -1,19 +1,21 @@
 const escapeStringRegexp = require("escape-string-regexp");
 
 module.exports = function makeRegexp(expression, ignoreCase = true, global = false) {
-  if (expression.startsWith("/") && expression.endsWith("/")) {
-    const flags = [];
-    if (ignoreCase) {
-      flags.push("i");
-    }
-    if (global) {
-      flags.push("g");
-    }
-    return new RegExp(
-      expression.substring(1, expression.length - 1),
-      flags.join("")
-    );
+  const flags = [];
+  if (ignoreCase) {
+    flags.push("i");
+  }
+  if (global) {
+    flags.push("g");
   }
 
-  return new RegExp(escapeStringRegexp(expression));
+  return new RegExp(
+    (expression.startsWith("/") && expression.endsWith("/"))
+      ?
+      expression.substring(1, expression.length - 1)
+      :
+      escapeStringRegexp(expression),
+    flags.join(""),
+  );
+
 };
