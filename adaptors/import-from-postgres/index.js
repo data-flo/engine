@@ -1,6 +1,6 @@
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../types/datatable");
 
-const queryDatabase = require("../../utils/databases/query");
+const queryDatabase = require("../utils/databases/query");
 
 module.exports = async function (args) {
   const client = "pg";
