@@ -8,7 +8,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable to be searched.",
+      "description": "The datatable to be searched.",
       "required": true,
     },
     {
