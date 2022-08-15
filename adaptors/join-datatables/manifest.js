@@ -42,7 +42,7 @@ module.exports = {
     {
       "name": "case sensitive",
       "type": "boolean",
-      "description": "When set `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `False`.",
+      "description": "When set to `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `False`.",
       "required": false,
       "default": false,
     },
