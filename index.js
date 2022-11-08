@@ -41,7 +41,8 @@ class Engine {
   }
 
   runAdaptor(name, args) {
-    return runAdaptor(name, args, this);
+    const adaptor = this.getAdaptorExecutable(name);
+    return runAdaptor(adaptor, args);
   }
 
   runDataflow(manifest, args, options) {

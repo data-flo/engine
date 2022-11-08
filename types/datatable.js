@@ -89,6 +89,7 @@ class Datatable {
 
   getReader(options = EmptyObject) {
     const parserOptions = {
+      bom: true,
       columns: true,
       trim: true,
       ...options,

@@ -123,11 +123,18 @@ module.exports = function (doc) {
 
   renameAdaptor("csv-file-to-datatable", "import-from-csv-file");
   renameAdaptorInput("import-from-csv-file", "csv", "file");
+  renameAdaptorInput("import-from-csv-file", "columns", "column names");
   renameAdaptorInput("import-from-csv-file", "separator", "delimiter");
 
   changeAdaptorInput("join-datatables", "columns", (binding) => {
     if (binding.type === "value") {
       binding.value = binding.value.map(([ key ]) => key);
+    }
+  });
+  changeAdaptorInput("join-datatables", "inner join", (binding) => {
+    if (binding.type === "value") {
+      binding.target = "join type";
+      binding.value = binding.value ? "Inner Join" : "Left Join";
     }
   });
   renameAdaptorOutput("join-datatable", "skipped", "unmatched");
@@ -326,7 +333,7 @@ module.exports = function (doc) {
   renameAdaptor("mysql-database", "import-from-mysql");
 
   renameAdaptorInput("split-column", "source", "column name");
-  renameAdaptorOutput("split-column", "columns", "new column names");
+  renameAdaptorInput("split-column", "columns", "new column names");
 
   renameAdaptorInput("replace-blank-values", "replacement", "new value");
 

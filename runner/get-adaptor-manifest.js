@@ -1,13 +1,13 @@
 const path = require("path");
 
 module.exports = function getAdaptorManifest(name) {
-  const manifest = require(
+  const adaptor = require(
     path.join(
       __dirname,
       "..",
       "adaptors",
       name,
-      "manifest.js",
+      "index.js",
     ),
   );
 
@@ -27,5 +27,5 @@ module.exports = function getAdaptorManifest(name) {
   //   }
   // }
 
-  return manifest;
+  return adaptor.manifest;
 };
