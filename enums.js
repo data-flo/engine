@@ -1,3 +1,13 @@
+module.exports.AggregateMethods = Object.freeze([
+  [ `max`, "Max" ],
+  [ `mean`, "Mean" ],
+  [ `median`, "Median" ],
+  [ `min`, "Min" ],
+  [ `mode`, "Mode" ],
+  [ `sum`, "Sum" ],
+  [ `unique`, "Unique (distinct)" ],
+]);
+
 module.exports.CommonDelimiters = Object.freeze([
   [ ",", "Comma (`,`)" ],
   [ ";", "Semicolon (`;`)" ],
