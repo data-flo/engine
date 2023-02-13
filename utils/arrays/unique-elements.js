@@ -1,4 +1,4 @@
-export default function uniqueElements(array, valueOf, sort = false) {
+export default function uniqueElements(array, valueOf) {
   const unique = new Set();
 
   if (typeof valueOf === "function") {
@@ -17,10 +17,5 @@ export default function uniqueElements(array, valueOf, sort = false) {
     }
   }
 
-  if (sort) {
-    return Array.from(unique).sort();
-  }
-  else {
-    return Array.from(unique);
-  }
+  return Array.from(unique);
 }
