@@ -1,3 +1,5 @@
+const { AggregateMethods } = require("../../enums");
+
 module.exports = {
   "description": "Aggregates values in specified columns grouped by rows.",
   "group": "Transformations",
@@ -7,11 +9,14 @@ module.exports = {
       "name": "data",
       "type": "datatable",
       "description": "The datatable to be aggregated.",
+      "required": true,
     },
     {
       "name": "group column names",
       "type": "list",
       "description": "The names of the columns containing values to be grouped.",
+      "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "aggregations",

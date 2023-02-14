@@ -1,11 +1,12 @@
-const geocoder = require("../../utils/data/geocoder");
+const geocoder = require("../../utils/geocoding/geocoder");
+
 const geocodedPlaceToFeature = require("../../utils/geocoding/geocoded-place-to-feature");
 
 const cache = require("../../utils/cache");
 
 module.exports = async function (args) {
   const data = await args.data.addColumnAsync(
-    args["feature column"],
+    args["location column"],
     async (row) => {
       if (row[args["latitude column"]] && row[args["longitude column"]]) {
         const coordinates = `${row[args["latitude column"]]}, ${row[args["longitude column"]]}`;
@@ -20,7 +21,7 @@ module.exports = async function (args) {
         );
 
         if (place) {
-          const feature = geocodedPlaceToFeature(place, args["feature type"]);
+          const feature = geocodedPlaceToFeature(place, args["location type"]);
           if (feature) {
             return feature;
           }

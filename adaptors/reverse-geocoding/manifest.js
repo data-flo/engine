@@ -42,19 +42,13 @@ module.exports = {
     {
       "name": "api provider",
       "type": "text",
-      "description": ".",
-      "required": true,
+      "description": "OpenCage or Mapbox",
+      "required": false,
     },
     {
       "name": "api key",
       "type": "text",
-      "description": "An OpenCage Geocoding API key (https://opencagedata.com/api).",
-      "required": true,
-    },
-    {
-      "name": "api key",
-      "type": "text",
-      "description": "A Mapbox API key from https://www.mapbox.com/.",
+      "description": "An OpenCage Geocoding API key (https://opencagedata.com/api) or a Mapbox API key (https://docs.mapbox.com/help/getting-started/access-tokens/).",
       "required": true,
     },
   ],

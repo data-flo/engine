@@ -1,16 +1,6 @@
 const { Datatable } = require("../../types/datatable");
 
-class GroupMap extends Map {
-  add(key, value) {
-    const group = super.get(key);
-    if (group) {
-      group.push(value);
-    }
-    else {
-      super.set(key, [ value ]);
-    }
-  }
-}
+const GroupMap = require("../../utils/structures/group-map");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(
