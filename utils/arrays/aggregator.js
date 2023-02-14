@@ -4,7 +4,6 @@ const {
   median,
   min,
   sum,
-  count,
 } = require("d3-array");
 
 const uniqueElements = require("./unique-elements");
