@@ -1,6 +1,6 @@
 const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/request/get-as-stream");
-const getRequestAsJSON = require("../../utils/request/get-as-json");
+const getRequestAsStream = require("../../utils/requests/get-as-stream");
+const getRequestAsJSON = require("../../utils/requests/get-as-json");
 
 module.exports = async function (args) {
   const validUrl = /^https:\/\/figshare\.com\/.+\/(\d+)/i;

@@ -1,5 +1,5 @@
 const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/request/get-as-stream");
+const getRequestAsStream = require("../../utils/requests/get-as-stream");
 
 module.exports = async function (args) {
   const validUrl = /^https:\/\/www\.dropbox\.com\/s\/(.+)\/?/i;

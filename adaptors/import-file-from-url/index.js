@@ -5,7 +5,7 @@ const StreamPromises = require("stream/promises");
 const SFTPClient = require("ssh2-sftp-client");
 
 const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/request/get-as-stream");
+const getRequestAsStream = require("../../utils/requests/get-as-stream");
 
 const allowedProtocols = [
   "data:",

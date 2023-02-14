@@ -1,4 +1,4 @@
-const getJsonRequest = require("../../utils/request/get-as-json");
+const getJsonRequest = require("../../utils/requests/get-as-json");
 
 const sleep = require("../../utils/async/sleep");
 
