@@ -13,8 +13,6 @@ class Datatable {
   static async create(options) {
     const filePath = await tmpFilePath();
 
-    // console.debug({filePath})
-
     const stringifier = stringify({
       header: true,
       quoted: true,
