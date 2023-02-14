@@ -105,7 +105,7 @@ module.exports = function aggregator(method, columnName) {
         (rows) => uniqueElements(
           rows,
           (x) => x[columnName],
-        ).join(", ")
+        ).join(",")
       );
     }
   }
