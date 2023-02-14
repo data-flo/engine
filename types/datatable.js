@@ -299,6 +299,22 @@ class Datatable {
     return data;
   }
 
+  async replaceColumnValues(columnNames, regex, replacement) {
+    const data = await this.transformSync(
+      (row) => {
+        for (const columnName of columnNames) {
+          if (typeof row[columnName] === "string") {
+            row[columnName] = row[columnName].replace(regex, replacement);
+          }
+        }
+
+        return row;
+      }
+    );
+
+    return data;
+  }
+
   async readAllRows() {
     const rows = [];
 
