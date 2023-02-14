@@ -1,4 +1,4 @@
-export default function uniqueElements(array, valueOf) {
+module.exports = function uniqueElements(array, valueOf) {
   const unique = new Set();
 
   if (typeof valueOf === "function") {
@@ -18,4 +18,4 @@ export default function uniqueElements(array, valueOf) {
   }
 
   return Array.from(unique);
-}
+};
