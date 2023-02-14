@@ -3,9 +3,10 @@ module.exports = {
   "category": "Data Sources",
   "input": [
     {
-      "name": "url",
+      "name": "project",
       "type": "text",
       "description": "The URL of the Microreact project to be imported (e.g. https://microreact.org/project/Ny8H4gsH).",
+      "required": true,
     },
   ],
   "output": [
