@@ -1,6 +1,5 @@
 const DBFFile = require("dbffile");
 
-const createTmpFilePath = require("../../utils/file/tmp-path");
 const { FileStream } = require("../../types/file");
 
 module.exports = async function (args) {
