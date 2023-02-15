@@ -2,7 +2,7 @@ const path = require("path");
 const SambaClient = require("samba-client");
 
 const { FileStream } = require("../../types/file");
-const sleep = require("../../utils/async/sleep");
+const lastElement = require("../../utils/arrays/last-element");
 
 module.exports = async function (args) {
   let shareAddress = args["share address"];
@@ -22,23 +22,23 @@ module.exports = async function (args) {
   });
 
   let remoteFilePath = args["file path"];
-  if (remoteFilePath.startsWith(args.share)) {
-    remoteFilePath = remoteFilePath.substr(args.share.length);
+  if (remoteFilePath.startsWith(args["share address"])) {
+    remoteFilePath = remoteFilePath.substr(args["share address"].length);
   }
   remoteFilePath = remoteFilePath.replace(/\\/g, "/");
   if (remoteFilePath.startsWith("/")) {
     remoteFilePath = remoteFilePath.substr(1);
   }
 
-  const file = await FileStream.createEmpty();
+  const name = lastElement(remoteFilePath.split("/")) || "file";
+
+  const file = await FileStream.createEmpty({ name });
 
   await client.getFile(
     remoteFilePath,
     path.basename(file.getSource()),
     path.dirname(file.getSource()),
   );
-
-  // await sleep(1000);
 
   return { file };
 };

@@ -3,15 +3,17 @@ const tap = require("../../utils/testing/unit");
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 
-tap.test("import-file-from-smb adaptor", async () => {
+tap.test("import-file-from-smb-share adaptor", async () => {
 
   tap.test("given an URL, it should download it", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "share address": "\\\\localhost\\share",
+        "share address": "\\\\localhost\\projects",
         "file path": "data\\demo.nwk",
         "port": 8445,
+        "username": "joe",
+        "password": "samba",
       }
     );
     tap.ok(output.file, "adaptor should return file");
