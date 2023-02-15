@@ -5,7 +5,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createFile = require("../../types/file");
 
-tap.test("import-csv-file adaptor", async () => {
+tap.test("import-from-csv-file adaptor", async () => {
 
   tap.test("given a csv text, it should return a datatable", async () => {
     const testCsvFilePath = await createTmpTextFile(`"id","Country"
