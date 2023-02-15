@@ -7,10 +7,15 @@ const tmpFilePath = require("../utils/file/tmp-path");
 class FileStream {
 
   static async createEmpty(options = EmptyObject) {
-    const { fileName, ...rest } = options;
+    const { name, mediaType, ...rest } = options;
     const filePath = await tmpFilePath(rest);
 
-    return new FileStream(filePath);
+    const file = new FileStream(filePath);
+
+    file.name = name;
+    file.mediaType = mediaType;
+
+    return file;
   }
 
   static async createWriter(options) {
