@@ -1,4 +1,6 @@
 const createMicroreactDocument = require("microreact.js");
+const storeFile = require("mr.js/api-client/files/store");
+const createProject = require("mr.js/api-client/projects/create");
 
 function findFile(files, types) {
   for (const fileId of Object.keys(files)) {
@@ -10,20 +12,87 @@ function findFile(files, types) {
   return undefined;
 }
 
-module.exports = async function createMicroreactProject(args, context) {
-  let projectId = args.project;
-
+function normaliseProjectUrl(projectUrlOrId) {
+  let projectId = projectUrlOrId;
   {
-    const match = args.api.match(/.*\/project\/([123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ]{22})/i);
+    const match = projectUrlOrId.match(/^https?:\/\/.*\/project\/(.*)/i);
     if (match) {
       projectId = match[1];
     }
   }
 
+  return projectId;
+}
+
+async function createProject(data, tree, network, args) {
+  const request = await createMicroreactDocument({
+    name: args.name,
+    description: args.description,
+
+    data,
+    tree,
+    network,
+
+    settings: {
+      id: args["id column"],
+      timeline_field: args["timeline column"],
+      map_latitude: args["latitude column"],
+      map_longitude: args["longitude column"],
+    },
+  });
+
+  const response = await createProject(
+    args["server api"],
+    args["access token"],
+    request,
+  );
+
+  return {
+    id: response.id,
+    url: response.url,
+  };
+}
+
+async function getFileUrl(apiUrl, accessToken, file, url) {
+  if (file) {
+    const svaedUrl = await storeFile(
+      apiUrl,
+      accessToken,
+      file.getReader(),
+    );
+
+    return svaedUrl;
+  }
+
+  if (url) {
+    return url;
+  }
+}
+
+module.exports = async function createMicroreactProject(args) {
+  if ((/^https?:\/\/.*\/api/i).test(args["server api"])) {
+    throw new Error("Invalid Microreact API URL.");
+  }
+
+  const dataUrl = getFileUrl(
+    args["server api"],
+    args["access token"],
+    args["data file"],
+    args["data url"],
+  );
+
+  if (args.project) {
+    await updateProject(args);
+  }
+  else {
+    await createProject(args);
+  }
+
+  let projectId = args.project;
   {
-    const match = args.api.match(/(.*)\/api/i);
-    if (!match) {
-      throw new Error(`Invalid Microreact API URL: ${args.api}.`);
+    const match = args.projectId.match(/^https?:\/\/.*\/project\/(.*)/i);
+    if (match) {
+      projectId = match[1];
     }
   }
 
@@ -32,7 +101,7 @@ module.exports = async function createMicroreactProject(args, context) {
   const oldDocument = await context.request.postJson(
     `${apiUrl}/projects/json?project=${projectId}`,
     {},
-    { "access-token": args["access token"] },
+    { "access-token": args["access token"].trim() },
   );
 
   const dataFileId = findFile(
