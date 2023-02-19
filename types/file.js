@@ -67,7 +67,10 @@ class FileStream {
 
   getReader(options) {
     return (
-      FS.createReadStream(this.source, options)
+      FS.createReadStream(
+        this.source,
+        options,
+      )
     );
   }
 
