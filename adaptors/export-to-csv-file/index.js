@@ -1,4 +1,5 @@
-module.exports = async function createDatatable(args) {
+
+export default async function createDatatable(args) {
   let data = args.data;
 
   if (args.columns || args.delimiter !== ",") {
@@ -16,4 +17,4 @@ module.exports = async function createDatatable(args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

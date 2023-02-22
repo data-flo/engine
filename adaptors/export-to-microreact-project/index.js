@@ -1,6 +1,6 @@
-const createMicroreactDocument = require("microreact.js");
-const storeFile = require("mr.js/api-client/files/store");
-const createProject = require("mr.js/api-client/projects/create");
+import createMicroreactDocument  from "microreact";
+import storeFile  from "mr.js/api-client/files/store";
+import createProject  from "mr.js/api-client/projects/create";
 
 function findFile(files, types) {
   for (const fileId of Object.keys(files)) {
@@ -69,7 +69,7 @@ async function getFileUrl(apiUrl, accessToken, file, url) {
   }
 }
 
-module.exports = async function createMicroreactProject(args) {
+export default async function createMicroreactProject(args) {
   if ((/^https?:\/\/.*\/api/i).test(args["server api"])) {
     throw new Error("Invalid Microreact API URL.");
   }
@@ -171,4 +171,4 @@ module.exports = async function createMicroreactProject(args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export import manifest  from "./manifest";

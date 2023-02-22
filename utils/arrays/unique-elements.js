@@ -1,4 +1,4 @@
-module.exports = function uniqueElements(array, valueOf) {
+export default function uniqueElements(array, valueOf) {
   const unique = new Set();
 
   if (typeof valueOf === "function") {

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Appends the rows of two datatables into a new datatable based on common column names.",
   "group": "Transformations",
   "subgroup": "Data Tables",

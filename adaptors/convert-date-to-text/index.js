@@ -1,8 +1,9 @@
-const moment = require("moment");
+import moment  from "moment";
+import toString  from "../../utils/date/to-string";
 
-const toString = require("../../utils/date/to-string");
 
-module.exports = function (args) {
+
+export default function (args) {
 
   toString(
     args.value || new Date(),
@@ -33,4 +34,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

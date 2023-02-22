@@ -1,6 +1,7 @@
-const tap = require("tap");
+import tap  from "tap";
+import fs  from "fs";
 
-const fs = require("fs");
+
 
 tap.compareFile = function (filePath, expectedFileContent) {
   let actual = fs.readFileSync(filePath, "utf8");
@@ -12,4 +13,4 @@ tap.compareFile = function (filePath, expectedFileContent) {
 
 tap._test = () => {};
 
-module.exports = tap;
+export default tap;

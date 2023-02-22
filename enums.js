@@ -1,4 +1,4 @@
-module.exports.AggregateMethods = Object.freeze([
+export const AggregateMethods = Object.freeze([
   [ `max`, "Max" ],
   [ `mean`, "Mean" ],
   [ `median`, "Median" ],
@@ -8,7 +8,7 @@ module.exports.AggregateMethods = Object.freeze([
   [ `unique`, "Unique (distinct)" ],
 ]);
 
-module.exports.CommonDelimiters = Object.freeze([
+export const CommonDelimiters = Object.freeze([
   [ ",", "Comma (`,`)" ],
   [ ";", "Semicolon (`;`)" ],
   [ ":", "Colon (`:`)" ],
@@ -17,7 +17,7 @@ module.exports.CommonDelimiters = Object.freeze([
   [ "\\u0009", "tab" ],
 ]);
 
-module.exports.CommonLineEndings = Object.freeze([
+export const CommonLineEndings = Object.freeze([
   [ "\n", "Newline (\\n)" ],
   [ "\r\n", "CRLF (\\r\\n)" ],
   [ ",", "Comma (`,`)" ],
@@ -26,7 +26,7 @@ module.exports.CommonLineEndings = Object.freeze([
   [ "\\u0009", "tab" ],
 ]);
 
-module.exports.DateFormats = Object.freeze([
+export const DateFormats = Object.freeze([
   [ "yyyy-MM-dd'T'HH:mm:ssxxx", "ISO 8601 date and time + timezone (e.g. 2022-06-30T16:20:34+00:00)" ],
   [ "yyyy-MM-dd'T'HH:mm:ss'Z'", "ISO 8601 date and time in UTC (e.g. 2022-06-30T16:20:34Z)" ],
   [ "yyyy-MM-dd", "ISO 8601 date without time (e.g. 2022-06-30)" ],
@@ -39,11 +39,11 @@ module.exports.DateFormats = Object.freeze([
   [ "hh:mm", "12-hour time (e.g. 04:20 pm)" ],
 ]);
 
-module.exports.DurationUnits = Object.freeze([
+export const DurationUnits = Object.freeze([
   "years", "quarter", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds",
 ]);
 
-module.exports.FileEncodings = Object.freeze([
+export const FileEncodings = Object.freeze([
   "ascii",
   "base64",
   "binary",
@@ -53,7 +53,7 @@ module.exports.FileEncodings = Object.freeze([
   "latin1",
 ]);
 
-module.exports.FilterTypes = Object.freeze([
+export const FilterTypes = Object.freeze([
   [ "is-blank", "Value is blank" ],
   [ "not-blank", "Value is not blank" ],
   [ "equals", "Text is equal to" ],
@@ -78,17 +78,17 @@ module.exports.FilterTypes = Object.freeze([
   [ "not-number", "Value is not a number" ],
 ]);
 
-module.exports.JoinTypes = Object.freeze([
+export const JoinTypes = Object.freeze([
   [ "Left Join", "All rows from `main data` will be included, along with matching rows from `other data`" ],
   [ "Inner Join", "Rows from `main data` that do not have matches in `other data` will be excluded" ],
   [ "Full Join", "All rows from `main data` and `other data` will be included" ],
 ]);
 
-module.exports.LanguageLocales = Object.freeze([
+export const LanguageLocales = Object.freeze([
   "af", "ar", "ar-DZ", "ar-EG", "ar-MA", "ar-SA", "ar-TN", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de-AT", "el", "en-AU", "en-CA", "en-GB", "en-IE", "en-IN", "en-NZ", "en-US", "en-ZA", "eo", "es", "et", "eu", "fa-IR", "fi", "fr", "fr-CA", "fr-CH", "fy", "gd", "gl", "gu", "he", "hi", "hr", "ht", "hu", "hy", "id", "is", "it", "ja", "ja-Hira", "ka", "kk", "km", "kn", "ko", "lb", "lt", "lv", "mk", "mn", "ms", "mt", "nb", "nl", "nl-BE", "nn", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sl", "sq", "sr", "sr-Latn", "sv", "ta", "te", "th", "tr", "ug", "uk", "uz", "uz-Cyrl", "vi", "zh-CN", "zh-HK", "zh-TW",
 ]);
 
-module.exports.LetterCases = Object.freeze([
+export const LetterCases = Object.freeze([
   [ "camel", "camel case (`OfMice and men` → `ofMiceAndMen`)", "text with the separator denoted by the next word capitalised" ],
   [ "capital", "capital case (`OfMice and men` → `Of Mice And Men`)", "space separated text with each word capitalised" ],
   [ "constant", "constant case (`OfMice and men` → `OF_MICE_AND_MEN`)", "upper case text with an underscore between words" ],
@@ -109,12 +109,12 @@ module.exports.LetterCases = Object.freeze([
   [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);
 
-module.exports.SortDirections = Object.freeze([
+export const SortDirections = Object.freeze([
   [ "asc", "Ascending order" ],
   [ "desc", "Descending order" ],
 ]);
 
-module.exports.UnmappedValues = Object.freeze([
+export const UnmappedValues = Object.freeze([
   [ "blank", "Replace original value with blank" ],
   [ "include", "Keep original value" ],
 ]);

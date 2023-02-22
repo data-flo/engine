@@ -1,7 +1,8 @@
-const parseInputArguments = require("./parse-input-arguments");
-const parseOutputArguments = require("./parse-output-arguments");
+import parseInputArguments  from "./parse-input-arguments";
+import parseOutputArguments  from "./parse-output-arguments";
 
-module.exports = async function runAdaptor(adaptorExecutable, rawValues) {
+
+export default async function runAdaptor(adaptorExecutable, rawValues) {
   if (!adaptorExecutable.manifest) {
     throw new Error("Cannot find manifest in adaptor");
   }

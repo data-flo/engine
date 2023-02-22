@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Converts latitude & longitude in datatable columns to location names.",
   "group": "Transformations",
   "subgroup": "Data Tables",

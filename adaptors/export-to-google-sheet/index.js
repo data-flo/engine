@@ -1,13 +1,20 @@
-const checkSheetSize = require("./utils/check-sheet-size");
-const getClient = require("../google-spreadsheet/utils/get-client");
-const getSheetData = require("../google-spreadsheet/utils/get-sheet-data");
-const getSheetProperties = require("../google-spreadsheet/utils/get-sheet-properties");
-const getSheetRange = require("../google-spreadsheet/utils/get-sheet-range");
-const mergeData = require("./utils/merge-data");
-const rewriteUrl = require("../google-spreadsheet/utils/rewrite-url");
-const updateSheetData = require("./utils/update-sheet-data");
+import checkSheetSize  from "./utils/check-sheet-size";
+import getClient  from "../google-spreadsheet/utils/get-client";
+import getSheetData  from "../google-spreadsheet/utils/get-sheet-data";
+import getSheetProperties  from "../google-spreadsheet/utils/get-sheet-properties";
+import getSheetRange  from "../google-spreadsheet/utils/get-sheet-range";
+import mergeData  from "./utils/merge-data";
+import rewriteUrl  from "../google-spreadsheet/utils/rewrite-url";
+import updateSheetData  from "./utils/update-sheet-data";
 
-module.exports = async function (args) {
+
+
+
+
+
+
+
+export default async function (args) {
   if (!args.data.hasColumn(args["id column"])) {
     throw new Error(`datatable does not include a column named '${args["id column"]}'`);
   }
@@ -41,4 +48,4 @@ module.exports = async function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

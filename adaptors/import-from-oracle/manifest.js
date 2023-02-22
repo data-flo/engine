@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports data from an Oracle Database and returns the results as a datatable.",
   "group": "Transformations",
   "subgroup": "Data Sources",

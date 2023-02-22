@@ -1,4 +1,4 @@
-module.exports = function letterToColumn(letter) {
+export default function letterToColumn(letter) {
   let column = 0;
   const length = letter.length;
   for (let i = 0; i < length; i++)

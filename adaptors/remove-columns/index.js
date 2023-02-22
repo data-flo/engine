@@ -1,4 +1,5 @@
-module.exports = async function (args) {
+
+export default async function (args) {
   const columnsToKeep = (
     (await args.data.getColumns())
       .filter((x) => !args.columns.includes(x))
@@ -9,4 +10,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

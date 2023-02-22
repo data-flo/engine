@@ -1,6 +1,6 @@
-const { UnmappedValues } = require("../../enums");
+import { UnmappedValues }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Adds a new column to a datatable by mapping values of an existing column.",
   "group": "Transformations",
   "subgroup": "Data Tables",

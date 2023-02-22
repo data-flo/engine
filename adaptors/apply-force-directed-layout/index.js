@@ -1,4 +1,4 @@
-const Springy = require("springy");
+import Springy  from "springy";
 
 function runForceDirectedLayout(graph, options) {
   return new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ function runForceDirectedLayout(graph, options) {
   });
 }
 
-module.exports = async function (args) {
+export default async function (args) {
   const graph = new Springy.Graph();
   for (const node of args.graph.nodes) {
     graph.addNodes(node.id);
@@ -55,4 +55,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

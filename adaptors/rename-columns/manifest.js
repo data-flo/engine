@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Renames existing columns in a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

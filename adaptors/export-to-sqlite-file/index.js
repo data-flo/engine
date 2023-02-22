@@ -1,6 +1,6 @@
-const knex = require("knex");
+import knex  from "knex";
 
-module.exports = async function (args, context) {
+export default async function (args, context) {
   const db = knex({
     client: "sqlite3",
     connection: {
@@ -57,4 +57,4 @@ module.exports = async function (args, context) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

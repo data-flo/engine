@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Splits a list into two lists at the first instance of a specified separator value.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

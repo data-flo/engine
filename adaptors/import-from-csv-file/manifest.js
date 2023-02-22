@@ -1,6 +1,6 @@
-const { FileEncodings, CommonDelimiters, CommonLineEndings } = require("../../enums");
+import { FileEncodings, CommonDelimiters, CommonLineEndings }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Imports a CSV file and converts to a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

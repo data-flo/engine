@@ -1,4 +1,4 @@
-module.exports = function (ms = 1000) {
+export default function (ms = 1000) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });

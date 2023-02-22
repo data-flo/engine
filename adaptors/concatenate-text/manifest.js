@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Concatenates two texts.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

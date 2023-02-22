@@ -1,12 +1,17 @@
+import runAdaptor  from "./runner/run-adaptor";
+import runDataflow  from "./runner/run-dataflow";
+import getAdaptorExecutable  from "./runner/get-adaptor-executable";
+import getAdaptorManifest  from "./runner/get-adaptor-manifest";
+import mapFile  from "./utils/file/map";
 /* eslint-disable class-methods-use-this */
 
 // const Filehound = require("filehound");
 
-const runAdaptor = require("./runner/run-adaptor");
-const runDataflow = require("./runner/run-dataflow");
-const getAdaptorExecutable = require("./runner/get-adaptor-executable");
-const getAdaptorManifest = require("./runner/get-adaptor-manifest");
-const mapFile = require("./utils/file/map");
+
+
+
+
+
 
 // globalTunnel.initialize();
 
@@ -40,8 +45,8 @@ class Engine {
     }
   }
 
-  runAdaptor(name, args) {
-    const adaptor = this.getAdaptorExecutable(name);
+  async runAdaptor(name, args) {
+    const adaptor = await this.getAdaptorExecutable(name);
     return runAdaptor(adaptor, args);
   }
 
@@ -50,6 +55,6 @@ class Engine {
   }
 }
 
-module.exports = function (config) {
+export default function (config) {
   return new Engine(config);
 };

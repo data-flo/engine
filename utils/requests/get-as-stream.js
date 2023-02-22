@@ -1,11 +1,15 @@
-const Path = require("path");
-const { URL } = require("url");
-const { curly } = require("node-libcurl");
-const contentDisposition = require("content-disposition");
+import Path  from "path";
+import { URL }  from "url";
+import { curly }  from "node-libcurl";
+import contentDisposition  from "content-disposition";
+import { EmptyObject }  from "../constants";
 
-const { EmptyObject } = require("../constants");
 
-module.exports = async function (url) {
+
+
+
+
+export default async function (url) {
   const { statusCode, data, headers } = await curly(
     url,
     {

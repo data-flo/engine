@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Removes specified columns from a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

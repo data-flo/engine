@@ -1,4 +1,4 @@
-module.exports = function (prevDoc) {
+export default function (prevDoc) {
   const nextDoc = {};
 
   // Migrate input transformations and arguments

@@ -1,6 +1,6 @@
 const latestVesion = 3;
 
-module.exports = function (prevDoc) {
+export default async function (prevDoc) {
   const docVersion = prevDoc.version || 0;
 
   let nextDoc = prevDoc;
@@ -10,9 +10,9 @@ module.exports = function (prevDoc) {
     versionNumber <= latestVesion;
     versionNumber++
   ) {
-    const updator = require(`./version-${versionNumber}`);
-    nextDoc = updator(nextDoc);
+    const updator = await import(`./version-${versionNumber}`);
+    nextDoc = updator.default(nextDoc);
   }
 
   return nextDoc;
-};
+}

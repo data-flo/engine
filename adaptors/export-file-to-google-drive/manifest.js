@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Exports a file to a folder on Google Drive.\nThe folder should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
   "group": "Transformations",
   "subgroup": "Data Destinations",

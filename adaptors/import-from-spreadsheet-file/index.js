@@ -1,9 +1,11 @@
-const XLSX = require("xlsx");
+import XLSX  from "xlsx";
+import { Datatable }  from "../../types/datatable";
+import isInteger  from "../../utils/numbers/is-integer";
 
-const { Datatable } = require("../../types/datatable");
-const isInteger = require("../../utils/numbers/is-integer");
 
-module.exports = async function (args, context) {
+
+
+export default async function (args, context) {
   const workbook = XLSX.readFile(
     args.file.getSource(),
     {
@@ -37,4 +39,4 @@ module.exports = async function (args, context) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

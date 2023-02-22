@@ -1,4 +1,4 @@
-module.exports = function (value) {
+export default function (value) {
   if (typeof value === "string") {
     return value;
   }

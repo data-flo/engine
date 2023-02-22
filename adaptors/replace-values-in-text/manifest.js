@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Replaces all instances of a pattern in a text with a specified replacement text.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

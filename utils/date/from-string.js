@@ -1,8 +1,10 @@
-const { parse, parseISO, isValid } = require("date-fns");
-const locale = require("date-fns/locale");
-const standardiseFormatString = require("./standardise-format-string");
+import { parse, parseISO, isValid }  from "date-fns";
+import locale  from "date-fns/locale";
+import standardiseFormatString  from "./standardise-format-string";
 
-module.exports = function (stringValue, formatString, localeString) {
+
+
+export default function (stringValue, formatString, localeString) {
   const cleanFormatString = standardiseFormatString(formatString);
   let dateValue;
 

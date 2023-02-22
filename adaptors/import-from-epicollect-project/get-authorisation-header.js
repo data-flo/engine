@@ -1,6 +1,7 @@
+
 const getJsonRequest = require("../../utils/requests/get-as-json");
 
-module.exports = async function (clientId, clientSecret) {
+export default async function (clientId, clientSecret) {
   if (!clientId || !clientSecret) {
     throw new Error("Both `client id` and `client secret` are required.");
   }

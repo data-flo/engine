@@ -1,4 +1,5 @@
-module.exports = function (args) {
+
+export default function (args) {
   const list = [
     ...args["first list"],
     ...args["second list"],
@@ -8,4 +9,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

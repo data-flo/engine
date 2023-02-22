@@ -1,6 +1,6 @@
-const { DateFormats, LanguageLocales } = require("../../enums");
+import { DateFormats, LanguageLocales }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Converts a date/time value to text in a specified format.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

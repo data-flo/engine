@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Creates text using a Mustache template (https://mustache.github.io/).",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

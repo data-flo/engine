@@ -1,6 +1,6 @@
-const knex = require("knex");
+import knex  from "knex";
 
-module.exports = function queryDatabase(client, connection, query) {
+export default function queryDatabase(client, connection, query) {
   if (!/^\s*SELECT/i.test(query)) {
     throw new Error("Invalid SQL Query: query should start with a SELECT statement.");
   }

@@ -1,5 +1,6 @@
-const tap = require("../../utils/testing/unit");
-const toString = require("./to-string");
+import tap  from "../../utils/testing/unit";
+import toString  from "./to-string";
+
 
 tap.test("given a string, it should return undefined", async (t) => {
   const input = "2022-06-29T09:33:49-00:00";

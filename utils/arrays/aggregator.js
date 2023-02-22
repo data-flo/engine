@@ -1,12 +1,13 @@
-const {
+import {
   max,
   mean,
   median,
   min,
   sum,
-} = require("d3-array");
+}  from "d3-array";
+import uniqueElements  from "./unique-elements";
 
-const uniqueElements = require("./unique-elements");
+
 
 function mode(array, valueOf)
 {
@@ -34,7 +35,7 @@ function mode(array, valueOf)
   return maxEl;
 }
 
-module.exports = function aggregator(method, columnName) {
+export default function aggregator(method, columnName) {
   switch (method) {
 
     case "max": {

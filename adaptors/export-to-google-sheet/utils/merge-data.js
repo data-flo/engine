@@ -1,6 +1,6 @@
 /* eslint eqeqeq: 0 */
 
-module.exports = function (sheetData, args) {
+export default function (sheetData, args) {
   const cellUpdates = [];
   const updatedIds = new Set();
   const createdIds = new Set();

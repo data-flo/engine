@@ -1,6 +1,6 @@
-const newickParser = require("biojs-io-newick");
+import newickParser  from "biojs-io-newick";
 
-module.exports = function (args) {
+export default function (args) {
   const rootNode = newickParser.parse_newick(args.newick);
   const queue = [ rootNode ];
   const labels = [];
@@ -16,4 +16,4 @@ module.exports = function (args) {
   return { labels };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,4 +1,4 @@
-function sortStagesByExecutionOrder(steps) {
+export function sortStagesByExecutionOrder(steps) {
   const ordered = [];
   const visited = new Set();
 
@@ -30,7 +30,3 @@ function sortStagesByExecutionOrder(steps) {
 
   return ordered;
 }
-
-module.exports = {
-  sortStagesByExecutionOrder,
-};

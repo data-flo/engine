@@ -1,6 +1,6 @@
-const { SortDirections } = require("../../enums");
+import { SortDirections }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Sorts a datatable by one or more columns.",
   "group": "Transformations",
   "subgroup": "Data Tables",

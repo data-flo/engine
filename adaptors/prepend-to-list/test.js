@@ -1,7 +1,9 @@
-const tap = require("../../utils/testing/unit");
-const runAdaptor = require("../../runner/run-adaptor");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
 
-const adaptor = require("./index");
+
+
 
 tap.test("prepend-to-list adaptor", async () => {
 

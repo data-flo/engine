@@ -1,6 +1,6 @@
 const validUrl = /^https:\/\/five\.epicollect\.net\/project\/([^\/]+)/i;
 
-module.exports = function (url) {
+export default function (url) {
   const match = validUrl.exec(url);
   if (match && match[1]) {
     return match[1];

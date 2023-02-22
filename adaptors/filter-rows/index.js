@@ -1,8 +1,9 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
+import makePredicate  from "../../utils/expressions/make-predicate";
 
-const makePredicate = require("../../utils/expressions/make-predicate");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   await args.data.shouldIncludeColumns(args["column name"]);
 
   const predicate = makePredicate(
@@ -35,4 +36,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

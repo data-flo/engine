@@ -1,14 +1,17 @@
-const path = require("path");
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 
-module.exports = function getAdaptorManifest(name) {
-  const adaptor = require(
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default async function getAdaptorManifest(name) {
+  const adaptor = await import(
     path.join(
       __dirname,
       "..",
       "adaptors",
       name,
       "index.js",
-    ),
+    )
   );
 
   // TODO: override defaults
@@ -28,4 +31,4 @@ module.exports = function getAdaptorManifest(name) {
   // }
 
   return adaptor.manifest;
-};
+}

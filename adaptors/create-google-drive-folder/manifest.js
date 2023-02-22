@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Creates a sub folder in a parent folder in Google Drive.\nThe parent folder should be either public or shared with `data-flo@data-flo.iam.gserviceaccount.com`, and given `can edit` permission.",
   "group": "Transformations",
   "subgroup": "Data Destinations",

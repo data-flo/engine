@@ -1,10 +1,13 @@
-const path = require("path");
-const SambaClient = require("samba-client");
+import path  from "path";
+import SambaClient  from "samba-client";
+import { FileStream }  from "../../types/file";
+import parseSMBSharePath  from "../../utils/file/parse-smb-share-path";
 
-const { FileStream } = require("../../types/file");
-const parseSMBSharePath = require("../../utils/file/parse-smb-share-path");
 
-module.exports = async function (args) {
+
+
+
+export default async function (args) {
   const [ shareAddress, remoteFilePath ] = parseSMBSharePath(
     args["share address"],
     args["file path"],
@@ -32,4 +35,4 @@ module.exports = async function (args) {
   return { file: args.file };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,14 +1,19 @@
-const sleep = require("../../utils/async/sleep");
+import sleep  from "../../utils/async/sleep";
+import getClient  from "./utils/get-client";
+import getSheetData  from "./utils/get-sheet-data";
+import getSheetProperties  from "./utils/get-sheet-properties";
+import getSheetRange  from "./utils/get-sheet-range";
+import rewriteUrl  from "./utils/rewrite-url";
 
-const getClient = require("./utils/get-client");
-const getSheetData = require("./utils/get-sheet-data");
-const getSheetProperties = require("./utils/get-sheet-properties");
-const getSheetRange = require("./utils/get-sheet-range");
-const rewriteUrl = require("./utils/rewrite-url");
+
+
+
+
+
 
 let lastRun = 0;
 
-module.exports = async function (args) {
+export default async function (args) {
   const spreadsheetId = rewriteUrl(args.url);
 
   if ((new Date()).getTime() - lastRun < 1000) {
@@ -59,4 +64,4 @@ module.exports = async function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

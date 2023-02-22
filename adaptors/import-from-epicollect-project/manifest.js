@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports data from an Epicollect5 project.",
   "group": "Transformations",
   "subgroup": "Data Sources",

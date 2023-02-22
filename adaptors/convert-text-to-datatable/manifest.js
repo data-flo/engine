@@ -1,6 +1,6 @@
-const { CommonDelimiters } = require("../../enums");
+import { CommonDelimiters }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Converts delimited text (e.g. comma-separated values) to a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

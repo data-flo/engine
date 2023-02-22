@@ -1,6 +1,6 @@
-const escapeRegexp = require("escape-string-regexp");
+import escapeRegexp  from "escape-string-regexp";
 
-module.exports = function makePredicate(operator, expression, caseSensetive = false) {
+export default function makePredicate(operator, expression, caseSensetive = false) {
   switch (operator) {
     case "in": {
       return (x) => (expression.includes(x?.valueOf()));

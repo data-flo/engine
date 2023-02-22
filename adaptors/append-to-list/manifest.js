@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Adds a text value to the end of a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

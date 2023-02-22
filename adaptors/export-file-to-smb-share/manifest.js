@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Exports a file to a shared network drive using standard SMB/CIFS protocol.",
   "group": "Transformations",
   "subgroup": "Data Sources",

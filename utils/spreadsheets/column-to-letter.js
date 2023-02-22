@@ -1,4 +1,4 @@
-module.exports = function (column) {
+export default function (column) {
   let temp;
   let letter = "";
   while (column > 0) {

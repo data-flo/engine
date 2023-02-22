@@ -1,10 +1,11 @@
+import columnToLetter  from "./column-to-letter";
 /* eslint one-var: 0, one-var-declaration-per-line: 0 */
 
-const columnToLetter = require("./column-to-letter");
+
 
 const validRangeRegex = /^(?:([A-Z]+)(\d+)?)?:?(?:([A-Z]+)(\d+)?)?$/i;
 
-module.exports = function (sheetProps, range) {
+export default function (sheetProps, range) {
   let fromCol, fromRow, toCol, toRow;
   if (range) {
     const firstMatch = range.match(validRangeRegex);

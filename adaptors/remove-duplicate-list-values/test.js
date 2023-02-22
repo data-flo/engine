@@ -1,8 +1,10 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
 
-const runAdaptor = require("../../runner/run-adaptor");
 
-const adaptor = require("./index");
+
+
 
 tap.test("remove-duplicate-list-values adaptor", async () => {
 

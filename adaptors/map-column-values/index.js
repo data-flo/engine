@@ -1,7 +1,8 @@
-const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map");
-const { EmptyString } = require("../../utils/constants");
+import CaseInsensitiveMap  from "../../utils/structures/case-insensitive-map";
+import { EmptyString }  from "../../utils/constants";
 
-module.exports = async function mapColumnValues(args) {
+
+export default async function mapColumnValues(args) {
   await args.data.shouldIncludeColumns(args["original column"]);
 
   const newColumnName = args["new column"] || args["original column"];
@@ -33,4 +34,4 @@ module.exports = async function mapColumnValues(args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

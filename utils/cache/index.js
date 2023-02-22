@@ -2,12 +2,12 @@ let currentCache = (key, expiryHours, valueGetter) => {
   return valueGetter();
 };
 
-function setCache(cache) {
+export function  setCache (cache) {
   currentCache = cache;
 }
 
-module.exports = function (key, expiryHours, valueGetter) {
+export default function (key, expiryHours, valueGetter) {
   return currentCache(key, expiryHours, valueGetter);
 };
 
-module.exports.setCache = setCache;
+

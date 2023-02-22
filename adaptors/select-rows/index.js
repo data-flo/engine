@@ -1,6 +1,6 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
 
-module.exports = async function (args) {
+export default async function (args) {
   let totalRows = 0;
 
   if (args.begin === 0) {
@@ -65,4 +65,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,17 +1,16 @@
-const fs = require("fs");
-const path = require("path");
+import path from "path";
 
-const logger = require("cgps-application-server/logger");
+// import logger from "cgps-application-server/logger";
 
-module.exports = function (fsMappings, filePath) {
+export default function (fsMappings, filePath) {
   const normalisedFilePath = filePath.toLowerCase().replace(/\\/g, "/");
-  logger.debug("[utils.files.map]", { fsMappings, filePath, normalisedFilePath })
+  // logger.debug("[utils.files.map]", { fsMappings, filePath, normalisedFilePath });
   for (const sourceMapping of Object.keys(fsMappings)) {
     const targetMapping = fsMappings[sourceMapping];
-    logger.debug("\t", { normalisedFilePathStartsWithSourceMapping: normalisedFilePath.startsWith(sourceMapping.toLowerCase()), sourceMapping, targetMapping, sourceMappingLowerCase: sourceMapping.toLowerCase() })
+    // logger.debug("\t", { normalisedFilePathStartsWithSourceMapping: normalisedFilePath.startsWith(sourceMapping.toLowerCase()), sourceMapping, targetMapping, sourceMappingLowerCase: sourceMapping.toLowerCase() });
     if (normalisedFilePath.startsWith(sourceMapping.toLowerCase())) {
-      const resolvedPath = path.join(targetMapping, filePath.substr(sourceMapping.length).replace(/\\/g, "/"))
-      logger.debug("\t", { resolvedPath, resolvedPathStartsWithTargetMapping: resolvedPath.startsWith(targetMapping) })
+      const resolvedPath = path.join(targetMapping, filePath.substr(sourceMapping.length).replace(/\\/g, "/"));
+      // logger.debug("\t", { resolvedPath, resolvedPathStartsWithTargetMapping: resolvedPath.startsWith(targetMapping) });
       if (resolvedPath.startsWith(targetMapping)) {
         return resolvedPath;
       }
@@ -19,4 +18,4 @@ module.exports = function (fsMappings, filePath) {
   }
 
   throw new Error(`Cannot map file: ${filePath}`);
-};
+}

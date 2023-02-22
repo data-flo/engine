@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     "identifier": "4NaCFWY92Q2aY1p1bQweqW",
     "manifest": {

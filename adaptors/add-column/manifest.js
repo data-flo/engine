@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Adds a new column to an existing datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

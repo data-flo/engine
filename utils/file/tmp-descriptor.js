@@ -1,6 +1,6 @@
-const tmp = require("tmp-promise");
+import tmp  from "tmp-promise";
 
-module.exports = async function (options) {
+export default async function (options) {
   const { fd, path, cleanup } = await tmp.file();
   return fd;
 };

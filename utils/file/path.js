@@ -1,5 +1,6 @@
-const fs = require("fs");
-const tmp = require("./tmp");
+import fs  from "fs";
+import tmp  from "./tmp";
+
 
 function awaitStream(stream, endEventName = "end") {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ function awaitStream(stream, endEventName = "end") {
   });
 }
 
-module.exports = async function (file) {
+export default async function (file) {
   if (file.path && !file.__isRequestRequest) {
     return file.path;
   }

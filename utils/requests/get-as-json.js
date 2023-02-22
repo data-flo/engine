@@ -1,7 +1,8 @@
-const axios = require("axios");
-const { EmptyObject } = require("../constants");
+import axios  from "axios";
+import { EmptyObject }  from "../constants";
 
-module.exports = async function getJson(url, data, options = EmptyObject) {
+
+export default async function getJson(url, data, options = EmptyObject) {
   const response = await axios({
     method: "get",
     url,

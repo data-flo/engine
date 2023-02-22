@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Sends an email message via a SMTP server.",
   "group": "Transformations",
   "subgroup": "Data Destinations",

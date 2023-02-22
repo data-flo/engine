@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Reads data from a dBASE (`.dbf`) file.",
   "group": "Transformations",
   "subgroup": "Data Sources",

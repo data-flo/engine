@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Appends two lists into one.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

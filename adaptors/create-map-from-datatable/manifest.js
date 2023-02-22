@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Creates a map from a datatable.",
   "group": "Transformations",
   "subgroup": "Map Manipulation",

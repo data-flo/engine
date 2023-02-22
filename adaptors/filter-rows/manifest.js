@@ -1,6 +1,6 @@
-const { FilterTypes } = require("../../enums");
+import { FilterTypes }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Finds rows in a datatable that match a search pattern.",
   "group": "Transformations",
   "subgroup": "Data Tables",

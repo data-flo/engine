@@ -1,6 +1,6 @@
-const opencage = require("opencage-api-client");
+import opencage  from "opencage-api-client";
 
-module.exports = function reverseGeocode(opencageApiKey, query, confidenceSorce, proximity) {
+export default function reverseGeocode(opencageApiKey, query, confidenceSorce, proximity) {
   return opencage
     .geocode({
       q: query,

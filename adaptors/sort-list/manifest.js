@@ -1,6 +1,6 @@
-const { SortDirections } = require("../../enums");
+import { SortDirections }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Sorts values in a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

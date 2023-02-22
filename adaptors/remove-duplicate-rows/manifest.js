@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Removes duplicate rows from a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

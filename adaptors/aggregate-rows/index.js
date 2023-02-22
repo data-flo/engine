@@ -1,8 +1,10 @@
-const { Datatable } = require("../../types/datatable");
-const GroupMap = require("../../utils/structures/group-map");
-const aggregator = require("../../utils/arrays/aggregator");
+import { Datatable }  from "../../types/datatable";
+import GroupMap  from "../../utils/structures/group-map";
+import aggregator  from "../../utils/arrays/aggregator";
 
-module.exports = async function (args) {
+
+
+export default async function (args) {
   const groupedTableColumnNames = [ ...args["group column names"] ];
 
   await args.data.shouldIncludeColumns(
@@ -50,4 +52,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

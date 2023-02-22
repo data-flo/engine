@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Replaces all instances of a pattern in list values with a specified replacement text.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

@@ -1,6 +1,6 @@
-const { DateFormats, DurationUnits } = require("../../enums");
+import { DateFormats, DurationUnits }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Calculates the time difference (in a specified unit of measurement) between two datatable columns (column one - column two).",
   "group": "Transformations",
   "subgroup": "Data Manipulation",

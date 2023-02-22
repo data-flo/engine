@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Replaces blank values in a datatable column.",
   "group": "Transformations",
   "subgroup": "Data Tables",

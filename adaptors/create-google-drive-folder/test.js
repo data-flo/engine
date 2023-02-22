@@ -1,8 +1,11 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import adaptor  from "./index";
+import runAdaptor  from "../../runner/run-adaptor";
+import urlToId  from "../../utils/google-drive/folder-url-to-id";
 
-const adaptor = require("./index");
-const runAdaptor = require("../../runner/run-adaptor");
-const urlToId = require("../../utils/google-drive/folder-url-to-id");
+
+
+
 
 tap.test("create-google-drive-folder adaptor", async () => {
 

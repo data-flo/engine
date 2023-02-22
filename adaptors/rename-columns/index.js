@@ -1,4 +1,5 @@
-module.exports = async function (args) {
+
+export default async function (args) {
   const columnMappping = {};
   for (const column of (await args.data.getColumns())) {
     const mappedName = args["column names"].get(column);
@@ -10,4 +11,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

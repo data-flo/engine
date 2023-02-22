@@ -1,6 +1,6 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+import makeRegexp  from "../../utils/text/make-regexp";
 
-module.exports = function (args) {
+export default function (args) {
   const regex = makeRegexp(args.separator);
   const text = (args.separator === "\n") ? args.text.replace(/\r\n/g, "\n") : args.text;
 
@@ -17,4 +17,4 @@ module.exports = function (args) {
   return { list };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

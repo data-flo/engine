@@ -17,7 +17,7 @@ class Graph {
   }
 }
 
-module.exports = function createGraph(value) {
+export default function createGraph(value) {
   if (value instanceof Graph) {
     return value;
   }

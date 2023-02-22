@@ -1,6 +1,6 @@
-const fs = require("fs");
+import fs  from "fs";
 
-module.exports = function (source, name, mediatype) {
+export default function (source, name, mediatype) {
   const file = fs.createReadStream(source.path ? source.path : source);
 
   if (source.path) {

@@ -1,6 +1,6 @@
-const escapeStringRegexp = require("escape-string-regexp");
+import escapeStringRegexp  from "escape-string-regexp";
 
-module.exports = function makeRegexp(expression, ignoreCase = true, global = false) {
+export default function makeRegexp(expression, ignoreCase = true, global = false) {
   const flags = [];
   if (ignoreCase) {
     flags.push("i");

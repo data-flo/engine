@@ -1,7 +1,9 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+
+
 
 tap.test("import-from-microreact-project adaptor", async () => {
   tap.test("given a project, it should return a datatable", async () => {

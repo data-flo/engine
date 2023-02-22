@@ -1,7 +1,7 @@
-module.exports.EmptyArray = Object.freeze([]);
+export const EmptyArray = Object.freeze([]);
 
-module.exports.EmptyObject = Object.freeze({});
+export const EmptyObject = Object.freeze({});
 
-module.exports.EmptyString = "";
+export const EmptyString = "";
 
-module.exports.EmptySet = Object.freeze(new Set());
+export const EmptySet = Object.freeze(new Set());

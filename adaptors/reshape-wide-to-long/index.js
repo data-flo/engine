@@ -1,8 +1,9 @@
-const { EmptyArray } = require("../../utils/constants");
+import { EmptyArray }  from "../../utils/constants";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const nonVariableColumns = args["static columns"] || EmptyArray;
   const variabeColumns = (
     (await args.data.getColumns())
@@ -32,4 +33,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,6 +1,6 @@
-const { FileEncodings, CommonLineEndings } = require("../../enums");
+import { FileEncodings, CommonLineEndings }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Imports a list from a text file.",
   "group": "Transformations",
   "subgroup": "Data Tables",

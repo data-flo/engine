@@ -1,6 +1,6 @@
-const yn = require("yn");
+import yn  from "yn";
 
-module.exports = function (value) {
+export default function (value) {
   if (typeof value === "boolean") {
     return value;
   }

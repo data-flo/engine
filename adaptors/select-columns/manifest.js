@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Selects a list of columns from a datatable in a specified order.",
   "group": "Transformations",
   "subgroup": "Data Tables",

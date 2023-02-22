@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Converts a text into a list by spliting it using a specified separator to determine where to make each split.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

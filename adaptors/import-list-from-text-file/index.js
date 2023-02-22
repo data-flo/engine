@@ -1,6 +1,6 @@
-const { parse } = require("csv");
+import { parse }  from "csv";
 
-module.exports = async function (args) {
+export default async function (args) {
   const list = [];
 
   const iterator = args.file.getReader({ encoding: args.encoding })
@@ -23,4 +23,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

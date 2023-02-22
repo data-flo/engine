@@ -1,11 +1,16 @@
-const path = require("path");
-const tap = require("../../utils/testing/unit");
+import path  from "path";
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import createFile  from "../../types/file";
+import tmpFilePath  from "../../utils/file/tmp-path";
+import adaptor  from "./index";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const createFile = require("../../types/file");
-const tmpFilePath = require("../../utils/file/tmp-path");
 
-const adaptor = require("./index");
+
+
+
+
+
 
 tap.test("import-from-sql-server adaptor", async () => {
   const filePath = await tmpFilePath();

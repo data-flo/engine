@@ -1,3 +1,6 @@
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
 /*
 docker run \
   --rm \
@@ -8,11 +11,11 @@ docker run \
   mcr.microsoft.com/mssql/server
 */
 
-const tap = require("../../utils/testing/unit");
 
-const runAdaptor = require("../../runner/run-adaptor");
 
-const adaptor = require("./index");
+
+
+
 
 tap.test("import-from-sql-server adaptor", async () => {
 

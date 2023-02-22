@@ -1,4 +1,4 @@
-module.exports = function standardiseFormatString(formatString) {
+export default function standardiseFormatString(formatString) {
   if (
     !formatString
     ||

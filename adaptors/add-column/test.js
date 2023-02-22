@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
-const fs = require("fs");
+import tap  from "../../utils/testing/unit";
+import fs  from "fs";
+import adaptor  from "./index";
+import createTmpTextFile  from "../../utils/file/tmp-text";
+import createDatatable  from "../../types/datatable";
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+
+
+
+
 
 tap.test("add-column adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"

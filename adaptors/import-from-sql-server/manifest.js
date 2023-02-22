@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports data from a Microsoft SQl Server database.",
   "group": "Transformations",
   "subgroup": "Data Sources",

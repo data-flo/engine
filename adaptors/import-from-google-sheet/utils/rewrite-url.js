@@ -1,6 +1,6 @@
 const validRegexp = /^(?:https:\/\/docs\.google\.com\/spreadsheets\/d\/|https:\/\/drive\.google\.com\/open\?id=)((?:e\/)?[^\/]+)\/?(.*)/i;
 
-module.exports = function (url) {
+export default function (url) {
   const match = validRegexp.exec(url);
   if (match && match[1]) {
     return match[1];

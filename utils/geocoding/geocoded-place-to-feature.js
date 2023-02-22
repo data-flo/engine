@@ -139,7 +139,7 @@ const componentsMap = {
   ],
 };
 
-module.exports = function geocodedPlaceToFeature(place, feature) {
+export default function geocodedPlaceToFeature(place, feature) {
   if (feature === "full" || feature === "") {
     return place.formatted;
   }

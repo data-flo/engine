@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
+import createTmpTextFile  from "../../utils/file/tmp-text";
+import createFile  from "../../types/file";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createFile = require("../../types/file");
+
+
+
+
 
 tap.test("import-from-csv-file adaptor", async () => {
 

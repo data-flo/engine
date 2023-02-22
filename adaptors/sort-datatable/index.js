@@ -1,8 +1,9 @@
-const naturalCompare = require("natural-compare");
+import naturalCompare  from "natural-compare";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const columnNames = [];
   const sortOrders = [];
 
@@ -41,4 +42,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

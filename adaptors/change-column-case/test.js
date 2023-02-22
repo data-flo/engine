@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
-const fs = require("fs");
+import tap  from "../../utils/testing/unit";
+import fs  from "fs";
+import tmpPath  from "../../utils/file/tmp-path";
+import createDatatable  from "../../types/datatable";
+import adaptor  from "./index";
 
-const tmpPath = require("../../utils/file/tmp-path");
-const createDatatable = require("../../types/datatable");
-const adaptor = require("./index");
+
+
+
+
 
 tap.test(
   "change-column-case adaptor",

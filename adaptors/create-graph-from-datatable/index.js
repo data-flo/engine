@@ -1,4 +1,5 @@
-module.exports = async function (args) {
+
+export default async function (args) {
   await args.data.shouldIncludeColumns(
     args["from column"],
     args["to column"],
@@ -43,4 +44,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

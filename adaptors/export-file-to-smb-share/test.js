@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
+import createTmpTextFile  from "../../utils/file/tmp-text";
+import createFile  from "../../types/file";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createFile = require("../../types/file");
+
+
+
+
 
 tap.test("export-file-to-smb-share adaptor", async () => {
   const testFilePath = await createTmpTextFile(`(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);`);

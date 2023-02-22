@@ -1,6 +1,6 @@
-const { LetterCases } = require("../../enums");
+import { LetterCases }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Converts the case of text values in a datatable column.",
   "group": "Transformations",
   "subgroup": "Data Tables",

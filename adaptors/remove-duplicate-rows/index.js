@@ -1,8 +1,9 @@
-const crypto = require("crypto");
+import crypto  from "crypto";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const columns = await args.data.getColumns();
   const dataWriter = await Datatable.create({ columns });
   const duplicatesWriter = await Datatable.create({ columns });
@@ -45,4 +46,4 @@ module.exports = async function (args) {
 
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

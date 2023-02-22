@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports data from a spreadsheet file.",
   "group": "Transformations",
   "subgroup": "Data Sources",

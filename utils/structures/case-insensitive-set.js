@@ -1,4 +1,4 @@
-module.exports = class CaseInsensitiveSet extends Set {
+export default class CaseInsensitiveSet extends Set {
   constructor(values) {
     super(
       Array.from(

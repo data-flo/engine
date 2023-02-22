@@ -1,7 +1,8 @@
-const { google } = require("googleapis");
-const columnToLetter = require("../../google-spreadsheet/utils/column-to-letter");
+import { google }  from "googleapis";
+import columnToLetter  from "../../google-spreadsheet/utils/column-to-letter";
 
-module.exports = async function (auth, spreadsheetId, sheet, cellUpdates) {
+
+export default async function (auth, spreadsheetId, sheet, cellUpdates) {
   const sheets = google.sheets({ version: "v4", auth });
   const res = await sheets.spreadsheets.values.batchUpdate({
     spreadsheetId,

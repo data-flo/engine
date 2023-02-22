@@ -1,10 +1,13 @@
-const FS = require("fs");
-const StreamPromises = require("stream/promises");
-const { EmptyObject } = require("../utils/constants");
+import FS  from "fs";
+import StreamPromises  from "stream/promises";
+import { EmptyObject }  from "../utils/constants";
+import tmpFilePath  from "../utils/file/tmp-path";
 
-const tmpFilePath = require("../utils/file/tmp-path");
 
-class FileStream {
+
+
+
+export class FileStream  {
 
   static async createEmpty(options = EmptyObject) {
     const { name, mediaType, ...rest } = options;
@@ -76,7 +79,7 @@ class FileStream {
 
 }
 
-module.exports = function createFile(sourceValue) {
+export default function createFile(sourceValue) {
   if (sourceValue instanceof FileStream) {
     return sourceValue;
   }
@@ -84,4 +87,4 @@ module.exports = function createFile(sourceValue) {
   return new FileStream(sourceValue);
 };
 
-module.exports.FileStream = FileStream;
+

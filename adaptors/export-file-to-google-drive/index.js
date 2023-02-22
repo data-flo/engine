@@ -1,6 +1,7 @@
-const { google } = require("googleapis");
+import { google }  from "googleapis";
+import urlToId  from "../create-google-drive-folder/utils/folder-url-to-id";
 
-const urlToId = require("../create-google-drive-folder/utils/folder-url-to-id");
+
 
 async function getClient() {
   return google.auth.getClient({
@@ -17,7 +18,7 @@ function idToUrl(folderId) {
   return `https://drive.google.com/file/d/${folderId}`;
 }
 
-module.exports = async function (args) {
+export default async function (args) {
   let fileId;
   if (args["file url"]) {
     fileId = urlToId(args["file url"]);
@@ -56,4 +57,4 @@ module.exports = async function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

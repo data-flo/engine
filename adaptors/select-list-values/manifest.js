@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Selects values, based on position, from a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

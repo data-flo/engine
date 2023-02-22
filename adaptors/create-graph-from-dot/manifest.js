@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Creates a graph structure from text in DOT language format.",
   "group": "Transformations",
   "subgroup": "Graph Manipulation",

@@ -1,10 +1,13 @@
-const { format, isValid } = require("date-fns");
-const locale = require("date-fns/locale");
-const { formatInTimeZone } = require("date-fns-tz");
+import { format, isValid }  from "date-fns";
+import locale  from "date-fns/locale";
+import { formatInTimeZone }  from "date-fns-tz";
+import standardiseFormatString  from "./standardise-format-string";
 
-const standardiseFormatString = require("./standardise-format-string");
 
-module.exports = function (dateValue, formatString, localeString, timezoneCode) {
+
+
+
+export default function (dateValue, formatString, localeString, timezoneCode) {
   if (isValid(dateValue)) {
     const cleanFormatString = standardiseFormatString(formatString);
 

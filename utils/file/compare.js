@@ -1,6 +1,6 @@
-const fs = require("fs");
+import fs  from "fs";
 
-module.exports = function compare(filePath, expectedFileContent) {
+export default function compare(filePath, expectedFileContent) {
   let actual = fs.readFileSync(filePath, "utf8");
   if (actual.startsWith("\ufeff")) {
     actual = actual.substring(1);

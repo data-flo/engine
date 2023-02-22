@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Finds a key in a map and returns the associated value.",
   "group": "Transformations",
   "subgroup": "Map Manipulation",

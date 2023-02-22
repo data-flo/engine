@@ -1,8 +1,9 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
+import GroupMap  from "../../utils/structures/group-map";
 
-const GroupMap = require("../../utils/structures/group-map");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   await args.data.shouldIncludeColumns(
     args["key column name"],
     args["value column name"],
@@ -64,4 +65,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,4 +1,4 @@
-module.exports = function (value) {
+export default function (value) {
   if (Number.isInteger(value)) {
     return value;
   }

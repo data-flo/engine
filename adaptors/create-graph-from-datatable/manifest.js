@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Creates a graph structure from a datatable containing edge data.",
   "group": "Transformations",
   "subgroup": "Graph Manipulation",

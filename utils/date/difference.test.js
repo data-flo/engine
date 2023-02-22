@@ -1,6 +1,7 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import difference  from "./difference";
 
-const difference = require("./difference");
+
 
 tap.test("given an invalid unit, it should return undefined", async (t) => {
   const expected = undefined;

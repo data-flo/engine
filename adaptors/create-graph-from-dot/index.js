@@ -1,7 +1,8 @@
+import dotparser  from "vis/lib/network/dotparser";
 /* eslint prefer-destructuring: 0 */
 /* eslint no-plusplus: 0 */
 
-const dotparser = require("vis/lib/network/dotparser");
+
 
 const Directions = {
   [undefined]: "none",
@@ -9,7 +10,7 @@ const Directions = {
   from: "backward",
 };
 
-module.exports = function (args) {
+export default function (args) {
   const parsedData = dotparser.DOTToGraph(args.dot);
 
   for (const node of parsedData.nodes) {
@@ -48,4 +49,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

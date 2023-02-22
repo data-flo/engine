@@ -1,5 +1,6 @@
-const tap = require("../testing/unit");
-const reverseGeocode = require("./geocoder");
+import tap  from "../testing/unit";
+import reverseGeocode  from "./geocoder";
+
 
 tap.test("given an invalid string, it should return undefined", async (t) => {
   const expected = undefined;

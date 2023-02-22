@@ -1,6 +1,6 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
 
-module.exports = async function extendDatatable(args) {
+export default async function extendDatatable(args) {
   const firstColumns = await args["first data"].getColumns();
   const secondColumns = await args["second data"].getColumns();
   const columns = [];
@@ -32,4 +32,4 @@ module.exports = async function extendDatatable(args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

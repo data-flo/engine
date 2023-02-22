@@ -1,4 +1,4 @@
-module.exports = function parseSMBSharePath(share, filePath) {
+export default function parseSMBSharePath(share, filePath) {
   let shareAddress = share;
   if (/^smb:\/\//i.test(shareAddress)) {
     shareAddress = shareAddress.substr(4);

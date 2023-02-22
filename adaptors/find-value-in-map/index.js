@@ -1,4 +1,5 @@
-module.exports = function (args) {
+
+export default function (args) {
   if (args.map.has(args.key)) {
     return {
       value: args.map.get(args.key),
@@ -11,4 +12,4 @@ module.exports = function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,8 +1,11 @@
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
 /* eslint-disable quotes */
-const tap = require("../../utils/testing/unit");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+
+
+
 
 tap.test("apply-force-directed-layout adaptor", async () => {
 

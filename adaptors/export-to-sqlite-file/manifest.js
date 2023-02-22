@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Exports a datatable to a SQLite DB file.",
   "group": "Transformations",
   "subgroup": "Data Destinations",

@@ -1,8 +1,9 @@
-const DBFFile = require("dbffile");
+import DBFFile  from "dbffile";
+import { FileStream }  from "../../types/file";
 
-const { FileStream } = require("../../types/file");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const fieldDescriptors = [];
   for (const [ key, value ] of args.columns.entries()) {
     const [ type, size ] = value.split(" ");

@@ -1,6 +1,6 @@
-const castType = require("./cast-type");
+import castType  from "./cast-type";
 
-module.exports = function outputArguments(manifest, rawValues) {
+export default function outputArguments(manifest, rawValues) {
   const output = {};
 
   // check arguments against manifest

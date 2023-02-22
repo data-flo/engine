@@ -1,9 +1,12 @@
-const FS = require("fs");
+import FS  from "fs";
+import runAdaptor  from "../../runner/run-adaptor";
+import tap  from "../../utils/testing/unit";
+import adaptor  from "./index";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const tap = require("../../utils/testing/unit");
 
-const adaptor = require("./index");
+
+
+
 
 tap.test("import-file-from-dropbox adaptor", async () => {
 

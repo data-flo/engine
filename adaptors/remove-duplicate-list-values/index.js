@@ -1,6 +1,6 @@
-const CaseInsensitiveSet = require("../../utils/structures/case-insensitive-set");
+import CaseInsensitiveSet  from "../../utils/structures/case-insensitive-set";
 
-module.exports = function (args) {
+export default function (args) {
   const set = args["case sensitive"] ? new Set() : new CaseInsensitiveSet();
   const list = [];
   const duplicates = [];
@@ -20,4 +20,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

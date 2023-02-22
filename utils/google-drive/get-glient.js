@@ -1,6 +1,6 @@
-const { google } = require("googleapis");
+import { google }  from "googleapis";
 
-module.exports = async function getClient() {
+export default async function getClient() {
   return google.auth.getClient({
     scopes: [
       "https://www.googleapis.com/auth/drive",

@@ -1,10 +1,12 @@
-const geocoder = require("../../utils/geocoding/geocoder");
+import geocoder  from "../../utils/geocoding/geocoder";
+import geocodedPlaceToFeature  from "../../utils/geocoding/geocoded-place-to-feature";
+import cache  from "../../utils/cache";
 
-const geocodedPlaceToFeature = require("../../utils/geocoding/geocoded-place-to-feature");
 
-const cache = require("../../utils/cache");
 
-module.exports = async function (args) {
+
+
+export default async function (args) {
   const data = await args.data.addColumnAsync(
     args["location column"],
     async (row) => {
@@ -35,4 +37,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

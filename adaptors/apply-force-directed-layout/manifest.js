@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Applies a force-directed graph drawing algorithm (https://en.wikipedia.org/wiki/Force-directed_graph_drawing) on a specified graph.",
   "group": "Transformations",
   "subgroup": "Graph Manipulation",

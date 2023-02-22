@@ -1,6 +1,6 @@
-const Mustache = require("mustache");
+import Mustache  from "mustache";
 
-module.exports = function (args) {
+export default function (args) {
   const view = {};
 
   for (const [ key, value ] of args.variables.entries()) {
@@ -15,4 +15,4 @@ module.exports = function (args) {
   return { text };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

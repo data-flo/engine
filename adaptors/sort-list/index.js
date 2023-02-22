@@ -1,6 +1,6 @@
-const naturalCompare = require("natural-compare");
+import naturalCompare  from "natural-compare";
 
-module.exports = function (args) {
+export default function (args) {
   const sign = (args["sort direction"] === "desc") ? -1 : 1;
   const list = (
     [ ...args.list ]
@@ -12,4 +12,4 @@ module.exports = function (args) {
   return { list };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

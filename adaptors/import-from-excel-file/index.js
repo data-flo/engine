@@ -1,8 +1,10 @@
-const ExcelJS = require("exceljs");
+import ExcelJS  from "exceljs";
+import { Datatable }  from "../../types/datatable";
+import parseRange  from "../../utils/spreadsheets/parse-range";
 
-const { Datatable } = require("../../types/datatable");
 
-const parseRange = require("../../utils/spreadsheets/parse-range");
+
+
 
 function checkRange(worksheetReader, sheetRange) {
   const requiredRange = parseRange(sheetRange);
@@ -75,7 +77,7 @@ async function extractWorksheet(worksheetReader, sheetRange) {
   return data;
 }
 
-module.exports = async function (args) {
+export default async function (args) {
 
   // const options = {
   //   entries: "ignore",
@@ -108,4 +110,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

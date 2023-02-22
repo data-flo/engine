@@ -1,10 +1,12 @@
+import sleep  from "../../utils/async/sleep";
+import getAuthorisationHeader  from "./get-authorisation-header";
 const getJsonRequest = require("../../utils/requests/get-as-json");
 
-const sleep = require("../../utils/async/sleep");
 
-const getAuthorisationHeader = require("./get-authorisation-header");
 
-module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, clientSecret, pageSize = 1000) {
+
+
+export default async function* fetchEntries(slug, mapIndex = "", clientId, clientSecret, pageSize = 1000) {
   let url = new URL(slug, "https://five.epicollect.net/api/export/entries/").toString();
 
   const options = {};

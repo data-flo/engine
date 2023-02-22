@@ -1,10 +1,13 @@
-const { google } = require("googleapis");
+import { google }  from "googleapis";
+import getClient  from "../../utils/google-drive/get-glient";
+import urlToId  from "../../utils/google-drive/folder-url-to-id";
+import idToUrl  from "../../utils/google-drive/folder-id-to-url";
 
-const getClient = require("../../utils/google-drive/get-glient");
-const urlToId = require("../../utils/google-drive/folder-url-to-id");
-const idToUrl = require("../../utils/google-drive/folder-id-to-url");
 
-module.exports = async function (args) {
+
+
+
+export default async function (args) {
   const parentFolderId = urlToId(args["parent folder"]);
 
   const authClient = await getClient();
@@ -35,4 +38,4 @@ module.exports = async function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

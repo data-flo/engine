@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports a file from an Amazon S3 compatible object storage server.",
   "group": "Transformations",
   "subgroup": "Data Sources",

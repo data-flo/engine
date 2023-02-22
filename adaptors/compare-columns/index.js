@@ -1,6 +1,6 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
 
-module.exports = async function (args) {
+export default async function (args) {
   if (args.columns.length < 2) {
     throw new Error("At least two columns are required");
   }
@@ -49,4 +49,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

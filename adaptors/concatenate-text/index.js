@@ -1,5 +1,6 @@
-module.exports = function (args) {
+
+export default function (args) {
   return { combination: `${args.left}${args.separator}${args.right}` };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

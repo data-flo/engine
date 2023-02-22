@@ -1,6 +1,6 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+import makeRegexp  from "../../utils/text/make-regexp";
 
-module.exports = async function (args) {
+export default async function (args) {
   await args.data.shouldIncludeColumns(args.columns);
 
   const regex = makeRegexp("/^$/");
@@ -23,4 +23,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

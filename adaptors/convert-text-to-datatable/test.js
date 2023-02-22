@@ -1,8 +1,11 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
+import compareFileContent  from "../../utils/file/compare";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const compareFileContent = require("../../utils/file/compare");
+
+
+
 
 tap.test("convert-text-to-datatable adaptor", async () => {
 

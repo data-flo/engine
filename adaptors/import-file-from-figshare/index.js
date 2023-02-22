@@ -1,8 +1,9 @@
-const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/requests/get-as-stream");
+import { FileStream }  from "../../types/file";
+import getRequestAsStream  from "../../utils/requests/get-as-stream";
+
 const getRequestAsJSON = require("../../utils/requests/get-as-json");
 
-module.exports = async function (args) {
+export default async function (args) {
   const validUrl = /^https:\/\/figshare\.com\/.+\/(\d+)/i;
 
   const match = validUrl.exec(args.url);
@@ -27,4 +28,4 @@ module.exports = async function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

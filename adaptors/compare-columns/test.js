@@ -1,10 +1,14 @@
-const tap = require("../../utils/testing/unit");
-const fs = require("fs");
+import tap  from "../../utils/testing/unit";
+import fs  from "fs";
+import createTmpTextFile  from "../../utils/file/tmp-text";
+import createDatatable  from "../../types/datatable";
+import adaptor  from "./index";
 
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
 
-const adaptor = require("./index");
+
+
+
+
 
 tap.test("calculate-time-difference adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"one","two","three"

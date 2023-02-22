@@ -1,4 +1,5 @@
-module.exports = function (args) {
+
+export default function (args) {
   const values = (
     args.list
       .slice(args.start - 1, args.end || args.list.length)
@@ -9,4 +10,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

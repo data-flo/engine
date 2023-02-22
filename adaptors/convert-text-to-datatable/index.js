@@ -1,8 +1,9 @@
-const { parse } = require("csv");
+import { parse }  from "csv";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const datatableWriter = await Datatable.create();
 
   const columns = (
@@ -30,4 +31,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Removes duplicate values in a list.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

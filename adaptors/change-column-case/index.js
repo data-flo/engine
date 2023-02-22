@@ -1,9 +1,14 @@
-const changeCase = require("change-case");
-const { titleCase } = require("title-case");
-const { swapCase } = require("swap-case");
-const { spongeCase } = require("sponge-case");
-const { lowerCase } = require("lower-case");
-const { upperCase } = require("upper-case");
+import changeCase  from "change-case";
+import { titleCase }  from "title-case";
+import { swapCase }  from "swap-case";
+import { spongeCase }  from "sponge-case";
+import { lowerCase }  from "lower-case";
+import { upperCase }  from "upper-case";
+
+
+
+
+
 
 const converions = {
   camel: changeCase.camelCase,
@@ -26,7 +31,7 @@ const converions = {
   upper: upperCase,
 };
 
-module.exports = async function (args) {
+export default async function (args) {
   const converion = converions[args.case];
   if (!converion) {
     const validConverions = Object.keys(converions).map((x) => `\`${x}\``).join(", ");
@@ -50,4 +55,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

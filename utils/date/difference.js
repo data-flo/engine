@@ -1,4 +1,4 @@
-const {
+import {
   differenceInDays,
   differenceInHours,
   differenceInMilliseconds,
@@ -8,9 +8,9 @@ const {
   differenceInSeconds,
   differenceInWeeks,
   differenceInYears,
-} = require("date-fns");
+}  from "date-fns";
 
-module.exports = function (refDate, valueDate, unit) {
+export default function (refDate, valueDate, unit) {
   if (unit === "years") {
     return differenceInYears(refDate, valueDate);
   }

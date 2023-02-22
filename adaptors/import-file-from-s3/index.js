@@ -1,10 +1,13 @@
-const Minio = require("minio");
-const Util = require("util");
-const Path = require("path");
+import Minio  from "minio";
+import Util  from "util";
+import Path  from "path";
+import { FileStream }  from "../../types/file";
 
-const { FileStream } = require("../../types/file");
 
-module.exports = async function (args) {
+
+
+
+export default async function (args) {
   const url = new URL(args.url);
 
   const minioClient = new Minio.Client({
@@ -32,4 +35,4 @@ module.exports = async function (args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

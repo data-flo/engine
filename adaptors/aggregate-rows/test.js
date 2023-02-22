@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
+import createTmpTextFile  from "../../utils/file/tmp-text";
+import createDatatable  from "../../types/datatable";
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+
+
+
+
 
 tap.test("aggregate-rows adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","name","country","city"

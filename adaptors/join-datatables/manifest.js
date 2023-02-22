@@ -1,6 +1,6 @@
-const { JoinTypes } = require("../../enums");
+import { JoinTypes }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Joins two datatables based on a common column between them.",
   "group": "Transformations",
   "subgroup": "Data Tables",

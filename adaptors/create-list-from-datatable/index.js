@@ -1,4 +1,5 @@
-module.exports = async function (args) {
+
+export default async function (args) {
   await args.data.shouldIncludeColumns(args["column name"]);
 
   const list = [];
@@ -13,4 +14,4 @@ module.exports = async function (args) {
   return { list };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

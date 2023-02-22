@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Reshapes rows in long format to wide format.",
   "group": "Transformations",
   "subgroup": "Data Tables",

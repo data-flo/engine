@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports metadata table from a Microreact project.",
   "category": "Data Sources",
   "input": [

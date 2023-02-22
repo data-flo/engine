@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Imports a file from Dropbox.",
   "group": "Transformations",
   "subgroup": "Data Sources",

@@ -1,8 +1,9 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
+import queryDatabase  from "../../utils/databases/query";
 
-const queryDatabase = require("../../utils/databases/query");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const client = "mssql";
   const connection = {
     host: args.hostname,
@@ -26,4 +27,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

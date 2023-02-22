@@ -1,5 +1,6 @@
-const tap = require("../testing/unit");
-const isNumber = require("./is-number");
+import tap  from "../testing/unit";
+import isNumber  from "./is-number";
+
 
 tap.test("given a number, it should return true", async () => {
   const actual = isNumber(1);

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Replaces all instances of a pattern in one or more columns in a datatable. The replacement values can be written to the original columns or new columns.",
   "group": "Transformations",
   "subgroup": "Data Tables",

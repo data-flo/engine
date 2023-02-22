@@ -1,8 +1,10 @@
-const { parse } = require("csv");
+import { parse }  from "csv";
+import getRequestAsStream  from "../../utils/requests/get-as-stream";
+import { Datatable }  from "../../types/datatable";
 
 const getRequestAsJSON = require("../../utils/requests/get-as-json");
-const getRequestAsStream = require("../../utils/requests/get-as-stream");
-const { Datatable } = require("../../types/datatable");
+
+
 
 function rewriteUrl(url) {
   const validRegexp = /^https?:\/\/(.+)\/project\/(.+)$/i;
@@ -25,7 +27,7 @@ function getMainDataset(info) {
   throw new Error("Invalid");
 }
 
-module.exports = async function (args, context) {
+export default async function (args, context) {
   const infoUrl = rewriteUrl(args.project);
 
   const info = await getRequestAsJSON(infoUrl);
@@ -56,4 +58,4 @@ module.exports = async function (args, context) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

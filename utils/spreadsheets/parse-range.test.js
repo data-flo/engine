@@ -1,5 +1,6 @@
-const tap = require("../testing/unit");
-const parseRange = require("./parse-range");
+import tap  from "../testing/unit";
+import parseRange  from "./parse-range";
+
 
 tap.test("given a valid range, it should return [1,1] to [100,1]", async (t) => {
   const actual = parseRange("A1:K100");

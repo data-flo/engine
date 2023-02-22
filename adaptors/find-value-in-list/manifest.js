@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Finds a value in a list that matches a search pattern.",
   "group": "Transformations",
   "subgroup": "List Manipulation",

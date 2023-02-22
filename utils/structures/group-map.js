@@ -1,4 +1,4 @@
-module.exports = class GroupMap extends Map {
+export default class GroupMap extends Map {
   add(key, value) {
     const group = super.get(key);
     if (group) {

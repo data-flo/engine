@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Exports a graph as a text file in DOT format (https://en.wikipedia.org/wiki/DOT_(graph_description_language)).",
   "group": "Transformations",
   "subgroup": "Graph Manipulation",

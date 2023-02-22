@@ -1,11 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const { generate, parse, transform, stringify } = require ('csv');
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { generate, parse, transform, stringify } from "csv";
 
-const createEngine = require("../index");
-const updateManifestSchema = require("../manifest/index");
+import createEngine from "../index";
+import updateManifestSchema from "../manifest/index";
+import data from "./data/amr-watch-metadata/index";
 
-const { manifest, inputs } = require("./data/amr-watch-metadata/index");
+const { manifest, inputs } = data;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const engine = createEngine({});
 
@@ -28,7 +31,7 @@ async function main() {
   //   )
   //   .pipe(process.stdout);
 
-  const convertedManifest = updateManifestSchema(manifest);
+  const convertedManifest = await updateManifestSchema(manifest);
 
   const outputs = await engine.runDataflow(
     convertedManifest,

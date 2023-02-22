@@ -1,6 +1,6 @@
-const { google } = require("googleapis");
+import { google }  from "googleapis";
 
-module.exports = async function (auth, spreadsheetId, range) {
+export default async function (auth, spreadsheetId, range) {
   const sheets = google.sheets({ version: "v4", auth });
   const res = await Promise.all([
     sheets.spreadsheets.values.get({

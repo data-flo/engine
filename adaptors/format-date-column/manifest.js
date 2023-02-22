@@ -1,6 +1,6 @@
-const { DateFormats, LanguageLocales } = require("../../enums");
+import { DateFormats, LanguageLocales }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Formats date/time values in a datatable column.",
   "group": "Transformations",
   "subgroup": "Data Tables",

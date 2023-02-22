@@ -1,5 +1,6 @@
-const tap = require("../../utils/testing/unit");
-const fromString = require("./from-string");
+import tap  from "../../utils/testing/unit";
+import fromString  from "./from-string";
+
 
 tap.test("given an invalid string, it should return undefined", async (t) => {
   const input = "";

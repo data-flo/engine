@@ -1,5 +1,5 @@
-const isNumber = require("./is-number");
+import isNumber  from "./is-number";
 
-module.exports = function isInteger(n) {
+export default function isInteger(n) {
   return isNumber(n) && Number.isInteger(parseFloat(n));
 };

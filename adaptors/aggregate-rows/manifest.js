@@ -1,6 +1,6 @@
-const { AggregateMethods } = require("../../enums");
+import { AggregateMethods }  from "../../enums";
 
-module.exports = {
+export default {
   "description": "Aggregates values in specified columns grouped by rows.",
   "group": "Transformations",
   "subgroup": "Data Manipulation",

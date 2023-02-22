@@ -1,4 +1,5 @@
-module.exports = function (args) {
+
+export default function (args) {
   const index = args.list.findIndex((x) => x === args.separator);
   if (index >= 0) {
     return {
@@ -14,4 +15,4 @@ module.exports = function (args) {
   }
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

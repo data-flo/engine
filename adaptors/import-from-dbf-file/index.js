@@ -1,8 +1,9 @@
-const DBFFile = require("dbffile");
+import DBFFile  from "dbffile";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const dbf = await DBFFile.open(args.dbf.getSource());
 
   const columns = dbf.fields.map((x) => x.name);
@@ -26,4 +27,4 @@ module.exports = async function (args) {
 
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

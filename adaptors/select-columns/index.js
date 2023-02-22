@@ -1,8 +1,9 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+import makeRegexp  from "../../utils/text/make-regexp";
+import { EmptyArray }  from "../../utils/constants";
 
-const { EmptyArray } = require("../../utils/constants");
 
-module.exports = async function (args) {
+
+export default async function (args) {
   const columnsToKeep = [ ...args["column names"] || EmptyArray ];
 
   if (args.pattern) {
@@ -19,4 +20,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

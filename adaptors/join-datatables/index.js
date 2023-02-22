@@ -1,9 +1,11 @@
-const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map");
-const CaseInsensitiveSet = require("../../utils/structures/case-insensitive-set");
+import CaseInsensitiveMap  from "../../utils/structures/case-insensitive-map";
+import CaseInsensitiveSet  from "../../utils/structures/case-insensitive-set";
+import { Datatable }  from "../../types/datatable";
 
-const { Datatable } = require("../../types/datatable");
 
-module.exports = async function adaptorJoinDatatable(args) {
+
+
+export default async function adaptorJoinDatatable(args) {
   const leftTable = args["main data"];
   const rightTable = args["other data"];
   const leftIdColumn = args["main column"];
@@ -106,4 +108,4 @@ module.exports = async function adaptorJoinDatatable(args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

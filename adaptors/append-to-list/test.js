@@ -1,6 +1,7 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import adaptor  from "./index";
 
-const adaptor = require("./index");
+
 
 tap.test("append-to-list adaptor", async () => {
   tap.test("given a list, it should add a value to the end of the list", async (t) => {

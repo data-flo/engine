@@ -1,10 +1,11 @@
+
 const Directions = {
   none: "--",
   forward: "->",
   backward: "<-",
 };
 
-module.exports = function (args) {
+export default function (args) {
   const nodes = args.graph.nodes.map((node) => {
     const attributes = (
       Object.keys(node.attributes || {}).map((key) => `"${key.trim()}"="${node.attributes[key]}"`)
@@ -24,4 +25,4 @@ module.exports = function (args) {
   return { dot };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

@@ -1,10 +1,13 @@
-const path = require("path");
-const SambaClient = require("samba-client");
+import path  from "path";
+import SambaClient  from "samba-client";
+import { FileStream }  from "../../types/file";
+import lastElement  from "../../utils/arrays/last-element";
 
-const { FileStream } = require("../../types/file");
-const lastElement = require("../../utils/arrays/last-element");
 
-module.exports = async function (args) {
+
+
+
+export default async function (args) {
   let shareAddress = args["share address"];
   if (/^smb:\/\//i.test(shareAddress)) {
     shareAddress = shareAddress.substr(4);
@@ -43,4 +46,4 @@ module.exports = async function (args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

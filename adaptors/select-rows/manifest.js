@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Selects rows, based on position, from a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

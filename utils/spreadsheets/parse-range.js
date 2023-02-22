@@ -1,8 +1,9 @@
+import isInteger  from "../numbers/is-integer";
 /* eslint-disable eqeqeq */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-cond-assign */
 
-const isInteger = require("../numbers/is-integer");
+
 
 function rangeToIndex(range) {
   const o = { start: { col: 0, row: 0 }, end: { col: 0, row: 0 } };
@@ -38,7 +39,7 @@ function rangeToIndex(range) {
   return o;
 }
 
-module.exports = function parseRange(input) {
+export default function parseRange(input) {
   let range;
 
   if (isInteger(input)) {

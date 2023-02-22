@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Gets the leaf labels from a Newick tree.",
   "group": "Transformations",
   "subgroup": "Text Manipulation",

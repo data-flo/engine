@@ -1,9 +1,11 @@
-const { Datatable } = require("../../types/datatable");
+import { Datatable }  from "../../types/datatable";
+import getProjectSlug  from "./get-project-slug";
+import fetchEntries  from "./fetch-entries";
 
-const getProjectSlug = require("./get-project-slug");
-const fetchEntries = require("./fetch-entries");
 
-module.exports = async function (args) {
+
+
+export default async function (args) {
   const slug = getProjectSlug(args.url);
 
   const datatableWriter = await Datatable.create();
@@ -29,4 +31,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

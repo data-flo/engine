@@ -1,7 +1,8 @@
-const tmp = require("tmp-promise");
-const fs = require("fs");
+import tmp  from "tmp-promise";
+import fs  from "fs";
 
-module.exports = async function createTmpTextFile(textContent) {
+
+export default async function createTmpTextFile(textContent) {
   const { fd, path, cleanup } = await tmp.file({ discardDescriptor: true });
   fs.writeFileSync(
     path,

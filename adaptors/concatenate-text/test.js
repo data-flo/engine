@@ -1,6 +1,7 @@
-const tap = require("../../utils/testing/unit");
+import tap  from "../../utils/testing/unit";
+import adaptor  from "./index";
 
-const adaptor = require("./index");
+
 
 tap.test("concatenate-text adaptor", async () => {
 

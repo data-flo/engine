@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Splits values in a column into a specified number of columns using a separator to determine where to make each split.",
   "group": "Transformations",
   "subgroup": "Data Tables",

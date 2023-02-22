@@ -1,6 +1,6 @@
-const { google } = require("googleapis");
+import { google }  from "googleapis";
 
-module.exports = async function (auth, spreadsheetId, sheetTitle) {
+export default async function (auth, spreadsheetId, sheetTitle) {
   const sheets = google.sheets({ version: "v4", auth });
   const res = await sheets.spreadsheets.get({ spreadsheetId });
   if (res.data.sheets.length === 0) {

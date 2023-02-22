@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Concatenate values from two or more columns",
   "group": "Transformations",
   "subgroup": "Data Tables",

@@ -1,6 +1,6 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+import makeRegexp  from "../../utils/text/make-regexp";
 
-module.exports = function (args) {
+export default function (args) {
   const regexp = makeRegexp(args.pattern);
   const values = [];
   const complementary = [];
@@ -18,4 +18,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

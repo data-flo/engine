@@ -1,10 +1,17 @@
-const Path = require("path");
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+import Path  from "path";
+import tap  from "../../utils/testing/unit";
+import runAdaptor  from "../../runner/run-adaptor";
+import adaptor  from "./index";
+import createFile  from "../../types/file";
 
-const tap = require("../../utils/testing/unit");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createFile = require("../../types/file");
+
+
+
+
 
 tap.test("import-from-excel-file adaptor", async () => {
 

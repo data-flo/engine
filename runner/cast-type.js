@@ -1,10 +1,7 @@
-function getType(name) {
-  const func = require(`../types/${name}.js`);
-  return func;
-}
+import types from "../types/index";
 
-module.exports = function get(name, value) {
-  const typeCreator = getType(name);
+export default function get(name, value) {
+  const typeCreator = types[name];
 
   return typeCreator(value);
-};
+}

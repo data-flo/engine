@@ -1,3 +1,3 @@
-module.exports = function idToUrl(folderId) {
+export default function idToUrl(folderId) {
   return `https://drive.google.com/drive/folders/${folderId}`;
 };

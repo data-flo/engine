@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Duplicates a column in a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",

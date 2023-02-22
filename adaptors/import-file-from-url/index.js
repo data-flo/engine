@@ -1,11 +1,16 @@
-const Path = require("path");
-const { URL } = require("url");
-const StreamPromises = require("stream/promises");
+import Path  from "path";
+import { URL }  from "url";
+import StreamPromises  from "stream/promises";
+import SFTPClient  from "ssh2-sftp-client";
+import { FileStream }  from "../../types/file";
+import getRequestAsStream  from "../../utils/requests/get-as-stream";
 
-const SFTPClient = require("ssh2-sftp-client");
 
-const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/requests/get-as-stream");
+
+
+
+
+
 
 const allowedProtocols = [
   "data:",
@@ -15,7 +20,7 @@ const allowedProtocols = [
   "sftp:",
 ];
 
-module.exports = async function (args) {
+export default async function (args) {
   const parsedUrlInfo = new URL(args.url);
 
   if (!allowedProtocols.includes(parsedUrlInfo.protocol)) {
@@ -53,4 +58,4 @@ module.exports = async function (args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

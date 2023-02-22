@@ -1,11 +1,15 @@
-const { performance } = require("perf_hooks");
+import { performance }  from "perf_hooks";
+import castType  from "./cast-type";
+import parseInputArguments  from "./parse-input-arguments";
+import parseOutputArguments  from "./parse-output-arguments";
+import { sortStagesByExecutionOrder }  from "./execution";
 
-const castType = require("./cast-type");
-const parseInputArguments = require("./parse-input-arguments");
-const parseOutputArguments = require("./parse-output-arguments");
-const { sortStagesByExecutionOrder } = require("./execution");
 
-module.exports = async function (manifest, rawValues, options = {}, context) {
+
+
+
+
+export default async function (manifest, rawValues, options = {}, context) {
   const run = {
     started: performance.now(),
     steps: [],
@@ -71,7 +75,7 @@ module.exports = async function (manifest, rawValues, options = {}, context) {
         // Get the manifest for the current transformation based on its type
         let transformationManifest = null;
         if (transformation.type === "adaptor") {
-          transformationManifest = context.getAdaptorManifest(transformation.adaptor);
+          transformationManifest = await context.getAdaptorManifest(transformation.adaptor);
         }
         else if (transformation.type === "dataflow") {
           transformationManifest = await context.getDataflowManifest(transformation.dataflow);

@@ -1,14 +1,19 @@
-const fs = require("fs");
-const stream = require("stream/promises");
+import fs  from "fs";
+import stream  from "stream/promises";
+import { parse, stringify }  from "csv";
+import { FileStream }  from "./file";
+import { EmptyObject, EmptyArray }  from "../utils/constants";
+import tmpFilePath  from "../utils/file/tmp-path";
 
-const { parse, stringify } = require("csv");
 
-const { FileStream } = require("./file");
-const { EmptyObject, EmptyArray } = require("../utils/constants");
 
-const tmpFilePath = require("../utils/file/tmp-path");
 
-class Datatable {
+
+
+
+
+
+export class Datatable  {
 
   static async create(options) {
     const filePath = await tmpFilePath();
@@ -330,7 +335,7 @@ class Datatable {
 
 }
 
-module.exports = function createDatatable(sourceValue) {
+export default function createDatatable(sourceValue) {
   if (sourceValue instanceof Datatable) {
     return sourceValue;
   }
@@ -338,4 +343,4 @@ module.exports = function createDatatable(sourceValue) {
   return new Datatable(sourceValue);
 };
 
-module.exports.Datatable = Datatable;
+

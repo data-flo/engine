@@ -8,7 +8,7 @@
 \nIf unspecified, defaults to
 */
 
-module.exports = function (doc) {
+export default function (doc) {
 
   function renameAdaptor(oldName, newName) {
     for (const step of doc.transform) {

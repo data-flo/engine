@@ -1,6 +1,6 @@
-const nodemailer = require("nodemailer");
+import nodemailer  from "nodemailer";
 
-module.exports = async function (args) {
+export default async function (args) {
   const transporter = nodemailer.createTransport({
     host: args["smtp host"],
     port: args["smtp port"],
@@ -24,4 +24,4 @@ module.exports = async function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

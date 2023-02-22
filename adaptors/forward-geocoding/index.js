@@ -1,9 +1,11 @@
-const geocoder = require("../../utils/data/geocoder");
-const geocodedPlaceToFeature = require("../../utils/geocoding/geocoded-place-to-feature");
+import geocoder  from "../../utils/data/geocoder";
+import geocodedPlaceToFeature  from "../../utils/geocoding/geocoded-place-to-feature";
+import cache  from "../../utils/cache";
 
-const cache = require("../../utils/cache");
 
-module.exports = async function (args) {
+
+
+export default async function (args) {
   const data = await args.data.transformAsync(
     args["feature column"],
     async (row) => {

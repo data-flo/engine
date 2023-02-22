@@ -1,5 +1,5 @@
+import { google }  from "googleapis";
 
-const { google } = require("googleapis");
 
 async function addCells(authClient, spreadsheetId, sheet, rowCount, columnCount) {
   const sheets = google.sheets({ version: "v4", auth: authClient });
@@ -32,7 +32,7 @@ async function addCells(authClient, spreadsheetId, sheet, rowCount, columnCount)
   return response.data;
 }
 
-module.exports = async function (authClient, spreadsheetId, sheet, cellUpdates, resize) {
+export default async function (authClient, spreadsheetId, sheet, cellUpdates, resize) {
   let maxRow = 0;
   let maxColumn = 0;
   for (const [row, col] of cellUpdates) {

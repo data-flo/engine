@@ -1,9 +1,11 @@
-const fromString = require("../../utils/date/from-string");
-const difference = require("../../utils/date/difference");
+import fromString  from "../../utils/date/from-string";
+import difference  from "../../utils/date/difference";
+import { EmptyString }  from "../../constants";
 
-const { EmptyString } = require("../../constants");
 
-module.exports = async function (args) {
+
+
+export default async function (args) {
   await args.data.shouldIncludeColumns(
     args["column one"],
     args["column two"],
@@ -38,4 +40,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

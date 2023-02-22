@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Compares values in specified columns.",
   "group": "Transformations",
   "subgroup": "Data Tables",

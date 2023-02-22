@@ -1,4 +1,5 @@
-module.exports = async function (args) {
+
+export default async function (args) {
   const data = await args.data.addColumnSync(
     args.column,
     () => args.value ?? "",
@@ -7,4 +8,4 @@ module.exports = async function (args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+export { default as manifest } from "./manifest";

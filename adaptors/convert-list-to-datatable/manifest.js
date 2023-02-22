@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "description": "Converts a list to a single-column datatable.",
   "group": "Transformations",
   "subgroup": "List Manipulation",
