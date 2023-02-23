@@ -1,7 +1,7 @@
-import tap  from "tap";
-import fs  from "fs";
+import test from "node:test";
+import fs from "fs";
 
-
+const tap = {};
 
 tap.compareFile = function (filePath, expectedFileContent) {
   let actual = fs.readFileSync(filePath, "utf8");
@@ -10,6 +10,8 @@ tap.compareFile = function (filePath, expectedFileContent) {
   }
   return tap.equal(actual, expectedFileContent);
 };
+
+tap.test = test;
 
 tap._test = () => {};
 

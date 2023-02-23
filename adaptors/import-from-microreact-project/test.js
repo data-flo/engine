@@ -1,12 +1,10 @@
-import tap  from "../../utils/testing/unit";
-import runAdaptor  from "../../runner/run-adaptor";
-import adaptor  from "./index";
-
-
-
+import tap from "../../utils/testing/unit.js";
+import runAdaptor from "../../runner/run-adaptor.js";
+import adaptor from "./index.js";
 
 tap.test("import-from-microreact-project adaptor", async () => {
   tap.test("given a project, it should return a datatable", async () => {
+    console.log({adaptor})
     const output = await runAdaptor(
       adaptor,
       {

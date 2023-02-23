@@ -3,6 +3,7 @@ import parseOutputArguments  from "./parse-output-arguments";
 
 
 export default async function runAdaptor(adaptorExecutable, rawValues) {
+  console.log({adaptorExecutable})
   if (!adaptorExecutable.manifest) {
     throw new Error("Cannot find manifest in adaptor");
   }

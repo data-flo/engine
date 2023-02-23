@@ -2,7 +2,7 @@ import { parse }  from "csv";
 import getRequestAsStream  from "../../utils/requests/get-as-stream";
 import { Datatable }  from "../../types/datatable";
 
-const getRequestAsJSON = require("../../utils/requests/get-as-json");
+import getRequestAsJSON from "../../utils/requests/get-as-json";
 
 
 
@@ -27,7 +27,7 @@ function getMainDataset(info) {
   throw new Error("Invalid");
 }
 
-export default async function (args, context) {
+export default async function adaptor(args, context) {
   const infoUrl = rewriteUrl(args.project);
 
   const info = await getRequestAsJSON(infoUrl);
@@ -59,3 +59,7 @@ export default async function (args, context) {
 };
 
 export { default as manifest } from "./manifest";
+
+import manifest from "./manifest";
+
+adaptor.manifest = manifest;
