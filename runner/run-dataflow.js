@@ -5,7 +5,7 @@ const parseInputArguments = require("./parse-input-arguments");
 const parseOutputArguments = require("./parse-output-arguments");
 const { sortStagesByExecutionOrder } = require("./execution");
 
-module.exports = async function (manifest, rawValues, options = {}, context) {
+module.exports = async function (manifest, rawValues, options = {}, engine) {
   const run = {
     started: performance.now(),
     steps: [],
@@ -71,10 +71,10 @@ module.exports = async function (manifest, rawValues, options = {}, context) {
         // Get the manifest for the current transformation based on its type
         let transformationManifest = null;
         if (transformation.type === "adaptor") {
-          transformationManifest = context.getAdaptorManifest(transformation.adaptor);
+          transformationManifest = engine.getAdaptorManifest(transformation.adaptor);
         }
         else if (transformation.type === "dataflow") {
-          transformationManifest = await context.getDataflowManifest(transformation.dataflow);
+          transformationManifest = await engine.getDataflowManifest(transformation.dataflow);
         }
         else {
           throw new Error(`Invalid transformation type ${transformation.type}.`);
@@ -119,10 +119,10 @@ module.exports = async function (manifest, rawValues, options = {}, context) {
 
         // Run the transformation as an adaptor or a dataflow based on its type
         if (transformation.type === "adaptor") {
-          run.outputs[transformation.name] = await context.runAdaptor(transformation.adaptor, step.inputs);
+          run.outputs[transformation.name] = await engine.runAdaptor(transformation.adaptor, step.inputs);
         }
         else if (transformation.type === "dataflow") {
-          const stepRun = await context.runDataflow(transformationManifest, step.inputs);
+          const stepRun = await engine.runDataflow(transformationManifest, step.inputs);
           if (stepRun.status === "error") {
             throw stepRun.error;
           }
