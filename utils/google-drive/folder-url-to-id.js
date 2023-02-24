@@ -6,6 +6,6 @@ module.exports = function urlToId(url) {
     return match[1];
   }
   else {
-    throw new Error("Invalid Google Drive folder or file URL.");
+    throw new Error("Invalid Google Drive folder URL.");
   }
 };
