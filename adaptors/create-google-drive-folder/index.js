@@ -1,8 +1,8 @@
 const { google } = require("googleapis");
 
-const getClient = require("../../utils/google-drive/get-glient");
-const urlToId = require("../../utils/google-drive/folder-url-to-id");
-const idToUrl = require("../../utils/google-drive/folder-id-to-url");
+const getClient = require("../../utils/google-api/get-glient");
+const urlToId = require("../../utils/google-api/folder-url-to-id");
+const idToUrl = require("../../utils/google-api/folder-id-to-url");
 
 module.exports = async function (args) {
   const parentFolderId = urlToId(args["parent folder"]);

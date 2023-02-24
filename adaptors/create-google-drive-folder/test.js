@@ -2,7 +2,7 @@ const tap = require("../../utils/testing/unit");
 
 const adaptor = require("./index");
 const runAdaptor = require("../../runner/run-adaptor");
-const urlToId = require("../../utils/google-drive/folder-url-to-id");
+const urlToId = require("../../utils/google-api/folder-url-to-id");
 
 tap.test("create-google-drive-folder adaptor", async () => {
 
