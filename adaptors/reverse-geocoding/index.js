@@ -13,11 +13,11 @@ module.exports = async function (args) {
         const cacheKey = `adaptors/reverse-geocoding/${coordinates}`;
         const place = await cache(
           cacheKey,
-          360 * 24,
           () => geocoder(
             args["api key"],
             coordinates,
-          )
+          ),
+          360 * 24,
         );
 
         if (place) {

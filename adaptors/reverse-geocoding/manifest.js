@@ -35,16 +35,16 @@ module.exports = {
       "name": "location type",
       "type": "text",
       "description": "The type of the geographic feature. Valid options are \"country\", \"region\", \"postcode\", \"district\", \"place\", \"locality\", \"neighborhood\", \"address\", and \"poi\". Defaults to \"country\".",
+      "required": false,
       "default": "country",
-      "required": true,
     },
 
-    {
-      "name": "api provider",
-      "type": "text",
-      "description": "OpenCage or Mapbox",
-      "required": false,
-    },
+    // {
+    //   "name": "api provider",
+    //   "type": "text",
+    //   "description": "OpenCage or Mapbox",
+    //   "required": false,
+    // },
     {
       "name": "api key",
       "type": "text",

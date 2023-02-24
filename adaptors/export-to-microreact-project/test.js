@@ -26,7 +26,6 @@ tap.test("export-to-microreact-project adaptor", async () => {
     );
     tap.ok(output.id, "adaptor should return id");
     tap.ok(output.url, "adaptor should return url");
-    console.log(output);
   });
 
 });

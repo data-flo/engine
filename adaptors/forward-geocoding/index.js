@@ -1,23 +1,22 @@
-const geocoder = require("../../utils/data/geocoder");
+const geocoder = require("../../utils/geocoding/geocoder");
 const geocodedPlaceToFeature = require("../../utils/geocoding/geocoded-place-to-feature");
 
 const cache = require("../../utils/cache");
 
 module.exports = async function (args) {
   const data = await args.data.transformAsync(
-    args["feature column"],
     async (row) => {
-      if (row[args["place column"]]) {
-        const query = `${row[args["place column"]]}`;
+      if (row[args["location column"]]) {
+        const query = `${row[args["location column"]]}`;
         const cacheKey = `adaptors/forward-geocoding/${query}`;
 
         const place = await cache(
           cacheKey,
-          360 * 24,
           () => geocoder(
             args["api key"],
             query,
-          )
+          ),
+          360 * 24,
         );
 
         if (place) {
@@ -36,3 +35,5 @@ module.exports = async function (args) {
 
   return { data };
 };
+
+module.exports.manifest = require("./manifest");

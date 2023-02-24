@@ -37,12 +37,12 @@ module.exports = {
       "required": false,
     },
 
-    {
-      "name": "api provider",
-      "type": "text",
-      "description": "An OpenCage Geocoding API key (https://opencagedata.com/api).",
-      "required": true,
-    },
+    // {
+    //   "name": "api provider",
+    //   "type": "text",
+    //   "description": "An OpenCage Geocoding API key (https://opencagedata.com/api).",
+    //   "required": true,
+    // },
     {
       "name": "api key",
       "type": "text",
