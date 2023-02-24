@@ -314,194 +314,201 @@ module.exports = [
           ],
         },
 
-        // {
-        //   "ui": {
-        //     "x": 1340,
-        //     "y": 160,
-        //   },
-        //   "name": "transformation-7",
-        //   "type": "adaptor",
-        //   "adaptor": "forward-geocoding",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-6",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "mapboxApiKey",
-        //       "type": "value",
-        //       "value": "pk.eyJ1IjoiZ2VvcmdpbmFoYWluZXMtd29vZGhvdXNlIiwiYSI6ImNsNGN1ang2ODAwbHkzam16eTRtODY2NnoifQ.MuiifROkbFIeGAN-jY9v3g",
-        //     },
-        //     {
-        //       "target": "placeColumn",
-        //       "type": "value",
-        //       "value": "split_country",
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 1540,
-        //     "y": 190,
-        //   },
-        //   "name": "transformation-8",
-        //   "type": "adaptor",
-        //   "adaptor": "reverse-geocoding",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-7",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "mapboxApiKey",
-        //       "type": "value",
-        //       "value": "pk.eyJ1IjoiZ2VvcmdpbmFoYWluZXMtd29vZGhvdXNlIiwiYSI6ImNsNGN1ang2ODAwbHkzam16eTRtODY2NnoifQ.MuiifROkbFIeGAN-jY9v3g",
-        //     },
-        //     {
-        //       "target": "resultColumn",
-        //       "type": "value",
-        //       "value": "geocoded_country",
-        //     },
-        //     {
-        //       "target": "longitudeColumn",
-        //       "type": "value",
-        //       "value": "longitude",
-        //     },
-        //     {
-        //       "target": "latitudeColumn",
-        //       "type": "value",
-        //       "value": "latitude",
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 1750,
-        //     "y": 220,
-        //   },
-        //   "name": "transformation-10",
-        //   "type": "adaptor",
-        //   "adaptor": "remove-columns",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-8",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "columns",
-        //       "type": "value",
-        //       "value": [
-        //         "country",
-        //         "lat",
-        //         "lon",
-        //         "split_country",
-        //         "split_city",
-        //         "type",
-        //       ],
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 1960,
-        //     "y": 270,
-        //   },
-        //   "name": "transformation-12",
-        //   "type": "adaptor",
-        //   "adaptor": "extend-datatable",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-10",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "source",
-        //       "type": "value",
-        //       "value": "host_tax_id",
-        //     },
-        //     {
-        //       "target": "target",
-        //       "type": "value",
-        //       "value": "host",
-        //     },
-        //     {
-        //       "target": "values",
-        //       "type": "value",
-        //       "value": [
-        //         {
-        //           "key": "9606",
-        //           "value": "human",
-        //         },
-        //       ],
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 2160,
-        //     "y": 310,
-        //   },
-        //   "name": "transformation-11",
-        //   "type": "adaptor",
-        //   "adaptor": "change-column-case",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-12",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "column",
-        //       "type": "value",
-        //       "value": "isolation_source",
-        //     },
-        //     {
-        //       "target": "case",
-        //       "type": "value",
-        //       "value": "lower",
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 1770,
-        //     "y": 420,
-        //   },
-        //   "name": "transformation-15",
-        //   "type": "adaptor",
-        //   "adaptor": "select-columns",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-8",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "columns",
-        //       "type": "value",
-        //       "value": [
-        //         "split_country",
-        //         "geocoded_country",
-        //       ],
-        //     },
-        //   ],
-        // },
+        {
+          "ui": {
+            "x": 1340,
+            "y": 160,
+          },
+          "name": "transformation-7",
+          "type": "adaptor",
+          "adaptor": "forward-geocoding",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-6",
+              "argument": "data",
+            },
+            {
+              "target": "api key",
+              "type": "value",
+              "value": "a647a72977454694a38b94dba4341ef5",
+            },
+            {
+              "target": "location column",
+              "type": "value",
+              "value": "split_country",
+            },
+          ],
+        },
+
+        {
+          "ui": {
+            "x": 1540,
+            "y": 190,
+          },
+          "name": "transformation-8",
+          "type": "adaptor",
+          "adaptor": "reverse-geocoding",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-7",
+              "argument": "data",
+            },
+            {
+              "target": "api key",
+              "type": "value",
+              "value": "a647a72977454694a38b94dba4341ef5",
+            },
+            {
+              "target": "location column",
+              "type": "value",
+              "value": "geocoded_country",
+            },
+            {
+              "target": "longitude column",
+              "type": "value",
+              "value": "longitude",
+            },
+            {
+              "target": "latitude column",
+              "type": "value",
+              "value": "latitude",
+            },
+          ],
+        },
+
+        {
+          "ui": {
+            "x": 1750,
+            "y": 220,
+          },
+          "name": "transformation-10",
+          "type": "adaptor",
+          "adaptor": "remove-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-8",
+              "argument": "data",
+            },
+            {
+              "target": "columns",
+              "type": "value",
+              "value": [
+                "country",
+                "lat",
+                "lon",
+                "split_country",
+                "split_city",
+                "type",
+                "host",
+              ],
+            },
+          ],
+        },
+
+        {
+          "ui": {
+            "x": 1960,
+            "y": 270,
+          },
+          "name": "transformation-12",
+          "type": "adaptor",
+          "adaptor": "extend-datatable",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-10",
+              "argument": "data",
+            },
+            {
+              "target": "source",
+              "type": "value",
+              "value": "host_tax_id",
+            },
+            {
+              "target": "target",
+              "type": "value",
+              "value": "host",
+            },
+            {
+              "target": "values",
+              "type": "value",
+              "value": [
+                {
+                  "key": "9606",
+                  "value": "human",
+                },
+              ],
+            },
+          ],
+        },
+
+        {
+          "ui": {
+            "x": 2160,
+            "y": 310,
+          },
+          "name": "transformation-11",
+          "type": "adaptor",
+          "adaptor": "change-column-case",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-12",
+              "argument": "data",
+            },
+            {
+              "target": "column",
+              "type": "value",
+              "value": "isolation_source",
+            },
+            {
+              "target": "case",
+              "type": "value",
+              "value": "lower",
+            },
+          ],
+        },
+
+        {
+          "ui": {
+            "x": 1770,
+            "y": 420,
+          },
+          "name": "transformation-15",
+          "type": "adaptor",
+          "adaptor": "select-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-8",
+              "argument": "data",
+            },
+            {
+              "target": "columns",
+              "type": "value",
+              "value": [
+                "split_country",
+                "geocoded_country",
+              ],
+            },
+          ],
+        },
+
         // {
         //   "ui": {
         //     "x": 2380,

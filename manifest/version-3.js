@@ -249,7 +249,7 @@ module.exports = function (doc) {
   renameAdaptorInput("forward-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("forward-geocoding", "placeType", "feature type");
-  renameAdaptorInput("forward-geocoding", "resultColumn", "feature column");
+  renameAdaptorInput("forward-geocoding", "resultColumn", "location column");
 
   renameAdaptor("gather-rows", "reshape-wide-to-long");
   renameAdaptorInput("reshape-wide-to-long", "key", "key column name");
@@ -301,7 +301,7 @@ module.exports = function (doc) {
   renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("reverse-geocoding", "placeType", "feature type");
-  renameAdaptorInput("reverse-geocoding", "resultColumn", "feature column");
+  renameAdaptorInput("reverse-geocoding", "resultColumn", "location column");
 
   renameAdaptor("sqlite-database", "import-from-sqlite");
   renameAdaptorInput("import-from-sqlite", "sqlite", "sqlite file");
