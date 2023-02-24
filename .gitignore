@@ -107,3 +107,4 @@ dev/data/amr-watch-metadata/all.csv
 dev/data/amr-watch-metadata/100k.csv
 -cov
 .bin/
+cache.db
