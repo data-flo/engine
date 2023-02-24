@@ -11,7 +11,7 @@ module.exports = async function (args) {
 
   for (const key of args.aggregations.keys()) {
     groupedTableColumnNames.push(key);
-    args.data.shouldIncludeColumns(key);
+    await args.data.shouldIncludeColumns(key);
   }
 
   const groups = new GroupMap();
