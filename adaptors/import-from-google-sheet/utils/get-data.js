@@ -1,4 +1,4 @@
-const getClient = require("../../../utils/google-drive/get-glient");
+const getClient = require("../../../utils/google-api/get-glient");
 const getSheetRange = require("../../../utils/spreadsheets/get-sheet-range");
 
 const getSheetProperties = require("./get-sheet-properties");
