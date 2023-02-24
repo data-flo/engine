@@ -180,6 +180,7 @@ module.exports = function (doc) {
   renameAdaptorOutput("export-to-csv-file", "dbf", "file");
 
   renameAdaptor("datatable-to-csv", "export-to-csv-file");
+  renameAdaptor("datatable-to-csv-file", "export-to-csv-file");
   renameAdaptorInput("export-to-csv-file", "separator", "delimiter");
   renameAdaptorInput("export-to-csv-file", "filename", "output file name");
   renameAdaptorOutput("export-to-csv-file", "csv", "file");

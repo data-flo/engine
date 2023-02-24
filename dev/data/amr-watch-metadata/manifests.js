@@ -482,32 +482,32 @@ module.exports = [
           ],
         },
 
-        {
-          "ui": {
-            "x": 1770,
-            "y": 420,
-          },
-          "name": "transformation-15",
-          "type": "adaptor",
-          "adaptor": "select-columns",
-          "description": null,
-          "binding": [
-            {
-              "target": "data",
-              "type": "transformation",
-              "transformation": "transformation-8",
-              "argument": "data",
-            },
-            {
-              "target": "columns",
-              "type": "value",
-              "value": [
-                "split_country",
-                "geocoded_country",
-              ],
-            },
-          ],
-        },
+        // {
+        //   "ui": {
+        //     "x": 1770,
+        //     "y": 420,
+        //   },
+        //   "name": "transformation-15",
+        //   "type": "adaptor",
+        //   "adaptor": "select-columns",
+        //   "description": null,
+        //   "binding": [
+        //     {
+        //       "target": "data",
+        //       "type": "transformation",
+        //       "transformation": "transformation-8",
+        //       "argument": "data",
+        //     },
+        //     {
+        //       "target": "columns",
+        //       "type": "value",
+        //       "value": [
+        //         "split_country",
+        //         "geocoded_country",
+        //       ],
+        //     },
+        //   ],
+        // },
 
         // {
         //   "ui": {
@@ -537,63 +537,31 @@ module.exports = [
         //     },
         //   ],
         // },
-        // {
-        //   "ui": {
-        //     "x": 2600,
-        //     "y": 260,
-        //   },
-        //   "name": "transformation-16",
-        //   "type": "adaptor",
-        //   "adaptor": "datatable-to-csv",
-        //   "description": null,
-        //   "binding": [],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 2800,
-        //     "y": 260,
-        //   },
-        //   "name": "transformation-17",
-        //   "type": "adaptor",
-        //   "adaptor": "text-to-file",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "name",
-        //       "type": "value",
-        //       "value": "geocoding_income.csv",
-        //     },
-        //     {
-        //       "target": "text",
-        //       "type": "transformation",
-        //       "transformation": "transformation-16",
-        //       "argument": "csv",
-        //     },
-        //   ],
-        // },
-        // {
-        //   "ui": {
-        //     "x": 2650,
-        //     "y": 500,
-        //   },
-        //   "name": "transformation-18",
-        //   "type": "adaptor",
-        //   "adaptor": "datatable-to-csv-file",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "data",
-        //       "type": "transformation",
-        //       "transformation": "transformation-13",
-        //       "argument": "data",
-        //     },
-        //     {
-        //       "target": "filename",
-        //       "type": "value",
-        //       "value": "geocoding-income-region",
-        //     },
-        //   ],
-        // },
+
+        {
+          "ui": {
+            "x": 2650,
+            "y": 500,
+          },
+          "name": "transformation-18",
+          "type": "adaptor",
+          "adaptor": "datatable-to-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-11",
+              // "transformation": "transformation-13",
+              "argument": "data",
+            },
+            {
+              "target": "filename",
+              "type": "value",
+              "value": "geocoding-income-region",
+            },
+          ],
+        },
       ],
       "version": 2,
     },
