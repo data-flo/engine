@@ -1,44 +1,54 @@
+const getSpreadsheetData = require("../../utils/google-api/get-spreadsheet-data");
+const spreadsheetUrlToId = require("../../utils/google-api/spreadsheet-url-to-id");
+const getClient = require("../../utils/google-api/get-glient");
+
 const checkSheetSize = require("./utils/check-sheet-size");
-const getClient = require("../google-spreadsheet/utils/get-client");
-const getSheetData = require("../google-spreadsheet/utils/get-sheet-data");
-const getSheetProperties = require("../google-spreadsheet/utils/get-sheet-properties");
-const getSheetRange = require("../google-spreadsheet/utils/get-sheet-range");
 const mergeData = require("./utils/merge-data");
-const rewriteUrl = require("../google-spreadsheet/utils/rewrite-url");
 const updateSheetData = require("./utils/update-sheet-data");
 
 module.exports = async function (args) {
-  if (!args.data.hasColumn(args["id column"])) {
-    throw new Error(`datatable does not include a column named '${args["id column"]}'`);
-  }
+  await args.data.shouldIncludeColumns(args["id column"]);
 
-  const spreadsheetId = rewriteUrl(args.url);
+  const spreadsheetId = spreadsheetUrlToId(args.url);
   const authClient = await getClient();
-  try {
-    const sheetProps = await getSheetProperties(authClient, spreadsheetId, args.sheetname);
-    const range = getSheetRange(sheetProps);
-    const sheetData = await getSheetData(authClient, spreadsheetId, range.address);
 
-    const [ cellUpdates, updatedRowIds, createdRowId, skippedRowIds ] = mergeData(sheetData, args);
+  const spreadsheetData = await getSpreadsheetData(
+    authClient,
+    spreadsheetId,
+    args.sheetname,
+  );
 
-    await checkSheetSize(authClient, spreadsheetId, sheetProps, cellUpdates, args["resize sheet"]);
+  const [ cellUpdates, updatedRowIds, createdRowId, skippedRowIds ] = await mergeData(
+    spreadsheetData.sheetValues,
+    args.data,
+    args["id column"],
+    args["header row"],
+    args["append rows"],
+    args["append columns"],
+  );
 
-    const updated = await updateSheetData(authClient, spreadsheetId, sheetProps, cellUpdates);
+  await checkSheetSize(
+    authClient,
+    spreadsheetId,
+    spreadsheetData.sheetProps,
+    cellUpdates,
+    args["resize sheet"],
+  );
 
-    return {
-      "updated cells": updated.totalUpdatedCells || 0,
-      updated: updatedRowIds,
-      created: createdRowId,
-      skipped: skippedRowIds,
-      data: args.data,
-    };
-  }
-  catch (error) {
-    if (error.message === "The caller does not have permission") {
-      throw new Error(`Cannot access Google Spreadsheet ${args.url}. Make sure it has been shared with ${authClient.email}.`);
-    }
-    throw error;
-  }
+  const updated = await updateSheetData(
+    authClient,
+    spreadsheetId,
+    spreadsheetData.sheetProps,
+    cellUpdates,
+  );
+
+  return {
+    "data": args.data,
+    "updated cells": updated.totalUpdatedCells || 0,
+    "updated row ids": updatedRowIds,
+    "created row ids": createdRowId,
+    "skipped row ids": skippedRowIds,
+  };
 };
 
 module.exports.manifest = require("./manifest");

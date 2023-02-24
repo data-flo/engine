@@ -1,5 +1,5 @@
-module.exports = async function* generateRows(sheetData, skippedRowIndices) {
-  const { sheetValues, sheetRange } = sheetData;
+module.exports = async function* generateRows(spreadsheetData, skippedRowIndices) {
+  const { sheetValues, sheetRange } = spreadsheetData;
   const columns = sheetValues[0];
 
   if (sheetValues.length > 1) {

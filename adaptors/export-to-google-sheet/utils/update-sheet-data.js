@@ -1,5 +1,6 @@
 const { google } = require("googleapis");
-const columnToLetter = require("../../google-spreadsheet/utils/column-to-letter");
+
+const columnToLetter = require("../../../utils/spreadsheets/column-to-letter");
 
 module.exports = async function (auth, spreadsheetId, sheet, cellUpdates) {
   const sheets = google.sheets({ version: "v4", auth });
