@@ -11,7 +11,6 @@
     "@mapbox/mapbox-sdk": "^0.4.1",
     "axios": "^0.27.2",
     "biojs-io-newick": "^1.5.0",
-    "cgps-application-server": "cgps-dev/application-server#v18.0.0",
     "cgps-utils": "github:cgps-group/cgps-utils",
     "change-case": "^4.1.2",
     "content-disposition": "^0.5.4",
