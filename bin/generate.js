@@ -33,7 +33,9 @@ async function main() {
   const list = await getAdaptorsList();
 
   for (const item of list) {
-    
+    console.log(item.name)
+    item.manifest.group = item.manifest.subgroup;
+    item.manifest.subgroup = undefined;
   }
 
   fs.writeFileSync(
@@ -45,7 +47,7 @@ async function main() {
     JSON.stringify(
       list,
       null,
-      2
+      2,
     ),
   );
 }

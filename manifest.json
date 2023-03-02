@@ -3,8 +3,7 @@
     "name": "add-column",
     "manifest": {
       "description": "Adds a new column to an existing datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -42,8 +41,7 @@
     "name": "aggregate-rows",
     "manifest": {
       "description": "Aggregates values in specified columns grouped by rows.",
-      "group": "Transformations",
-      "subgroup": "Data Manipulation",
+      "group": "Data Manipulation",
       "input": [
         {
           "name": "data",
@@ -117,8 +115,7 @@
     "name": "append-datatables",
     "manifest": {
       "description": "Appends the rows of two datatables into a new datatable based on common column names.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "first data",
@@ -153,8 +150,7 @@
     "name": "append-lists",
     "manifest": {
       "description": "Appends two lists into one.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "first list",
@@ -182,8 +178,7 @@
     "name": "append-to-list",
     "manifest": {
       "description": "Adds a text value to the end of a list.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -211,8 +206,7 @@
     "name": "apply-force-directed-layout",
     "manifest": {
       "description": "Applies a force-directed graph drawing algorithm (https://en.wikipedia.org/wiki/Force-directed_graph_drawing) on a specified graph.",
-      "group": "Transformations",
-      "subgroup": "Graph Manipulation",
+      "group": "Graph Manipulation",
       "input": [
         {
           "name": "graph",
@@ -269,8 +263,7 @@
     "name": "calculate-time-difference",
     "manifest": {
       "description": "Calculates the time difference (in a specified unit of measurement) between two datatable columns (column one - column two).",
-      "group": "Transformations",
-      "subgroup": "Data Manipulation",
+      "group": "Data Manipulation",
       "input": [
         {
           "name": "data",
@@ -433,8 +426,7 @@
     "name": "change-column-case",
     "manifest": {
       "description": "Converts the case of text values in a datatable column.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -565,8 +557,7 @@
     "name": "compare-columns",
     "manifest": {
       "description": "Compares values in specified columns.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -609,8 +600,7 @@
     "name": "concatenate-columns",
     "manifest": {
       "description": "Concatenate values from two or more columns",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -654,8 +644,7 @@
     "name": "concatenate-text",
     "manifest": {
       "description": "Concatenates two texts.",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "text one",
@@ -690,8 +679,7 @@
     "name": "convert-date-to-text",
     "manifest": {
       "description": "Converts a date/time value to text in a specified format.",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "value",
@@ -872,8 +860,7 @@
     "name": "convert-list-to-datatable",
     "manifest": {
       "description": "Converts a list to a single-column datatable.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -902,8 +889,7 @@
     "name": "convert-text-to-datatable",
     "manifest": {
       "description": "Converts delimited text (e.g. comma-separated values) to a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "csv",
@@ -960,8 +946,7 @@
     "name": "convert-text-to-list",
     "manifest": {
       "description": "Converts a text into a list by spliting it using a specified separator to determine where to make each split.",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "text",
@@ -999,8 +984,7 @@
     "name": "create-google-drive-folder",
     "manifest": {
       "description": "Creates a sub folder in a parent folder in Google Drive.\nThe parent folder should be either public or shared with `data-flo@data-flo.iam.gserviceaccount.com`, and given `can edit` permission.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "parent folder",
@@ -1036,8 +1020,7 @@
     "name": "create-graph-from-datatable",
     "manifest": {
       "description": "Creates a graph structure from a datatable containing edge data.",
-      "group": "Transformations",
-      "subgroup": "Graph Manipulation",
+      "group": "Graph Manipulation",
       "input": [
         {
           "name": "data",
@@ -1078,8 +1061,7 @@
     "name": "create-graph-from-dot",
     "manifest": {
       "description": "Creates a graph structure from text in DOT language format.",
-      "group": "Transformations",
-      "subgroup": "Graph Manipulation",
+      "group": "Graph Manipulation",
       "input": [
         {
           "name": "dot",
@@ -1101,8 +1083,7 @@
     "name": "create-list-from-datatable",
     "manifest": {
       "description": "Creates a list from values of a datatable column.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "data",
@@ -1133,8 +1114,7 @@
     "name": "create-map-from-datatable",
     "manifest": {
       "description": "Creates a map from a datatable.",
-      "group": "Transformations",
-      "subgroup": "Map Manipulation",
+      "group": "Map Manipulation",
       "input": [
         {
           "name": "data",
@@ -1170,8 +1150,7 @@
     "name": "create-text-from-template",
     "manifest": {
       "description": "Creates text using a Mustache template (https://mustache.github.io/).",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "template",
@@ -1199,8 +1178,7 @@
     "name": "duplicate-column",
     "manifest": {
       "description": "Duplicates a column in a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -1240,8 +1218,7 @@
     "name": "export-file-to-google-drive",
     "manifest": {
       "description": "Exports a file to a folder on Google Drive.\nThe folder should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "file",
@@ -1286,8 +1263,7 @@
     "name": "export-file-to-smb-share",
     "manifest": {
       "description": "Exports a file to a shared network drive using standard SMB/CIFS protocol.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "file",
@@ -1355,8 +1331,7 @@
     "name": "export-graph-to-dot-file",
     "manifest": {
       "description": "Exports a graph as a text file in DOT format (https://en.wikipedia.org/wiki/DOT_(graph_description_language)).",
-      "group": "Transformations",
-      "subgroup": "Graph Manipulation",
+      "group": "Graph Manipulation",
       "input": [
         {
           "name": "graph",
@@ -1378,8 +1353,7 @@
     "name": "export-to-csv-file",
     "manifest": {
       "description": "Exports a datatable to a CSV file.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -1446,14 +1420,42 @@
     }
   },
   {
-    "name": "export-to-dbf-file"
+    "name": "export-to-dbf-file",
+    "manifest": {
+      "description": "Exports a datatable as a dBase database file (https://en.wikipedia.org/wiki/.dbf).",
+      "category": "Data Destinations",
+      "input": [
+        {
+          "name": "data",
+          "type": "datatable",
+          "description": "Data to be imported."
+        },
+        {
+          "name": "column types",
+          "type": "map",
+          "description": "A map of column name to data type."
+        },
+        {
+          "name": "output file name",
+          "type": "text",
+          "description": "The name of the file to create.\nIf unspecified, defaults to `file.dbf`.",
+          "default": "file.dbf"
+        }
+      ],
+      "output": [
+        {
+          "name": "dbf",
+          "type": "file",
+          "description": "Exported file DBF format"
+        }
+      ]
+    }
   },
   {
     "name": "export-to-google-sheet",
     "manifest": {
       "description": "Exports data to an existing Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "data",
@@ -1536,8 +1538,7 @@
     "name": "export-to-microreact-project",
     "manifest": {
       "description": "Creates a new project or updates an existing a project on a Microreact server.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "project",
@@ -1651,8 +1652,7 @@
     "name": "export-to-sqlite-file",
     "manifest": {
       "description": "Exports a datatable to a SQLite DB file.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "data",
@@ -1684,8 +1684,7 @@
     "name": "filter-list",
     "manifest": {
       "description": "Finds values in a list that match a pattern.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -1718,8 +1717,7 @@
     "name": "filter-rows",
     "manifest": {
       "description": "Finds rows in a datatable that match a search pattern.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -1864,8 +1862,7 @@
     "name": "find-value-in-list",
     "manifest": {
       "description": "Finds a value in a list that matches a search pattern.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -1898,8 +1895,7 @@
     "name": "find-value-in-map",
     "manifest": {
       "description": "Finds a key in a map and returns the associated value.",
-      "group": "Transformations",
-      "subgroup": "Map Manipulation",
+      "group": "Map Manipulation",
       "input": [
         {
           "name": "map",
@@ -1933,8 +1929,7 @@
     "name": "format-date-column",
     "manifest": {
       "description": "Formats date/time values in a datatable column.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -2234,8 +2229,7 @@
     "name": "forward-geocoding",
     "manifest": {
       "description": "Converts location names in a datatable column to latitude & longitude.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -2289,8 +2283,7 @@
     "name": "import-file-from-dropbox",
     "manifest": {
       "description": "Imports a file from Dropbox.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2312,8 +2305,7 @@
     "name": "import-file-from-figshare",
     "manifest": {
       "description": "Imports a file from Figshare (https://figshare.com).",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2335,8 +2327,7 @@
     "name": "import-file-from-google-drive",
     "manifest": {
       "description": "Imports a file from Google Drive.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2358,8 +2349,7 @@
     "name": "import-file-from-s3",
     "manifest": {
       "description": "Imports a file from an Amazon S3 compatible object storage server.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2393,8 +2383,7 @@
     "name": "import-file-from-smb-share",
     "manifest": {
       "description": "Imports a file from a shared network drive using standard SMB/CIFS protocol.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "share address",
@@ -2447,8 +2436,7 @@
     "name": "import-file-from-url",
     "manifest": {
       "description": "Imports a file from the web.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2476,8 +2464,7 @@
     "name": "import-from-csv-file",
     "manifest": {
       "description": "Imports a CSV file and converts to a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "file",
@@ -2600,8 +2587,7 @@
     "name": "import-from-dbf-file",
     "manifest": {
       "description": "Reads data from a dBASE (`.dbf`) file.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "dbf",
@@ -2623,8 +2609,7 @@
     "name": "import-from-epicollect-project",
     "manifest": {
       "description": "Imports data from an Epicollect5 project.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2664,8 +2649,7 @@
     "name": "import-from-excel-file",
     "manifest": {
       "description": "Imports data from a spreadsheet file.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "file",
@@ -2699,8 +2683,7 @@
     "name": "import-from-google-sheet",
     "manifest": {
       "description": "Imports data from a Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com`.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "url",
@@ -2762,8 +2745,7 @@
     "name": "import-from-mysql",
     "manifest": {
       "description": "Imports data from a MySQL database.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "hostname",
@@ -2819,8 +2801,7 @@
     "name": "import-from-oracle",
     "manifest": {
       "description": "Imports data from an Oracle Database and returns the results as a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "connection string",
@@ -2860,8 +2841,7 @@
     "name": "import-from-postgres",
     "manifest": {
       "description": "Imports data from a PostgreSQL database.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "hostname",
@@ -2917,8 +2897,7 @@
     "name": "import-from-spreadsheet-file",
     "manifest": {
       "description": "Imports data from a spreadsheet file.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "file",
@@ -2952,8 +2931,7 @@
     "name": "import-from-sql-server",
     "manifest": {
       "description": "Imports data from a Microsoft SQl Server database.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "hostname",
@@ -3009,8 +2987,7 @@
     "name": "import-from-sqlite",
     "manifest": {
       "description": "Imports data from a SQLite file.",
-      "group": "Transformations",
-      "subgroup": "Data Sources",
+      "group": "Data Sources",
       "input": [
         {
           "name": "sqlite file",
@@ -3038,8 +3015,7 @@
     "name": "import-list-from-text-file",
     "manifest": {
       "description": "Imports a list from a text file.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "file",
@@ -3121,8 +3097,7 @@
     "name": "join-datatables",
     "manifest": {
       "description": "Joins two datatables based on a common column between them.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "main data",
@@ -3209,8 +3184,7 @@
     "name": "list-datatable-columns",
     "manifest": {
       "description": "Creates a list of datatable column names.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3232,8 +3206,7 @@
     "name": "list-newick-leaf-labels",
     "manifest": {
       "description": "Gets the leaf labels from a Newick tree.",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "newick",
@@ -3255,8 +3228,7 @@
     "name": "map-column-values",
     "manifest": {
       "description": "Adds a new column to a datatable by mapping values of an existing column.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3322,8 +3294,7 @@
     "name": "prepend-to-list",
     "manifest": {
       "description": "Adds a text value to the end of a list.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -3351,8 +3322,7 @@
     "name": "remove-columns",
     "manifest": {
       "description": "Removes specified columns from a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3380,8 +3350,7 @@
     "name": "remove-duplicate-list-values",
     "manifest": {
       "description": "Removes duplicate values in a list.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -3415,8 +3384,7 @@
     "name": "remove-duplicate-rows",
     "manifest": {
       "description": "Removes duplicate rows from a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3456,8 +3424,7 @@
     "name": "rename-columns",
     "manifest": {
       "description": "Renames existing columns in a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3497,8 +3464,7 @@
     "name": "replace-blank-values",
     "manifest": {
       "description": "Replaces blank values in a datatable column.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3535,8 +3501,7 @@
     "name": "replace-values-in-columns",
     "manifest": {
       "description": "Replaces all instances of a pattern in one or more columns in a datatable. The replacement values can be written to the original columns or new columns.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3577,8 +3542,7 @@
     "name": "replace-values-in-list",
     "manifest": {
       "description": "Replaces all instances of a pattern in list values with a specified replacement text.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -3613,8 +3577,7 @@
     "name": "replace-values-in-text",
     "manifest": {
       "description": "Replaces all instances of a pattern in a text with a specified replacement text.",
-      "group": "Transformations",
-      "subgroup": "Text Manipulation",
+      "group": "Text Manipulation",
       "input": [
         {
           "name": "text",
@@ -3649,8 +3612,7 @@
     "name": "reshape-long-to-wide",
     "manifest": {
       "description": "Reshapes rows in long format to wide format.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3686,8 +3648,7 @@
     "name": "reshape-wide-to-long",
     "manifest": {
       "description": "Reshapes rows in wide format to long format.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3729,8 +3690,7 @@
     "name": "reverse-geocoding",
     "manifest": {
       "description": "Converts latitude & longitude in datatable columns to location names.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3785,8 +3745,7 @@
     "name": "select-columns",
     "manifest": {
       "description": "Selects a list of columns from a datatable in a specified order.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3823,8 +3782,7 @@
     "name": "select-list-values",
     "manifest": {
       "description": "Selects values, based on position, from a list.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -3863,8 +3821,7 @@
     "name": "select-rows",
     "manifest": {
       "description": "Selects rows, based on position, from a datatable.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -3906,8 +3863,7 @@
     "name": "send-email-message",
     "manifest": {
       "description": "Sends an email message via a SMTP server.",
-      "group": "Transformations",
-      "subgroup": "Data Destinations",
+      "group": "Data Destinations",
       "input": [
         {
           "name": "stmp host",
@@ -3973,8 +3929,7 @@
     "name": "sort-datatable",
     "manifest": {
       "description": "Sorts a datatable by one or more columns.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -4019,8 +3974,7 @@
     "name": "sort-list",
     "manifest": {
       "description": "Sorts values in a list.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
@@ -4061,8 +4015,7 @@
     "name": "split-column",
     "manifest": {
       "description": "Splits values in a column into a specified number of columns using a separator to determine where to make each split.",
-      "group": "Transformations",
-      "subgroup": "Data Tables",
+      "group": "Data Tables",
       "input": [
         {
           "name": "data",
@@ -4102,8 +4055,7 @@
     "name": "split-list",
     "manifest": {
       "description": "Splits a list into two lists at the first instance of a specified separator value.",
-      "group": "Transformations",
-      "subgroup": "List Manipulation",
+      "group": "List Manipulation",
       "input": [
         {
           "name": "list",
