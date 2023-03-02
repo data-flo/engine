@@ -5,7 +5,7 @@ module.exports = function getAdaptorManifest(name) {
     path.join(
       __dirname,
       "..",
-      "adaptors",
+      "adapters",
       name,
       "index.js",
     ),
