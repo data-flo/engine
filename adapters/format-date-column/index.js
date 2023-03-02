@@ -3,7 +3,7 @@
 const fromString = require("../../utils/date/from-string");
 const toString = require("../../utils/date/to-string");
 
-const { EmptyString } = require("../../constants");
+const { EmptyString } = require("../../utils/constants");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(
