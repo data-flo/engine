@@ -333,7 +333,7 @@ module.exports = [
             {
               "target": "api key",
               "type": "value",
-              "value": "a647a72977454694a38b94dba4341ef5",
+              "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
             },
             {
               "target": "location column",
@@ -362,12 +362,17 @@ module.exports = [
             {
               "target": "api key",
               "type": "value",
-              "value": "a647a72977454694a38b94dba4341ef5",
+              "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
             },
             {
               "target": "location column",
               "type": "value",
               "value": "geocoded_country",
+            },
+            {
+              "target": "location type",
+              "type": "value",
+              "value": "country code",
             },
             {
               "target": "longitude column",
