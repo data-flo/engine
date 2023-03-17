@@ -34,9 +34,9 @@ module.exports = {
     {
       "name": "location type",
       "type": "text",
-      "description": "The type of the geographic feature. Valid options are \"country\", \"region\", \"postcode\", \"district\", \"place\", \"locality\", \"neighborhood\", \"address\", and \"poi\". Defaults to \"country\".",
+      "description": "The type of the geographic feature. Valid options are `country name`, `country code`, `postal code`, `state`, `county`, `city`, `address`.\nDefaults to `address`.",
       "required": false,
-      "default": "country",
+      "default": "address",
     },
 
     // {
@@ -48,7 +48,7 @@ module.exports = {
     {
       "name": "api key",
       "type": "text",
-      "description": "An OpenCage Geocoding API key (https://opencagedata.com/api) or a Mapbox API key (https://docs.mapbox.com/help/getting-started/access-tokens/).",
+      "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
       "required": true,
     },
   ],

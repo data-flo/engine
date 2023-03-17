@@ -30,10 +30,18 @@ module.exports = {
       "required": false,
       "default": "longitude",
     },
+
+    {
+      "name": "geographic area",
+      "type": "text",
+      "description": "Search within a geographic area. This is a hard filter. Results will be returned if they are located within the specified area. A geographic area can be a country (or multiple countries), provided as comma-separated [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country codes in all uppercase. For example, CAN,MEX,USA.",
+      "required": false,
+    },
+
     {
       "name": "type column",
       "type": "text",
-      "description": "The name of the column to hold the place type.\nIf unspecified, the type column will not be added.",
+      "description": "The name of the column to hold the match type (either `city`, `country`, `county`, `district`, `houseNumber`, `intersection`, `place`, `postalCode`, `state`, `street`, or `subdistrict`).\nIf unspecified, the type column will not be added.",
       "required": false,
     },
 
@@ -46,7 +54,7 @@ module.exports = {
     {
       "name": "api key",
       "type": "text",
-      "description": "An OpenCage Geocoding API key (https://opencagedata.com/api).",
+      "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
       "required": true,
     },
   ],
