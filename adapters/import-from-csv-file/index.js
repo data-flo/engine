@@ -5,6 +5,7 @@ const { Datatable } = require("../../types/datatable");
 module.exports = async function (args) {
   const datatableWriter = await Datatable.create();
 
+  // TODO: use pipeline
   args.file.getReader({ encoding: args.encoding })
     .pipe(
       parse({
