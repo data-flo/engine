@@ -1,13 +1,15 @@
 const opencage = require("opencage-api-client");
 
-module.exports = function reverseGeocode(opencageApiKey, query, confidenceSorce, proximity) {
+module.exports = function opencageGeocoder(opencageApiKey, query, confidenceSorce, proximity) {
   return opencage
     .geocode({
-      q: query,
       key: opencageApiKey,
       limit: 1,
       min_confidence: confidenceSorce,
       no_annotations: 1,
+      no_record: 1,
+      proximity,
+      q: query,
     })
     .then((data) => {
       if (data.results.length > 0) {

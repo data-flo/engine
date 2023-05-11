@@ -39,6 +39,14 @@ module.exports = {
     },
 
     {
+      "name": "digits",
+      "type": "number",
+      "description": "The number of digits to appear after the decimal point; should be a value between 0 and 6, inclusive.\nIf unspecified, it defaults to 6.",
+      "required": false,
+      "default": 6,
+    },
+
+    {
       "name": "type column",
       "type": "text",
       "description": "The name of the column to hold the match type (either `city`, `country`, `county`, `district`, `houseNumber`, `intersection`, `place`, `postalCode`, `state`, `street`, or `subdistrict`).\nIf unspecified, the type column will not be added.",

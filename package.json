@@ -62,6 +62,7 @@
     "swap-case": "^2.0.2",
     "title-case": "^3.0.3",
     "tmp-promise": "^3.0.3",
+    "tsx": "^3.12.7",
     "upper-case": "^2.0.2",
     "vis": "^4.21.0",
     "xlsx": "^0.17.3",

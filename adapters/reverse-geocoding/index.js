@@ -1,5 +1,5 @@
-const geocoder = require("../../utils/geocoding/here-revgeocode");
-const formater = require("../../utils/geocoding/here-formater");
+const geocoder = require("../../utils/geocoding/opencage-geocoder");
+const formater = require("../../utils/geocoding/opencage-formater");
 
 const cache = require("../../utils/cache");
 
@@ -19,7 +19,9 @@ module.exports = async function (args) {
           360 * 24,
         );
 
+        
         if (place) {
+          console.log(args["location type"], place)
           const feature = formater(place, args["location type"]);
           if (feature) {
             return feature;

@@ -1,5 +1,5 @@
-const geocoder = require("../../utils/geocoding/here-geocoder");
-const formater = require("../../utils/geocoding/here-formater");
+const geocoder = require("../../utils/geocoding/opencage-geocoder");
+const formater = require("../../utils/geocoding/opencage-formater");
 
 const cache = require("../../utils/cache");
 
@@ -20,9 +20,9 @@ module.exports = async function (args) {
         );
 
         if (place) {
-          const [ latitude, longitude ] = formater(place, "position");
-          row[args["latitude column"]] = latitude;
-          row[args["longitude column"]] = longitude;
+          const [latitude, longitude] = formater(place, "position");
+          row[args["latitude column"]] = latitude.toFixed(args.digits);
+          row[args["longitude column"]] = longitude.toFixed(args.digits);
           if (args["type column"]) {
             const type = formater(place, "type");
             row[args["type column"]] = type;

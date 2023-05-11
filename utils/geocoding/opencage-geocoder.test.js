@@ -1,11 +1,44 @@
-const tap = require("../testing/unit");
-const reverseGeocode = require("./geocoder");
+const test = require("node:test");
+const assert = require("node:assert");
 
-tap.test("given an invalid string, it should return undefined", async (t) => {
-  const expected = undefined;
-  const actual = await reverseGeocode(
+const geocode = require("./opencage-geocoder");
+
+test("given an invalid string, it should return undefined", async (t) => {
+  const actual = await geocode(
     process.env.OPENCAGE_API_KEY,
-    "52.12670207561581, 0.17255181706350176",
+    "Babraham Road, Sawston, CB22 3DQ, United Kingdom",
   );
-  t.equal(actual, expected);
+  assert.deepEqual(
+    actual,
+    {
+      "components": {
+        "ISO_3166-1_alpha-2": "GB",
+        "ISO_3166-1_alpha-3": "GBR",
+        "ISO_3166-2": [
+          "GB-ENG",
+          "GB-CAM",
+        ],
+        "_category": "postcode",
+        "_type": "postcode",
+        "continent": "Europe",
+        "country": "United Kingdom",
+        "country_code": "gb",
+        "county": "Cambridgeshire",
+        "county_code": "CAM",
+        "postcode": "CB22 3DQ",
+        "region": "East of England",
+        "state": "England",
+        "state_code": "ENG",
+        "suburb": "Sawston",
+        "town": "South Cambridgeshire",
+        "village": "Sawston",
+      },
+      "confidence": 10,
+      "formatted": "Sawston, CB22 3DQ, United Kingdom",
+      "geometry": {
+        "lat": 52.126955,
+        "lng": 0.171615,
+      },
+    }
+  );
 });

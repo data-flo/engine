@@ -22,26 +22,27 @@ tap.test("forward-geocoding adaptor", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "api key": process.env.HERE_API_KEY,
+        "api key": process.env.OPENCAGE_API_KEY,
         "data": data,
         "location column": "location",
         "latitude column": "latitude",
         "longitude column": "longitude",
         "type column": "type",
+        "digits": 4,
       },
     );
     t.ok(output.data);
     tap.compareFile(
       output.data.getSource(),
       `"location","latitude","longitude","type"
-"Babraham Road, Sawston, CB22 3DQ, United Kingdom","52.12672","0.17119","postalCode"
-"1330 Middle Avenue, Menlo Park, CA 94025, United States of America","37.43982","-122.18653","houseNumber"
-"United Kingdom","51.50643","-0.12721","country"
-"Viet Nam","21.02888","105.85463","country"
-"London","51.50643","-0.12719","city"
-"Sawston","52.12268","0.1677","district"
-"CB22 3DQ","52.12672","0.17119","postalCode"
-"Big Ben","51.50108","-0.12459","place"
+"Babraham Road, Sawston, CB22 3DQ, United Kingdom","52.1270","0.1716","postalcode"
+"1330 Middle Avenue, Menlo Park, CA 94025, United States of America","37.4397","-122.1865","building"
+"United Kingdom","54.7024","-3.2766","country"
+"Viet Nam","15.9267","107.9651","country"
+"London","51.5073","-0.1277","city"
+"Sawston","52.1252","0.1693","village"
+"CB22 3DQ","52.1270","0.1716","postalcode"
+"Big Ben","51.5007","-0.1246","attraction"
 `
     );
   });

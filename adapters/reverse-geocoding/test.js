@@ -29,10 +29,10 @@ tap.test("reverse-geocoding adaptor", async () => {
     );
     tap.ok(output.data);
     const expected = `"latitude","longitude","address"
-"-13.163068","-72.545128","Hatuchay Inn Restaurante & Hotel, 08680 Machu Picchu, Peru"
-"37.4396","-122.1864","1330 Middle Ave, Menlo Park, CA 94025-5848, United States"
-"51.50643","-0.12719","39 Whitehall, London, SW1A 2BX, United Kingdom"
-"51.50108","-0.12459","WHSmith, Bridge Street, London, SW1A 2JR, United Kingdom"
+"-13.163068","-72.545128","Machu Picchu, Path to Inka Bridge, Machupicchu 08680, Peru"
+"37.4396","-122.1864","1330 Middle Avenue, Menlo Park, CA 94025, United States of America"
+"51.50643","-0.12719","Whitehall / Trafalgar Square, Whitehall, Westminster, London, SW1A 2EG, United Kingdom"
+"51.50108","-0.12459","Portcullis House, Canon Row, Westminster, London, SW1A 2LW, United Kingdom "
 ,,
 `;
     tap.compareFile(output.data.getSource(), expected);

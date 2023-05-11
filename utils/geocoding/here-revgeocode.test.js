@@ -39,7 +39,7 @@ tap.test("given a city and a geographic area, it should return a location", asyn
     "USA",
     "London, KY, United States",
   ];
-  const actual = await geocoder(
+  const actual = await reverseGeocoder(
     process.env.HERE_API_KEY,
     "london",
     "USA",
@@ -49,7 +49,7 @@ tap.test("given a city and a geographic area, it should return a location", asyn
 
 tap.test("given an invalid string, it should return undefined", async (t) => {
   const expected = undefined;
-  const actual = await geocoder(
+  const actual = await reverseGeocoder(
     process.env.HERE_API_KEY,
     "52.12670207561581, 0.17255181706350176",
   );

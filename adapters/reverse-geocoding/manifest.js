@@ -26,17 +26,18 @@ module.exports = {
     },
 
     {
+      "name": "location type",
+      "type": "text",
+      "description": "The type of the geographic feature. Valid options are `country name`, `country code`, `postal code`, `state`, `county`, `city`, or `address`.\nDefaults to `address`.",
+      "required": false,
+      "default": "address",
+    },
+
+    {
       "name": "location column",
       "type": "text",
       "description": "The name of the column to contain location output.",
       "required": true,
-    },
-    {
-      "name": "location type",
-      "type": "text",
-      "description": "The type of the geographic feature. Valid options are `country name`, `country code`, `postal code`, `state`, `county`, `city`, `address`.\nDefaults to `address`.",
-      "required": false,
-      "default": "address",
     },
 
     // {
@@ -45,12 +46,12 @@ module.exports = {
     //   "description": "OpenCage or Mapbox",
     //   "required": false,
     // },
-    {
-      "name": "api key",
-      "type": "text",
-      "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
-      "required": true,
-    },
+    // {
+    //   "name": "api key",
+    //   "type": "text",
+    //   "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
+    //   "required": true,
+    // },
   ],
   "output": [
     {
