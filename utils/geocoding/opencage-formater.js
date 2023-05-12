@@ -1,4 +1,12 @@
 module.exports = function formater(result, feature) {
+  if (feature === "type") {
+    let type = result?.components?._type;
+    // if (result?.components?._type === "postcode") {
+    //   type = "postal code";
+    // }
+    return type;
+  }
+
   if (feature === "address" || !feature) {
     return result?.formatted;
   }
@@ -10,42 +18,46 @@ module.exports = function formater(result, feature) {
     ];
   }
 
-  if (feature === "type") {
-    let type = result.components._type;
-    if (result.components._type === "postcode") {
-      type = "postalcode";
-    }
-    // else if (result.resultType === "administrativeArea") {
-    //   type = result.administrativeAreaType;
-    // }
-    // else if (result.resultType === "postalCodePoint") {
-    //   type = "postalCode";
-    // }
-    return type;
-  }
-
   if (feature === "country code") {
-    return result?.address?.countryCode;
+    return result?.components?.country_code?.toUpperCase?.() ?? result?.components?.["ISO_3166-1_alpha-3"];
   }
 
   if (feature === "country name") {
-    return result?.address?.countryName;
+    return result?.components?.country;
   }
 
-  if (feature === "postal code") {
-    return result?.address?.postalCode;
+  if (feature === "ISO-3166-1-alpha-2") {
+    return result?.components?.["ISO_3166-1_alpha-2"];
+  }
+  if (feature === "ISO-3166-1-alpha-3") {
+    return result?.components?.["ISO_3166-1_alpha-3"];
+  }
+  if (feature === "ISO-3166-2") {
+    return result?.components?.["ISO_3166-2"];
   }
 
-  if (feature === "state") {
-    return result?.address?.state;
+  if (feature === "postcode" || feature === "postal code") {
+    return result?.components?.postcode;
+  }
+
+  if (feature === "state name") {
+    return result?.components?.state;
+  }
+
+  if (feature === "state code") {
+    return result?.components?.state_code;
   }
 
   if (feature === "county") {
-    return result?.address?.county;
+    return result?.components?.county;
   }
 
   if (feature === "city") {
-    return result?.address?.city;
+    return result?.components?.city;
+  }
+
+  if (feature === "continent") {
+    return result?.components?.continent;
   }
 
   throw new Error("Invalid feature");

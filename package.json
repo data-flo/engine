@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tap utils/**/*.test.js --reporter classic",
-    "tap": "tap --reporter classic"
+    "tap": "tap --reporter treport"
   },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.1",
@@ -60,6 +60,7 @@
     "ssh2-sftp-client": "^5.1.2",
     "stream-to-string": "^1.2.0",
     "swap-case": "^2.0.2",
+    "tap-spec": "^5.0.0",
     "title-case": "^3.0.3",
     "tmp-promise": "^3.0.3",
     "tsx": "^3.12.7",

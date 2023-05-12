@@ -49,7 +49,7 @@ module.exports = {
     {
       "name": "type column",
       "type": "text",
-      "description": "The name of the column to hold the match type (either `city`, `country`, `county`, `district`, `houseNumber`, `intersection`, `place`, `postalCode`, `state`, `street`, or `subdistrict`).\nIf unspecified, the type column will not be added.",
+      "description": "The name of the column to hold the match type (either `building`, `road`, `hamlet`, `village`, `neighbourhood`, `city`, `county`, `postcode`, `partial_postcode`, `terminated_postcode`, `postal_city`, `state_district`, `state`, `region`, `island`, `body_of_water`, `country`, `continent`, `fictitious`, or `unknown`).\nIf unspecified, the type column will not be added.",
       "required": false,
     },
 
