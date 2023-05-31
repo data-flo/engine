@@ -40,17 +40,28 @@ module.exports = [
         //   "transformation": "transformation-17",
         //   "type": "file",
         // },
-        // {
-        //   "ui": {
-        //     "x": 2980,
-        //     "y": 520,
-        //   },
-        //   "argument": "csv",
-        //   "description": "",
-        //   "name": "csv",
-        //   "transformation": "transformation-18",
-        //   "type": "file",
-        // },
+        {
+          "ui": {
+            "x": 2980,
+            "y": 520,
+          },
+          "argument": "data",
+          "description": "",
+          "name": "data",
+          "transformation": "transformation-11",
+          "type": "datatable",
+        },
+        {
+          "ui": {
+            "x": 2980,
+            "y": 520,
+          },
+          "argument": "file",
+          "description": "",
+          "name": "csv",
+          "transformation": "transformation-18",
+          "type": "file",
+        },
       ],
       "transform": [
         {
