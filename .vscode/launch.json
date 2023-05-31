@@ -11,7 +11,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/dev/index.js"
+      "program": "${workspaceFolder}/dev/index.js",
+      "outputCapture": "console"
     },
     {
       "type": "node",
