@@ -1,5 +1,5 @@
 const fs = require("fs");
-const stream = require("stream/promises");
+const stream = require("stream");
 
 const { parse, stringify } = require("csv");
 
@@ -22,7 +22,7 @@ class Datatable {
 
     const fileStream = fs.createWriteStream(filePath);
 
-    const pipeline = stream.pipeline(
+    const pipeline = stream.promises.pipeline(
       stringifier,
       fileStream,
     );
