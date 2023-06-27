@@ -341,11 +341,11 @@ module.exports = [
               "transformation": "transformation-6",
               "argument": "data",
             },
-            {
-              "target": "api key",
-              "type": "value",
-              "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
-            },
+            // {
+            //   "target": "api key",
+            //   "type": "value",
+            //   "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
+            // },
             {
               "target": "location column",
               "type": "value",
@@ -370,11 +370,11 @@ module.exports = [
               "transformation": "transformation-7",
               "argument": "data",
             },
-            {
-              "target": "api key",
-              "type": "value",
-              "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
-            },
+            // {
+            //   "target": "api key",
+            //   "type": "value",
+            //   "value": "obt_XmS4dwbckoc2iVGqESbgslQpG7JR_2pQvdiALLg",
+            // },
             {
               "target": "location column",
               "type": "value",
