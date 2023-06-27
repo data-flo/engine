@@ -59,12 +59,12 @@ module.exports = {
     //   "description": "An OpenCage Geocoding API key (https://opencagedata.com/api).",
     //   "required": true,
     // },
-    {
-      "name": "api key",
-      "type": "text",
-      "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
-      "required": true,
-    },
+    // {
+    //   "name": "api key",
+    //   "type": "text",
+    //   "description": "A valid HERE API Key (https://developer.here.com/documentation/identity-access-management/dev_guide/topics/plat-using-apikeys.html).",
+    //   "required": true,
+    // },
   ],
   "output": [
     {
