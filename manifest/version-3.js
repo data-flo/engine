@@ -1,15 +1,4 @@
-/*
-
-      "ui": { "column-in": "data" },
-      "required": true,
-      "required": false,
-      "ui": { "can-be-one-of": DateFormats },
-      "ui": { "must-be-one-of": DurationUnits },
-\nIf unspecified, defaults to
-*/
-
 module.exports = function (doc) {
-
   function renameAdaptor(oldName, newName) {
     for (const step of doc.transform) {
       if (step.type === "adaptor") {
@@ -364,9 +353,35 @@ module.exports = function (doc) {
   renameAdaptor("update-microreact-project", "export-to-microreact-project");
   renameAdaptorInput("export-to-microreact-project", "name", "project name");
 
-  renameAdaptor("", "new");
-  renameAdaptorInput("new", "", "");
-  renameAdaptorOutput("new", "", "");
+  // renameAdaptor("", "new");
+  // renameAdaptorInput("new", "", "");
+  // renameAdaptorOutput("new", "", "");
+
+  for (let index = 0; index < doc.transform.length; index++) {
+    const item = doc.transform[index];
+    item.id = item.name;
+    item.name = undefined;
+  }
+
+  for (let index = 0; index < doc.input.length; index++) {
+    const item = doc.input[index];
+    const currentName = item.name;
+    const newId = `input-${index + 1}`;
+    item.id = newId;
+    for (const step of doc.transform) {
+      for (const binding of step.binding) {
+        if (binding.type === "input" && binding.input === currentName) {
+          binding.input = newId;
+        }
+      }
+    }
+  }
+
+  for (let index = 0; index < doc.output.length; index++) {
+    const item = doc.output[index];
+    const newId = `output-${index + 1}`;
+    item.id = newId;
+  }
 
   doc.version = 3;
 
