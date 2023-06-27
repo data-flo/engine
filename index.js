@@ -6,7 +6,7 @@ const runAdaptor = require("./runner/run-adaptor");
 const runDataflow = require("./runner/run-dataflow");
 const getAdaptorExecutable = require("./runner/get-adaptor-executable");
 const getAdaptorManifest = require("./runner/get-adaptor-manifest");
-const mapFile = require("./utils/file/map");
+// const mapFile = require("./utils/file/map");
 
 // globalTunnel.initialize();
 
@@ -25,12 +25,12 @@ class Engine {
     // this.getDataflowManifest = this.getDataflowManifest.bind(this);
   }
 
-  mapFile(filePath) {
-    return mapFile(
-      filePath,
-      this.fsMappings,
-    );
-  }
+  // mapFile(filePath) {
+  //   return mapFile(
+  //     filePath,
+  //     this.fsMappings,
+  //   );
+  // }
 
   getDataflowManifest(name) {
     if (this.options.getDataflowManifest && typeof this.options.getDataflowManifest === "function") {
