@@ -58,6 +58,8 @@ module.exports = async function (manifest, rawValues, options = {}, engine) {
     for (const transformation of transformSteps) {
       const step = {
         transformation: transformation.name,
+        type: transformation.type,
+        [transformation.type]: transformation[transformation.type],
         started: performance.now(),
       };
       run.steps.push(step);
@@ -131,7 +133,9 @@ module.exports = async function (manifest, rawValues, options = {}, engine) {
 
         // Record execution time and mark the step as success
         step.ended = performance.now();
-        step.duration = (step.ended - step.started); // in milliseconds
+        step.duration = (step.ended - step.started) / 1000; // in seconds
+        delete step.started;
+        delete step.ended;
         step.status = "success";
         step.outputs = run.outputs[transformation.name];
 
