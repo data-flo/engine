@@ -375,6 +375,7 @@ module.exports = function (doc) {
         }
       }
     }
+    item.isRequired = item.isRequired ?? item.required;
   }
 
   for (let index = 0; index < doc.output.length; index++) {
