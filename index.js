@@ -19,11 +19,8 @@ class Engine {
 
   getAdaptorExecutable = getAdaptorExecutable;
 
-  constructor(config = {}) {
-    Object.assign(this, config);
-    // TODO: remove .bind
-    // this.getDataflowManifest = this.getDataflowManifest.bind(this);
-  }
+  // constructor() {
+  // }
 
   // mapFile(filePath) {
   //   return mapFile(
@@ -33,11 +30,7 @@ class Engine {
   // }
 
   getDataflowManifest(name) {
-    if (this.options.getDataflowManifest && typeof this.options.getDataflowManifest === "function") {
-      return this.options.getDataflowManifest(name);
-    } else {
-      throw new Error(`Cannot resolve manifest for dataflow ${name}.`);
-    }
+    throw new Error(`Cannot resolve manifest for dataflow ${name}.`);
   }
 
   runAdaptor(name, args) {
@@ -45,11 +38,13 @@ class Engine {
     return runAdaptor(adaptor, args);
   }
 
-  runDataflow(manifest, args, options) {
-    return runDataflow(manifest, args, options, this);
+  runDataflow(manifest, args) {
+    return runDataflow(manifest, args, false, this);
+  }
+
+  debugDataflow(manifest, args) {
+    return runDataflow(manifest, args, true, this);
   }
 }
 
-module.exports = function (config) {
-  return new Engine(config);
-};
+module.exports = Engine;

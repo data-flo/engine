@@ -6,7 +6,7 @@ function sortStagesByExecutionOrder(steps) {
   do {
     numberOfVisited = ordered.length;
     for (const item of steps) {
-      if (!visited.has(item.name)) {
+      if (!visited.has(item.id)) {
         let canBeVisited = true;
         for (const binding of (item.binding || [])) {
           if (binding.type === "transformation") {
@@ -17,7 +17,7 @@ function sortStagesByExecutionOrder(steps) {
           }
         }
         if (canBeVisited) {
-          visited.add(item.name);
+          visited.add(item.id);
           ordered.push(item);
         }
       }

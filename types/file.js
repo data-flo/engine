@@ -81,6 +81,10 @@ module.exports = function createFile(sourceValue) {
     return sourceValue;
   }
 
+  if (typeof sourceValue === "object" && typeof sourceValue.source === "string") {
+    return new FileStream(sourceValue.source);
+  }
+
   return new FileStream(sourceValue);
 };
 

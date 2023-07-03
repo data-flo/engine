@@ -8,15 +8,13 @@ const { sortStagesByExecutionOrder } = require("./execution");
 module.exports = async function (
   manifest,
   rawValues,
-  options = {},
+  inDebugMode,
   engine,
 ) {
   const run = {
     started: performance.now(),
     steps: [],
   };
-
-  const inDebugMode = options.debug || false;
 
   try {
     // check input against manifest
@@ -29,11 +27,11 @@ module.exports = async function (
     const transformSteps = sortStagesByExecutionOrder(manifest.transform);
 
     const dependencyGraph = [];
-    for (const transformation of transformSteps) {
-      for (const binding of transformation.binding) {
+    for (const transformationStep of transformSteps) {
+      for (const binding of transformationStep.binding) {
         if (binding.type === "input") {
           dependencyGraph.push({
-            transformation: transformation.name,
+            transformation: transformationStep.id,
             dependsOn: {
               input: binding.input,
             },
@@ -41,7 +39,7 @@ module.exports = async function (
         }
         else if (binding.type === "transformation") {
           dependencyGraph.push({
-            transformation: transformation.name,
+            transformation: transformationStep.id,
             dependsOn: {
               transformation: binding.transformation,
               argument: binding.argument,
@@ -50,49 +48,49 @@ module.exports = async function (
         }
       }
     }
-    for (const spec of manifest.output) {
+    for (const outputSpec of manifest.output) {
       dependencyGraph.push({
-        output: spec.name,
+        output: outputSpec.id,
         dependsOn: {
-          transformation: spec.transformation,
-          argument: spec.argument,
+          transformation: outputSpec.transformation,
+          argument: outputSpec.argument,
         },
       });
     }
 
-    for (const transformation of transformSteps) {
+    for (const transformationStep of transformSteps) {
       const step = {
-        transformation: transformation.name,
-        type: transformation.type,
-        [transformation.type]: transformation[transformation.type],
+        transformation: transformationStep.id,
+        type: transformationStep.type,
+        [transformationStep.type]: transformationStep[transformationStep.type],
         started: performance.now(),
       };
       run.steps.push(step);
 
       try {
         // Check that name is unique
-        if (transformation.name in run.outputs) {
-          throw new Error(`The name ${transformation.name} exists already.`);
+        if (transformationStep.id in run.outputs) {
+          throw new Error(`The name ${transformationStep.id} exists already.`);
         }
 
         // Get the manifest for the current transformation based on its type
         let transformationManifest = null;
-        if (transformation.type === "adaptor") {
-          transformationManifest = engine.getAdaptorManifest(transformation.adaptor);
+        if (transformationStep.type === "adaptor") {
+          transformationManifest = engine.getAdaptorManifest(transformationStep.adaptor);
         }
-        else if (transformation.type === "dataflow") {
-          transformationManifest = await engine.getDataflowManifest(transformation.dataflow);
+        else if (transformationStep.type === "dataflow") {
+          transformationManifest = await engine.getDataflowManifest(transformationStep.dataflow);
         }
         else {
-          throw new Error(`Invalid transformation type ${transformation.type}.`);
+          throw new Error(`Invalid transformation type ${transformationStep.type}.`);
         }
 
         // Collect transformation inputs
         step.inputs = {};
-        for (const binding of transformation.binding) {
+        for (const binding of transformationStep.binding) {
           const inputArgumentSpec = transformationManifest.input.find((x) => x.name === binding.target);
           if (!inputArgumentSpec) {
-            throw new Error(`Invalid binding for ${transformation.name}: cannot find argument named ${binding.target} in ${transformation.type} ${transformation[transformation.type]}.`);
+            throw new Error(`Invalid binding for ${transformationStep.id}: cannot find argument named ${binding.target} in ${transformationStep.type} ${transformationStep[transformationStep.type]}.`);
           }
 
           if (binding.type === "input") {
@@ -100,7 +98,7 @@ module.exports = async function (
               step.inputs[binding.target] = dataflowInputs[binding.input];
             }
             else {
-              throw new Error(`Invalid binding for ${transformation.name}: cannot find input argument named ${binding.input}.`);
+              throw new Error(`Invalid binding for ${transformationStep.id}: cannot find input argument named ${binding.input}.`);
             }
           }
           else if (binding.type === "value") {
@@ -112,28 +110,28 @@ module.exports = async function (
                 step.inputs[binding.target] = run.outputs[binding.transformation][binding.argument];
               }
               else {
-                throw new Error(`Invalid binding for ${transformation.name}: cannot find argument named ${binding.argument} in transformation ${binding.transformation}.`);
+                throw new Error(`Invalid binding for ${transformationStep.id}: cannot find argument named ${binding.argument} in transformation ${binding.transformation}.`);
               }
             }
             else {
-              throw new Error(`Invalid binding for ${transformation.name}: cannot find transformation ${binding.transformation}.`);
+              throw new Error(`Invalid binding for ${transformationStep.id}: cannot find transformation ${binding.transformation}.`);
             }
           }
           else {
-            throw new Error(`Invalid binding type for ${transformation.name}: ${binding.type}.`);
+            throw new Error(`Invalid binding type for ${transformationStep.id}: ${binding.type}.`);
           }
         }
 
         // Run the transformation as an adaptor or a dataflow based on its type
-        if (transformation.type === "adaptor") {
-          run.outputs[transformation.name] = await engine.runAdaptor(transformation.adaptor, step.inputs);
+        if (transformationStep.type === "adaptor") {
+          run.outputs[transformationStep.id] = await engine.runAdaptor(transformationStep.adaptor, step.inputs);
         }
-        else if (transformation.type === "dataflow") {
+        else if (transformationStep.type === "dataflow") {
           const stepRun = await engine.runDataflow(transformationManifest, step.inputs);
           if (stepRun.status === "error") {
             throw stepRun.error;
           }
-          run.outputs[transformation.name] = stepRun.outputs;
+          run.outputs[transformationStep.id] = stepRun.outputs;
         }
 
         // Record execution time and mark the step as success
@@ -142,7 +140,7 @@ module.exports = async function (
         delete step.started;
         delete step.ended;
         step.status = "success";
-        step.outputs = run.outputs[transformation.name];
+        step.outputs = run.outputs[transformationStep.id];
 
         // Clean-up inputs and outputs when not in debug mode
         if (!inDebugMode) {
@@ -150,20 +148,20 @@ module.exports = async function (
           step.outputs = undefined;
 
           // Remove outputs which will not be used
-          for (const outputName of Object.keys(run.outputs[transformation.name])) {
-            const inUse = dependencyGraph.some((x) => x.dependsOn.transformation === transformation.name && x.dependsOn.argument === outputName);
+          for (const outputName of Object.keys(run.outputs[transformationStep.id])) {
+            const inUse = dependencyGraph.some((x) => x.dependsOn.transformation === transformationStep.id && x.dependsOn.argument === outputName);
             if (!inUse) {
-              run.outputs[transformation.name][outputName] = undefined;
+              run.outputs[transformationStep.id][outputName] = undefined;
             }
           }
 
           // Remove current step from
           for (let index = 0; index < dependencyGraph.length; index++) {
             const dependency = dependencyGraph[index];
-            if (dependency.transformation === transformation.name && dependency.dependsOn.transformation) {
+            if (dependency.transformation === transformationStep.id && dependency.dependsOn.transformation) {
               const inUse = dependencyGraph.some(
                 (x) =>
-                  (x.transformation !== transformation.name)
+                  (x.transformation !== transformationStep.id)
                   &&
                   (x.dependsOn.transformation === dependency.dependsOn.transformation)
                   &&
@@ -190,17 +188,17 @@ module.exports = async function (
 
     // Collect dataflow outputs
     const rawOutputs = {};
-    for (const spec of manifest.output) {
-      if (spec.transformation in run.outputs) {
-        if (spec.argument in run.outputs[spec.transformation]) {
-          rawOutputs[spec.name] = run.outputs[spec.transformation][spec.argument];
+    for (const outputSpec of manifest.output) {
+      if (outputSpec.transformation in run.outputs) {
+        if (outputSpec.argument in run.outputs[outputSpec.transformation]) {
+          rawOutputs[outputSpec.name] = run.outputs[outputSpec.transformation][outputSpec.argument];
         }
         else {
-          throw new Error(`Cannot bind output argument ${spec.name}. Cannot find argument named ${spec.argument} in transformation ${spec.transformation}.`);
+          throw new Error(`Cannot bind output argument ${outputSpec.name}. Cannot find argument named ${outputSpec.argument} in transformation ${outputSpec.transformation}.`);
         }
       }
       else {
-        throw new Error(`Cannot bind output argument ${spec.name}. Cannot find transformation ${spec.transformation}.`);
+        throw new Error(`Cannot bind output argument ${outputSpec.name}. Cannot find transformation ${outputSpec.transformation}.`);
       }
     }
 
