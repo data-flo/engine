@@ -5,7 +5,12 @@ const parseInputArguments = require("./parse-input-arguments");
 const parseOutputArguments = require("./parse-output-arguments");
 const { sortStagesByExecutionOrder } = require("./execution");
 
-module.exports = async function (manifest, rawValues, options = {}, engine) {
+module.exports = async function (
+  manifest,
+  rawValues,
+  options = {},
+  engine,
+) {
   const run = {
     started: performance.now(),
     steps: [],
