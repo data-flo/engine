@@ -57,6 +57,17 @@ module.exports = function (doc) {
     }
   }
 
+  function deleteAdaptorInput(adaptorName, oldName) {
+    for (const step of doc.transform) {
+      if (step.type === "adaptor") {
+        if (step.adaptor === adaptorName) {
+          const index = step.binding.findIndex((x) => x.target === oldName);
+          step.binding.splice(index, 1);
+        }
+      }
+    }
+  }
+
   function changeAdaptorInput(adaptorName, oldName, func) {
     for (const step of doc.transform) {
       if (step.type === "adaptor") {
@@ -236,6 +247,7 @@ module.exports = function (doc) {
 
   renameAdaptorInput("forward-geocoding", "placeColumn", "query column");
   renameAdaptorInput("forward-geocoding", "mapboxApiKey", "api key");
+  deleteAdaptorInput("forward-geocoding", "api key");
   renameAdaptorInput("forward-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("forward-geocoding", "placeType", "feature type");
@@ -288,6 +300,7 @@ module.exports = function (doc) {
   renameAdaptorInput("remove-duplicate-rows", "columns", "column names");
 
   renameAdaptorInput("reverse-geocoding", "mapboxApiKey", "api key");
+  deleteAdaptorInput("reverse-geocoding", "api key");
   renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
   renameAdaptorInput("reverse-geocoding", "placeType", "feature type");

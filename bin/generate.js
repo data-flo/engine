@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Filehound = require("filehound");
 
-const getAdaptorManifest = require("../runner/get-adaptor-manifest");
+const getAdaptorExecutable = require("../runner/get-adaptor-executable.js");
 
 function getAdaptorsList() {
   return (
@@ -22,7 +22,7 @@ function getAdaptorsList() {
           const name = path.basename(dir);
           return {
             name,
-            manifest: getAdaptorManifest(name),
+            manifest: getAdaptorExecutable(name).manifest,
           };
         })
       )
@@ -33,11 +33,14 @@ async function main() {
   const list = await getAdaptorsList();
   const directory = {};
 
+  const executables = [];
+
   for (const item of list) {
     console.log(item.name);
     item.manifest.group = item.manifest.subgroup;
     item.manifest.subgroup = undefined;
     directory[item.name] = item.manifest;
+    executables.push(`module.exports["${item.name}"] = require("./adapters/${item.name}/index.js");`);
   }
 
   fs.writeFileSync(
@@ -52,7 +55,16 @@ async function main() {
       2,
     ),
   );
+
+  fs.writeFileSync(
+    path.join(
+      __dirname,
+      "..",
+      "executables.js",
+    ),
+    executables.join("\n"),
+  );
 }
 
 main()
-  .then(console.log);
+  .catch(console.error);

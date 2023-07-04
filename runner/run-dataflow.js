@@ -77,7 +77,7 @@ module.exports = async function (
         // Get the manifest for the current transformation based on its type
         let transformationManifest = null;
         if (transformationStep.type === "adaptor") {
-          transformationManifest = engine.getAdaptorManifest(transformationStep.adaptor);
+          transformationManifest = await engine.getAdaptorManifest(transformationStep.adaptor);
         }
         else if (transformationStep.type === "dataflow") {
           transformationManifest = await engine.getDataflowManifest(transformationStep.dataflow);

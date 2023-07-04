@@ -1,12 +1,11 @@
 /* eslint-disable class-methods-use-this */
 
 // const Filehound = require("filehound");
+const path = require("path");
 
-const runAdaptor = require("./runner/run-adaptor");
-const runDataflow = require("./runner/run-dataflow");
-const getAdaptorExecutable = require("./runner/get-adaptor-executable");
-const getAdaptorManifest = require("./runner/get-adaptor-manifest");
-// const mapFile = require("./utils/file/map");
+const runAdaptor = require("./runner/run-adaptor.js");
+const runDataflow = require("./runner/run-dataflow.js");
+const getAdaptorExecutable = require("./runner/get-adaptor-executable.js");
 
 // globalTunnel.initialize();
 
@@ -15,9 +14,14 @@ class Engine {
 
   fsMappings = {};
 
-  getAdaptorManifest = getAdaptorManifest;
+  async getAdaptorExecutable(name) {
+    return getAdaptorExecutable(name);
+  }
 
-  getAdaptorExecutable = getAdaptorExecutable;
+  async getAdaptorManifest(name) {
+    const adaptor = await this.getAdaptorExecutable(name);
+    return adaptor.manifest;
+  }
 
   // constructor() {
   // }
@@ -29,20 +33,20 @@ class Engine {
   //   );
   // }
 
-  getDataflowManifest(name) {
+  async getDataflowManifest(name) {
     throw new Error(`Cannot resolve manifest for dataflow ${name}.`);
   }
 
-  runAdaptor(name, args) {
-    const adaptor = this.getAdaptorExecutable(name);
+  async runAdaptor(name, args) {
+    const adaptor = await this.getAdaptorExecutable(name);
     return runAdaptor(adaptor, args);
   }
 
-  runDataflow(manifest, args) {
+  async runDataflow(manifest, args) {
     return runDataflow(manifest, args, false, this);
   }
 
-  debugDataflow(manifest, args) {
+  async debugDataflow(manifest, args) {
     return runDataflow(manifest, args, true, this);
   }
 }

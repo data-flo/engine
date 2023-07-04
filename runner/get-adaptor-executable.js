@@ -1,20 +1,11 @@
 const path = require("path");
 
+function getExecutable(name) {
+  const func = require(`../adapters/${name}/index.js`);
+  return func;
+}
+
 module.exports = function getAdaptorExecutable(name) {
-  const executable = require(
-    path.join(
-      path.resolve(
-        process.env.ADAPTERS_PATH
-        ??
-        path.join(
-          __dirname,
-          "..",
-          "adapters",
-        )
-      ),
-      name,
-      "index.js",
-    ),
-  );
+  const executable = getExecutable(name);
   return executable;
 };
