@@ -2,12 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const { generate, parse, transform, stringify } = require ('csv');
 
-const createEngine = require("../index");
+const Engine = require("../index");
 const updateManifestSchema = require("../manifest/index");
 
 const { manifest, inputs } = require("./data/amr-watch-metadata/index");
 
-const engine = createEngine({});
+const engine = new Engine({});
 
 async function main() {
 

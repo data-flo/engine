@@ -357,32 +357,33 @@ module.exports = function (doc) {
   // renameAdaptorInput("new", "", "");
   // renameAdaptorOutput("new", "", "");
 
-  for (let index = 0; index < doc.transform.length; index++) {
-    const item = doc.transform[index];
-    item.id = item.name;
-    item.name = undefined;
-  }
+  // for (let index = 0; index < doc.input.length; index++) {
+  //   const item = doc.input[index];
+  //   const currentName = item.name;
+  //   const newId = `input-${index + 1}`;
+  //   item.id = newId;
+  //   for (const step of doc.transform) {
+  //     for (const binding of step.binding) {
+  //       if (binding.type === "input" && binding.input === currentName) {
+  //         binding.input = newId;
+  //       }
+  //     }
+  //   }
+  //   item.isRequired = item.isRequired ?? item.required;
+  //   item.required = undefined;
+  // }
 
-  for (let index = 0; index < doc.input.length; index++) {
-    const item = doc.input[index];
-    const currentName = item.name;
-    const newId = `input-${index + 1}`;
-    item.id = newId;
-    for (const step of doc.transform) {
-      for (const binding of step.binding) {
-        if (binding.type === "input" && binding.input === currentName) {
-          binding.input = newId;
-        }
-      }
-    }
-    item.isRequired = item.isRequired ?? item.required;
-  }
+  // for (let index = 0; index < doc.transform.length; index++) {
+  //   const item = doc.transform[index];
+  //   item.id = item.name;
+  //   item.name = undefined;
+  // }
 
-  for (let index = 0; index < doc.output.length; index++) {
-    const item = doc.output[index];
-    const newId = `output-${index + 1}`;
-    item.id = newId;
-  }
+  // for (let index = 0; index < doc.output.length; index++) {
+  //   const item = doc.output[index];
+  //   const newId = `output-${index + 1}`;
+  //   item.id = newId;
+  // }
 
   doc.version = 3;
 

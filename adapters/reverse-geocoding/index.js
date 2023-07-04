@@ -19,9 +19,7 @@ module.exports = async function (args) {
           360 * 24,
         );
 
-        
         if (place) {
-          console.log(args["location type"], place)
           const feature = formater(place, args["location type"]);
           if (feature) {
             return feature;
