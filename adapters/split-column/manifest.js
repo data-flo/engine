@@ -14,6 +14,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the column to be split.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "separator",
