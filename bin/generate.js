@@ -40,6 +40,7 @@ async function main() {
     item.manifest.group = item.manifest.subgroup;
     item.manifest.subgroup = undefined;
     directory[item.name] = item.manifest;
+    directory[item.name].name = item.name;
     executables.push(`module.exports["${item.name}"] = require("./adapters/${item.name}/index.js");`);
   }
 
