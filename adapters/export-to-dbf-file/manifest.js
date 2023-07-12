@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Exports a datatable as a dBase database file (https://en.wikipedia.org/wiki/.dbf).",
-  "category": "Data Destinations",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "data",

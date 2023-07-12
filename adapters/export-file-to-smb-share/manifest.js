@@ -1,7 +1,7 @@
 module.exports = {
   "description": "Exports a file to a shared network drive using standard SMB/CIFS protocol.",
   "group": "Transformations",
-  "subgroup": "Data Sources",
+  "subgroup": "Data Destinations",
   "input": [
     {
       "name": "file",

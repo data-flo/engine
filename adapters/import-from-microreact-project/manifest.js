@@ -1,6 +1,7 @@
 module.exports = {
   "description": "Imports metadata table from a Microreact project.",
-  "category": "Data Sources",
+  "group": "Transformations",
+  "subgroup": "Data Sources",
   "input": [
     {
       "name": "project",
