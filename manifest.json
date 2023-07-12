@@ -32,7 +32,8 @@
         "type": "datatable",
         "description": "A datatable with the new column added."
       }
-    ]
+    ],
+    "name": "add-column"
   },
   "aggregate-rows": {
     "description": "Aggregates values in specified columns grouped by rows.",
@@ -103,7 +104,8 @@
         "type": "datatable",
         "description": "A datatable with aggregated data."
       }
-    ]
+    ],
+    "name": "aggregate-rows"
   },
   "append-datatables": {
     "description": "Appends the rows of two datatables into a new datatable based on common column names.",
@@ -135,7 +137,8 @@
         "type": "datatable",
         "description": "A datatable containing rows from both datatables."
       }
-    ]
+    ],
+    "name": "append-datatables"
   },
   "append-lists": {
     "description": "Appends two lists into one.",
@@ -160,7 +163,8 @@
         "type": "list",
         "description": "A list containing values from both lists."
       }
-    ]
+    ],
+    "name": "append-lists"
   },
   "append-to-list": {
     "description": "Adds a text value to the end of a list.",
@@ -185,7 +189,8 @@
         "type": "list",
         "description": "A new list with the value appended."
       }
-    ]
+    ],
+    "name": "append-to-list"
   },
   "apply-force-directed-layout": {
     "description": "Applies a force-directed graph drawing algorithm (https://en.wikipedia.org/wiki/Force-directed_graph_drawing) on a specified graph.",
@@ -239,7 +244,8 @@
         "type": "graph",
         "description": "A force-directed graph drawing."
       }
-    ]
+    ],
+    "name": "apply-force-directed-layout"
   },
   "calculate-time-difference": {
     "description": "Calculates the time difference (in a specified unit of measurement) between two datatable columns (column one - column two).",
@@ -399,7 +405,8 @@
         "description": "A datatable with the new column added."
       }
     ],
-    "keywords": []
+    "keywords": [],
+    "name": "calculate-time-difference"
   },
   "change-column-case": {
     "description": "Converts the case of text values in a datatable column.",
@@ -527,7 +534,8 @@
         "type": "datatable",
         "description": "A datatable with target column added."
       }
-    ]
+    ],
+    "name": "change-column-case"
   },
   "compare-columns": {
     "description": "Compares values in specified columns.",
@@ -567,7 +575,8 @@
         "type": "datatable",
         "description": "A datatable containing rows which have different values in selected columns."
       }
-    ]
+    ],
+    "name": "compare-columns"
   },
   "concatenate-columns": {
     "description": "Concatenate values from two or more columns",
@@ -608,7 +617,8 @@
         "type": "datatable",
         "description": "A datatable with the concatenated column added."
       }
-    ]
+    ],
+    "name": "concatenate-columns"
   },
   "concatenate-text": {
     "description": "Concatenates two texts.",
@@ -640,7 +650,8 @@
         "type": "text",
         "description": "The concatenated text."
       }
-    ]
+    ],
+    "name": "concatenate-text"
   },
   "convert-date-to-text": {
     "description": "Converts a date/time value to text in a specified format.",
@@ -818,7 +829,8 @@
         "type": "text",
         "description": "The date as a formatted text."
       }
-    ]
+    ],
+    "name": "convert-date-to-text"
   },
   "convert-list-to-datatable": {
     "description": "Converts a list to a single-column datatable.",
@@ -844,7 +856,8 @@
         "type": "datatable",
         "description": "A single-column datatable containing the list values."
       }
-    ]
+    ],
+    "name": "convert-list-to-datatable"
   },
   "convert-text-to-datatable": {
     "description": "Converts delimited text (e.g. comma-separated values) to a datatable.",
@@ -898,7 +911,8 @@
         "type": "datatable",
         "description": "A datatable."
       }
-    ]
+    ],
+    "name": "convert-text-to-datatable"
   },
   "convert-text-to-list": {
     "description": "Converts a text into a list by spliting it using a specified separator to determine where to make each split.",
@@ -933,7 +947,8 @@
         "type": "list",
         "description": "A list of texts split at each point where the separator occurs in the input text, or an empty list if no occurrences found."
       }
-    ]
+    ],
+    "name": "convert-text-to-list"
   },
   "create-google-drive-folder": {
     "description": "Creates a sub folder in a parent folder in Google Drive.\nThe parent folder should be either public or shared with `data-flo@data-flo.iam.gserviceaccount.com`, and given `can edit` permission.",
@@ -966,7 +981,8 @@
         "type": "text",
         "description": "The ID of the created folder."
       }
-    ]
+    ],
+    "name": "create-google-drive-folder"
   },
   "create-graph-from-datatable": {
     "description": "Creates a graph structure from a datatable containing edge data.",
@@ -1004,7 +1020,8 @@
         "type": "graph",
         "description": "A graph structure defining nodes and edges."
       }
-    ]
+    ],
+    "name": "create-graph-from-datatable"
   },
   "create-graph-from-dot": {
     "description": "Creates a graph structure from text in DOT language format.",
@@ -1023,7 +1040,8 @@
         "type": "graph",
         "description": "A graph structure defining nodes and edges."
       }
-    ]
+    ],
+    "name": "create-graph-from-dot"
   },
   "create-list-from-datatable": {
     "description": "Creates a list from values of a datatable column.",
@@ -1051,7 +1069,8 @@
         "type": "list",
         "description": "A list containing the values from the datatable column."
       }
-    ]
+    ],
+    "name": "create-list-from-datatable"
   },
   "create-map-from-datatable": {
     "description": "Creates a map from a datatable.",
@@ -1084,7 +1103,8 @@
         "type": "map",
         "description": "A map containing key-value pairs."
       }
-    ]
+    ],
+    "name": "create-map-from-datatable"
   },
   "create-text-from-template": {
     "description": "Creates text using a Mustache template (https://mustache.github.io/).",
@@ -1109,7 +1129,8 @@
         "type": "text",
         "description": "The rendered text."
       }
-    ]
+    ],
+    "name": "create-text-from-template"
   },
   "duplicate-column": {
     "description": "Duplicates a column in a datatable.",
@@ -1146,7 +1167,8 @@
         "type": "datatable",
         "description": "A datatable with the duplicated column."
       }
-    ]
+    ],
+    "name": "duplicate-column"
   },
   "export-file-to-google-drive": {
     "description": "Exports a file to a folder on Google Drive.\nThe folder should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
@@ -1188,11 +1210,12 @@
         "type": "text",
         "description": "The Google Drive ID of the exported file."
       }
-    ]
+    ],
+    "name": "export-file-to-google-drive"
   },
   "export-file-to-smb-share": {
     "description": "Exports a file to a shared network drive using standard SMB/CIFS protocol.",
-    "group": "Data Sources",
+    "group": "Data Destinations",
     "input": [
       {
         "name": "file",
@@ -1253,7 +1276,8 @@
         "type": "file",
         "description": "The exported file."
       }
-    ]
+    ],
+    "name": "export-file-to-smb-share"
   },
   "export-graph-to-dot-file": {
     "description": "Exports a graph as a text file in DOT format (https://en.wikipedia.org/wiki/DOT_(graph_description_language)).",
@@ -1272,7 +1296,8 @@
         "type": "text",
         "description": "A text file in DOT format (`.dot`)."
       }
-    ]
+    ],
+    "name": "export-graph-to-dot-file"
   },
   "export-to-csv-file": {
     "description": "Exports a datatable to a CSV file.",
@@ -1339,11 +1364,12 @@
         "type": "file",
         "description": "A file in CSV format."
       }
-    ]
+    ],
+    "name": "export-to-csv-file"
   },
   "export-to-dbf-file": {
     "description": "Exports a datatable as a dBase database file (https://en.wikipedia.org/wiki/.dbf).",
-    "category": "Data Destinations",
+    "group": "Data Destinations",
     "input": [
       {
         "name": "data",
@@ -1368,7 +1394,8 @@
         "type": "file",
         "description": "Exported file DBF format"
       }
-    ]
+    ],
+    "name": "export-to-dbf-file"
   },
   "export-to-google-sheet": {
     "description": "Exports data to an existing Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
@@ -1448,7 +1475,8 @@
         "type": "list",
         "description": "A list of row IDs which in `data` which are missing from the Google Sheets spreadsheet when `append rows` is set to `False`."
       }
-    ]
+    ],
+    "name": "export-to-google-sheet"
   },
   "export-to-microreact-project": {
     "description": "Creates a new project or updates an existing a project on a Microreact server.",
@@ -1559,7 +1587,8 @@
         "type": "url",
         "description": "The URL of the Microreact project."
       }
-    ]
+    ],
+    "name": "export-to-microreact-project"
   },
   "export-to-sqlite-file": {
     "description": "Exports a datatable to a SQLite DB file.",
@@ -1588,7 +1617,8 @@
         "type": "file",
         "description": "A file in SQLite format with the exported data."
       }
-    ]
+    ],
+    "name": "export-to-sqlite-file"
   },
   "filter-list": {
     "description": "Finds values in a list that match a pattern.",
@@ -1618,7 +1648,8 @@
         "type": "list",
         "description": "A list with the values that do not match the testing pattern."
       }
-    ]
+    ],
+    "name": "filter-list"
   },
   "filter-rows": {
     "description": "Finds rows in a datatable that match a search pattern.",
@@ -1760,7 +1791,8 @@
         "type": "datatable",
         "description": "A datatable with the rows that do not match the testing pattern."
       }
-    ]
+    ],
+    "name": "filter-rows"
   },
   "find-value-in-list": {
     "description": "Finds a value in a list that matches a search pattern.",
@@ -1790,7 +1822,8 @@
         "type": "number",
         "description": "The one-based index of first match in the list."
       }
-    ]
+    ],
+    "name": "find-value-in-list"
   },
   "find-value-in-map": {
     "description": "Finds a key in a map and returns the associated value.",
@@ -1821,7 +1854,8 @@
         "type": "text",
         "description": "The value in `map` associated to `key` if found, otherwise `default value` will be returned."
       }
-    ]
+    ],
+    "name": "find-value-in-map"
   },
   "format-date-column": {
     "description": "Formats date/time values in a datatable column.",
@@ -2118,7 +2152,8 @@
         "type": "datatable",
         "description": "A datatable with formatted values."
       }
-    ]
+    ],
+    "name": "format-date-column"
   },
   "forward-geocoding": {
     "description": "Converts location names in a datatable column to latitude & longitude.",
@@ -2176,7 +2211,8 @@
         "type": "datatable",
         "description": "A datatable with the latitude & longitude values added."
       }
-    ]
+    ],
+    "name": "forward-geocoding"
   },
   "import-file-from-dropbox": {
     "description": "Imports a file from Dropbox.",
@@ -2195,7 +2231,8 @@
         "type": "file",
         "description": "The imported file."
       }
-    ]
+    ],
+    "name": "import-file-from-dropbox"
   },
   "import-file-from-figshare": {
     "description": "Imports a file from Figshare (https://figshare.com).",
@@ -2214,7 +2251,8 @@
         "type": "file",
         "description": "The imported file."
       }
-    ]
+    ],
+    "name": "import-file-from-figshare"
   },
   "import-file-from-google-drive": {
     "description": "Imports a file from Google Drive.",
@@ -2233,7 +2271,8 @@
         "type": "file",
         "description": "The imported file."
       }
-    ]
+    ],
+    "name": "import-file-from-google-drive"
   },
   "import-file-from-s3": {
     "description": "Imports a file from an Amazon S3 compatible object storage server.",
@@ -2264,7 +2303,8 @@
         "type": "file",
         "description": "The downloaded file."
       }
-    ]
+    ],
+    "name": "import-file-from-s3"
   },
   "import-file-from-smb-share": {
     "description": "Imports a file from a shared network drive using standard SMB/CIFS protocol.",
@@ -2314,7 +2354,8 @@
         "type": "file",
         "description": "The imported file."
       }
-    ]
+    ],
+    "name": "import-file-from-smb-share"
   },
   "import-file-from-url": {
     "description": "Imports a file from the web.",
@@ -2339,7 +2380,8 @@
         "type": "file",
         "description": "The imported file."
       }
-    ]
+    ],
+    "name": "import-file-from-url"
   },
   "import-from-csv-file": {
     "description": "Imports a CSV file and converts to a datatable.",
@@ -2459,7 +2501,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-csv-file"
   },
   "import-from-dbf-file": {
     "description": "Reads data from a dBASE (`.dbf`) file.",
@@ -2478,7 +2521,8 @@
         "type": "datatable",
         "description": "Data read from the file."
       }
-    ]
+    ],
+    "name": "import-from-dbf-file"
   },
   "import-from-epicollect-project": {
     "description": "Imports data from an Epicollect5 project.",
@@ -2515,7 +2559,8 @@
         "type": "datatable",
         "description": "A datatable containing the project entries."
       }
-    ]
+    ],
+    "name": "import-from-epicollect-project"
   },
   "import-from-excel-file": {
     "description": "Imports data from a spreadsheet file.",
@@ -2546,7 +2591,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-excel-file"
   },
   "import-from-google-sheet": {
     "description": "Imports data from a Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com`.",
@@ -2583,11 +2629,12 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-google-sheet"
   },
   "import-from-microreact-project": {
     "description": "Imports metadata table from a Microreact project.",
-    "category": "Data Sources",
+    "group": "Data Sources",
     "input": [
       {
         "name": "project",
@@ -2602,7 +2649,8 @@
         "type": "datatable",
         "description": "A datatable containing the project data rows."
       }
-    ]
+    ],
+    "name": "import-from-microreact-project"
   },
   "import-from-mysql": {
     "description": "Imports data from a MySQL database.",
@@ -2655,7 +2703,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-mysql"
   },
   "import-from-oracle": {
     "description": "Imports data from an Oracle Database and returns the results as a datatable.",
@@ -2692,7 +2741,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-oracle"
   },
   "import-from-postgres": {
     "description": "Imports data from a PostgreSQL database.",
@@ -2745,7 +2795,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-postgres"
   },
   "import-from-spreadsheet-file": {
     "description": "Imports data from a spreadsheet file.",
@@ -2776,7 +2827,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-spreadsheet-file"
   },
   "import-from-sql-server": {
     "description": "Imports data from a Microsoft SQl Server database.",
@@ -2829,7 +2881,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-sql-server"
   },
   "import-from-sqlite": {
     "description": "Imports data from a SQLite file.",
@@ -2854,7 +2907,8 @@
         "type": "datatable",
         "description": "A datatable containing the imported data."
       }
-    ]
+    ],
+    "name": "import-from-sqlite"
   },
   "import-list-from-text-file": {
     "description": "Imports a list from a text file.",
@@ -2933,7 +2987,8 @@
         "type": "list",
         "description": "A list of values."
       }
-    ]
+    ],
+    "name": "import-list-from-text-file"
   },
   "join-datatables": {
     "description": "Joins two datatables based on a common column between them.",
@@ -3017,7 +3072,8 @@
         "type": "datatable",
         "description": "A datatable containing `main data` rows which do not have a match in `other data`."
       }
-    ]
+    ],
+    "name": "join-datatables"
   },
   "list-datatable-columns": {
     "description": "Creates a list of datatable column names.",
@@ -3036,7 +3092,8 @@
         "type": "list",
         "description": "The list of column names."
       }
-    ]
+    ],
+    "name": "list-datatable-columns"
   },
   "list-newick-leaf-labels": {
     "description": "Gets the leaf labels from a Newick tree.",
@@ -3055,7 +3112,8 @@
         "type": "list",
         "description": "A list of leaf labels."
       }
-    ]
+    ],
+    "name": "list-newick-leaf-labels"
   },
   "map-column-values": {
     "description": "Adds a new column to a datatable by mapping values of an existing column.",
@@ -3118,7 +3176,8 @@
         "type": "datatable",
         "description": "A datatable containing mapped values in `new column`."
       }
-    ]
+    ],
+    "name": "map-column-values"
   },
   "prepend-to-list": {
     "description": "Adds a text value to the end of a list.",
@@ -3143,7 +3202,8 @@
         "type": "list",
         "description": "A list with the value prepended."
       }
-    ]
+    ],
+    "name": "prepend-to-list"
   },
   "remove-columns": {
     "description": "Removes specified columns from a datatable.",
@@ -3168,7 +3228,8 @@
         "type": "datatable",
         "description": "A datatable with the specified columns removed."
       }
-    ]
+    ],
+    "name": "remove-columns"
   },
   "remove-duplicate-list-values": {
     "description": "Removes duplicate values in a list.",
@@ -3199,7 +3260,8 @@
         "type": "list",
         "description": "A list containing duplicate values."
       }
-    ]
+    ],
+    "name": "remove-duplicate-list-values"
   },
   "remove-duplicate-rows": {
     "description": "Removes duplicate rows from a datatable.",
@@ -3236,7 +3298,8 @@
         "type": "datatable",
         "description": "A datatable containing duplicate rows."
       }
-    ]
+    ],
+    "name": "remove-duplicate-rows"
   },
   "rename-columns": {
     "description": "Renames existing columns in a datatable.",
@@ -3273,7 +3336,8 @@
         "type": "datatable",
         "description": "A datatable with the columns renamed."
       }
-    ]
+    ],
+    "name": "rename-columns"
   },
   "replace-blank-values": {
     "description": "Replaces blank values in a datatable column.",
@@ -3307,7 +3371,8 @@
         "type": "datatable",
         "description": "A datatable with the blank values replaced."
       }
-    ]
+    ],
+    "name": "replace-blank-values"
   },
   "replace-values-in-columns": {
     "description": "Replaces all instances of a pattern in one or more columns in a datatable. The replacement values can be written to the original columns or new columns.",
@@ -3345,7 +3410,8 @@
         "type": "datatable",
         "description": "A datatable with replacement values written to the original columns or new columns."
       }
-    ]
+    ],
+    "name": "replace-values-in-columns"
   },
   "replace-values-in-list": {
     "description": "Replaces all instances of a pattern in list values with a specified replacement text.",
@@ -3377,7 +3443,8 @@
         "type": "list",
         "description": "The list of modified elements"
       }
-    ]
+    ],
+    "name": "replace-values-in-list"
   },
   "replace-values-in-text": {
     "description": "Replaces all instances of a pattern in a text with a specified replacement text.",
@@ -3409,7 +3476,8 @@
         "type": "text",
         "description": "A modified text."
       }
-    ]
+    ],
+    "name": "replace-values-in-text"
   },
   "reshape-long-to-wide": {
     "description": "Reshapes rows in long format to wide format.",
@@ -3442,7 +3510,8 @@
         "type": "datatable",
         "description": "A datatable in wide format."
       }
-    ]
+    ],
+    "name": "reshape-long-to-wide"
   },
   "reshape-wide-to-long": {
     "description": "Reshapes rows in wide format to long format.",
@@ -3481,7 +3550,8 @@
         "type": "datatable",
         "description": "A datatable in long format."
       }
-    ]
+    ],
+    "name": "reshape-wide-to-long"
   },
   "reverse-geocoding": {
     "description": "Converts latitude & longitude in datatable columns to location names.",
@@ -3527,7 +3597,8 @@
         "type": "datatable",
         "description": "An object containing columns and rows."
       }
-    ]
+    ],
+    "name": "reverse-geocoding"
   },
   "select-columns": {
     "description": "Selects a list of columns from a datatable in a specified order.",
@@ -3561,7 +3632,8 @@
         "type": "datatable",
         "description": "A datatable with the selected columns."
       }
-    ]
+    ],
+    "name": "select-columns"
   },
   "select-list-values": {
     "description": "Selects values, based on position, from a list.",
@@ -3597,7 +3669,8 @@
         "type": "list",
         "description": "A list containing the selected values."
       }
-    ]
+    ],
+    "name": "select-list-values"
   },
   "select-rows": {
     "description": "Selects rows, based on position, from a datatable.",
@@ -3636,7 +3709,8 @@
         "type": "datatable",
         "description": "A datatable containing the selected rows."
       }
-    ]
+    ],
+    "name": "select-rows"
   },
   "send-email-message": {
     "description": "Sends an email message via a SMTP server.",
@@ -3699,7 +3773,8 @@
         "type": "text",
         "description": "Includes the last SMTP response from the server."
       }
-    ]
+    ],
+    "name": "send-email-message"
   },
   "sort-datatable": {
     "description": "Sorts a datatable by one or more columns.",
@@ -3741,7 +3816,8 @@
         "type": "datatable",
         "description": "A datatable with the sorted rows."
       }
-    ]
+    ],
+    "name": "sort-datatable"
   },
   "sort-list": {
     "description": "Sorts values in a list.",
@@ -3779,7 +3855,8 @@
         "type": "list",
         "description": "A list containing the sorted values."
       }
-    ]
+    ],
+    "name": "sort-list"
   },
   "split-column": {
     "description": "Splits values in a column into a specified number of columns using a separator to determine where to make each split.",
@@ -3819,7 +3896,8 @@
         "type": "datatable",
         "description": "A datatable with new columns added."
       }
-    ]
+    ],
+    "name": "split-column"
   },
   "split-list": {
     "description": "Splits a list into two lists at the first instance of a specified separator value.",
@@ -3859,6 +3937,7 @@
         "type": "list",
         "description": "A list containing the values after the separator value."
       }
-    ]
+    ],
+    "name": "split-list"
   }
 }
