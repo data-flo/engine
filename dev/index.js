@@ -2,10 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const { generate, parse, transform, stringify } = require ('csv');
 
-const Engine = require("../index");
-const updateManifestSchema = require("../manifest/index");
+const Engine = require("../index.js");
+const updateManifestSchema = require("../manifest/index.js");
 
-const { manifest, inputs } = require("./data/amr-watch-metadata/index");
+// const { manifest, inputs } = require("./data/amr-watch-metadata/index.js");
+const { manifest, inputs } = require("./data/cog-uk/index.js");
 
 const engine = new Engine({});
 

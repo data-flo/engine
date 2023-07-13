@@ -1,0 +1,174 @@
+[
+  {
+    "identifier": "2NnfBfemvuoykYpP6BeWzn",
+    "manifest": {
+      "input": [
+        {
+          "ui": {
+            "x": 80,
+            "y": 120
+          },
+          "enum": [],
+          "isRequired": true,
+          "isSecret": false,
+          "name": "epi",
+          "type": "file",
+          "description": ""
+        },
+        {
+          "ui": {
+            "x": 80,
+            "y": 260
+          },
+          "enum": [],
+          "isRequired": true,
+          "isSecret": false,
+          "name": "lab",
+          "type": "file",
+          "description": ""
+        }
+      ],
+      "output": [
+        {
+          "ui": {
+            "x": 1550,
+            "y": 80
+          },
+          "argument": "csv",
+          "description": "",
+          "name": "csv",
+          "transformation": "transformation-3",
+          "type": "file"
+        }
+      ],
+      "transform": [
+        {
+          "ui": {
+            "x": 420,
+            "y": 90
+          },
+          "name": "transformation-1",
+          "type": "adaptor",
+          "adaptor": "spreadsheet-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "epi"
+            }
+          ]
+        },
+        {
+          "ui": {
+            "x": 420,
+            "y": 260
+          },
+          "name": "transformation-2",
+          "type": "adaptor",
+          "adaptor": "spreadsheet-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "lab"
+            }
+          ]
+        },
+        {
+          "ui": {
+            "x": 700,
+            "y": 80
+          },
+          "name": "transformation-5",
+          "type": "adaptor",
+          "adaptor": "join-datatables",
+          "description": null,
+          "binding": [
+            {
+              "target": "main data",
+              "type": "transformation",
+              "transformation": "transformation-1",
+              "argument": "data"
+            },
+            {
+              "target": "other data",
+              "type": "transformation",
+              "transformation": "transformation-2",
+              "argument": "data"
+            },
+            {
+              "target": "main column",
+              "type": "value",
+              "value": "id"
+            }
+          ]
+        },
+        {
+          "ui": {
+            "x": 1230,
+            "y": 80
+          },
+          "name": "transformation-3",
+          "type": "adaptor",
+          "adaptor": "datatable-to-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-4",
+              "argument": "data"
+            },
+            {
+              "target": "filename",
+              "type": "value",
+              "value": "merged_cog.csv"
+            }
+          ]
+        },
+        {
+          "ui": {
+            "x": 960,
+            "y": 90
+          },
+          "name": "transformation-4",
+          "type": "adaptor",
+          "adaptor": "reverse-geocoding",
+          "description": null,
+          "binding": [
+            {
+              "target": "latitudeColumn",
+              "type": "value",
+              "value": "latitude"
+            },
+            {
+              "target": "longitudeColumn",
+              "type": "value",
+              "value": "longitude"
+            },
+            {
+              "target": "resultColumn",
+              "type": "value",
+              "value": "location"
+            },
+            {
+              "target": "placeType",
+              "type": "value",
+              "value": "county"
+            },
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-5",
+              "argument": "data"
+            }
+          ]
+        }
+      ],
+      "version": 2
+    },
+    "name": "cog_uk_reverse_geocoding"
+  }
+]

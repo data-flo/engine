@@ -62,7 +62,9 @@ module.exports = function (doc) {
       if (step.type === "adaptor") {
         if (step.adaptor === adaptorName) {
           const index = step.binding.findIndex((x) => x.target === oldName);
-          step.binding.splice(index, 1);
+          if (index > -1) {
+            step.binding.splice(index, 1);
+          }
         }
       }
     }
@@ -114,7 +116,7 @@ module.exports = function (doc) {
         &&
         renamedStepNames.includes(binding.transformation)
       ) {
-        binding.name = newName;
+        binding.argument = newName;
       }
     }
   }
@@ -177,7 +179,7 @@ module.exports = function (doc) {
   renameAdaptor("datatable-to-dbf-file", "export-to-dbf-file");
   renameAdaptorInput("export-to-dbf-file", "columns", "column types");
   renameAdaptorInput("export-to-dbf-file", "filename", "output file name");
-  renameAdaptorOutput("export-to-csv-file", "dbf", "file");
+  renameAdaptorOutput("export-to-dbf-file", "dbf", "file");
 
   renameAdaptor("datatable-to-csv", "export-to-csv-file");
   renameAdaptor("datatable-to-csv-file", "export-to-csv-file");
@@ -303,11 +305,13 @@ module.exports = function (doc) {
   deleteAdaptorInput("reverse-geocoding", "api key");
   renameAdaptorInput("reverse-geocoding", "longitudeColumn", "longitude column");
   renameAdaptorInput("reverse-geocoding", "latitudeColumn", "latitude column");
-  renameAdaptorInput("reverse-geocoding", "placeType", "feature type");
+  renameAdaptorInput("reverse-geocoding", "placeType", "location type");
   renameAdaptorInput("reverse-geocoding", "resultColumn", "location column");
 
   renameAdaptor("sqlite-database", "import-from-sqlite");
   renameAdaptorInput("import-from-sqlite", "sqlite", "sqlite file");
+
+  renameAdaptor("spreadsheet-file", "import-from-spreadsheet-file");
 
   renameAdaptorInput("select-columns", "columns", "column names");
 
@@ -370,21 +374,20 @@ module.exports = function (doc) {
   // renameAdaptorInput("new", "", "");
   // renameAdaptorOutput("new", "", "");
 
-  // for (let index = 0; index < doc.input.length; index++) {
-  //   const item = doc.input[index];
-  //   const currentName = item.name;
-  //   const newId = `input-${index + 1}`;
-  //   item.id = newId;
-  //   for (const step of doc.transform) {
-  //     for (const binding of step.binding) {
-  //       if (binding.type === "input" && binding.input === currentName) {
-  //         binding.input = newId;
-  //       }
-  //     }
-  //   }
-  //   item.isRequired = item.isRequired ?? item.required;
-  //   item.required = undefined;
-  // }
+  for (let index = 0; index < doc.input.length; index++) {
+    const item = doc.input[index];
+    // const currentName = item.name;
+    // const newId = `input-${index + 1}`;
+    // item.id = newId;
+    // for (const step of doc.transform) {
+    //   for (const binding of step.binding) {
+    //     if (binding.type === "input" && binding.input === currentName) {
+    //       binding.input = newId;
+    //     }
+    //   }
+    // }
+    item.required = item.required ?? item.isRequired;
+  }
 
   // for (let index = 0; index < doc.transform.length; index++) {
   //   const item = doc.transform[index];
