@@ -1155,10 +1155,7 @@
         "name": "new column name",
         "type": "text",
         "description": "The name of the new column.",
-        "required": true,
-        "ui": {
-          "column-in": "data"
-        }
+        "required": true
       }
     ],
     "output": [
@@ -1182,13 +1179,13 @@
       },
       {
         "name": "file url",
-        "type": "url",
+        "type": "text",
         "description": "The URL of an existing file on Google Drive to be updated. Leave empty to create a new file.",
         "required": false
       },
       {
         "name": "folder url",
-        "type": "url",
+        "type": "text",
         "description": "The URL of the destination folder on Google Drive. Leave empty when updating a file.",
         "required": false
       },
@@ -1202,7 +1199,7 @@
     "output": [
       {
         "name": "url",
-        "type": "url",
+        "type": "text",
         "description": "The Google Drive URL of the exported file."
       },
       {
@@ -1584,7 +1581,7 @@
       },
       {
         "name": "url",
-        "type": "url",
+        "type": "text",
         "description": "The URL of the Microreact project."
       }
     ],

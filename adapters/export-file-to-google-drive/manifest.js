@@ -11,13 +11,13 @@ module.exports = {
     },
     {
       "name": "file url",
-      "type": "url",
+      "type": "text",
       "description": "The URL of an existing file on Google Drive to be updated. Leave empty to create a new file.",
       "required": false,
     },
     {
       "name": "folder url",
-      "type": "url",
+      "type": "text",
       "description": "The URL of the destination folder on Google Drive. Leave empty when updating a file.",
       "required": false,
     },
@@ -31,7 +31,7 @@ module.exports = {
   "output": [
     {
       "name": "url",
-      "type": "url",
+      "type": "text",
       "description": "The Google Drive URL of the exported file.",
     },
     {

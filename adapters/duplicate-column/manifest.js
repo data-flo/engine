@@ -21,7 +21,6 @@ module.exports = {
       "type": "text",
       "description": "The name of the new column.",
       "required": true,
-      "ui": { "column-in": "data" },
     },
   ],
   "output": [

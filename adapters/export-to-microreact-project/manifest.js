@@ -105,7 +105,7 @@ module.exports = {
     },
     {
       "name": "url",
-      "type": "url",
+      "type": "text",
       "description": "The URL of the Microreact project.",
     },
   ],
