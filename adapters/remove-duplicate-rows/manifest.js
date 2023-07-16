@@ -14,6 +14,7 @@ module.exports = {
       "type": "list",
       "description": "A list of columns to compare for duplicate values.\nIf unspecified, entire rows will be compared.",
       "required": false,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "case sensitive",
