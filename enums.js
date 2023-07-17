@@ -1,11 +1,12 @@
 module.exports.AggregateMethods = Object.freeze([
-  [ `max`, "Max" ],
-  [ `mean`, "Mean" ],
-  [ `median`, "Median" ],
-  [ `min`, "Min" ],
-  [ `mode`, "Mode" ],
-  [ `sum`, "Sum" ],
-  [ `unique`, "Unique (distinct)" ],
+  [ `max`, "Max of a numeric column" ],
+  [ `mean`, "Mean of a numeric column" ],
+  [ `median`, "Median of a numeric column" ],
+  [ `min`, "Min of a numeric column" ],
+  [ `mode`, "Mode of a numeric column" ],
+  [ `sum`, "Sum of a numeric column" ],
+  [ `unique-values`, "A list of unique (distinct) values" ],
+  [ `unique-number`, "Number of unique (distinct) values" ],
 ]);
 
 module.exports.CommonDelimiters = Object.freeze([
