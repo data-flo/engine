@@ -14,6 +14,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the column containing location names.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
 
     {

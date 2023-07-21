@@ -1,3 +1,5 @@
+const { CommonLineEndings } = require("../../enums");
+
 module.exports = {
   "description": "Converts a text into a list by spliting it using a specified separator to determine where to make each split.",
   "group": "Transformations",
@@ -15,6 +17,7 @@ module.exports = {
       "description": "The separator text, or regular expression, which denotes the points at which each split should occur. \nThe separator is treated as a regular expression if it begins and ends with `/`.\nIf unspecified, defaults to `\n` (newline).",
       "required": false,
       "default": "\n",
+      "ui": { "must-be-one-of": CommonLineEndings },
     },
     {
       "name": "limit",

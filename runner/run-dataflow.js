@@ -156,7 +156,7 @@ module.exports = async function (
             }
           }
 
-          // Remove current step from
+          // Remove current step from dependency graph
           for (let index = 0; index < dependencyGraph.length; index++) {
             const dependency = dependencyGraph[index];
             if (dependency.transformation === transformationStepName && dependency.dependsOn.transformation) {

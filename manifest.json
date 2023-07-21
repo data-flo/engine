@@ -13,10 +13,7 @@
         "name": "column name",
         "type": "text",
         "description": "The name of the new column to be added.",
-        "required": true,
-        "ui": {
-          "column-in": "data"
-        }
+        "required": true
       },
       {
         "name": "value",
@@ -933,7 +930,35 @@
         "type": "text",
         "description": "The separator text, or regular expression, which denotes the points at which each split should occur. \nThe separator is treated as a regular expression if it begins and ends with `/`.\nIf unspecified, defaults to `\n` (newline).",
         "required": false,
-        "default": "\n"
+        "default": "\n",
+        "ui": {
+          "must-be-one-of": [
+            [
+              "\n",
+              "Newline (\\n)"
+            ],
+            [
+              "\r\n",
+              "CRLF (\\r\\n)"
+            ],
+            [
+              ",",
+              "Comma (`,`)"
+            ],
+            [
+              ";",
+              "Semicolon (`;`)"
+            ],
+            [
+              "\\u0020",
+              "Space"
+            ],
+            [
+              "\\u0009",
+              "tab"
+            ]
+          ]
+        }
       },
       {
         "name": "limit",
@@ -2170,7 +2195,10 @@
         "name": "location column",
         "type": "text",
         "description": "The name of the column containing location names.",
-        "required": true
+        "required": true,
+        "ui": {
+          "column-in": "data"
+        }
       },
       {
         "name": "latitude column",
@@ -3572,14 +3600,20 @@
         "type": "text",
         "default": "latitude",
         "description": "The name of the column containing latitude values (in decimal degrees).\nA number preceded by a sign character. A plus sign (+) denotes northern hemisphere, and a minus sign (-) denotes southern hemisphere.\nIf unspecified, defaults to `latitude`.",
-        "required": true
+        "required": true,
+        "ui": {
+          "column-in": "data"
+        }
       },
       {
         "name": "longitude column",
         "type": "text",
         "default": "longitude",
         "description": "The name of the column containing longitude values (in decimal degrees).\nA plus sign (+) denotes east longitude, and a minus sign (-) denotes west longitude.\nIf unspecified, defaults to `longitude`.",
-        "required": true
+        "required": true,
+        "ui": {
+          "column-in": "data"
+        }
       },
       {
         "name": "location type",
