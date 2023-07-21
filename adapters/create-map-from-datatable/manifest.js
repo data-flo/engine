@@ -15,6 +15,7 @@ module.exports = {
       "description": "The name of the column which contains keys.\nIf unspecified, defaults to `key`.",
       "required": true,
       "default": "key",
+      "ui": { "column-in": "data" },
     },
     {
       "name": "value column",
@@ -22,6 +23,7 @@ module.exports = {
       "description": "The name of the column which contains values.\nIf unspecified, defaults to `value`.",
       "required": true,
       "default": "value",
+      "ui": { "column-in": "data" },
     },
   ],
   "output": [
