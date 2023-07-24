@@ -4,6 +4,7 @@ const formater = require("../../utils/geocoding/opencage-formater");
 const cache = require("../../utils/cache");
 
 module.exports = async function (args) {
+  await args.data.shouldIncludeColumns(args["location column"]);
   const data = await args.data.transformAsync(
     async (row) => {
       if (row[args["location column"]]) {
