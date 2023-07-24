@@ -6,8 +6,8 @@ tap.test("concatenate-text adaptor", async () => {
 
   tap.test("given two text without separator, it should return the concatenated text", async (t) => {
     const output = await adaptor({
-      "left": "Hello",
-      "right": "World",
+      "text one": "Hello",
+      "text two": "World",
       "separator": "",
     });
     t.ok(output.combination, "adaptor should return combination");
@@ -18,8 +18,8 @@ tap.test("concatenate-text adaptor", async () => {
 
   tap.test("given two text with separator, it should return the concatenated text", async (t) => {
     const output = await adaptor({
-      "left": "Hello",
-      "right": "World",
+      "text one": "Hello",
+      "text two": "World",
       "separator": " ",
     });
     t.ok(output.combination, "adaptor should return combination");
