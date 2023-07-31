@@ -261,7 +261,7 @@ module.exports = function (doc) {
 
   renameAdaptor("google-drive-file", "import-file-from-google-drive");
 
-  renameAdaptor("google-spreadsheet", "import-from-google-spreadsheet");
+  renameAdaptor("google-spreadsheet", "import-from-google-sheet");
 
   renameAdaptor("graph-to-dot", "export-graph-to-dot-file");
 
