@@ -40,6 +40,7 @@ module.exports = {
       "description": "The format tokens, of the new values, based on Unicode Technical Standard #35.\nSee: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table.\nIf unspecified, defaults to ISO 8601 date/time.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
+      "ui": { "can-be-one-of": DateFormats },
     },
     {
       "name": "new locale",
