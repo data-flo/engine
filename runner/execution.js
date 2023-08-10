@@ -9,7 +9,7 @@ function sortStagesByExecutionOrder(steps) {
       if (!visited.has(item.name)) {
         let canBeVisited = true;
         for (const binding of (item.binding || [])) {
-          if (binding.type === "transformation") {
+          if (binding.type === "transformation" && binding.transformation) {
             if (!visited.has(binding.transformation)) {
               canBeVisited = false;
               break;
