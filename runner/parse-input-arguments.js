@@ -14,7 +14,7 @@ module.exports = function inputArguments(manifest, rawValues) {
       input[spec.name] = castType(spec.type, rawValue);
     }
     else if (spec.required) {
-      throw new Error(`A value is required for input argument ${spec.name}`);
+      throw new Error(`A value is required for input ${spec.name}`);
     }
     else if (spec.default !== undefined) {
       input[spec.name] = castType(spec.type, spec.default);
