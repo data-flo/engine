@@ -180,4 +180,4 @@ module.exports = async function createMicroreactProject(args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

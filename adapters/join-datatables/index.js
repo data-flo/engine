@@ -106,4 +106,4 @@ module.exports = async function adaptorJoinDatatable(args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

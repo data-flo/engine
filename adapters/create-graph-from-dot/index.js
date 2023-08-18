@@ -48,4 +48,4 @@ module.exports = function (args) {
   };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

@@ -32,4 +32,4 @@ module.exports = async function (args) {
   return { file: args.file };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

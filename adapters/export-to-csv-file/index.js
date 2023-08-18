@@ -16,4 +16,4 @@ module.exports = async function createDatatable(args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

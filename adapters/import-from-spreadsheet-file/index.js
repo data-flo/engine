@@ -37,4 +37,4 @@ module.exports = async function (args, context) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

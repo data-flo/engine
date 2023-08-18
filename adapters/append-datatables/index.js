@@ -32,4 +32,4 @@ module.exports = async function extendDatatable(args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

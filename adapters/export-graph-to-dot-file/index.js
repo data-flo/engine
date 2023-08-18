@@ -24,4 +24,4 @@ module.exports = function (args) {
   return { dot };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

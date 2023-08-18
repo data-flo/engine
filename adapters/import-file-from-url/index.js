@@ -53,4 +53,4 @@ module.exports = async function (args) {
   return { file };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

@@ -7,4 +7,4 @@ module.exports = function (args) {
   return { list };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

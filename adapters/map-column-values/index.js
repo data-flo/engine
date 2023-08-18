@@ -33,4 +33,4 @@ module.exports = async function mapColumnValues(args) {
   return { data };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

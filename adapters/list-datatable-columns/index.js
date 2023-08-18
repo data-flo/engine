@@ -3,4 +3,4 @@ module.exports = async function createDatatable(args) {
   return { "column names": columns };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");

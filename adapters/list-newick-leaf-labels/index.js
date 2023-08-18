@@ -16,4 +16,4 @@ module.exports = function (args) {
   return { labels };
 };
 
-module.exports.manifest = require("./manifest");
+module.exports.manifest = require("./manifest.js");
