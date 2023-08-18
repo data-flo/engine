@@ -1,4 +1,4 @@
-module.exports = async function createDatatable(args) {
+module.exports = async function exportToCsvFile(args) {
   let data = args.data;
 
   if (args.columns || args.delimiter !== ",") {
