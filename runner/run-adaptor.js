@@ -10,7 +10,7 @@ module.exports = async function runAdaptor(adaptorExecutable, rawValues) {
   const input = parseInputArguments(adaptorExecutable.manifest.input, rawValues);
 
   // execute adaptor function
-  const rawOutput = await adaptorExecutable(input);
+  const rawOutput = await adaptorExecutable.call(this, input);
 
   // check output against manifest
   const output = parseOutputArguments(adaptorExecutable.manifest.output, rawOutput);

@@ -39,7 +39,7 @@ class Engine {
 
   async runAdaptor(name, args) {
     const adaptor = await this.getAdaptorExecutable(name);
-    return runAdaptor(adaptor, args);
+    return runAdaptor.call(this, adaptor, args);
   }
 
   async runDataflow(manifest, args) {
