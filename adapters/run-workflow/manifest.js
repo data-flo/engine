@@ -8,14 +8,10 @@ module.exports = {
       "type": "text",
       "description": "The ID or the URL of the Workflow to run.",
       "required": true,
-      "ui": { "workflow": true },
+      "ui": { "workflow-uuid": true },
     },
   ],
   "output": [
-    {
-      "name": "run time",
-      "type": "text",
-      "description": "Run time of the Workflow.",
-    },
   ],
+  "dynamic": true,
 };

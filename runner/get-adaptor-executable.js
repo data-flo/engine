@@ -1,5 +1,3 @@
-const path = require("path");
-
 function getExecutable(name) {
   const func = require(`../adapters/${name}/index.js`);
   return func;

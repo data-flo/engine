@@ -1,6 +1,5 @@
 const { performance } = require("perf_hooks");
 
-const castType = require("./cast-type");
 const parseInputArguments = require("./parse-input-arguments");
 const parseOutputArguments = require("./parse-output-arguments");
 const { sortStagesByExecutionOrder } = require("./execution");
@@ -79,9 +78,9 @@ module.exports = async function (
         if (transformationStep.type === "adaptor") {
           transformationManifest = await engine.getAdaptorManifest(transformationStep.adaptor);
         }
-        else if (transformationStep.type === "dataflow") {
-          transformationManifest = await engine.getDataflowManifest(transformationStep.dataflow);
-        }
+        // else if (transformationStep.type === "dataflow") {
+        //   transformationManifest = await engine.getDataflowManifest(transformationStep.dataflow);
+        // }
         else {
           throw new Error(`Invalid transformation type ${transformationStep.type}.`);
         }
@@ -89,10 +88,10 @@ module.exports = async function (
         // Collect transformation inputs
         step.inputs = {};
         for (const binding of transformationStep.binding) {
-          const inputArgumentSpec = transformationManifest.input.find((x) => x.name === binding.target);
-          if (!inputArgumentSpec) {
-            throw new Error(`Invalid binding for ${transformationStepName}: cannot find argument named ${binding.target} in ${transformationStep.type} ${transformationStep[transformationStep.type]}.`);
-          }
+          // const inputArgumentSpec = transformationManifest.input.find((x) => x.name === binding.target);
+          // if (!inputArgumentSpec) {
+          //   throw new Error(`Invalid binding for ${transformationStepName}: cannot find argument named ${binding.target} in ${transformationStep.type} ${transformationStep[transformationStep.type]}.`);
+          // }
 
           if (binding.type === "input") {
             if (binding.input in dataflowInputs) {
@@ -103,7 +102,7 @@ module.exports = async function (
             }
           }
           else if (binding.type === "value") {
-            step.inputs[binding.target] = castType(inputArgumentSpec.type, binding.value);
+            step.inputs[binding.target] = binding.value;
           }
           else if (binding.type === "transformation") {
             if (binding.transformation in run.outputs) {
@@ -127,13 +126,13 @@ module.exports = async function (
         if (transformationStep.type === "adaptor") {
           run.outputs[transformationStepName] = await engine.runAdaptor(transformationStep.adaptor, step.inputs);
         }
-        else if (transformationStep.type === "dataflow") {
-          const stepRun = await engine.runDataflow(transformationManifest, step.inputs);
-          if (stepRun.status === "error") {
-            throw stepRun.error;
-          }
-          run.outputs[transformationStepName] = stepRun.outputs;
-        }
+        // else if (transformationStep.type === "dataflow") {
+        //   const stepRun = await engine.runDataflow(transformationManifest, step.inputs);
+        //   if (stepRun.status === "error") {
+        //     throw stepRun.error;
+        //   }
+        //   run.outputs[transformationStepName] = stepRun.outputs;
+        // }
 
         // Record execution time and mark the step as success
         step.ended = performance.now();
