@@ -1,4 +1,5 @@
 module.exports["add-column"] = require("./adapters/add-column/index.js");
+module.exports["add-value-to-map"] = require("./adapters/add-value-to-map/index.js");
 module.exports["aggregate-rows"] = require("./adapters/aggregate-rows/index.js");
 module.exports["append-datatables"] = require("./adapters/append-datatables/index.js");
 module.exports["append-lists"] = require("./adapters/append-lists/index.js");
@@ -69,6 +70,7 @@ module.exports["replace-values-in-text"] = require("./adapters/replace-values-in
 module.exports["reshape-long-to-wide"] = require("./adapters/reshape-long-to-wide/index.js");
 module.exports["reshape-wide-to-long"] = require("./adapters/reshape-wide-to-long/index.js");
 module.exports["reverse-geocoding"] = require("./adapters/reverse-geocoding/index.js");
+module.exports["run-replicate-model"] = require("./adapters/run-replicate-model/index.js");
 module.exports["run-workflow"] = require("./adapters/run-workflow/index.js");
 module.exports["select-columns"] = require("./adapters/select-columns/index.js");
 module.exports["select-list-values"] = require("./adapters/select-list-values/index.js");

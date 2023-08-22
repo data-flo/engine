@@ -49,6 +49,7 @@
     "papaparse": "^4.6.0",
     "pg": "^8.7.1",
     "pg-query-stream": "^4.2.3",
+    "replicate": "^0.16.1",
     "request": "^2.87.0",
     "samba-client": "^5.0.2",
     "scramjet": "^4.36.7",

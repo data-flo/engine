@@ -15,6 +15,9 @@ module.exports = {
       "type": "map",
       "description": "A map of existing column names with names of new columns, where the map keys are the names of existing columns, and the map values are the names of the columns to which the replacement values are written.\nIf a map value is left blank, the replacement values are written to the original column.",
       "required": true,
+      "ui": {
+        "keys": { "column-in": "data" },
+      },
     },
 
     {
