@@ -16,6 +16,7 @@ module.exports = {
       "type": "text",
       "description": "The name of column in the datatable to be searched.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "filter type",

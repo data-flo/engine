@@ -52,8 +52,6 @@ async function main() {
     ),
     JSON.stringify(
       directory,
-      null,
-      2,
     ),
   );
 
