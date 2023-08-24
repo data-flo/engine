@@ -1,8 +1,9 @@
 const FS = require("fs");
 const StreamPromises = require("stream/promises");
-const { EmptyObject } = require("../utils/constants");
 
-const tmpFilePath = require("../utils/file/tmp-path");
+const { EmptyObject } = require("../utils/constants/index.js");
+
+const tmpFilePath = require("../utils/file/tmp-path.js");
 
 class FileStream {
 
@@ -72,6 +73,11 @@ class FileStream {
         options,
       )
     );
+  }
+
+  async getContents(options) {
+    const contents = await FS.promises.readFile(this.getSource(), options);
+    return contents;
   }
 
 }

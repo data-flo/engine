@@ -47,6 +47,7 @@ module.exports["import-from-dbf-file"] = require("./adapters/import-from-dbf-fil
 module.exports["import-from-epicollect-project"] = require("./adapters/import-from-epicollect-project/index.js");
 module.exports["import-from-excel-file"] = require("./adapters/import-from-excel-file/index.js");
 module.exports["import-from-google-sheet"] = require("./adapters/import-from-google-sheet/index.js");
+module.exports["import-from-json-file"] = require("./adapters/import-from-json-file/index.js");
 module.exports["import-from-microreact-project"] = require("./adapters/import-from-microreact-project/index.js");
 module.exports["import-from-mysql"] = require("./adapters/import-from-mysql/index.js");
 module.exports["import-from-oracle"] = require("./adapters/import-from-oracle/index.js");
