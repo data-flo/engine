@@ -72,6 +72,7 @@ module.exports["replace-values-in-text"] = require("./adapters/replace-values-in
 module.exports["reshape-long-to-wide"] = require("./adapters/reshape-long-to-wide/index.js");
 module.exports["reshape-wide-to-long"] = require("./adapters/reshape-wide-to-long/index.js");
 module.exports["reverse-geocoding"] = require("./adapters/reverse-geocoding/index.js");
+module.exports["run-openai-model"] = require("./adapters/run-openai-model/index.js");
 module.exports["run-replicate-model"] = require("./adapters/run-replicate-model/index.js");
 module.exports["run-workflow"] = require("./adapters/run-workflow/index.js");
 module.exports["select-columns"] = require("./adapters/select-columns/index.js");
