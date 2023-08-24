@@ -38,6 +38,7 @@ module.exports["forward-geocoding"] = require("./adapters/forward-geocoding/inde
 module.exports["import-file-from-dropbox"] = require("./adapters/import-file-from-dropbox/index.js");
 module.exports["import-file-from-figshare"] = require("./adapters/import-file-from-figshare/index.js");
 module.exports["import-file-from-google-drive"] = require("./adapters/import-file-from-google-drive/index.js");
+module.exports["import-file-from-http-request"] = require("./adapters/import-file-from-http-request/index.js");
 module.exports["import-file-from-s3"] = require("./adapters/import-file-from-s3/index.js");
 module.exports["import-file-from-smb-share"] = require("./adapters/import-file-from-smb-share/index.js");
 module.exports["import-file-from-url"] = require("./adapters/import-file-from-url/index.js");
