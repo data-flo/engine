@@ -18,6 +18,7 @@ module.exports = async function (args) {
     {
       columns,
       delimiter: args.delimiter,
+      record_delimiter: args.newline,
       trim: args.trim,
     },
   )
