@@ -1,6 +1,6 @@
 const { parse } = require("csv");
 
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
   const datatableWriter = await Datatable.create();
