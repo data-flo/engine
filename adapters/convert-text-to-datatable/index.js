@@ -16,8 +16,8 @@ module.exports = async function (args) {
   parse(
     args.csv,
     {
-      delimiter: args.delimiter,
       columns,
+      delimiter: args.delimiter,
       trim: args.trim,
     },
   )
