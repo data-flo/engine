@@ -1,5 +1,4 @@
 const { Datatable } = require("../../types/datatable.js");
-const jq = require("../../utils/jq.js");
 
 module.exports = async function (args) {
   const contents = await args.json.getContents();
@@ -15,6 +14,8 @@ module.exports = async function (args) {
   };
 
   if (args.filter) {
+    const jq = require("../../utils/jq.js");
+
     const filter = jq.compile(args.filter);
     for (const rows of filter(json)) {
       addRows(rows);
