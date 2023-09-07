@@ -1,12 +1,12 @@
 module.exports = {
-  "description": "Runs another Workflow.",
+  "description": "Runs another Data-flo workflow.",
   "group": "Transformations",
   "subgroup": "Workflows",
   "input": [
     {
       "name": "workflow",
       "type": "text",
-      "description": "The ID or the URL of the Workflow to run.",
+      "description": "The ID or the URL of the workflow to run.",
       "required": true,
       "ui": { "workflow-uuid": true },
     },

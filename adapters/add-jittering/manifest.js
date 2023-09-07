@@ -1,27 +1,35 @@
 module.exports = {
-  "description": "Adds random noise to specified latitude/longitude columns in a datatable.",
+  "description": "Adds random jittering to specified numeric columns in a datatable.",
   "group": "Transformations",
   "subgroup": "Data Tables",
   "input": [
     {
       "name": "data",
       "type": "datatable",
-      "description": "The datatable containing the latitude/longitude columns.",
+      "description": "The datatable containing the columns to be jittered.",
       "required": true,
     },
     {
       "name": "columns",
       "type": "list",
-      "description": "The names of the columns to which noise will be added.",
+      "description": "The names of the columns to which jittering will be added.",
       "required": true,
       "ui": { "column-in": "data" },
     },
     {
-      "name": "kms",
+      "name": "range",
       "type": "number",
-      "description": "The range in kilometers.",
+      "description": "The maximum distance from the original value.",
       "required": false,
       "default": 1,
+    },
+    {
+      "name": "unit",
+      "type": "text",
+      "description": "The unit of the range value. For jittering geographical coordinates use either `kilometers`, `miles`.",
+      "required": false,
+      "default": "none",
+      "ui": { "must-be-one-of": [ "kilometers", "miles", "none" ] },
     },
     {
       "name": "digits",
@@ -35,7 +43,7 @@ module.exports = {
     {
       "name": "data",
       "type": "datatable",
-      "description": "A datatable with the new column added.",
+      "description": "A datatable with jittered values in the specified columns.",
     },
   ],
 };

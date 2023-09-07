@@ -1,5 +1,5 @@
 module.exports["add-column"] = require("./adapters/add-column/index.js");
-module.exports["add-noise"] = require("./adapters/add-noise/index.js");
+module.exports["add-jittering"] = require("./adapters/add-jittering/index.js");
 module.exports["add-value-to-map"] = require("./adapters/add-value-to-map/index.js");
 module.exports["aggregate-rows"] = require("./adapters/aggregate-rows/index.js");
 module.exports["append-datatables"] = require("./adapters/append-datatables/index.js");
