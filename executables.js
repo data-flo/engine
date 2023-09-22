@@ -28,7 +28,6 @@ module.exports["export-graph-to-dot-file"] = require("./adapters/export-graph-to
 module.exports["export-to-csv-file"] = require("./adapters/export-to-csv-file/index.js");
 module.exports["export-to-dbf-file"] = require("./adapters/export-to-dbf-file/index.js");
 module.exports["export-to-google-sheet"] = require("./adapters/export-to-google-sheet/index.js");
-module.exports["export-to-microreact-project"] = require("./adapters/export-to-microreact-project/index.js");
 module.exports["export-to-sqlite-file"] = require("./adapters/export-to-sqlite-file/index.js");
 module.exports["filter-list"] = require("./adapters/filter-list/index.js");
 module.exports["filter-rows"] = require("./adapters/filter-rows/index.js");
