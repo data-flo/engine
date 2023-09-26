@@ -36,7 +36,7 @@ async function main() {
   const executables = [];
 
   for (const item of list) {
-    console.log(item.name);
+    console.info(item.name);
     item.manifest.group = item.manifest.subgroup;
     item.manifest.subgroup = undefined;
     directory[item.name] = item.manifest;
