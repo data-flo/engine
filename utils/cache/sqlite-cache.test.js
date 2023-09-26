@@ -6,7 +6,7 @@ tap.test("given an invalid string, it should return undefined", async (t) => {
   await cache(
     key,
     () => {
-      console.log("Calculating...");
+      console.info("Calculating...");
       return { a: "value1" };
     },
   );
