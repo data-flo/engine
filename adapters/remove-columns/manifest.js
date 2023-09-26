@@ -14,6 +14,7 @@ module.exports = {
       "type": "list",
       "description": "The list of columns to be removed.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
   ],
   "output": [

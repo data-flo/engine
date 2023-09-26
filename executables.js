@@ -86,4 +86,5 @@ module.exports["sort-list"] = require("./adapters/sort-list/index.js");
 module.exports["split-column"] = require("./adapters/split-column/index.js");
 module.exports["split-list"] = require("./adapters/split-list/index.js");
 module.exports["summarise-datatable"] = require("./adapters/summarise-datatable/index.js");
+module.exports["transform-columns"] = require("./adapters/transform-columns/index.js");
 module.exports["workflow-repeater"] = require("./adapters/workflow-repeater/index.js");

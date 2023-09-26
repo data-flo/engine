@@ -1,8 +1,21 @@
 module.exports = {
-  "description": "Runs an OpenAI language model.",
+  "description": "Transforms values in specified columns using an OpenAI language model.",
   "group": "Transformations",
   "subgroup": "AI & Machine Learning",
   "input": [
+    {
+      "name": "data",
+      "type": "datatable",
+      "description": "The datatable containing the columns to be transformed.",
+      "required": true,
+    },
+    {
+      "name": "columns",
+      "type": "list",
+      "description": "The list of columns to be transformed.",
+      "required": true,
+      "ui": { "column-in": "data" },
+    },
     {
       "name": "model",
       "type": "text",
@@ -20,12 +33,6 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "user message",
-      "type": "text",
-      "description": "The input of the model to run.",
-      "required": true,
-    },
-    {
       "name": "api token",
       "type": "text",
       "description": "OpenAI API token found in https://platform.openai.com/account/api-keys.",
@@ -34,14 +41,14 @@ module.exports = {
   ],
   "output": [
     {
-      "name": "assistant message",
-      "type": "test",
-      "description": "The model prediction.",
+      "name": "data",
+      "type": "datatable",
+      "description": "A datatable with the specified columns transformed.",
     },
     {
-      "name": "duration",
-      "type": "text",
-      "description": "The duration of the model run.",
+      "name": "summary",
+      "type": "map",
+      "description": "A summary of the transformed values.",
     },
   ],
 };
