@@ -22,5 +22,5 @@ async function main() {
 }
 
 main()
-  .then(console.log)
+  .then(console.info)
   .catch(console.error);
