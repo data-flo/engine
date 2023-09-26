@@ -69,7 +69,7 @@ async function detectDatatypes(
       "Type": type,
       [`Missing % (out of ${rowCount})`]: `${(numberOfEmptyValues / rowCount * 100).toFixed(1)}% (${numberOfEmptyValues})`,
       "Unique values": numberOfUniqueValues,
-      "Mean": (type === "number") ? Number((sums[column] / nonEmptyValues[column]).toFixed(2)) : "",
+      "Mean": (type === "number" && nonEmptyValues[column] > 0) ? Number((sums[column] / nonEmptyValues[column]).toFixed(2)) : "",
     });
   }
 
