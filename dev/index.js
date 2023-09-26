@@ -35,7 +35,6 @@ async function main() {
     convertedManifest,
     inputs,
   );
-  // console.log({ outputs })
 
   const formatMemoryUsage = (data) => `${Math.round(data / 1024 / 1024 * 100) / 100} MB`;
 
@@ -54,5 +53,5 @@ async function main() {
 }
 
 main()
-  .then(console.log)
+  .then(console.info)
   .catch(console.error);
