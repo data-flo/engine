@@ -11,18 +11,14 @@ module.exports = async function summariseDatatable(args) {
     columns = await args.data.getColumns();
   }
 
-  await detectDatatypes(
+  const summaryRows = await detectDatatypes(
     args.data,
     columns,
   );
 
-  const datatableWriter = await Datatable.create({ columns });
+  const summary = await Datatable.createFromIterable(summaryRows);
 
-  datatableWriter.end();
-
-  const data = await datatableWriter.finalise();
-
-  return { data };
+  return { summary };
 };
 
 module.exports.manifest = require("./manifest.js");
