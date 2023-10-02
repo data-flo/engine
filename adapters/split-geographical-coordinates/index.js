@@ -5,7 +5,7 @@ module.exports = async function (args) {
       if (row[args["location column"]]) {
         const query = row[args["location column"]];
         if (query) {
-          const [ _, lat, north, long, east ] = query.match(/(\d+[\.,]?\d*)\W?([NS]?)\W?(\d+[\.,]?\d*)\W?([EW]?)/i);
+          const [ _, lat, north, long, east ] = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)\s?(-?\d+[\.,]?\d*)\s?([EW]?)/i);
           let latitude = lat.replace(",", ".");
           let longitude = long.replace(",", ".");
 

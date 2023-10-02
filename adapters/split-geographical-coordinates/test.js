@@ -16,7 +16,7 @@ tap.test("forward-geocoding adaptor", async () => {
 "29,85 S 31,01 E"
 "31,00 N 100,00 W"
 "31.00 100.00"
-"31,00 100,00"
+"31,00 -100,00"
 `);
   const data = createDatatable(testCsvFilePath);
 
