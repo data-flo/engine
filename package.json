@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tap utils/**/*.test.js --reporter classic",
-    "tap": "tap --reporter treport"
+    "tap": "tap --reporter classic"
   },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.1",
