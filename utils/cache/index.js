@@ -10,7 +10,11 @@ function setCache(cache) {
   currentCache = cache;
 }
 
-module.exports = function (key, valueGetter, expiryHours) {
+module.exports = function (
+  key,
+  valueGetter,
+  expiryHours,
+) {
   return currentCache(key, valueGetter, expiryHours);
 };
 
