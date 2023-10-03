@@ -1,4 +1,4 @@
-const sqliteCache = require("./sqlite-cache");
+const sqliteCache = require("./sqlite-cache.js");
 
 const noCache = (key, valueGetter, expiryHours) => {
   return valueGetter();
