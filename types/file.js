@@ -1,6 +1,6 @@
-const FS = require("node:fs");
-const StreamPromises = require("node:stream/promises");
-const zlib = require("node:zlib");
+const FS = require("fs");
+const StreamPromises = require("stream/promises");
+// const maybeGunzip = require("gunzip-maybe");
 
 const { EmptyObject } = require("../utils/constants/index.js");
 
@@ -73,7 +73,7 @@ class FileStream {
         this.source,
         options,
       )
-        .pipe(zlib.createGunzip())
+        // .pipe(maybeGunzip())
     );
   }
 

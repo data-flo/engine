@@ -1,5 +1,6 @@
 const fs = require("fs");
 const stream = require("stream");
+// const zlib = require("zlib");
 
 const { parse, stringify } = require("csv");
 
@@ -24,6 +25,7 @@ class Datatable {
 
     const pipeline = stream.promises.pipeline(
       stringifier,
+      // zlib.createGzip(),
       fileStream,
     );
 
@@ -92,12 +94,26 @@ class Datatable {
       trim: true,
       ...options,
     };
-    return (
-      fs.createReadStream(this.source)
-        .pipe(
-          parse(parserOptions)
-        )
+
+    // return (
+    //   fs.createReadStream(this.source)
+    //     .pipe(
+    //       zlib.createGunzip()
+    //     )
+    //     .pipe(
+    //       parse(parserOptions)
+    //     )
+    // );
+
+    const parser = parse(parserOptions);
+
+    stream.promises.pipeline(
+      fs.createReadStream(this.source),
+      // zlib.createGunzip(),
+      parser,
     );
+
+    return parser;
   }
 
   getPartialReader(columns) {

@@ -1,4 +1,4 @@
-const { pipeline } = require("node:stream/promises");
+const { pipeline } = require("stream/promises");
 
 const { parse } = require("csv");
 
