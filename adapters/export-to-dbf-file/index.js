@@ -1,6 +1,6 @@
 const DBFFile = require("dbffile");
 
-const { FileStream } = require("../../types/file");
+const { FileStream } = require("../../types/file.js");
 
 module.exports = async function (args) {
   const fieldDescriptors = [];
