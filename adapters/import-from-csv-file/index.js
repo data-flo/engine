@@ -21,7 +21,7 @@ module.exports = async function (args) {
       delimiter: args.delimiter,
       trim: args.trim,
     }),
-    datatableWriter
+    datatableWriter,
   );
 
   const data = await datatableWriter.finalise();
