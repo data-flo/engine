@@ -9,7 +9,7 @@ module.exports = async function (args) {
     fieldDescriptors.push({
       name: key,
       type,
-      size: size ? parseInt(size, 10) : undefined,
+      size: size ? parseInt(size) : undefined,
     });
   }
 
