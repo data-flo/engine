@@ -1,6 +1,8 @@
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 
+const stringify = require("./stringify.js");
+
 async function init() {
   const db = await sqlite.open({
     filename: "cache.db",
@@ -31,7 +33,7 @@ module.exports = async function (key, valueGetter, expiryHours) {
     await db.run(
       "INSERT INTO cache (key, value) VALUES (?, ?)",
       key,
-      JSON.stringify(value),
+      stringify(value),
     );
     return value;
   }

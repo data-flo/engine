@@ -1,6 +1,6 @@
 module.exports = function formater(result, feature) {
   if (feature === "type") {
-    let type = result?.components?._type;
+    const type = result?.components?._type;
     // if (result?.components?._type === "postcode") {
     //   type = "postal code";
     // }

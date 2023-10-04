@@ -80,7 +80,12 @@ class Datatable {
       throw new Error("Datatable requires a source file");
     }
 
-    this.source = sourceFile;
+    if (typeof sourceFile === "string") {
+      this.source = sourceFile;
+    }
+    else if (typeof sourceFile.source === "string") {
+      this.source = sourceFile.source;
+    }
   }
 
   getSource() {

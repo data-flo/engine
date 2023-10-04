@@ -84,6 +84,7 @@ module.exports["send-email-message"] = require("./adapters/send-email-message/in
 module.exports["sort-datatable"] = require("./adapters/sort-datatable/index.js");
 module.exports["sort-list"] = require("./adapters/sort-list/index.js");
 module.exports["split-column"] = require("./adapters/split-column/index.js");
+module.exports["split-geographical-coordinates"] = require("./adapters/split-geographical-coordinates/index.js");
 module.exports["split-list"] = require("./adapters/split-list/index.js");
 module.exports["summarise-datatable"] = require("./adapters/summarise-datatable/index.js");
 module.exports["transform-columns"] = require("./adapters/transform-columns/index.js");

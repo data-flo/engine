@@ -5,5 +5,6 @@ function getExecutable(name) {
 
 module.exports = function getAdaptorExecutable(name) {
   const executable = getExecutable(name);
+  executable.manifest.name = name;
   return executable;
 };
