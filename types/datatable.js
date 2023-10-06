@@ -9,6 +9,18 @@ const tmpFilePath = require("../utils/file/tmp-path.js");
 
 const { FileStream } = require("./file.js");
 
+function createAsyncTransformer(transformer) {
+  class Transformer extends stream.Transform {
+    // eslint-disable-next-line class-methods-use-this
+    _transform(chunk, encoding, done) {
+      transformer(chunk)
+        .then((x) => done(null, x))
+        .catch(done);
+    }
+  }
+  return new Transformer({ objectMode: true });
+}
+
 class Datatable {
 
   static async create(options) {
