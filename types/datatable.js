@@ -100,25 +100,25 @@ class Datatable {
       ...options,
     };
 
-    // return (
-    //   fs.createReadStream(this.source)
-    //     .pipe(
-    //       zlib.createGunzip()
-    //     )
-    //     .pipe(
-    //       parse(parserOptions)
-    //     )
-    // );
-
-    const parser = parse(parserOptions);
-
-    stream.promises.pipeline(
-      fs.createReadStream(this.source),
-      // zlib.createGunzip(),
-      parser,
+    return (
+      fs.createReadStream(this.source)
+        // .pipe(
+        //   zlib.createGunzip()
+        // )
+        .pipe(
+          parse(parserOptions)
+        )
     );
 
-    return parser;
+    // const parser = parse(parserOptions);
+
+    // stream.promises.pipeline(
+    //   fs.createReadStream(this.source),
+    //   // zlib.createGunzip(),
+    //   parser,
+    // );
+
+    // return parser;
   }
 
   getPartialReader(columns) {

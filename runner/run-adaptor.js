@@ -26,8 +26,6 @@ module.exports = async function runAdaptor(
 
   const checksum = hash(input);
 
-  console.log({checksum}, `adapters/${adaptorExecutable.manifest.name}/${checksum}`)
-
   const rawOutput = await cache(
     `adapters/${adaptorExecutable.manifest.name}/${checksum}`,
     async () => adaptorExecutable.call(this, input),

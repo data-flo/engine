@@ -15,7 +15,8 @@ module.exports = {
       "type": "text",
       "default": "latitude",
       "description": "The name of the column containing latitude values (in decimal degrees).\nA number preceded by a sign character. A plus sign (+) denotes northern hemisphere, and a minus sign (-) denotes southern hemisphere.\nIf unspecified, defaults to `latitude`.",
-      "required": true,
+      "required": false,
+      "defaut": "latitude",
       "ui": { "column-in": "data" },
     },
     {
@@ -23,7 +24,8 @@ module.exports = {
       "type": "text",
       "default": "longitude",
       "description": "The name of the column containing longitude values (in decimal degrees).\nA plus sign (+) denotes east longitude, and a minus sign (-) denotes west longitude.\nIf unspecified, defaults to `longitude`.",
-      "required": true,
+      "required": false,
+      "defaut": "longitude",
       "ui": { "column-in": "data" },
     },
 
