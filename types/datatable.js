@@ -4,10 +4,10 @@ const stream = require("stream");
 
 const { parse, stringify } = require("csv");
 
-const { FileStream } = require("./file");
 const { EmptyObject, EmptyArray } = require("../utils/constants");
 
 const tmpFilePath = require("../utils/file/tmp-path");
+const { FileStream } = require("./file.js");
 
 class Datatable {
 
