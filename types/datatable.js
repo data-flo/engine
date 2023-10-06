@@ -283,10 +283,16 @@ class Datatable {
   async transformAsync(transformer) {
     const datatableWriter = await Datatable.create();
 
-    for await (const row of this.getReader()) {
-      datatableWriter.write(await transformer(row));
-    }
-    datatableWriter.end();
+    await stream.promises.pipeline(
+      this.getReader(),
+      createAsyncTransformer(transformer),
+      datatableWriter,
+    );
+
+    // for await (const row of this.getReader()) {
+    //   datatableWriter.write(await transformer(row));
+    // }
+    // datatableWriter.end();
 
     const data = await datatableWriter.finalise();
 
