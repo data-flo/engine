@@ -4,6 +4,17 @@ module.exports = [
     "manifest": {
       "input": [],
       "output": [
+        {
+          "ui": {
+            "x": 0,
+            "y": 0,
+          },
+          "argument": "data",
+          "description": "",
+          "name": "data",
+          "transformation": "transformation-3",
+          "type": "datatable",
+        },
       ],
       "transform": [
         {
@@ -16,7 +27,7 @@ module.exports = [
               "target": "data",
               "type": "value",
               "value": {
-                "source": "/var/folders/j5/dms0whmx5mj5kbyk406yyf1w0000gs/T/tmp-27019-tQeTf9HUnnkY",
+                "source": "engine/dev/data/500k/dataset.csv",
               },
             },
             {

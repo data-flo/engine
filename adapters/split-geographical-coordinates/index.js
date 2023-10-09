@@ -27,6 +27,7 @@ module.exports = async function (args) {
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
             invalidValues.add(query);
+            return null;
           }
         }
       }
