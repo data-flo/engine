@@ -1,6 +1,9 @@
 const opencage = require("opencage-api-client");
 
+const stopwatch = require("../stopwatch.js");
+
 module.exports = function opencageGeocoder(opencageApiKey, query, confidenceSorce, proximity) {
+  stopwatch.start("opencage geocoder")
   return opencage
     .geocode({
       key: opencageApiKey,
@@ -12,6 +15,7 @@ module.exports = function opencageGeocoder(opencageApiKey, query, confidenceSorc
       q: query,
     })
     .then((data) => {
+      stopwatch.stop("opencage geocoder")
       if (data.results.length > 0) {
         const place = data.results[0];
         return place;

@@ -52,6 +52,7 @@
     "papaparse": "^4.6.0",
     "pg": "^8.7.1",
     "pg-query-stream": "^4.2.3",
+    "promise-map-limit": "^1.0.0",
     "replicate": "^0.16.1",
     "request": "^2.87.0",
     "samba-client": "^5.0.2",
@@ -72,7 +73,8 @@
     "vis": "^4.21.0",
     "xlsx": "^0.17.3",
     "yamljs": "^0.3.0",
-    "yn": "^3.1.0"
+    "yn": "^3.1.0",
+    "yocto-queue": "^1.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",

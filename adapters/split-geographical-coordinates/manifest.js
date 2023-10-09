@@ -46,5 +46,10 @@ module.exports = {
       "type": "datatable",
       "description": "A datatable with the latitude & longitude values added.",
     },
+    {
+      "name": "invalid values",
+      "type": "list",
+      "description": "A list of invalid coordinates.",
+    },
   ],
 };

@@ -9,12 +9,33 @@ const tmpFilePath = require("../utils/file/tmp-path.js");
 
 const { FileStream } = require("./file.js");
 
+let sum0 = 0;
+let count0 = 0;
+
+let sum1 = 0;
+let count1 = 0;
+
+let prev;
+
 function createAsyncTransformer(transformer) {
   class Transformer extends stream.Transform {
     // eslint-disable-next-line class-methods-use-this
     _transform(chunk, encoding, done) {
+
+      const t0 = performance.now();
+
+      if (prev) {
+        sum1 += (t0 - prev);
+        count1 += 1;
+      }
+      prev = t0;
+
       transformer(chunk)
-        .then((x) => done(null, x))
+        .then((x) => {
+          sum0 += (performance.now() - t0);
+          count0 += 1;
+          done(null, x);
+        })
         .catch(done);
     }
   }
@@ -288,6 +309,9 @@ class Datatable {
       createAsyncTransformer(transformer),
       datatableWriter,
     );
+
+  console.log("timer 0", sum0, count0, sum0 / count0)
+  console.log("timer 1", sum1, count1, sum1 / count1)
 
     // for await (const row of this.getReader()) {
     //   datatableWriter.write(await transformer(row));

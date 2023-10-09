@@ -1,34 +1,42 @@
 module.exports = [
   {
-    "identifier": "4NaCFWY92Q2aY1p1bQweqW",
+    "id": "pfwUFWvFPTgHif4bLHmk8q",
     "manifest": {
       "input": [],
-      "output": [
-        {
-          "ui": {
-            "x": 0,
-            "y": 0,
-          },
-          "argument": "data",
-          "description": "",
-          "name": "data",
-          "transformation": "transformation-3",
-          "type": "datatable",
-        },
-      ],
+      "output": [],
       "transform": [
         {
-          "name": "transformation-3",
+          "name": "transformation-1",
+          "type": "adaptor",
+          "adaptor": "import-from-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "value",
+              "value": {
+                "source": "engine/dev/data/500k/dataset.csv",
+                "name": "dataset.csv",
+              },
+            },
+          ],
+          "ui": {
+            "x": 120,
+            "y": 150,
+          },
+          "label": "#1",
+        },
+        {
+          "name": "transformation-2",
           "type": "adaptor",
           "adaptor": "split-geographical-coordinates",
           "description": null,
           "binding": [
             {
               "target": "data",
-              "type": "value",
-              "value": {
-                "source": "engine/dev/data/500k/dataset.csv",
-              },
+              "type": "transformation",
+              "transformation": "transformation-1",
+              "argument": "data",
             },
             {
               "target": "coordinates column",
@@ -37,37 +45,66 @@ module.exports = [
             },
           ],
           "ui": {
-            "x": 316,
-            "y": 34,
+            "x": 300,
+            "y": 260,
+          },
+          "label": "#2",
+        },
+        {
+          "name": "transformation-3",
+          "type": "adaptor",
+          "adaptor": "select-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-2",
+              "argument": "data",
+            },
+            {
+              "target": "column names",
+              "type": "value",
+              "value": [
+                "lat_lon",
+                "latitude",
+                "longitude",
+              ],
+            },
+          ],
+          "ui": {
+            "x": 510,
+            "y": 320,
           },
           "label": "#3",
         },
-
-        // {
-        //   "name": "transformation-1",
-        //   "type": "adaptor",
-        //   "adaptor": "import-from-csv-file",
-        //   "description": null,
-        //   "binding": [
-        //     {
-        //       "target": "file",
-        //       "type": "value",
-        //       "value": {
-        //         "hash": "ad0e614f4d409de1649f139c0e19a39e354c2819",
-        //         "source": "/Users/ka10/code/data-flo/studio/files/ad/0e614f4d409de1649f139c0e19a39e354c2819",
-        //         "name": "test_data_500Krow_66column.csv",
-        //       },
-        //     },
-        //   ],
-        //   "ui": {
-        //     "x": 72,
-        //     "y": 34,
-        //   },
-        //   "label": "#1",
-        // },
+        {
+          "name": "transformation-4",
+          "type": "adaptor",
+          "adaptor": "reverse-geocoding",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transformation-3",
+              "argument": "data",
+            },
+            {
+              "target": "location column",
+              "type": "value",
+              "value": "country code",
+            },
+          ],
+          "ui": {
+            "x": 690,
+            "y": 370,
+          },
+          "label": "#4",
+        },
       ],
       "version": 3,
     },
-    "name": "500k",
+    "name": "Untitled Workflow",
   },
 ];
