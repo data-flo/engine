@@ -1,0 +1,112 @@
+module.exports = {
+  "description": "Creates a new project or updates an existing a project on a Microreact server.",
+  "group": "Transformations",
+  "subgroup": "Data Destinations",
+  "input": [
+    {
+      "name": "project",
+      "type": "text",
+      "description": "The ID (e.g. `fCXBPv48KNkm5oZq8UWdHG`) or the URL (e.g. `https://microreact.org/project/fCXBPv48KNkm5oZq8UWdHG`) of an existing project to be updated. Leave empty to create a new project.",
+      "required": false,
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "description": "The new project name.\nIf unspecified, defaults to existing project name if there is one, otherwise defaults to `Unnamed project`.",
+      "required": false,
+      "default": "Unnamed project",
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "description": "An optional project description in Markdown format.",
+      "required": false,
+      "default": "",
+    },
+    {
+      "name": "data file",
+      "type": "file",
+      "description": "A data file in one of the supported formats: https://docs.microreact.org/instructions/creating-a-microreact-project/supported-file-formats#data-file-formats.\nLeave empty if using `data url`.",
+      "required": false,
+    },
+    {
+      "name": "data url",
+      "type": "text",
+      "description": "URL linking to a data file in one of the supported formats: https://docs.microreact.org/instructions/creating-a-microreact-project/supported-file-formats#data-file-formats.\nLeave empty if using `data file`.",
+      "required": false,
+    },
+    {
+      "name": "tree file",
+      "type": "file",
+      "description": "A phylogenetic tree file in Newick format.\nLeave empty if using `tree url`.",
+      "required": false,
+    },
+    {
+      "name": "tree url",
+      "type": "text",
+      "description": "URL linking to a tree file in Newick format.\nLeave empty if using `tree file`.",
+      "required": false,
+    },
+    {
+      "name": "network file",
+      "type": "file",
+      "description": "A network file in DOT format.\nLeave empty if using `network url`.",
+      "required": false,
+    },
+    {
+      "name": "network url",
+      "type": "text",
+      "description": "URL linking to a network file in DOT format.\nLeave empty if using `network file`.",
+      "required": false,
+    },
+    {
+      "name": "server api",
+      "type": "text",
+      "description": "The URL of the Microreact server on which the project will be created or updated.\nIf unspecified, defaults to `https://microreact.org/`.",
+      "required": false,
+      "default": "https://microreact.org/api/",
+    },
+    {
+      "name": "access token",
+      "type": "text",
+      "description": "The API access token for a Microreact account.\nSee https://docs.microreact.org/api/access-tokens.",
+      "required": true,
+    },
+    {
+      "name": "id column",
+      "type": "text",
+      "description": "The column name in `data` that will be used as the unique row ID.\nIf unspecified, defaults to `id`.",
+      "required": false,
+    },
+    {
+      "name": "timeline column",
+      "type": "text",
+      "description": "The column name which contains the timeline data.\nIf unspecified, no timeline will be added when creating a new project.",
+      "required": false,
+    },
+    {
+      "name": "latitude column",
+      "type": "text",
+      "description": "The column name which contains map latitude values.\nIf unspecified, no map will be added when creating a new project.",
+      "required": false,
+    },
+    {
+      "name": "longitude column",
+      "type": "text",
+      "description": "The column name which contains map longitude values.\nIf unspecified, no map will be added when creating a new project.",
+      "required": false,
+    },
+  ],
+  "output": [
+    {
+      "name": "id",
+      "type": "text",
+      "description": "The ID of the Microreact project.",
+    },
+    {
+      "name": "url",
+      "type": "text",
+      "description": "The URL of the Microreact project.",
+    },
+  ],
+};
