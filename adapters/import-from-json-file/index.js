@@ -9,6 +9,14 @@ module.exports = async function (args) {
 
   const addRows = (rows) => {
     for (const row of rows) {
+      for (const [column, value] of Object.entries(row)) {
+        if (value && typeof value === "object" && !Array.isArray(value)) {
+          for (const [key, subValue] of Object.entries(value)) {
+            row[`${column} ${key}`] = subValue;
+          }
+          delete row[column];
+        }
+      }
       dataWriter.write(row);
     }
   };
