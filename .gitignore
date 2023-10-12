@@ -112,3 +112,4 @@ dev/data/amr-watch-metadata/abaumannii_8m.csv
 dev/data/amr-watch-metadata/abaumannii_2m.csv
 .DS_Store
 *.fileindex
+dev/data/500k/dataset*.csv
