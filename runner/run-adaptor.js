@@ -8,7 +8,7 @@ const parseOutputArguments = require("./parse-output-arguments.js");
 module.exports = async function runAdaptor(
   adaptorExecutable,
   rawValues,
-  useCache = false,
+  useCache = (!!process.env.DF_USE_CACHE) ?? false,
 ) {
   if (!adaptorExecutable.manifest) {
     throw new Error("Cannot find manifest in adaptor");
