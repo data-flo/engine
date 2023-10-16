@@ -110,6 +110,12 @@ module.exports.LetterCases = Object.freeze([
   [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);
 
+module.exports.SamplingStretegies = Object.freeze([
+  [ "first", "Selects the first N rows in the datatable" ],
+  [ "random", "Selects a random N rows from the datatable" ],
+  [ "last", "Selects the last N rows in the datatable" ],
+]);
+
 module.exports.SortDirections = Object.freeze([
   [ "asc", "Ascending order" ],
   [ "desc", "Descending order" ],

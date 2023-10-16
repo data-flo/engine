@@ -78,6 +78,7 @@ module.exports["reverse-geocoding"] = require("./adapters/reverse-geocoding/inde
 module.exports["run-openai-model"] = require("./adapters/run-openai-model/index.js");
 module.exports["run-replicate-model"] = require("./adapters/run-replicate-model/index.js");
 module.exports["run-workflow"] = require("./adapters/run-workflow/index.js");
+module.exports["sample-datatable"] = require("./adapters/sample-datatable/index.js");
 module.exports["select-columns"] = require("./adapters/select-columns/index.js");
 module.exports["select-list-values"] = require("./adapters/select-list-values/index.js");
 module.exports["select-rows"] = require("./adapters/select-rows/index.js");
