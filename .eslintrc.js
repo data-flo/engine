@@ -5,5 +5,6 @@ module.exports = {
     "ecmaVersion": "latest",
   },
   "rules": {
+    "dot-notation": 0,
   },
 };
