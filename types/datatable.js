@@ -6,6 +6,7 @@ const { parse, stringify } = require("csv");
 
 const { EmptyObject, EmptyArray } = require("../utils/constants/index.js");
 const tmpFilePath = require("../utils/file/tmp-path.js");
+const getDatatableIndex = require("../utils/indexing/get-datatable-index.js");
 
 const { FileStream } = require("./file.js");
 
@@ -157,6 +158,15 @@ class Datatable {
     // );
 
     // return parser;
+  }
+
+  async getIndex() {
+    return getDatatableIndex(this.getSource());
+  }
+
+  async getNumberOfRows() {
+    const [ rowCount ] = await this.getIndex();
+    return rowCount;
   }
 
   getPartialReader(columns) {
