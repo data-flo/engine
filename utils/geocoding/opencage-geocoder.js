@@ -28,6 +28,10 @@ module.exports = function opencageGeocoder(opencageApiKey, query, confidenceSorc
       if (error.status.code === 402) {
         throw new Error("OpenCage limit exceeded, see https://opencagedata.com/pricing");
       }
+      console.error({
+        query,
+        error,
+      });
       throw new Error(`OpenCage error ${error?.status?.code}`);
     });
 };
