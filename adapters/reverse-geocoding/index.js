@@ -6,6 +6,28 @@ const formater = require("../../utils/geocoding/opencage-formater.js");
 
 const cache = require("../../utils/cache/index.js");
 
+function isValidLatitude(latitude) {
+  if (latitude) {
+    const number = parseFloat(latitude);
+    if (!Number.isNaN(number)) {
+      if (number >= -90 && number <= 90) {
+        return true;
+      }
+    }
+  }
+}
+
+function isValidLongitude(longitude) {
+  if (longitude) {
+    const number = parseFloat(longitude);
+    if (!Number.isNaN(number)) {
+      if (number >= -180 && number <= 180) {
+        return true;
+      }
+    }
+  }
+}
+
 module.exports = async function (args) {
   let sum3 = 0;
   let count3 = 0;
@@ -19,7 +41,11 @@ module.exports = async function (args) {
   const queue = new Set();
 
   for await (const row of args.data.getPartialReader([ args["latitude column"], args["longitude column"] ])) {
-    if (row[args["latitude column"]] && row[args["longitude column"]]) {
+    if (
+      isValidLatitude(row[args["latitude column"]])
+      &&
+      isValidLongitude(row[args["longitude column"]])
+    ) {
       const coordinates = `${row[args["latitude column"]]},${row[args["longitude column"]]}`;
       queue.add(coordinates);
     }
