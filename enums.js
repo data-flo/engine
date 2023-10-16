@@ -38,6 +38,8 @@ module.exports.DateFormats = Object.freeze([
   [ "dd MMM yyyy", "date month year (e.g. 30 Jun 2022)" ],
   [ "HH:mm", "24-hour time (e.g. 16:20)" ],
   [ "hh:mm", "12-hour time (e.g. 04:20 pm)" ],
+  [ "T", "Milliseconds timestamp (e.g. 512969520900)" ],
+  [ "t", "Seconds timestamp (e.g. 512969520)" ],
 ]);
 
 module.exports.DurationUnits = Object.freeze([
