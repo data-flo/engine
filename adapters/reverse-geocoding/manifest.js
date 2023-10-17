@@ -32,7 +32,7 @@ module.exports = {
     {
       "name": "location type",
       "type": "text",
-      "description": "The type of the geographic feature. Valid options are `address`, `position`, `country code`, `country name`, `ISO-3166-1-alpha-2`, `ISO-3166-1-alpha-3`, `ISO-3166-2`, `postcode`, `state name`, `state code`, `county`, `city`, or `continent`.\nDefaults to `country code`.",
+      "description": "The type of the geographic feature. Valid options are `address`, `position`, `country code`, `country name`, `ISO-3166-1-alpha-2`, `ISO-3166-1-alpha-3`, `ISO-3166-2`, `postcode`, `state name`, `state code`, `county`, `city`, or `continent`.\nIf unspecified, defaults to `country code`.",
       "required": false,
       "default": "country code",
       "ui": {

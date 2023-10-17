@@ -112,6 +112,15 @@ module.exports.LetterCases = Object.freeze([
   [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);
 
+module.exports.Operators = Object.freeze([
+  [ "add", "Adds values in left column to values in right column (left + right)" ],
+  [ "subtract", "Subtract values in right column from values in left column (left - right)" ],
+  [ "multiply", "Multiplies values in left column by values in right column (left * right)" ],
+  [ "divide", "Divides values in left column by values in right column (left / right)" ],
+  [ "percent", "Calcuates the percentage ratio of values in left column out of values in right column (left / right * 100)" ],
+  [ "exponent", "Calcuates values in left column (raised) to the (power of) of values in right column (left ** right)" ],
+]);
+
 module.exports.SamplingStretegies = Object.freeze([
   [ "first", "Selects the first N rows in the datatable" ],
   [ "random", "Selects a random N rows from the datatable" ],

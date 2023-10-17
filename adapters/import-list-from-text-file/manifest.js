@@ -30,7 +30,7 @@ module.exports = {
     {
       "name": "trim",
       "type": "boolean",
-      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nDefaults to True.",
+      "description": "Specifies whether to ignore whitespace characters immediately around the separator.\nIf unspecified, defaults to True.",
       "required": false,
       "default": true,
     },
