@@ -1,9 +1,9 @@
-const createMicroreactDocument = require("microreact.js");
+const createMicroreactDocument = require("microreact.js/index.js");
 
-const createProject = require("./utils/create-project");
-const updateProject = require("./utils/update-project");
-const getFileUrl = require("./utils/get-file-url");
-const getProjectDoc = require("./utils/get-project-doc");
+const createProject = require("./utils/create-project.js");
+const updateProject = require("./utils/update-project.js");
+const getFileUrl = require("./utils/get-file-url.js");
+const getProjectDoc = require("./utils/get-project-doc.js");
 
 function findFile(files, types) {
   for (const fileId of Object.keys(files)) {
