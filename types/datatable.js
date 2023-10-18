@@ -195,8 +195,8 @@ class Datatable {
   }
 
   async getColumns() {
-    const { columns } = await this.getInfo();
-    return (columns || EmptyArray).map((x) => x.name);
+    const info = await this.getInfo();
+    return (info.columns || EmptyArray).map((x) => x.name);
   }
 
   async hasColumn(columnName) {
@@ -206,9 +206,12 @@ class Datatable {
 
   async shouldIncludeColumns(...columnsToCheck) {
     const allColumns = await this.getColumns();
-    for (const columnName of (Array.isArray(columnsToCheck[0]) ? columnsToCheck[0] : columnsToCheck)) {
-      if (!allColumns.includes(columnName)) {
-        throw new Error(`Datatable does not include a column named ${columnName}`);
+    if (allColumns.length) {
+      const columns = Array.isArray(columnsToCheck[0]) ? columnsToCheck[0] : columnsToCheck;
+      for (const columnName of columns) {
+        if (!allColumns.includes(columnName)) {
+          throw new Error(`Datatable does not include a column named ${columnName}`);
+        }
       }
     }
   }
