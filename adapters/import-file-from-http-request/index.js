@@ -1,16 +1,16 @@
-const axios = require("axios");
+// const axios = require("axios");
 
 const { FileStream } = require("../../types/file.js");
 
 module.exports = async function (args) {
-  const response = await axios({
-    "data": args.body,
-    "headers": args.headers,
-    "method": args.method,
-    "url": args.url,
-  });
+  // const response = await axios({
+  //   "data": args.body,
+  //   "headers": args.headers,
+  //   "method": args.method,
+  //   "url": args.url,
+  // });
 
-  const response2 = await fetch(
+  const response = await fetch(
     args.url,
     {
       "body": args.body ? args.body.getReader() : undefined,
@@ -20,14 +20,14 @@ module.exports = async function (args) {
   );
 
   const headers = {};
-  for (const [key, value] of response2.headers.entries()) {
+  for (const [key, value] of response.headers.entries()) {
     headers[key] = value;
   }
 
-  const body = await FileStream.createFromStream(response2.body);
+  const body = await FileStream.createFromStream(response.body);
 
   return {
-    "status code": response2.status,
+    "status code": response.status,
     "response body": body,
     "response headers": headers,
   };
