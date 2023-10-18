@@ -30,7 +30,7 @@ module.exports = {
       "name": "filter value",
       "type": "text",
       "description": "A text or a regular expression to be searched for within the datatable columns.",
-      "required": true,
+      "required": false,
     },
     {
       "name": "case sensitive",
