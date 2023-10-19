@@ -1,6 +1,6 @@
 module.exports = async function (args) {
   const data = await args.data.addColumnSync(
-    args.column,
+    args["column name"],
     () => args.value ?? "",
   );
 

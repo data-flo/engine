@@ -22,16 +22,17 @@ tap.test("add-column adaptor", async () => {
       value: "1",
     });
     t.ok(output.data);
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","ones"
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","ones"
 "Bovine","de",,"Jan 29, 2007","2007-01-28","1"
 "Gibbon","fr",,,,"1"
 "Orangutan",,,,,"1"
 "Gorilla",,,,,"1"
 "Human","gb",,,,"1"
 "Mouse","gb",,,,"1"
-`;
-    t.equal(actual, expected);
+`,
+    );
   });
 
   tap.test("given no value, it should add an empty column", async (t) => {
@@ -40,16 +41,17 @@ tap.test("add-column adaptor", async () => {
       column: "ones",
     });
     t.ok(output.data);
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","ones"
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","ones"
 "Bovine","de",,"Jan 29, 2007","2007-01-28",
 "Gibbon","fr",,,,
 "Orangutan",,,,,
 "Gorilla",,,,,
 "Human","gb",,,,
 "Mouse","gb",,,,
-`;
-    t.equal(actual, expected);
+`,
+    );
   });
 
   tap.test("given an existing column, it should throw an error", async (t) => {
