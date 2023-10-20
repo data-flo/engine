@@ -1,12 +1,12 @@
 module.exports = {
-  "description": "Imports data from a spreadsheet file.",
+  "description": "Imports data from an Excel file in XLSX format.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
     {
       "name": "file",
       "type": "file",
-      "description": "The spreadsheet file in one of the following file formats: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.ods`, `.fods`, `.sylk`, `.html`, `.dif`, `.dbf`, `.rtf`, `.prn`, and `.eth`.",
+      "description": "The spreadsheet file in Office Open XML SpreadsheetML file format (`.xlsx`).",
       "required": true,
     },
     {
