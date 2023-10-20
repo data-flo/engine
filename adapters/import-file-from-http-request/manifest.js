@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Adds a new column to an existing datatable.",
+  "description": "Imports a file from an HTTP request.",
   "group": "Transformations",
   "subgroup": "Data Sources",
   "input": [
