@@ -247,13 +247,14 @@ module.exports = function (doc) {
   renameAdaptorInput("format-date-column", "target column", "new column name");
   renameAdaptorInput("format-date-column", "target format", "new format");
 
-  renameAdaptorInput("forward-geocoding", "placeColumn", "query column");
-  renameAdaptorInput("forward-geocoding", "mapboxApiKey", "api key");
-  deleteAdaptorInput("forward-geocoding", "api key");
-  renameAdaptorInput("forward-geocoding", "longitudeColumn", "longitude column");
-  renameAdaptorInput("forward-geocoding", "latitudeColumn", "latitude column");
-  renameAdaptorInput("forward-geocoding", "placeType", "feature type");
-  renameAdaptorInput("forward-geocoding", "resultColumn", "location column");
+  renameAdaptor("forward-geocoding", "geocoding");
+  renameAdaptorInput("geocoding", "placeColumn", "query column");
+  renameAdaptorInput("geocoding", "mapboxApiKey", "api key");
+  deleteAdaptorInput("geocoding", "api key");
+  renameAdaptorInput("geocoding", "longitudeColumn", "longitude column");
+  renameAdaptorInput("geocoding", "latitudeColumn", "latitude column");
+  renameAdaptorInput("geocoding", "placeType", "feature type");
+  renameAdaptorInput("geocoding", "resultColumn", "location column");
 
   renameAdaptor("gather-rows", "reshape-wide-to-long");
   renameAdaptorInput("reshape-wide-to-long", "key", "key column name");
