@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Runs another Data-flo workflow.",
-  "group": "Transform",
+  "group": "Workflows",
   "subgroup": "Workflows",
   "input": [
     {
