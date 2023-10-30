@@ -33,14 +33,14 @@ module.exports = {
     },
 
     {
-      "name": "geographic area",
+      "name": "search area",
       "type": "text",
-      "description": "Search within a geographic area. This is a hard filter. Results will be returned if they are located within the specified area. A geographic area can be a country (or multiple countries), provided as comma-separated [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country codes in all uppercase. For example, CAN,MEX,USA.",
+      "description": "Restricts the search to the user-specified country/countries provided as comma-separated [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country codes. For example: `CAN,MEX,USA`.",
       "required": false,
     },
 
     {
-      "name": "digits",
+      "name": "decimal places",
       "type": "number",
       "description": "The number of digits to appear after the decimal point; should be a value between 0 and 6, inclusive.\nIf unspecified, it defaults to 6.",
       "required": false,
@@ -48,9 +48,9 @@ module.exports = {
     },
 
     {
-      "name": "type column",
+      "name": "place type column",
       "type": "text",
-      "description": "The name of the column to hold the match type (either `building`, `road`, `hamlet`, `village`, `neighbourhood`, `city`, `county`, `postcode`, `partial_postcode`, `terminated_postcode`, `postal_city`, `state_district`, `state`, `region`, `island`, `body_of_water`, `country`, `continent`, `fictitious`, or `unknown`).\nIf unspecified, the type column will not be added.",
+      "description": "The column name for the place type result (either `building`, `road`, `hamlet`, `village`, `neighbourhood`, `city`, `county`, `postcode`, `partial_postcode`, `terminated_postcode`, `postal_city`, `state_district`, `state`, `region`, `island`, `body_of_water`, `country`, `continent`, `fictitious`, or `unknown`).\nIf unspecified, the type column will not be added.",
       "required": false,
     },
 
