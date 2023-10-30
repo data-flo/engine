@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Converts a list to a single-column datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

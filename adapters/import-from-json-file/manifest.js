@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports data from a file in JSON format.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

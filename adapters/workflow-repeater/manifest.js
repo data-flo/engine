@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Runs a Workflow for each row in a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Workflows",
   "input": [
     {

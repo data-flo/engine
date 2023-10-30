@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Adds random jittering to specified numeric columns in a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

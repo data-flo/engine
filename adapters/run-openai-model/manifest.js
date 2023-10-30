@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Runs an OpenAI language model.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "AI & Machine Learning",
   "input": [
     {

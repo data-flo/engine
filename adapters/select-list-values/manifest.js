@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Selects values, based on position, from a list.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

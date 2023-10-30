@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports a file from the web.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

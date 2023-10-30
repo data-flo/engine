@@ -2,7 +2,7 @@ const { UnmappedValues } = require("../../enums");
 
 module.exports = {
   "description": "Adds a new column to a datatable by mapping values of an existing column.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

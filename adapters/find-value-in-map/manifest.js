@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Finds a key in a map and returns the associated value.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Map Manipulation",
   "input": [
     {

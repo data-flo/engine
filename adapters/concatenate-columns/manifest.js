@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Concatenate values from two or more columns",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

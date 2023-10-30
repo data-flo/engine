@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Selects a list of columns from a datatable in a specified order.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

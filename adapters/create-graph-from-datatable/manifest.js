@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates a graph structure from a datatable containing edge data.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Graph Manipulation",
   "input": [
     {

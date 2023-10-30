@@ -2,7 +2,7 @@ const { Operators } = require("../../enums.js");
 
 module.exports = {
   "description": "Formats date/time values in a datatable column.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Concatenates two texts.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

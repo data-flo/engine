@@ -2,7 +2,7 @@ const { CommonDelimiters, CommonLineEndings } = require("../../enums.js");
 
 module.exports = {
   "description": "Converts delimited text (e.g. comma-separated values) to a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

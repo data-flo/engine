@@ -2,7 +2,7 @@ const { LetterCases } = require("../../enums");
 
 module.exports = {
   "description": "Converts the case of text values in a datatable column.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

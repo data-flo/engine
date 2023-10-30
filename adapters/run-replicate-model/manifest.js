@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Runs a Replicate model.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "AI & Machine Learning",
   "input": [
     {

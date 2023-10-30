@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates a list of datatable column names.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Adds a text value to the end of a list.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

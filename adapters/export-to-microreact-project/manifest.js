@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates a new project or updates an existing a project on a Microreact server.",
-  "group": "Transformations",
+  "group": "Export",
   "subgroup": "Data Destinations",
   "input": [
     {

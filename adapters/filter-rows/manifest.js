@@ -2,7 +2,7 @@ const { FilterTypes } = require("../../enums");
 
 module.exports = {
   "description": "Finds rows in a datatable that match a search pattern.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

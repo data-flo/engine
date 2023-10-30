@@ -2,7 +2,7 @@ const { FileEncodings, CommonDelimiters, CommonLineEndings } = require("../../en
 
 module.exports = {
   "description": "Imports a CSV file and converts to a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

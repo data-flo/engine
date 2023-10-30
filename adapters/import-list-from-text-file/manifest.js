@@ -2,7 +2,7 @@ const { FileEncodings, CommonLineEndings } = require("../../enums");
 
 module.exports = {
   "description": "Imports a list from a text file.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

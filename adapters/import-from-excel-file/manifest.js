@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports data from an Excel file in XLSX format.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

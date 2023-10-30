@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Removes duplicate values in a list.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

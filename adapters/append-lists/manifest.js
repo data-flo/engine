@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Appends two lists into one.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

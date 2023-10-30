@@ -2,7 +2,7 @@ const { SamplingStretegies } = require("../../enums.js");
 
 module.exports = {
   "description": "Samples rows in a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

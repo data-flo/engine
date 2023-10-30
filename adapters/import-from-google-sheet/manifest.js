@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports data from a Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com`.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

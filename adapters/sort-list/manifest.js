@@ -2,7 +2,7 @@ const { SortDirections } = require("../../enums");
 
 module.exports = {
   "description": "Sorts values in a list.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

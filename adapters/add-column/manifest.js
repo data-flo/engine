@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Adds a new column to an existing datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

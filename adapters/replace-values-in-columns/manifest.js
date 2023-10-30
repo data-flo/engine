@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Replaces all instances of a pattern in one or more columns in a datatable. The replacement values can be written to the original columns or new columns.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

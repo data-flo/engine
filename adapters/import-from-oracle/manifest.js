@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports data from an Oracle Database and returns the results as a datatable.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

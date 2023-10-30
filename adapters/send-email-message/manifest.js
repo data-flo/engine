@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Sends an email message via a SMTP server.",
-  "group": "Transformations",
+  "group": "Export",
   "subgroup": "Data Destinations",
   "input": [
     {

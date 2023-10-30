@@ -37,8 +37,6 @@ async function main() {
 
   for (const item of list) {
     console.info(item.name);
-    item.manifest.group = item.manifest.subgroup;
-    item.manifest.subgroup = undefined;
     directory[item.name] = item.manifest;
     directory[item.name].name = item.name;
     executables.push(`module.exports["${item.name}"] = require("./adapters/${item.name}/index.js");`);

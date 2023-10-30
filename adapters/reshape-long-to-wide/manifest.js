@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Reshapes rows in long format to wide format.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

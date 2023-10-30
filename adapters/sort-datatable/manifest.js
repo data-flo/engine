@@ -2,7 +2,7 @@ const { SortDirections } = require("../../enums");
 
 module.exports = {
   "description": "Sorts a datatable by one or more columns.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

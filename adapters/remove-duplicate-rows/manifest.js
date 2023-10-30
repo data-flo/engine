@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Removes duplicate rows from a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

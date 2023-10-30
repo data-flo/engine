@@ -2,7 +2,7 @@ const { CommonLineEndings } = require("../../enums");
 
 module.exports = {
   "description": "Converts a text into a list by spliting it using a specified separator to determine where to make each split.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

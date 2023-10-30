@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Converts latitude & longitude in datatable columns to location names.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

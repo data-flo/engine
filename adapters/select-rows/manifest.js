@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Selects rows, based on position, from a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

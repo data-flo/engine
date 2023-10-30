@@ -2,7 +2,7 @@ const { FileEncodings } = require("../../enums.js");
 
 module.exports = {
   "description": "Imports text from a file.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Replaces all instances of a pattern in a text with a specified replacement text.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

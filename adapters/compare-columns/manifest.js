@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Compares values in specified columns.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

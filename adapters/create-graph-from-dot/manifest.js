@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates a graph structure from text in DOT language format.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Graph Manipulation",
   "input": [
     {

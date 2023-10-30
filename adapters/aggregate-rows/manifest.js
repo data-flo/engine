@@ -2,7 +2,7 @@ const { AggregateMethods } = require("../../enums");
 
 module.exports = {
   "description": "Aggregates values in specified columns grouped by rows.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Manipulation",
   "input": [
     {

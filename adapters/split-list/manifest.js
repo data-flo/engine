@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Splits a list into two lists at the first instance of a specified separator value.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
     {

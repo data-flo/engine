@@ -2,7 +2,7 @@ const { DateFormats, LanguageLocales } = require("../../enums");
 
 module.exports = {
   "description": "Converts a date/time value to text in a specified format.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

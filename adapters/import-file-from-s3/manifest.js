@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports a file from an Amazon S3 compatible object storage server.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

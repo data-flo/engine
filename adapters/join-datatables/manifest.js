@@ -2,7 +2,7 @@ const { JoinTypes } = require("../../enums");
 
 module.exports = {
   "description": "Joins two datatables based on a common column between them.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

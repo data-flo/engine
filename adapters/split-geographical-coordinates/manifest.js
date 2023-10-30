@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Splits geographical coordinates in a datatable column to a latitude & a longitude columns.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

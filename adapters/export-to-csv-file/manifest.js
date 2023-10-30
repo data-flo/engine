@@ -2,7 +2,7 @@ const { FileEncodings, CommonDelimiters } = require("../../enums");
 
 module.exports = {
   "description": "Exports a datatable to a CSV file.",
-  "group": "Transformations",
+  "group": "Export",
   "subgroup": "Data Tables",
   "input": [
     {

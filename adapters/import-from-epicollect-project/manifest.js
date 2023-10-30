@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports data from an Epicollect5 project.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {

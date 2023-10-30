@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Exports data to an existing Google Sheets spreadsheet.\nPrivate spreadsheets should be shared with `data-flo@data-flo.iam.gserviceaccount.com` and given `can edit` permission.",
-  "group": "Transformations",
+  "group": "Export",
   "subgroup": "Data Destinations",
   "input": [
     {

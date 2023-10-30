@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Adds a value to a map.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Map Manipulation",
   "input": [
     {

@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates text using a Mustache template (https://mustache.github.io/).",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Text Manipulation",
   "input": [
     {

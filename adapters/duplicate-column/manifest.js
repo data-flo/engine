@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Duplicates a column in a datatable.",
-  "group": "Transformations",
+  "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
     {

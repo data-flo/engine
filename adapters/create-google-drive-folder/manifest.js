@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Creates a sub folder in a parent folder in Google Drive.\nThe parent folder should be either public or shared with `data-flo@data-flo.iam.gserviceaccount.com`, and given `can edit` permission.",
-  "group": "Transformations",
+  "group": "Export",
   "subgroup": "Data Destinations",
   "input": [
     {

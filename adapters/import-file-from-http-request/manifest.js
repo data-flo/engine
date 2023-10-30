@@ -1,6 +1,6 @@
 module.exports = {
   "description": "Imports a file from an HTTP request.",
-  "group": "Transformations",
+  "group": "Import",
   "subgroup": "Data Sources",
   "input": [
     {
