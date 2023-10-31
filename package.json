@@ -8,7 +8,6 @@
     "tap": "tap --reporter classic"
   },
   "dependencies": {
-    "@mapbox/mapbox-sdk": "^0.4.1",
     "axios": "^0.27.2",
     "biojs-io-newick": "^1.5.0",
     "cgps-utils": "github:cgps-group/cgps-utils",
@@ -45,10 +44,9 @@
     "natural-compare": "^1.4.0",
     "node-libcurl": "^3.0.0",
     "nodemailer": "^6.7.0",
-    "odbc": "^2.4.7",
     "openai": "^4.2.0",
     "opencage-api-client": "^1.0.0",
-    "oracledb": "^5.2.0",
+    "oracledb": "^6.2.0",
     "papaparse": "^4.6.0",
     "pg": "^8.7.1",
     "pg-query-stream": "^4.2.3",
