@@ -51,6 +51,21 @@ class FileStream {
     return file;
   }
 
+  // static async createFromSource(source) {
+  //   const fileWriter = await FileStream.createWriter();
+
+  //   if (await fileExists(source)) {
+  //     return new FileStream(source);
+  //   }
+
+  //   const file = await fileWriter.finalise();
+
+  //   file.name = stream.name;
+  //   file.mediaType = stream.mediaType;
+
+  //   return file;
+  // }
+
   constructor(sourceValue) {
     if (!sourceValue) {
       throw new Error("FileStream requires a source file");
@@ -58,6 +73,10 @@ class FileStream {
 
     if (typeof sourceValue !== "string") {
       throw new Error(`Cannot convert value '${sourceValue}' to file stream`);
+    }
+
+    if (!FS.existsSync(sourceValue)) {
+      throw new Error("Source is not accessible");
     }
 
     this.source = sourceValue;

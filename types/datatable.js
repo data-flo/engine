@@ -119,6 +119,10 @@ class Datatable {
       throw new Error("Datatable requires a source file");
     }
 
+    if (!fs.existsSync(sourceFile)) {
+      throw new Error("Source is not accessible");
+    }
+
     if (typeof sourceFile === "string") {
       this.source = sourceFile;
     }

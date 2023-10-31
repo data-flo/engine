@@ -11,7 +11,17 @@ module.exports = function inputArguments(manifest, rawValues) {
 
     const rawValue = rawValues[spec.name];
     if (rawValue !== undefined) {
-      input[spec.name] = castType(spec.type, rawValue);
+      try {
+        input[spec.name] = castType(spec.type, rawValue);
+      }
+      catch (err) {
+        if (err.message === "Source is not accessible") {
+          throw new Error(`A value is required for input ${spec.name}`);
+        }
+        else {
+          throw err;
+        }
+      }
     }
     else if (spec.required) {
       throw new Error(`A value is required for input ${spec.name}`);
