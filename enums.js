@@ -20,11 +20,11 @@ module.exports.CommonDelimiters = Object.freeze([
 
 module.exports.CommonLineEndings = Object.freeze([
   [ "\n", "Newline (\\n)" ],
-  [ "\r\n", "Window line ending CRLF (\\r\\n)" ],
+  // [ "\r\n", "Window line ending CRLF (\\r\\n)" ],
   [ ",", "Comma (`,`)" ],
   [ ";", "Semicolon (`;`)" ],
-  [ "\\u0020", "Space" ],
-  [ "\\u0009", "tab" ],
+  [ "\\u0020", "Space character" ],
+  [ "\\u0009", "Tab character" ],
 ]);
 
 module.exports.DateFormats = Object.freeze([
