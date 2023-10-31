@@ -20,7 +20,7 @@ module.exports.CommonDelimiters = Object.freeze([
 
 module.exports.CommonLineEndings = Object.freeze([
   [ "\n", "Newline (\\n)" ],
-  [ "\r\n", "CRLF (\\r\\n)" ],
+  [ "\r\n", "Window line ending CRLF (\\r\\n)" ],
   [ ",", "Comma (`,`)" ],
   [ ";", "Semicolon (`;`)" ],
   [ "\\u0020", "Space" ],
