@@ -1,7 +1,13 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+const makeRegexp = require("../../utils/text/make-regexp.js");
 
 module.exports = function (args) {
-  const regex = makeRegexp(args.separator);
+  let regex = makeRegexp(args.separator);
+  if (args.separator === "\\u0020") {
+    regex = "\u0020";
+  }
+  else if (args.separator === "\\u0009") {
+    regex = "\u0009";
+  }
   const text = (args.separator === "\n") ? args.text.replace(/\r\n/g, "\n") : args.text;
 
   const hasLimit = Number.isInteger(args.limit);
