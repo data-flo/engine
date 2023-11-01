@@ -96,6 +96,13 @@ module.exports = function makePredicate(operator, expression, caseSensetive = fa
       return (x) => (regexp.test(x) === false);
     }
 
+    case "is-number": {
+      return (x) => (Number(x));
+    }
+
+    case "not-number": {
+      return (x) => (!Number(x));
+    }
     default:
       throw new Error(`Invalid filter operator: ${operator}`);
   }
