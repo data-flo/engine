@@ -42,12 +42,17 @@ class Engine {
     return runAdaptor.call(this, adaptor, args);
   }
 
-  async runDataflow(manifest, args) {
-    return runDataflow(manifest, args, false, this);
-  }
-
-  async debugDataflow(manifest, args) {
-    return runDataflow(manifest, args, true, this);
+  async runWorkflow(
+    manifest,
+    args,
+    inDebugMode = false,
+  ) {
+    return runDataflow(
+      manifest,
+      args,
+      inDebugMode,
+      this,
+    );
   }
 }
 
