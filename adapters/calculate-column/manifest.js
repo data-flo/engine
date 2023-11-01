@@ -1,7 +1,7 @@
 const { Operators } = require("../../enums.js");
 
 module.exports = {
-  "description": "Formats date/time values in a datatable column.",
+  "description": "Performs a mathematical calculation on two datatable columns.",
   "group": "Transform",
   "subgroup": "Data Tables",
   "input": [
@@ -28,7 +28,7 @@ module.exports = {
     {
       "name": "operation",
       "type": "text",
-      "description": "The unit of time measurement of the original values.\nIf unspecified, defaults to `Operators`.",
+      "description": "The calculate operation to be used.\nIf unspecified, defaults to `add`.",
       "required": false,
       "default": "add",
       "ui": { "can-be-one-of": Operators },
