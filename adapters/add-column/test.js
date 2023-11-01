@@ -17,9 +17,9 @@ tap.test("add-column adaptor", async () => {
 
   tap.test("given a datatable, it should add a column", async (t) => {
     const output = await adaptor({
-      data: createDatatable(testCsvFilePath),
-      column: "ones",
-      value: "1",
+      "data": createDatatable(testCsvFilePath),
+      "column name": "ones",
+      "value": "1",
     });
     t.ok(output.data);
     tap.compareFile(
@@ -37,8 +37,8 @@ tap.test("add-column adaptor", async () => {
 
   tap.test("given no value, it should add an empty column", async (t) => {
     const output = await adaptor({
-      data: createDatatable(testCsvFilePath),
-      column: "ones",
+      "data": createDatatable(testCsvFilePath),
+      "column name": "ones",
     });
     t.ok(output.data);
     tap.compareFile(
@@ -57,8 +57,8 @@ tap.test("add-column adaptor", async () => {
   tap.test("given an existing column, it should throw an error", async (t) => {
     await t.rejects(
       adaptor({
-        data: createDatatable(testCsvFilePath),
-        column: "id",
+        "data": createDatatable(testCsvFilePath),
+        "column name": "id",
       }),
       new Error("Datatable already includes a column named id"),
     );
