@@ -1,6 +1,6 @@
 const hash = require("../utils/cache/hash.js");
 const cache = require("../utils/cache/index.js");
-const stopwatch = require("../utils/stopwatch.js");
+// const stopwatch = require("../utils/stopwatch.js");
 
 const parseInputArguments = require("./parse-input-arguments.js");
 const parseOutputArguments = require("./parse-output-arguments.js");
@@ -39,8 +39,7 @@ module.exports = async function runAdaptor(
     rawOutput = await adaptorExecutable.call(this, input);
   }
 
-  console.log(adaptorExecutable.manifest.name)
-  stopwatch.report();
+  // stopwatch.report();
 
   // execute adaptor function
   // const rawOutput = await adaptorExecutable.call(this, input);

@@ -20,8 +20,6 @@ module.exports = async function (args) {
     totalRowCount,
   );
 
-console.log({sampleSize})
-
   if (sampleSize >= totalRowCount) {
     return {
       "sample data": args["data"],

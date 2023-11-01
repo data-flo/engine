@@ -12,7 +12,7 @@ module.exports.stop = function (name) {
 };
 
 module.exports.show = function (name) {
-  console.log("timer", name, { total: sums[name], count: counts[name], avg: sums[name] / counts[name] })
+  console.debug("timer", name, { total: sums[name], count: counts[name], avg: sums[name] / counts[name] });
 };
 
 module.exports.reset = function (name) {
