@@ -21,3 +21,5 @@ tap.compareFile = function (filePath, expectedFileContent) {
 tap._test = () => {};
 
 module.exports = tap;
+
+module.exports.compareFile = tap.compareFile;
