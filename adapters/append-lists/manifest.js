@@ -6,13 +6,13 @@ module.exports = {
     {
       "name": "first list",
       "type": "list",
-      "description": "The first list to be merged.",
+      "description": "The list to which the second will be appended.",
       "required": true,
     },
     {
       "name": "second list",
       "type": "list",
-      "description": "The second list to be merged.",
+      "description": "The list that will be appended to the first list.",
       "required": true,
     },
   ],
