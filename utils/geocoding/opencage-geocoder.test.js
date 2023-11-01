@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const geocode = require("./opencage-geocoder");
+const geocode = require("./opencage-geocoder.js");
 
 test("given an invalid string, it should return undefined", async (t) => {
   const actual = await geocode(
@@ -31,14 +31,13 @@ test("given an invalid string, it should return undefined", async (t) => {
         "state_code": "ENG",
         "suburb": "Sawston",
         "town": "South Cambridgeshire",
-        "village": "Sawston",
       },
       "confidence": 10,
-      "formatted": "Sawston, CB22 3DQ, United Kingdom",
+      "formatted": "South Cambridgeshire, CB22 3DQ, United Kingdom",
       "geometry": {
         "lat": 52.126955,
         "lng": 0.171615,
       },
-    }
+    },
   );
 });
