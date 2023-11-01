@@ -1,4 +1,4 @@
-const { FileEncodings, CommonDelimiters } = require("../../enums");
+const { CommonDelimiters } = require("../../enums.js");
 
 module.exports = {
   "description": "Exports a datatable to a CSV file.",
