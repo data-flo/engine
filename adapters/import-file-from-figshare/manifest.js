@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "url",
       "type": "text",
-      "description": "The URL of the Figshare file to be imported (e.g. https://figshare.com/articles/Tree/4080564).",
+      "description": "The URL of the Figshare file to be imported (e.g. https://figshare.com/articles/dataset/Mykrobe_Panel_Staph_version_20201001/13033103). You can get this URL from the address bar in your browser.",
       "required": true,
     },
   ],
