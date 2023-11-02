@@ -1,7 +1,8 @@
-const tap = require("tap");
-
+const assert = require("assert");
 const fs = require("fs");
 const zlib = require("zlib");
+
+const tap = require("tap");
 const isGzip = require("is-gzip");
 
 tap.compareFile = function (filePath, expectedFileContent) {
@@ -15,9 +16,11 @@ tap.compareFile = function (filePath, expectedFileContent) {
     actual = actual.substring(1);
   }
 
-  return tap.equal(actual, expectedFileContent);
+  return assert.equal(actual, expectedFileContent);
 };
 
 tap._test = () => {};
 
 module.exports = tap;
+
+module.exports.compareFile = tap.compareFile;

@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Appends the rows of two datatables into a new datatable based on common column names.",
+  "description": "Summarises information about specified columns in a datatable.",
   "group": "Transform",
   "subgroup": "Data Tables",
   "input": [

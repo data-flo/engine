@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-function replacer(key, value) {
+function replacer(_, value) {
   if (value instanceof Map) {
     return Array.from(value.entries());
   }

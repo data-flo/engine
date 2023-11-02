@@ -35,6 +35,7 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   // Read other table and store its rows
   const rightRowsMap = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
+  // eslint-disable-next-line no-lone-blocks
   {
     const rightTableReader = (
       args.columns
@@ -53,7 +54,6 @@ module.exports = async function adaptorJoinDatatable(args) {
   const dataWriter = await Datatable.create({ columns: joinedColumnNames });
   const unmatchedWriter = await Datatable.create({ columns: leftColumns });
 
-  // const isInnerJoin = (args["join type"] === "Inner Join");
   const isFullJoin = (args["join type"] === "Full Join");
   const isLeftJoin = (args["join type"] === "Left Join");
   const matchedValues = !args["case sensitive"] ? new CaseInsensitiveSet() : new Set();
