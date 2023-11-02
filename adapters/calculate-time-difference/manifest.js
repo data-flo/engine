@@ -16,6 +16,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the column containing reference date/time values.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "column one format",
@@ -30,6 +31,7 @@ module.exports = {
       "type": "text",
       "description": "The name of the column containing date/time values.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "column two format",
