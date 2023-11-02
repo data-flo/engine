@@ -125,5 +125,25 @@ tap.test("filter-rows adaptor", async () => {
       `"id","Country","num"\n"Human","gb","0x"\n"Mouse","GB",\n`
     );
   });
+  tap.test("given a column with number/letter data, it should filter on data thats not a number", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column name": "num",
+        "filter type": "not-number",
+      },
+    );
+    tap.ok(output.data, "adaptor should return data");
+    tap.ok(output.complementary, "adaptor should return complementary");
+    tap.compareFile(
+      output.data.getSource(),
+      `"id","Country","num"\n"Human","gb","0x"\n"Mouse","GB",\n`
+    );
+    tap.compareFile(
+      output.complementary.getSource(),
+      `"id","Country","num"\n"Bovine","de","1"\n"Gibbon","fr","1"\n"Orangutan",,"0"\n"Gorilla","gb","-2"\n`
+    );
+  });
 
 });
