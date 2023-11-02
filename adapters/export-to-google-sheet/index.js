@@ -15,7 +15,7 @@ module.exports = async function (args) {
   const spreadsheetData = await getSpreadsheetData(
     authClient,
     spreadsheetId,
-    args.sheetname,
+    args["sheet name"],
   );
 
   const [ cellUpdates, updatedRowIds, createdRowId, skippedRowIds ] = await mergeData(

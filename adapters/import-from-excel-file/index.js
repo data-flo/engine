@@ -93,13 +93,13 @@ module.exports = async function (args) {
       throw new Error("Spreadsheets does not contain any sheets");
     }
 
-    const sheetname = args.sheetname || workbookReader.model.sheets[0].name;
+    const sheetName = args["sheet name"] || workbookReader.model.sheets[0].name;
 
-    if (!workbookReader.model.sheets.some((x) => x.name === sheetname)) {
-      throw new Error(`Cannot find a sheet named \`${sheetname}\``);
+    if (!workbookReader.model.sheets.some((x) => x.name === sheetName)) {
+      throw new Error(`Cannot find a sheet named \`${sheetName}\``);
     }
 
-    if (worksheetReader.name === sheetname) {
+    if (worksheetReader.name === sheetName) {
       data = await extractWorksheet(worksheetReader, args.range || "A1:");
       break;
     }

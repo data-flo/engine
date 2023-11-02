@@ -1,7 +1,7 @@
 const XLSX = require("xlsx");
 
-const { Datatable } = require("../../types/datatable");
-const isInteger = require("../../utils/numbers/is-integer");
+const { Datatable } = require("../../types/datatable.js");
+const isInteger = require("../../utils/numbers/is-integer.js");
 
 module.exports = async function (args, context) {
   const workbook = XLSX.readFile(
@@ -11,13 +11,13 @@ module.exports = async function (args, context) {
     },
   );
 
-  if (args.sheetname && !workbook.SheetNames.includes(args.sheetname)) {
-    throw new Error(`Workbook does not include a sheet named '${args.sheetname}'`);
+  if (args["sheet name"] && !workbook.SheetNames.includes(args["sheet name"])) {
+    throw new Error(`Workbook does not include a sheet named '${args["sheet name"]}'`);
   }
 
   const dataWriter = await Datatable.create();
 
-  const worksheet = workbook.Sheets[args.sheetname || workbook.SheetNames[0]];
+  const worksheet = workbook.Sheets[args["sheet name"] || workbook.SheetNames[0]];
   const range = (isInteger(args.range) && `A${args.range}:`) || args.range || undefined;
 
   const stream = XLSX.stream.to_json(
