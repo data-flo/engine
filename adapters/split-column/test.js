@@ -1,12 +1,14 @@
-const tap = require("../../utils/testing/unit");
+const assert = require("node:assert");
+const test = require("node:test");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../utils/testing/unit.js");
+const runAdaptor = require("../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const adaptor = require("./index.js");
 
-tap.test("split-column adaptor", async () => {
+test("split-column adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country"
 "2000|b|c","gb"
 "2022|2","fr"
@@ -16,7 +18,7 @@ tap.test("split-column adaptor", async () => {
 "|","de"
 `);
 
-  tap.test("given a datatable and two new columns, it should return a datatable", async () => {
+  await t.test("given a datatable and two new columns, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -29,8 +31,8 @@ tap.test("split-column adaptor", async () => {
         ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","year","id2"
 "2000|b|c","gb","2000","b"
@@ -43,7 +45,7 @@ tap.test("split-column adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and one new, it should return a datatable", async () => {
+  await t.test("given a datatable and one new, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -55,8 +57,8 @@ tap.test("split-column adaptor", async () => {
         ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","year"
 "2000|b|c","gb","2000"
