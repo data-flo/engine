@@ -1,20 +1,22 @@
-const tap = require("../../utils/testing/unit");
+const assert = require("node:assert");
+const test = require("node:test");
 
-const adaptor = require("./index");
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../runner/run-adaptor.js");
 
-tap.test("convert-date-to-text adaptor", async () => {
+const adaptor = require("./index.js");
 
-  tap.test("given two text without separator, it should return the concatenated text", async (t) => {
+test("convert-date-to-text adaptor", async (t) => {
+
+  await t.test("given two text without separator, it should return the concatenated text", async () => {
     const output = await runAdaptor(
       adaptor,
       {
       },
     );
-    t.ok(output.text, "adaptor should return text");
+    assert.ok(output.text, "adaptor should return text");
     const actual = output.text;
     const expected = new Date().toISOString();
-    t.equal(actual.substr(0, 19), expected.substr(0, 19));
+    assert.equal(actual.substr(0, 19), expected.substr(0, 19));
   });
 
 });

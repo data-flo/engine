@@ -1,35 +1,15 @@
-const moment = require("moment");
-
-const toString = require("../../utils/date/to-string");
+const toString = require("../../utils/date/to-string.js");
 
 module.exports = function (args) {
-
-  toString(
+  const text = toString(
     args.value || new Date(),
     args.format,
     args.locale,
     args.timezone,
   );
 
-  const momentValue = moment(args.value || new Date());
-
-  if (momentValue.isValid()) {
-    if (args.locale) {
-      momentValue.locale(args.locale);
-    }
-    return {
-      text: (
-        (args.format === "ISO 8601")
-          ?
-          momentValue.format()
-          :
-          momentValue.format(args.format)
-      ),
-    };
-  }
-
   return {
-    text: null,
+    "text": text,
   };
 };
 
