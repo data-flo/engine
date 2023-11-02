@@ -1,8 +1,8 @@
-const { FileEncodings, CommonDelimiters, CommonLineEndings } = require("../../enums");
+const { FileEncodings, CommonDelimiters, CommonLineEndings } = require("../../enums.js");
 
 module.exports = {
   "description": "Imports a CSV file and converts to a datatable.",
-  "group": "Transform",
+  "group": "Import",
   "subgroup": "Data Tables",
   "input": [
     {
