@@ -22,7 +22,7 @@ module.exports = async function (args) {
   const spreadsheetData = await getSpreadsheetData(
     authClient,
     spreadsheetId,
-    args.sheetname,
+    args["sheet name"],
     args.range,
   );
 
