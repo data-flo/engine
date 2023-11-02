@@ -1,17 +1,21 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+const makeRegexp = require("../../utils/text/make-regexp.js");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["column name"]);
 
+  const columns = await args.data.getColumns();
+  for (const column of args["new column names"]) {
+    columns.push(column);
+  }
+
+  if (!args["include column"]) {
+    columns.splice(columns.indexOf(args["column name"]), 1);
+  }
+
   const regex = makeRegexp(args.separator, true, true);
 
   const data = await args.data.transformSync(
-    (row, { records }) => {
-      if (records === 1) {
-        for (const column of args["new column names"]) {
-          row[column] = "";
-        }
-      }
+    (row) => {
       const value = row[args["column name"]];
       if (value) {
         const splits = value.toString().split(regex);
@@ -20,7 +24,10 @@ module.exports = async function (args) {
         }
       }
       return row;
-    }
+    },
+    {
+      columns,
+    },
   );
 
   return { data };

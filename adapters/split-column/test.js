@@ -45,7 +45,7 @@ test("split-column adaptor", async (t) => {
     );
   });
 
-  await t.test("given a datatable and one new, it should return a datatable", async () => {
+  await t.test("given a datatable and one new column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -67,6 +67,34 @@ test("split-column adaptor", async (t) => {
 "|Gorilla",,
 ,"gb",
 "|","de",
+`
+    );
+  });
+
+  await t.test("given a datatable and two new columns, it should return a datatable", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column name": "id",
+        "separator": "|",
+        "new column names": [
+          "year",
+          "id2",
+        ],
+        "include column": false,
+      },
+    );
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"Country","year","id2"
+"gb","2000","b"
+"fr","2022","2"
+,"2010",
+,,"Gorilla"
+"gb",,
+"de",,
 `
     );
   });

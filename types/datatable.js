@@ -313,8 +313,11 @@ class Datatable {
     return clonedDatatable;
   }
 
-  async transformSync(transformer) {
-    const datatableWriter = await Datatable.create();
+  async transformSync(
+    transformer,
+    writerOptions,
+  ) {
+    const datatableWriter = await Datatable.create(writerOptions);
 
     this.getReader({ on_record: transformer }).pipe(datatableWriter);
 
