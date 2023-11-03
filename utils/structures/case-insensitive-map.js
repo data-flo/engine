@@ -1,4 +1,4 @@
-module.exports = class CaseInsensitiveMap extends Map {    
+module.exports = class CaseInsensitiveMap extends Map {
   set(key, value) {
     if (typeof key === "string") {
       key = key.toLowerCase();
