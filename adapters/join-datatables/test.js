@@ -1,11 +1,16 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const { compareFile } = require("../../utils/testing/unit.js");
 
-tap.test("join-datatables adaptor", async () => {
+const runAdaptor = require("../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
+
+const adaptor = require("./index.js");
+
+test("join-datatables adaptor", async (t) => {
+
   const leftCsvFilePath = await createTmpTextFile(`"id","Country"
 "Bovine","de"
 "Gibbon","fr"
@@ -22,7 +27,7 @@ tap.test("join-datatables adaptor", async () => {
 "it","Italy"
 `);
 
-  tap.test("given two datatables, it should return a datatable with left join", async () => {
+  await t.test("given two datatables, it should return a datatable with left join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -32,8 +37,8 @@ tap.test("join-datatables adaptor", async () => {
         "other column": "code",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","code","name"
 "Bovine","de","de","Germany"
@@ -46,7 +51,7 @@ tap.test("join-datatables adaptor", async () => {
     );
   });
 
-  tap.test("given two datatables and case sensitive set to true, it should return a datatable with left join", async () => {
+  await t.test("given two datatables and case sensitive set to true, it should return a datatable with left join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -57,8 +62,8 @@ tap.test("join-datatables adaptor", async () => {
         "case sensitive": true,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","code","name"
 "Bovine","de","de","Germany"
@@ -71,7 +76,7 @@ tap.test("join-datatables adaptor", async () => {
     );
   });
 
-  tap.test("given two datatables, it should return a datatable with inner join", async () => {
+  await t.test("given two datatables, it should return a datatable with inner join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -82,8 +87,8 @@ tap.test("join-datatables adaptor", async () => {
         "join type": "Inner Join",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","code","name"
 "Bovine","de","de","Germany"
@@ -94,7 +99,7 @@ tap.test("join-datatables adaptor", async () => {
     );
   });
 
-  tap.test("given two datatables, it should return a datatable with full join", async () => {
+  await t.test("given two datatables, it should return a datatable with full join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -105,8 +110,8 @@ tap.test("join-datatables adaptor", async () => {
         "join type": "Full Join",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","code","name"
 "Bovine","de","de","Germany"
@@ -121,7 +126,7 @@ tap.test("join-datatables adaptor", async () => {
     );
   });
 
-  tap.test("given two datatables and prefix, it should return a datatable with left join", async () => {
+  await t.test("given two datatables and prefix, it should return a datatable with left join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -132,8 +137,8 @@ tap.test("join-datatables adaptor", async () => {
         "prefix": "country.",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","country.code","country.name"
 "Bovine","de","de","Germany"
