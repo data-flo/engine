@@ -18,6 +18,7 @@ test("join-datatables adaptor", async (t) => {
 "Gorilla",
 "Human","gb"
 "Mouse","GB"
+"Peru","Peru"
 `);
   const rightCsvFilePath = await createTmpTextFile(`"code","name"
 "de","Germany"
@@ -25,6 +26,7 @@ test("join-datatables adaptor", async (t) => {
 "gb","UK"
 "us","USA"
 "it","Italy"
+"Perú","Perú"
 `);
 
   await t.test("given two datatables, it should return a datatable with left join", async () => {
@@ -47,6 +49,7 @@ test("join-datatables adaptor", async (t) => {
 "Gorilla",,,
 "Human","gb","gb","UK"
 "Mouse","GB","gb","UK"
+"Peru","Peru","Perú","Perú"
 `
     );
   });
@@ -59,7 +62,7 @@ test("join-datatables adaptor", async (t) => {
         "main column": "Country",
         "other data": createDatatable(rightCsvFilePath),
         "other column": "code",
-        "case sensitive": true,
+        "matching mode": "exact-match",
       },
     );
     assert.ok(output.data, "adaptor should return data");
@@ -72,6 +75,7 @@ test("join-datatables adaptor", async (t) => {
 "Gorilla",,,
 "Human","gb","gb","UK"
 "Mouse","GB",,
+"Peru","Peru",,
 `
     );
   });
@@ -95,6 +99,7 @@ test("join-datatables adaptor", async (t) => {
 "Gibbon","fr","fr","France"
 "Human","gb","gb","UK"
 "Mouse","GB","gb","UK"
+"Peru","Peru","Perú","Perú"
 `
     );
   });
@@ -120,6 +125,7 @@ test("join-datatables adaptor", async (t) => {
 "Gorilla",,,
 "Human","gb","gb","UK"
 "Mouse","GB","gb","UK"
+"Peru","Peru","Perú","Perú"
 ,,"us","USA"
 ,,"it","Italy"
 `
@@ -147,6 +153,7 @@ test("join-datatables adaptor", async (t) => {
 "Gorilla",,,
 "Human","gb","gb","UK"
 "Mouse","GB","gb","UK"
+"Peru","Peru","Perú","Perú"
 `
     );
   });

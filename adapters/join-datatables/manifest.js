@@ -1,4 +1,4 @@
-const { JoinTypes } = require("../../enums");
+const { JoinTypes, TextMatchingMode } = require("../../enums.js");
 
 module.exports = {
   "description": "Joins two datatables based on a common column between them.",
@@ -40,11 +40,12 @@ module.exports = {
       "ui": { "must-be-one-of": JoinTypes },
     },
     {
-      "name": "case sensitive",
-      "type": "boolean",
-      "description": "When set to `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `False`.",
+      "name": "matching mode",
+      "type": "text",
+      "description": "When set to `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `match-case-and-diacritics`.",
       "required": false,
-      "default": false,
+      "default": "match-case-and-diacritics",
+      "ui": { "must-be-one-of": TextMatchingMode },
     },
     {
       "name": "columns",
