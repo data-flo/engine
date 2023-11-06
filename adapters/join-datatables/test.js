@@ -54,7 +54,7 @@ test("join-datatables adaptor", async (t) => {
     );
   });
 
-  await t.test("given two datatables and case sensitive set to true, it should return a datatable with left join", async () => {
+  await t.test("given two datatables and exact match to true, it should return a datatable with left join", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -62,7 +62,8 @@ test("join-datatables adaptor", async (t) => {
         "main column": "Country",
         "other data": createDatatable(rightCsvFilePath),
         "other column": "code",
-        "matching mode": "exact-match",
+        "match case": false,
+        "match diacritics": false,
       },
     );
     assert.ok(output.data, "adaptor should return data");

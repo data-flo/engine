@@ -1,4 +1,4 @@
-const stopwatch = require("../../utils/stopwatch.js");
+// const stopwatch = require("../../utils/stopwatch.js");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["coordinates column"]);
@@ -8,9 +8,9 @@ module.exports = async function (args) {
       if (row[args["coordinates column"]]) {
         const query = row[args["coordinates column"]];
         if (query) {
-          stopwatch.start("query.match")
+          // stopwatch.start("query.match")
           const parts = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9]+(-?\d+[\.,]?\d*)\s?([EW]?)/i);
-          stopwatch.stop("query.match")
+          // stopwatch.stop("query.match")
           if (parts) {
             const [ _, lat, north, long, east ] = parts;
             let latitude = lat.replace(",", ".");
@@ -28,6 +28,7 @@ module.exports = async function (args) {
             row[args["longitude column"]] = longitude;
           }
           else {
+            console.error(row)
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
             invalidValues.add(query);

@@ -40,12 +40,18 @@ module.exports = {
       "ui": { "must-be-one-of": JoinTypes },
     },
     {
-      "name": "matching mode",
-      "type": "text",
-      "description": "When set to `False`, lowercase and uppercase letters are treated as equivalent when matching values.\nIf unspecified, defaults to `match-case-and-diacritics`.",
+      "name": "match case",
+      "type": "boolean",
+      "description": "When set to `True`, lowercase and uppercase letters are treated as equivalent when matching values, e.g. `Peru` = `peru`.\nIf unspecified, defaults to `True`.",
       "required": false,
-      "default": "match-case-and-diacritics",
-      "ui": { "must-be-one-of": TextMatchingMode },
+      "default": true,
+    },
+    {
+      "name": "match diacritics",
+      "type": "boolean",
+      "description": "When set to `True`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `True`.",
+      "required": false,
+      "default": true,
     },
     {
       "name": "columns",
