@@ -51,7 +51,7 @@ module.exports = {
     {
       "name": "difference unit",
       "type": "text",
-      "description": "The unit of time measurement\nIf unspecified, defaults to `days`.",
+      "description": "The unit of time measurement.\nPossible values are `years`, `quarter`, `months`, `weeks`, `days`, `hours`, `minutes`, `seconds`, or `milliseconds`.\nIf unspecified, defaults to `days`.",
       "required": false,
       "default": "days",
       "ui": { "must-be-one-of": DurationUnits },
