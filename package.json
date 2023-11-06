@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tap utils/**/*.test.js --reporter classic",
-    "tap": "tap --reporter classic"
+    "tap": "tap --reporter classic",
+    "build": "node ./bin/generate.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
