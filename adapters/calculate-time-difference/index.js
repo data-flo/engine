@@ -11,11 +11,16 @@ module.exports = async function (args) {
 
   const data = await args.data.addColumnSync(
     args["difference column"],
-    (row) => {
+    (row, context) => {
       const referenceDate = fromString(
         row[args["column one"]],
         args["column one format"],
       );
+
+      if (!referenceDate) {
+        throw new Error(`Value ${row[args["column one"]]} (Row ${context.records} Column ${args["column one"]}) is not in ${args["column one format"]} format.`);
+      }
+
       const valueDate = fromString(
         row[args["column two"]],
         args["column two format"],

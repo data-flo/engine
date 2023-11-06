@@ -319,7 +319,10 @@ class Datatable {
   ) {
     const datatableWriter = await Datatable.create(writerOptions);
 
-    this.getReader({ on_record: transformer }).pipe(datatableWriter);
+    await stream.promises.pipeline(
+      this.getReader({ on_record: transformer }),
+      datatableWriter,
+    );
 
     const data = await datatableWriter.finalise();
 
