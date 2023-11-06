@@ -44,8 +44,9 @@ module.exports = {
     {
       "name": "difference column",
       "type": "text",
-      "description": "The name of the new column containing time difference values.",
-      "required": true,
+      "description": "The name of the new column containing time difference values.\nIf unspecified, defaults to `difference`.",
+      "required": false,
+      "default": "difference",
     },
     {
       "name": "difference unit",
