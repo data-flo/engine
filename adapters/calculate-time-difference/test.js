@@ -1,6 +1,8 @@
 const fs = require("fs");
 const tap = require("../../utils/testing/unit");
 
+const { compareFile } = require("../../utils/testing/unit.js");
+
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
@@ -27,16 +29,17 @@ tap.test("calculate-time-difference adaptor", async () => {
       "difference unit": "days",
     });
     t.ok(output.data, "adaptor should return data");
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","days"
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","days"
 "Bovine","de",,"Jan 29, 2007","2007-01-28","1"
 "Gibbon","fr",,,,
 "Orangutan",,,,,
 "Gorilla",,,,,
 "Human","gb",,,,
 "Mouse","gb",,,,
-`;
-    t.equal(actual, expected);
+`
+    );
   });
 
   tap.test("given two columns in reverse, it should add the differnce as negative", async (t) => {
@@ -49,16 +52,17 @@ tap.test("calculate-time-difference adaptor", async () => {
       "difference unit": "days",
     });
     t.ok(output.data, "adaptor should return data");
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","days"
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","days"
 "Bovine","de",,"Jan 29, 2007","2007-01-28","-1"
 "Gibbon","fr",,,,
 "Orangutan",,,,,
 "Gorilla",,,,,
 "Human","gb",,,,
 "Mouse","gb",,,,
-`;
-    t.equal(actual, expected);
+`
+    );
   });
 
   tap.test("given non-existing as column one, it should throw an error", async (t) => {
