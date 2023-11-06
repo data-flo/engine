@@ -1,56 +1,83 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+const runAdaptor = require("../../runner/run-adaptor.js");
+const adaptor = require("./index.js");
 
-tap.test("find-value-in-list adaptor", async () => {
+test("find-value-in-list adaptor", async (t) => {
 
-  await tap.test("should find a text value in a list", async () => {
+  await t.test("should find a text value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
-        list: ["red", "green", "blue"],
-        pattern: "green",
+        "list": ["red", "green", "blue"],
+        "pattern": "green",
       }
     );
-    tap.same(
-      result,
-      {
-        value: "green",
-        index: 2,
-      }
-    );
+    assert.equal(result.value, "green");
+    assert.equal(result.index, 2);
   });
-  await tap.test("should find a value in a list by using a regex", async ({ same }) => {
+
+  await t.test("should find a value in a list by using a regex", async () => {
     const result = await runAdaptor(
       adaptor,
       {
-        list: ["red", "green", "blue"],
-        pattern: "/.*ue$/",
+        "list": ["red", "green", "blue"],
+        "pattern": "/.*ue$/",
       }
     );
-    same(
-      result,
-      {
-        value: "blue",
-        index: 3,
-      }
-    );
+    assert.equal(result.value, "blue");
+    assert.equal(result.index, 3);
   });
-  await tap.test("should not find a non-existing value in a list", async ({ same }) => {
+
+  await t.test("given match case and match diacritics set to true, it should find a text value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
-        list: ["red", "green", "blue"],
-        pattern: "yellow",
+        "list": ["Perú", "green", "blue"],
+        "pattern": "perú",
       }
     );
-    same(
-      result,
-      {
-        value: null,
-        index: null,
-      }
-    );
+    assert.equal(result.value, "Perú");
+    assert.equal(result.index, 1);
   });
+
+  await t.test("given match case set to false, it should not find a value in a list", async () => {
+    const result = await runAdaptor(
+      adaptor,
+      {
+        "list": ["Perú", "green", "blue"],
+        "pattern": "perú",
+        "match case": false,
+      }
+    );
+    assert.equal(result.value, null);
+    assert.equal(result.index, null);
+  });
+
+  await t.test("given match diacritics set to false, it should not find a value in a list", async () => {
+    const result = await runAdaptor(
+      adaptor,
+      {
+        "list": ["Perú", "green", "blue"],
+        "pattern": "Peru",
+        "match diacritics": false,
+      }
+    );
+    assert.equal(result.value, null);
+    assert.equal(result.index, null);
+  });
+
+  await t.test("should not find a non-existing value in a list", async () => {
+    const result = await runAdaptor(
+      adaptor,
+      {
+        "list": ["red", "green", "blue"],
+        "pattern": "yellow",
+      }
+    );
+    assert.equal(result.value, null);
+    assert.equal(result.index, null);
+  });
+
 });
