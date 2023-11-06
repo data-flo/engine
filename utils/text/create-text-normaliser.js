@@ -1,19 +1,20 @@
 function createTextNormaliser(
-  matchMode,
+  matchCase,
+  matchDiacritics,
 ) {
-  if (matchMode === "match-case") {
-    return (x) => x.toLowerCase();
-  }
-
-  if (matchMode === "match-diacritics") {
-    return (x) => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
-
-  if (matchMode === "match-case-and-diacritics") {
+  if (matchCase && matchDiacritics) {
     return (x) => x.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  throw new Error("Invalid match mode");
+  if (matchCase) {
+    return (x) => x.toLowerCase();
+  }
+
+  if (matchDiacritics) {
+    return (x) => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  return (x) => x;
 }
 
 module.exports = createTextNormaliser;

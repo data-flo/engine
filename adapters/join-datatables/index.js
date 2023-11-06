@@ -5,6 +5,26 @@ const createTextNormaliser = require("../../utils/text/create-text-normaliser.js
 
 const { Datatable } = require("../../types/datatable.js");
 
+function createMap(
+  matchCase,
+  matchDiacritics,
+) {
+  if (matchCase || matchDiacritics) {
+    return new NormalisedMap(createTextNormaliser(matchCase, matchDiacritics));
+  }
+  return new Map();
+}
+
+function createSet(
+  matchCase,
+  matchDiacritics,
+) {
+  if (matchCase || matchDiacritics) {
+    return new NormalisedSet(createTextNormaliser(matchCase, matchDiacritics));
+  }
+  return new Set();
+}
+
 module.exports = async function adaptorJoinDatatable(args) {
   const leftTable = args["main data"];
   const rightTable = args["other data"];
@@ -36,12 +56,9 @@ module.exports = async function adaptorJoinDatatable(args) {
   }
 
   // Read other table and store its rows
-  const rightRowsMap = (
-    (args["matching mode"] === "exact-match")
-      ?
-      new Map()
-      :
-      new NormalisedMap(createTextNormaliser(args["matching mode"]))
+  const rightRowsMap = createMap(
+    args["match case"],
+    args["match diacritics"],
   );
 
   // eslint-disable-next-line no-lone-blocks
@@ -65,12 +82,9 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   const isFullJoin = (args["join type"] === "Full Join");
   const isLeftJoin = (args["join type"] === "Left Join");
-  const matchedValues = (
-    (args["matching mode"] === "exact-match")
-      ?
-      new Set()
-      :
-      new NormalisedSet(createTextNormaliser(args["matching mode"]))
+  const matchedValues = createSet(
+    args["match case"],
+    args["match diacritics"],
   );
 
   for await (const leftRow of leftTable.getReader()) {
