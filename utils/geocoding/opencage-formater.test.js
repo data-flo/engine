@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const formater = require("./opencage-formater");
+const formater = require("./opencage-formater.js");
 
 const place = {
   "components": {
@@ -22,6 +22,7 @@ const place = {
     "region": "East of England",
     "state": "England",
     "state_code": "ENG",
+    "city": "England",
     "suburb": "Sawston",
     "town": "South Cambridgeshire",
     "village": "Sawston",
