@@ -112,9 +112,9 @@ module.exports = async function (args) {
     },
   );
 
-  // console.log("timer 3", sum3, count3, sum3 / count3);
-  // console.log("timer 4", sum4, count4, sum4 / count4);
-  // console.log("timer 5", sum5, count5, sum5 / count5);
+  // console.debug("timer 3", sum3, count3, sum3 / count3);
+  // console.debug("timer 4", sum4, count4, sum4 / count4);
+  // console.debug("timer 5", sum5, count5, sum5 / count5);
 
   return { data };
 };
@@ -169,9 +169,9 @@ module.exports = async function (args) {
 //     },
 //   );
 
-//   console.log("timer 3", sum3, count3, sum3 / count3);
-//   console.log("timer 4", sum4, count4, sum4 / count4);
-//   console.log("timer 5", sum5, count5, sum5 / count5);
+//   console.debug("timer 3", sum3, count3, sum3 / count3);
+//   console.debug("timer 4", sum4, count4, sum4 / count4);
+//   console.debug("timer 5", sum5, count5, sum5 / count5);
 
 //   return { data };
 // };
