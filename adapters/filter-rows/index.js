@@ -1,13 +1,13 @@
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
-const makePredicate = require("../../utils/expressions/make-predicate");
+const makePredicate = require("../../utils/expressions/make-predicate.js");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["column name"]);
 
   const predicate = makePredicate(
     args["filter type"],
-    [ args["filter value"] ],
+    args["filter value"],
     args["case sensitive"],
   );
 

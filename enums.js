@@ -112,6 +112,13 @@ module.exports.LetterCases = Object.freeze([
   [ "upper", "upper case (`OfMice and men` → `OFMICE AND MEN`)", "text with all letters upper case" ],
 ]);
 
+module.exports.TextMatchingMode = Object.freeze([
+  [ "exact-match", "Match text exactly" ],
+  [ "match-case", "Lowercase and uppercase letters are treated as equivalent, e.g. `Peru` = `peru`" ],
+  [ "match-diacritics", "Letters with and without diacritics are treated as equivalent, e.g. `Perú` = `Peru`" ],
+  [ "match-case-and-diacritics", "Matches both case and diacritics, e.g. `Perú` = `peru`" ],
+]);
+
 module.exports.Operators = Object.freeze([
   [ "add", "Adds values in left column to values in right column (left + right)" ],
   [ "subtract", "Subtract values in right column from values in left column (left - right)" ],

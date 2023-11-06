@@ -26,6 +26,7 @@ module.exports["duplicate-column"] = require("./adapters/duplicate-column/index.
 module.exports["export-file-to-google-drive"] = require("./adapters/export-file-to-google-drive/index.js");
 module.exports["export-file-to-smb-share"] = require("./adapters/export-file-to-smb-share/index.js");
 module.exports["export-graph-to-dot-file"] = require("./adapters/export-graph-to-dot-file/index.js");
+module.exports["export-text-to-file"] = require("./adapters/export-text-to-file/index.js");
 module.exports["export-to-csv-file"] = require("./adapters/export-to-csv-file/index.js");
 module.exports["export-to-dbf-file"] = require("./adapters/export-to-dbf-file/index.js");
 module.exports["export-to-google-sheet"] = require("./adapters/export-to-google-sheet/index.js");

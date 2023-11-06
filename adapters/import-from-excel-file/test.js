@@ -13,7 +13,7 @@ tap.test("import-from-excel-file adaptor", async () => {
       adaptor,
       {
         "file": createFile(Path.resolve(__dirname, "..", "..", "dev", "data", "microreact-project-H1mdhyO3l-data.xlsx")),
-        "sheetname": "Sheet1",
+        "sheet name": "Sheet1",
       },
     );
     tap.ok(output.data, "adaptor should return data");
@@ -28,7 +28,7 @@ tap.test("import-from-excel-file adaptor", async () => {
       adaptor,
       {
         "file": createFile(Path.resolve(__dirname, "..", "..", "dev", "data", "microreact-project-H1mdhyO3l-data.xlsx")),
-        "sheetname": "Sheet1",
+        "sheet name": "Sheet1",
         "range": "A1:C2",
       },
     );
@@ -44,7 +44,7 @@ tap.test("import-from-excel-file adaptor", async () => {
       adaptor,
       {
         "file": createFile(Path.resolve(__dirname, "..", "..", "dev", "data", "microreact-project-H1mdhyO3l-data.xlsx")),
-        "sheetname": "Sheet1",
+        "sheet name": "Sheet1",
         "range": "2",
       },
     );
@@ -60,7 +60,7 @@ tap.test("import-from-excel-file adaptor", async () => {
       adaptor,
       {
         "file": createFile(Path.resolve(__dirname, "..", "..", "dev", "data", "microreact-project-H1mdhyO3l-data.xlsx")),
-        "sheetname": "Sheet1",
+        "sheet name": "Sheet1",
         "range": "B1:C3",
       },
     );

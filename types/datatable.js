@@ -56,7 +56,7 @@ class Datatable {
         string(value) {
           return value.replace(/\n/g, "");
         },
-      },  
+      },
       ...options,
     });
 
@@ -313,8 +313,11 @@ class Datatable {
     return clonedDatatable;
   }
 
-  async transformSync(transformer) {
-    const datatableWriter = await Datatable.create();
+  async transformSync(
+    transformer,
+    writerOptions,
+  ) {
+    const datatableWriter = await Datatable.create(writerOptions);
 
     this.getReader({ on_record: transformer }).pipe(datatableWriter);
 
@@ -332,8 +335,8 @@ class Datatable {
       datatableWriter,
     );
 
-  // console.log("timer 0", sum0, count0, sum0 / count0)
-  // console.log("timer 1", sum1, count1, sum1 / count1)
+    // console.log("timer 0", sum0, count0, sum0 / count0)
+    // console.log("timer 1", sum1, count1, sum1 / count1)
 
     // for await (const row of this.getReader()) {
     //   datatableWriter.write(await transformer(row));

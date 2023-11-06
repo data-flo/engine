@@ -1,7 +1,9 @@
-const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map");
-const CaseInsensitiveSet = require("../../utils/structures/case-insensitive-set");
+const NormalisedMap = require("../../utils/structures/normalised-map.js");
+const NormalisedSet = require("../../utils/structures/normalised-set.js");
 
-const { Datatable } = require("../../types/datatable");
+const createTextNormaliser = require("../../utils/text/create-text-normaliser.js");
+
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function adaptorJoinDatatable(args) {
   const leftTable = args["main data"];
@@ -34,7 +36,14 @@ module.exports = async function adaptorJoinDatatable(args) {
   }
 
   // Read other table and store its rows
-  const rightRowsMap = !args["case sensitive"] ? new CaseInsensitiveMap() : new Map();
+  const rightRowsMap = (
+    (args["matching mode"] === "exact-match")
+      ?
+      new Map()
+      :
+      new NormalisedMap(createTextNormaliser(args["matching mode"]))
+  );
+
   // eslint-disable-next-line no-lone-blocks
   {
     const rightTableReader = (
@@ -56,7 +65,13 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   const isFullJoin = (args["join type"] === "Full Join");
   const isLeftJoin = (args["join type"] === "Left Join");
-  const matchedValues = !args["case sensitive"] ? new CaseInsensitiveSet() : new Set();
+  const matchedValues = (
+    (args["matching mode"] === "exact-match")
+      ?
+      new Set()
+      :
+      new NormalisedSet(createTextNormaliser(args["matching mode"]))
+  );
 
   for await (const leftRow of leftTable.getReader()) {
     const rightRow = (

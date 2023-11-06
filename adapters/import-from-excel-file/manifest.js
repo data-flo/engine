@@ -10,7 +10,7 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "sheetname",
+      "name": "sheet name",
       "type": "text",
       "description": "The name of the sheet (tab) from which to import the data.\nIf unspecified, the first sheet will be used.",
       "required": false,

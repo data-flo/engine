@@ -30,7 +30,7 @@ module.exports = function (args) {
   let index = 0;
   const edges = [];
   for (const edge of parsedData.edges) {
-    const { id, from, to, arrows, ...attributes } = edge;
+    const { id, from, to, arrows, ...attributes } = edge; // eslint-disable-line no-unused-vars
     edges.push({
       id: edge.id || `edge-${index++}`,
       from: edge.from.toString(),

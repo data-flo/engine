@@ -28,6 +28,13 @@ module.exports = {
       "description": "The list of columns to be added.",
       "required": true,
     },
+    {
+      "name": "include column",
+      "type": "boolean",
+      "description": "Specifies whether to include the original column in the output datatable.\nIf unspecified, defaults to `True` (original column will be included).",
+      "required": false,
+      "default": true,
+    },
   ],
   "output": [
     {

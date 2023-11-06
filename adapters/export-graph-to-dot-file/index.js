@@ -11,8 +11,12 @@ module.exports = function (args) {
     );
     return `"${node.id}" [${attributes}]`;
   });
+  let digraph = false;
   const edges = args.graph.edges.map((edge) => {
     const direction = Directions[edge.direction || "none"];
+    if (direction !== "--") {
+      digraph = true;
+    }
     let edgeProps = "";
     if (edge.attributes) {
       const attributeKeys = Object.keys(edge.attributes);
@@ -20,7 +24,7 @@ module.exports = function (args) {
     }
     return `"${edge.from}" ${direction} "${edge.to}" ${edgeProps}`;
   });
-  const dot = `graph G { ${nodes.join("; ")}; ${edges.join("; ")}; }`;
+  const dot = `${digraph ? "digraph" : "graph"} G { ${nodes.join("; ")}; ${edges.join("; ")}; }`;
   return { dot };
 };
 
