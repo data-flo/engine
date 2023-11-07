@@ -229,7 +229,10 @@ class Datatable {
     }
   }
 
-  async clone(columns, options = EmptyObject) {
+  async clone(
+    columns,
+    options = EmptyObject,
+  ) {
     //#region using transform
 
     // const { transform } = require("csv");
