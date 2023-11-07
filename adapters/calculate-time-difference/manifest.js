@@ -44,13 +44,14 @@ module.exports = {
     {
       "name": "difference column",
       "type": "text",
-      "description": "The name of the new column containing time difference values.",
-      "required": true,
+      "description": "The name of the new column containing time difference values.\nIf unspecified, defaults to `difference`.",
+      "required": false,
+      "default": "difference",
     },
     {
       "name": "difference unit",
       "type": "text",
-      "description": "The unit of time measurement\nIf unspecified, defaults to `days`.",
+      "description": "The unit of time measurement.\nPossible values are `years`, `quarter`, `months`, `weeks`, `days`, `hours`, `minutes`, `seconds`, or `milliseconds`.\nIf unspecified, defaults to `days`.",
       "required": false,
       "default": "days",
       "ui": { "must-be-one-of": DurationUnits },

@@ -1,12 +1,16 @@
-const fs = require("fs");
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const { compareFile } = require("../../utils/testing/unit.js");
 
-const adaptor = require("./index");
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
 
-tap.test("calculate-time-difference adaptor", async () => {
+const runAdaptor = require("../../runner/run-adaptor.js");
+
+const adaptor = require("./index.js");
+
+test("calculate-time-difference adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -16,53 +20,81 @@ tap.test("calculate-time-difference adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given two columns, it should add the differnce in days", async (t) => {
-    const output = await adaptor({
-      "data": createDatatable(testCsvFilePath),
-      "column one": "date a",
-      "column one format": "MMM D, YYYY",
-      "column two": "date b",
-      "column two format": "",
-      "difference column": "days",
-      "difference unit": "days",
-    });
-    t.ok(output.data, "adaptor should return data");
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","days"
+  await t.test("given two columns, it should add the differnce in days", async () => {
+    const output = await runAdaptor(
+      adaptor, {
+        "data": createDatatable(testCsvFilePath),
+        "column one": "date a",
+        "column one format": "MMM D, YYYY",
+        "column two": "date b",
+        "column two format": "",
+        "difference column": "days",
+        "difference unit": "days",
+      });
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","days"
 "Bovine","de",,"Jan 29, 2007","2007-01-28","1"
 "Gibbon","fr",,,,
 "Orangutan",,,,,
 "Gorilla",,,,,
 "Human","gb",,,,
 "Mouse","gb",,,,
-`;
-    t.equal(actual, expected);
+`
+    );
   });
 
-  tap.test("given two columns in reverse, it should add the differnce as negative", async (t) => {
-    const output = await adaptor({
-      "data": createDatatable(testCsvFilePath),
-      "column one": "date b",
-      "column two": "date a",
-      "column two format": "MMM D, YYYY",
-      "difference column": "days",
-      "difference unit": "days",
-    });
-    t.ok(output.data, "adaptor should return data");
-    const actual = fs.readFileSync(output.data.getSource(), "utf8");
-    const expected = `"id","Country","empty","date a","date b","days"
+  await t.test("given two columns and no difference column, it should add output to differnce column", async () => {
+    const output = await runAdaptor(
+      adaptor, {
+        "data": createDatatable(testCsvFilePath),
+        "column one": "date a",
+        "column one format": "MMM D, YYYY",
+        "column two": "date b",
+        "column two format": "",
+        "difference unit": "days",
+      });
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","difference"
+"Bovine","de",,"Jan 29, 2007","2007-01-28","1"
+"Gibbon","fr",,,,
+"Orangutan",,,,,
+"Gorilla",,,,,
+"Human","gb",,,,
+"Mouse","gb",,,,
+`
+    );
+  });
+
+  await t.test("given two columns in reverse, it should add the differnce as negative", async () => {
+    const output = await runAdaptor(
+      adaptor, {
+        "data": createDatatable(testCsvFilePath),
+        "column one": "date b",
+        "column two": "date a",
+        "column two format": "MMM D, YYYY",
+        "difference column": "days",
+        "difference unit": "days",
+      });
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","days"
 "Bovine","de",,"Jan 29, 2007","2007-01-28","-1"
 "Gibbon","fr",,,,
 "Orangutan",,,,,
 "Gorilla",,,,,
 "Human","gb",,,,
 "Mouse","gb",,,,
-`;
-    t.equal(actual, expected);
+`
+    );
   });
 
-  tap.test("given non-existing as column one, it should throw an error", async (t) => {
-    await t.rejects(
+  await t.test("given non-existing as column one, it should throw an error", async () => {
+    await assert.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
         "column one": "A",
@@ -76,8 +108,8 @@ tap.test("calculate-time-difference adaptor", async () => {
     );
   });
 
-  tap.test("given non-existing as column two, it should throw an error", async (t) => {
-    await t.rejects(
+  await t.test("given non-existing as column two, it should throw an error", async () => {
+    await assert.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
         "column one": "date a",
@@ -91,8 +123,8 @@ tap.test("calculate-time-difference adaptor", async () => {
     );
   });
 
-  tap.test("given an existing column, it should throw an error", async (t) => {
-    await t.rejects(
+  await t.test("given an existing column, it should throw an error", async () => {
+    await assert.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
         "column one": "date a",
@@ -102,7 +134,7 @@ tap.test("calculate-time-difference adaptor", async () => {
         "difference column": "id",
         "difference unit": "days",
       }),
-      ("Datatable already includes a column named id"),
+      new Error("Datatable already includes a column named id"),
     );
   });
 
