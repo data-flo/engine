@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "url",
       "type": "text",
-      "description": "The URL of the file to be imported, e.g. `https://bucket-name.s3.example.com/file/path`.",
+      "description": "The URL of the file to be imported, e.g. `https://s3.region-code.amazonaws.com/bucket-name/key-name`.\n See https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html#path-style-url-ex.",
       "required": true,
     },
     {
