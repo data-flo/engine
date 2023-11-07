@@ -1,4 +1,5 @@
 const escapeRegexp = require("escape-string-regexp");
+const isNumber = require("../numbers/is-number.js");
 
 module.exports = function makePredicate(
   operator,
@@ -103,6 +104,13 @@ module.exports = function makePredicate(
       return (x) => (regexp.test(x) === false);
     }
 
+    case "is-number": {
+      return (x) => (isNumber(x));
+    }
+
+    case "not-number": {
+      return (x) => (!isNumber(x));
+    }
     default:
       throw new Error(`Invalid filter operator: ${operator}`);
   }

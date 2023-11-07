@@ -1,12 +1,13 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
+const adaptor = require("./index.js");
 
-tap.test("filter-list adaptor", async () => {
+test("filter-list adaptor", async (t) => {
 
-  tap.test("given a list and a text pattern, it should filter it", async () => {
+  await t.test("given a list and a text pattern, it should filter it", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -14,19 +15,19 @@ tap.test("filter-list adaptor", async () => {
         pattern: "green",
       },
     );
-    tap.ok(output.values, "adaptor should return values");
-    tap.ok(output.complementary, "adaptor should return complementary");
-    tap.same(
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
       output.values,
       [ "green" ],
     );
-    tap.same(
+    assert.deepEqual(
       output.complementary,
       [ "red", "blue" ],
     );
   });
 
-  tap.test("given a list and a regex pattern, it should filter it", async () => {
+  await t.test("given a list and a regex pattern, it should filter it", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -34,15 +35,103 @@ tap.test("filter-list adaptor", async () => {
         pattern: "/ree?/",
       },
     );
-    tap.ok(output.values, "adaptor should return values");
-    tap.ok(output.complementary, "adaptor should return complementary");
-    tap.same(
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
       output.values,
       [ "red", "green" ],
     );
-    tap.same(
+    assert.deepEqual(
       output.complementary,
       [ "blue" ],
+    );
+  });
+
+  await t.test("given match case and match diacritics set to true, it should return 4 elements", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "list": [ "Perú", "Peru", "perú", "peru" ],
+        "pattern": "peru",
+        "match case": true,
+        "match diacritics": true,
+      },
+    );
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
+      output.values,
+      [ "Perú", "Peru", "perú", "peru" ],
+    );
+    assert.deepEqual(
+      output.complementary,
+      [],
+    );
+  });
+
+  await t.test("given match case set to true, it should return 2 elements", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "list": [ "Perú", "Peru", "perú", "peru" ],
+        "pattern": "peru",
+        "match case": true,
+        "match diacritics": false,
+      },
+    );
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
+      output.values,
+      [ "Peru", "peru" ],
+    );
+    assert.deepEqual(
+      output.complementary,
+      [ "Perú", "perú" ],
+    );
+  });
+
+  await t.test("given match diacritics set to true, it should return 2 elements", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "list": [ "Perú", "Peru", "perú", "peru" ],
+        "pattern": "peru",
+        "match case": false,
+        "match diacritics": true,
+      },
+    );
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
+      output.values,
+      [ "perú", "peru" ],
+    );
+    assert.deepEqual(
+      output.complementary,
+      [ "Perú", "Peru" ],
+    );
+  });
+
+  await t.test("given match case and match diacritics set to false, it should return 1 element", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "list": [ "Perú", "Peru", "perú", "peru" ],
+        "pattern": "peru",
+        "match case": false,
+        "match diacritics": false,
+      },
+    );
+    assert.ok(output.values, "adaptor should return values");
+    assert.ok(output.complementary, "adaptor should return complementary");
+    assert.deepEqual(
+      output.values,
+      [ "peru" ],
+    );
+    assert.deepEqual(
+      output.complementary,
+      [ "Perú", "Peru", "perú" ],
     );
   });
 

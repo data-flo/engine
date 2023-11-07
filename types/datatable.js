@@ -319,7 +319,10 @@ class Datatable {
   ) {
     const datatableWriter = await Datatable.create(writerOptions);
 
-    this.getReader({ on_record: transformer }).pipe(datatableWriter);
+    await stream.promises.pipeline(
+      this.getReader({ on_record: transformer }),
+      datatableWriter,
+    );
 
     const data = await datatableWriter.finalise();
 
@@ -335,8 +338,8 @@ class Datatable {
       datatableWriter,
     );
 
-    // console.log("timer 0", sum0, count0, sum0 / count0)
-    // console.log("timer 1", sum1, count1, sum1 / count1)
+    // console.debug("timer 0", sum0, count0, sum0 / count0)
+    // console.debug("timer 1", sum1, count1, sum1 / count1)
 
     // for await (const row of this.getReader()) {
     //   datatableWriter.write(await transformer(row));

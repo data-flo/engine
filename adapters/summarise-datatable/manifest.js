@@ -14,6 +14,7 @@ module.exports = {
       "type": "list",
       "description": "A list of columns to be summarised.\nIf unspecified, all columns will be summarised.",
       "required": false,
+      "ui": { "column-in": "data" },
     },
   ],
   "output": [
