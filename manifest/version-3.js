@@ -130,7 +130,7 @@ module.exports = function (doc) {
 
   changeAdaptorInput("join-datatables", "columns", (binding) => {
     if (binding.type === "value") {
-      binding.value = binding.value.map(([ key ]) => key);
+      binding.value = binding.value.map(([key]) => key);
     }
   });
   changeAdaptorInput("join-datatables", "inner join", (binding) => {
@@ -370,6 +370,8 @@ module.exports = function (doc) {
 
   renameAdaptor("update-microreact-project", "export-to-microreact-project");
   renameAdaptorInput("export-to-microreact-project", "name", "project name");
+
+  renameAdaptorOutput("split-geographical-coordinates", "invalid values", "invalid rows");
 
   // renameAdaptor("", "new");
   // renameAdaptorInput("new", "", "");
