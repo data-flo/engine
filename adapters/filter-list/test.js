@@ -1,5 +1,5 @@
-const test = require("node:test");
 const assert = require("node:assert");
+const test = require("node:test");
 
 const runAdaptor = require("../../runner/run-adaptor.js");
 
@@ -11,19 +11,21 @@ test("filter-list adaptor", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
-        list: [ "red", "green", "blue" ],
-        pattern: "green",
+        "list": [ "red", "green", "blue" ],
+        "pattern": "green",
+        "filter type": "equals",
+        "filter value": "blue",
       },
     );
     assert.ok(output.values, "adaptor should return values");
     assert.ok(output.complementary, "adaptor should return complementary");
     assert.deepEqual(
       output.values,
-      [ "green" ],
+      [ "green", "blue"],
     );
     assert.deepEqual(
       output.complementary,
-      [ "red", "blue" ],
+      [ "red" ],
     );
   });
 
@@ -31,19 +33,21 @@ test("filter-list adaptor", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
-        list: [ "red", "green", "blue" ],
-        pattern: "/ree?/",
+        "list": [ "red", "green", "blue", "yellow" ],
+        "pattern": "/ree?/",
+        "filter type": "equals",
+        "filter value": "blue",
       },
     );
     assert.ok(output.values, "adaptor should return values");
     assert.ok(output.complementary, "adaptor should return complementary");
     assert.deepEqual(
       output.values,
-      [ "red", "green" ],
+      [ "red", "green", "blue" ],
     );
     assert.deepEqual(
       output.complementary,
-      [ "blue" ],
+      [ "yellow" ],
     );
   });
 
@@ -53,6 +57,7 @@ test("filter-list adaptor", async (t) => {
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "pattern": "peru",
+        "filter type": "not-number",
         "match case": true,
         "match diacritics": true,
       },
@@ -75,6 +80,8 @@ test("filter-list adaptor", async (t) => {
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "pattern": "peru",
+        "filter type": "excludes",
+        "filter value": "P",
         "match case": true,
         "match diacritics": false,
       },
@@ -99,6 +106,7 @@ test("filter-list adaptor", async (t) => {
         "pattern": "peru",
         "match case": false,
         "match diacritics": true,
+        "filter type": "not-blank",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -119,6 +127,7 @@ test("filter-list adaptor", async (t) => {
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "pattern": "peru",
+        "filter type": "not-blank",
         "match case": false,
         "match diacritics": false,
       },

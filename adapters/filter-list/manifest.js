@@ -1,3 +1,5 @@
+const { FilterTypes } = require("../../enums");
+
 module.exports = {
   "description": "Finds values in a list that match a pattern.",
   "group": "Transform",
@@ -28,6 +30,27 @@ module.exports = {
       "description": "When set to `True`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `True`.",
       "required": false,
       "default": true,
+    },
+    {
+      "name": "filter type",
+      "type": "text",
+      "description": "The type of filter applied.",
+      "required": true,
+      "default": "equals",
+      "ui": { "must-be-one-of": FilterTypes },
+    },
+    {
+      "name": "filter value",
+      "type": "text",
+      "description": "A text or a regular expression to be searched for within the datatable columns.",
+      "required": false,
+    },
+    {
+      "name": "case sensitive",
+      "type": "boolean",
+      "description": "When set to `True`, lowercase and uppercase letters are treated as different when comparing text values. When set to `False`, lowercase and uppercase letters are treated as equivalent. If unspecified, defaults to `False`",
+      "required": false,
+      "default": false,
     },
   ],
   "output": [
