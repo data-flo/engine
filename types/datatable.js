@@ -229,7 +229,10 @@ class Datatable {
     }
   }
 
-  async clone(columns, options = EmptyObject) {
+  async clone(
+    columns,
+    options = EmptyObject,
+  ) {
     //#region using transform
 
     // const { transform } = require("csv");
@@ -338,8 +341,8 @@ class Datatable {
       datatableWriter,
     );
 
-    // console.log("timer 0", sum0, count0, sum0 / count0)
-    // console.log("timer 1", sum1, count1, sum1 / count1)
+    // console.debug("timer 0", sum0, count0, sum0 / count0)
+    // console.debug("timer 1", sum1, count1, sum1 / count1)
 
     // for await (const row of this.getReader()) {
     //   datatableWriter.write(await transformer(row));
