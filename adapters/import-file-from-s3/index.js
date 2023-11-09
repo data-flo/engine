@@ -1,7 +1,7 @@
-const Minio = require("minio");
 const Util = require("util");
 const Path = require("path");
 
+const Minio = require("minio");
 const { FileStream } = require("../../types/file");
 
 module.exports = async function (args) {
@@ -14,21 +14,30 @@ module.exports = async function (args) {
     accessKey: args["access key"],
     secretKey: args["secret key"],
   });
+  let file;
+  if (args["access key"] === undefined || args["secret key"] === undefined) {
+    const response = await fetch(
+      args.url,
+    );
+    file = await FileStream.createFromStream(response.body);
+    file.name = Path.basename(url.pathname);
+  }
+  else {
 
-  const [ _, bucket, ...rest ] = url.pathname.split("/");
+    const [ _, bucket, ...rest ] = url.pathname.split("/");
 
-  const fGetObject = Util.promisify(minioClient.fGetObject).bind(minioClient);
+    const fGetObject = Util.promisify(minioClient.fGetObject).bind(minioClient);
 
-  const file = await FileStream.createEmpty();
+    file = await FileStream.createEmpty();
 
-  await fGetObject(
-    bucket,
-    rest.join("/"),
-    file.getSource(),
-  );
+    await fGetObject(
+      bucket,
+      rest.join("/"),
+      file.getSource(),
+    );
 
-  file.name = Path.basename(url.pathname);
-
+    file.name = Path.basename(url.pathname);
+  }
   return { file };
 };
 
