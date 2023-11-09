@@ -20,7 +20,6 @@ module.exports = async function (args) {
       args.url,
     );
     file = await FileStream.createFromStream(response.body);
-    file.name = Path.basename(url.pathname);
   }
   else {
 
@@ -36,8 +35,9 @@ module.exports = async function (args) {
       file.getSource(),
     );
 
-    file.name = Path.basename(url.pathname);
+
   }
+  file.name = Path.basename(url.pathname);
   return { file };
 };
 
