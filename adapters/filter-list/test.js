@@ -81,7 +81,7 @@ test("filter-list adaptor", async (t) => {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "pattern": "peru",
         "filter type": "excludes",
-        "filter value": "P",
+        "filter value": "",
         "match case": true,
         "match diacritics": false,
       },
@@ -106,7 +106,8 @@ test("filter-list adaptor", async (t) => {
         "pattern": "peru",
         "match case": false,
         "match diacritics": true,
-        "filter type": "not-blank",
+        "filter type": "excludes",
+        "filter value": "",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -127,7 +128,8 @@ test("filter-list adaptor", async (t) => {
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "pattern": "peru",
-        "filter type": "not-blank",
+        "filter type": "excludes",
+        "filter value": "",
         "match case": false,
         "match diacritics": false,
       },
