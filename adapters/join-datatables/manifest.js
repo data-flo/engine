@@ -16,6 +16,7 @@ module.exports = {
       "type": "text",
       "description": "The column in `main data` containing values shared by `other column` in `other data`.",
       "required": true,
+      "ui": { "column-in": "main data" },
     },
 
     {
@@ -29,6 +30,7 @@ module.exports = {
       "type": "text",
       "description": "The column in `other data` containing values shared by `main column` in `main data`.\nIf more than one row match main column value, only the first matching row will be joined.\nIf unspecified, the name of `main column` will be used.",
       "required": false,
+      "ui": { "column-in": "other data" },
     },
 
     {
