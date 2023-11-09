@@ -44,16 +44,16 @@ module.exports = {
     {
       "name": "match case",
       "type": "boolean",
-      "description": "When set to `True`, lowercase and uppercase letters are treated as equivalent when matching values, e.g. `Peru` = `peru`.\nIf unspecified, defaults to `True`.",
+      "description": "When set to `False`, lowercase and uppercase letters are treated as equivalent when matching values, e.g. `Peru` = `peru`.\nIf unspecified, defaults to `False`.",
       "required": false,
-      "default": true,
+      "default": false,
     },
     {
       "name": "match diacritics",
       "type": "boolean",
-      "description": "When set to `True`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `True`.",
+      "description": "When set to `False`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `False`.",
       "required": false,
-      "default": true,
+      "default": false,
     },
     {
       "name": "columns",

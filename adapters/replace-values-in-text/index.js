@@ -1,7 +1,7 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+const makeRegexp = require("../../utils/text/make-regexp.js");
 
 module.exports = function (args) {
-  const pattern = makeRegexp(args.pattern, true, true);
+  const pattern = makeRegexp(args.pattern, false, true);
 
   const text = args.text.replace(
     pattern,
