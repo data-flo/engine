@@ -21,6 +21,12 @@ module.exports = {
       "description": "A valid range of cells (e.g. `A1:L512`) that contain data.\nIf unspecified, the whole sheet will be included.",
       "required": false,
     },
+    {
+      "name": "skip",
+      "type": "list",
+      "description": "A list of row numbers to be ignored.\nIf unspecified, then all rows in the range will be imported.",
+      "required": false,
+    },
   ],
   "output": [
     {
