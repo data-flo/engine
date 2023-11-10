@@ -81,16 +81,16 @@ async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) 
 }
 
 module.exports = async function (args) {
-
-  // const options = {
-  //   entries: "ignore",
-  //   styles: "ignore",
-  //   sharedStrings: "ignore",
-  //   hyperlinks: "ignore",
-  //   worksheets: 'emit',
-  // };
-
-  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
+  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(
+    args.file.getSource(),
+    {
+      entries: "emit",
+      sharedStrings: "cache",
+      hyperlinks: "cache",
+      styles: "cache",
+      worksheets: "emit",
+    },
+  );
 
   const skippedRowIndices = getRowIndices(args.skip);
 
