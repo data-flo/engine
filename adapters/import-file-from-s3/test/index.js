@@ -1,8 +1,10 @@
 const assert = require("node:assert");
 const test = require("node:test");
-const adaptor = require("./index");
+const adaptor = require("../index");
 
 test("import-file-from-s3 adaptor", async (t) => {
+  before(() => console.log('about to run some test'));
+
   await t.test("given an URL, it should download it", async () => {
     assert.rejects(
       adaptor(

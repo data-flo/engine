@@ -1,0 +1,15 @@
+# Used for local development
+version: "3.1"
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./.minio/:/data
+    environment:
+      MINIO_ACCESS_KEY: NNEV9C8ZYRHATNI2MRZ9 # Username
+      MINIO_SECRET_KEY: DgsAUwzoBssqAAa7WxzeBzO4Ty1rloXIFsTZFWXC # Password
+    command: server /data --console-address ":9001"
+
