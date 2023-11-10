@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tap utils/**/*.test.js --reporter classic",
+    "test": "node --test",
     "tap": "tap --reporter classic",
     "build": "node ./bin/generate.js"
   },

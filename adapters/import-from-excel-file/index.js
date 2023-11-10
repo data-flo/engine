@@ -1,8 +1,9 @@
 const ExcelJS = require("exceljs");
 
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
-const parseRange = require("../../utils/spreadsheets/parse-range");
+const parseRange = require("../../utils/spreadsheets/parse-range.js");
+const getRowIndices = require("../../utils/spreadsheets/get-row-indices.js");
 
 function checkRange(worksheetReader, sheetRange) {
   const requiredRange = parseRange(sheetRange);
@@ -36,7 +37,7 @@ function checkRange(worksheetReader, sheetRange) {
   return requiredRange;
 }
 
-async function extractWorksheet(worksheetReader, sheetRange) {
+async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) {
   const dataWriter = await Datatable.create();
 
   let range;
@@ -44,6 +45,10 @@ async function extractWorksheet(worksheetReader, sheetRange) {
   for await (const sheetRow of worksheetReader) {
     if (!range) {
       range = checkRange(worksheetReader, sheetRange);
+    }
+
+    if (skippedRowIndices && skippedRowIndices.has(sheetRow.number)) {
+      continue;
     }
 
     if (sheetRow.number >= range.start.row) {
@@ -87,6 +92,8 @@ module.exports = async function (args) {
 
   const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
 
+  const skippedRowIndices = getRowIndices(args.skip);
+
   let data;
   for await (const worksheetReader of workbookReader) {
     if (workbookReader.model.sheets.length === 0) {
@@ -100,7 +107,7 @@ module.exports = async function (args) {
     }
 
     if (worksheetReader.name === sheetName) {
-      data = await extractWorksheet(worksheetReader, args.range || "A1:");
+      data = await extractWorksheet(worksheetReader, args.range || "A1:", skippedRowIndices);
       break;
     }
   }
