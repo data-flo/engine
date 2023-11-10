@@ -30,7 +30,7 @@ test("find-value-in-list adaptor", async (t) => {
     assert.equal(result.index, 3);
   });
 
-  await t.test("given match case and match diacritics set to true, it should find a text value in a list", async () => {
+  await t.test("given match case and match diacritics set to false, it should find a text value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
@@ -42,26 +42,26 @@ test("find-value-in-list adaptor", async (t) => {
     assert.equal(result.index, 1);
   });
 
-  await t.test("given match case set to false, it should not find a value in a list", async () => {
+  await t.test("given match case set to true, it should not find a value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
         "list": ["Perú", "green", "blue"],
         "pattern": "perú",
-        "match case": false,
+        "match case": true,
       }
     );
     assert.equal(result.value, null);
     assert.equal(result.index, null);
   });
 
-  await t.test("given match diacritics set to false, it should not find a value in a list", async () => {
+  await t.test("given match diacritics set to true, it should not find a value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
         "list": ["Perú", "green", "blue"],
         "pattern": "Peru",
-        "match diacritics": false,
+        "match diacritics": true,
       }
     );
     assert.equal(result.value, null);
