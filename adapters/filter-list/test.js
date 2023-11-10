@@ -12,7 +12,6 @@ test("filter-list adaptor", async (t) => {
       adaptor,
       {
         "list": [ "red", "green", "blue" ],
-        "pattern": "green",
         "filter type": "equals",
         "filter value": "blue",
       },
@@ -21,11 +20,11 @@ test("filter-list adaptor", async (t) => {
     assert.ok(output.complementary, "adaptor should return complementary");
     assert.deepEqual(
       output.values,
-      [ "green", "blue"],
+      ["blue"],
     );
     assert.deepEqual(
       output.complementary,
-      [ "red" ],
+      [ "red", "green" ],
     );
   });
 

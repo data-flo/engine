@@ -1,4 +1,4 @@
-const { FilterTypes } = require("../../enums");
+const { FilterTypes } = require("../../enums.js");
 
 module.exports = {
   "description": "Finds values in a list that match a pattern.",
