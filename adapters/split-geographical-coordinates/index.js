@@ -62,7 +62,6 @@ module.exports = async function (args) {
             row[args["longitude column"]] = longitude;
           }
           else {
-            console.error(row);
             invalidValues.add(rowIdx, query);
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
