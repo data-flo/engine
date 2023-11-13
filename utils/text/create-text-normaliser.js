@@ -2,15 +2,15 @@ function createTextNormaliser(
   matchCase,
   matchDiacritics,
 ) {
-  if (matchCase && matchDiacritics) {
+  if (!matchCase && !matchDiacritics) {
     return (x) => x.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  if (matchCase) {
+  if (!matchCase) {
     return (x) => x.toLowerCase();
   }
 
-  if (matchDiacritics) {
+  if (!matchDiacritics) {
     return (x) => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 

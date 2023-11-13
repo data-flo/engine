@@ -20,6 +20,7 @@ test("join-datatables adaptor", async (t) => {
 "Mouse","GB"
 "Peru","Peru"
 `);
+
   const rightCsvFilePath = await createTmpTextFile(`"code","name"
 "de","Germany"
 "fr","France"
@@ -62,8 +63,8 @@ test("join-datatables adaptor", async (t) => {
         "main column": "Country",
         "other data": createDatatable(rightCsvFilePath),
         "other column": "code",
-        "match case": false,
-        "match diacritics": false,
+        "match case": true,
+        "match diacritics": true,
       },
     );
     assert.ok(output.data, "adaptor should return data");

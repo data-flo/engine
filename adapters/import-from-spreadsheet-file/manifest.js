@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "file",
       "type": "file",
-      "description": "The spreadsheet file in one of the following file formats: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.ods`, `.fods`, `.sylk`, `.html`, `.dif`, `.dbf`, `.rtf`, `.prn`, and `.eth`.",
+      "description": "The spreadsheet file in one of the following file formats: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.ods`, `.fods`, `.sylk`, `.html`, `.dif`, `.dbf`, `.prn`, and `.eth`.",
       "required": true,
     },
     {

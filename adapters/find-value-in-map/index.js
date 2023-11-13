@@ -1,12 +1,15 @@
 const createTextNormaliser = require("../../utils/text/create-text-normaliser.js");
 
 module.exports = function (args) {
-  const textNormaliser = createTextNormaliser(
-    args["match case"],
-    args["match diacritics"],
-  );
-
-  if (args["match case"] || args["match diacritics"]) {
+  if (
+    !args["match case"]
+    ||
+    !args["match diacritics"]
+  ) {
+    const textNormaliser = createTextNormaliser(
+      args["match case"],
+      args["match diacritics"],
+    );
     const queryKey = textNormaliser(args.key);
     for (const [key, value] of args.map.entries()) {
       if (queryKey === textNormaliser(key)) {
@@ -18,12 +21,12 @@ module.exports = function (args) {
   }
   else if (args.map.has(args.key)) {
     return {
-      value: args.map.get(args.key),
+      "value": args.map.get(args.key),
     };
   }
 
   return {
-    value: args["default value"],
+    "value": args["default value"],
   };
 };
 
