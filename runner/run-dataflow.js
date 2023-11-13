@@ -127,7 +127,7 @@ module.exports = async function (
           run.outputs[transformationStepName] = await engine.runAdaptor(transformationStep.adaptor, step.inputs);
         }
         // else if (transformationStep.type === "dataflow") {
-        //   const stepRun = await engine.runDataflow(transformationManifest, step.inputs);
+        //   const stepRun = await engine.runWorkflow(transformationManifest, step.inputs);
         //   if (stepRun.status === "error") {
         //     throw stepRun.error;
         //   }

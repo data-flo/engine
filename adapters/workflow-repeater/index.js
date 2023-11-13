@@ -26,7 +26,7 @@ module.exports = async function (args) {
         workflowInputs[argumentName] = row[columnName];
       }
 
-      const run = await this.runDataflow(workflowManifest, workflowInputs);
+      const run = await this.runWorkflow(workflowManifest, workflowInputs);
 
       for (const [ argumentName, columnName ] of Object.entries(outColumns)) {
         row[columnName] = run.outputs[argumentName];
