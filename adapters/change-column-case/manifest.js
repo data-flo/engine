@@ -1,4 +1,4 @@
-const { LetterCases } = require("../../enums");
+const { LetterCases } = require("../../enums.js");
 
 module.exports = {
   "description": "Converts the case of text values in a datatable column.",
