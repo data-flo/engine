@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 
 // const Filehound = require("filehound");
-const path = require("path");
 
 const runAdaptor = require("./runner/run-adaptor.js");
 const runDataflow = require("./runner/run-dataflow.js");
