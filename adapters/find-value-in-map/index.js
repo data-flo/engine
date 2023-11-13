@@ -2,12 +2,12 @@ const createTextNormaliser = require("../../utils/text/create-text-normaliser.js
 
 module.exports = function (args) {
   if (
-    !args["match case"]
+    !args["case sensitive"]
     ||
     !args["match diacritics"]
   ) {
     const textNormaliser = createTextNormaliser(
-      args["match case"],
+      args["case sensitive"],
       args["match diacritics"],
     );
     const queryKey = textNormaliser(args.key);
