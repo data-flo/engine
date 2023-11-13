@@ -10,23 +10,26 @@ const { uploadFileToMinio } = require("./minio.js");
 const currentFolder = path.resolve(__dirname);
 
 describe("import-file-from-s3 adaptor", async () => {
-  before(async () => {
-
-    const docker = await dockerComposeUp(currentFolder);
-    docker.on("spawn", async () => uploadFileToMinio());
-
+  before(() => {
+    const dockerProcess = dockerComposeUp(currentFolder);
+    dockerProcess.on("close", (code) => {
+      if (code === 0) {
+        uploadFileToMinio();
+      }
+    });
   });
 
-  // it("given an URL, it should download it", () => {
-  //   assert.rejects(
-  //     adaptor(
-  //       {
-  //         "url": "http://192.168.1.99:9000/test/demo.nwk",
-  //       }
-  //     ),
-  //     "Request failed with status code 403",
-  //   );
-  // });
+  it("given an URL, it should download it", () => {
+    assert.rejects(
+      adaptor(
+        {
+          "url": "http://192.168.1.99:9000/test/demo.nwk",
+        }
+      ),
+      "Request failed with status code 403",
+    );
+  });
+
   it("given an URL, it should download it", async () => {
     const output = await adaptor(
       {
@@ -42,9 +45,9 @@ describe("import-file-from-s3 adaptor", async () => {
       "(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);",
     );
   });
-  after(async () => {
-    await dockerComposeDown(currentFolder);
-    console.log("down");
+
+  after(() => {
+    dockerComposeDown(currentFolder);
   });
 
 });

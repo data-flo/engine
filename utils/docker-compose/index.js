@@ -1,17 +1,19 @@
 const { spawn } = require("child_process");
 const fs = require("fs");
 
-async function dockerComposeUp(folderPath) {
+function dockerComposeUp(folderPath) {
   const dockerComposeFilePath = `${folderPath}/docker-compose.yaml`;
   if (fs.existsSync(dockerComposeFilePath)) {
-    const process = await spawn("docker-compose", ["up", "-d"], { cwd: folderPath });
-    return process;
+    const dockerProcessUp = spawn("docker-compose", ["up"], { cwd: folderPath });
+    return dockerProcessUp;
+  }
+  else {
+    console.error("Docker compose file does not exist");
   }
 }
 
-async function dockerComposeDown(folderPath) {
-  const process = await spawn("docker-compose", ["down"], { cwd: folderPath });
-  return process;
-
+function dockerComposeDown(folderPath) {
+  const dockerProcessDown = spawn("docker-compose", ["down"], { cwd: folderPath });
+  return dockerProcessDown;
 }
 module.exports = { dockerComposeUp, dockerComposeDown };
