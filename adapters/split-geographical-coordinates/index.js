@@ -35,10 +35,8 @@ function trackValues() {
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["coordinates column"]);
   const invalidValues = trackValues();
-  let rowIdx = 0;
   const data = await args.data.transformSync(
-    (row) => {
-      rowIdx += 1;
+    (row, context) => {
       if (row[args["coordinates column"]]) {
         const query = row[args["coordinates column"]];
         if (query) {
@@ -62,7 +60,7 @@ module.exports = async function (args) {
             row[args["longitude column"]] = longitude;
           }
           else {
-            invalidValues.add(rowIdx, query);
+            invalidValues.add(context.records, query);
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
             return null;
