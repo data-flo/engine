@@ -90,7 +90,7 @@ async function main() {
 
   const convertedManifest = updateManifestSchema(manifest);
 
-  const outputs = await engine.runDataflow(
+  const outputs = await engine.runWorkflow(
     convertedManifest,
     inputs,
   );

@@ -63,7 +63,7 @@ test("join-datatables adaptor", async (t) => {
         "main column": "Country",
         "other data": createDatatable(rightCsvFilePath),
         "other column": "code",
-        "match case": true,
+        "case sensitive": true,
         "match diacritics": true,
       },
     );

@@ -10,7 +10,7 @@ module.exports = function (args) {
 
   const regexp = makeRegexp(
     textNormaliser(args.pattern),
-    args["match case"],
+    args["case sensitive"],
   );
 
   const values = [];

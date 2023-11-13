@@ -5,7 +5,7 @@ const { spongeCase } = require("sponge-case");
 const { lowerCase } = require("lower-case");
 const { upperCase } = require("upper-case");
 
-const converions = {
+const conversions = {
   camel: changeCase.camelCase,
   capital: changeCase.capitalCase,
   constant: changeCase.constantCase,
@@ -27,17 +27,17 @@ const converions = {
 };
 
 module.exports = async function (args) {
-  const converion = converions[args.case];
-  if (!converion) {
-    const validConverions = Object.keys(converions).map((x) => `\`${x}\``).join(", ");
-    throw new Error(`Invalid case converion. Supported converions are: ${validConverions}`);
+  const conversio = conversions[args.case];
+  if (!conversio) {
+    const validConversions = Object.keys(conversions).map((x) => `\`${x}\``).join(", ");
+    throw new Error(`Invalid case conversion. Supported conversions are: ${validConversions}`);
   }
 
   const data = await args.data.modifyColumnSync(
     args.column,
     (row, context, sourceValue) => {
       if (sourceValue) {
-        return converion(sourceValue);
+        return conversio(sourceValue);
       }
       else {
         return sourceValue;

@@ -1,6 +1,6 @@
-const makeRegexp = require("../../utils/text/make-regexp");
+const makeRegexp = require("../../utils/text/make-regexp.js");
 
-const { EmptyArray } = require("../../utils/constants");
+const { EmptyArray } = require("../../utils/constants/index.js");
 
 module.exports = async function (args) {
   const columnsToKeep = [ ...args["column names"] || EmptyArray ];
@@ -9,7 +9,7 @@ module.exports = async function (args) {
     const regex = makeRegexp(args.pattern);
     for (const column of (await args.data.getColumns())) {
       if (regex.test(column)) {
-        columnsToKeep.add(column);
+        columnsToKeep.push(column);
       }
     }
   }

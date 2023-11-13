@@ -1,12 +1,16 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../utils/testing/unit.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const runAdaptor = require("../../runner/run-adaptor.js");
 
-tap.test("select-columns adaptor", async () => {
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
+
+const adaptor = require("./index.js");
+
+test("select-columns adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -16,7 +20,7 @@ tap.test("select-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and one column, it should return a datatable", async (t) => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -24,8 +28,8 @@ tap.test("select-columns adaptor", async () => {
         "column names": [ "Country" ],
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"Country"
 "de"
@@ -38,7 +42,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given two columns in a datatable, it should return a datatable", async (t) => {
+  await t.test("given two columns in a datatable, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -46,8 +50,8 @@ tap.test("select-columns adaptor", async () => {
         "column names": [ "Country", "id" ],
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"Country","id"
 "de","Bovine"
@@ -60,7 +64,7 @@ tap.test("select-columns adaptor", async () => {
     );
   });
 
-  tap.test("given two columns in a datatable and a pattern, it should return a datatable", async (t) => {
+  await t.test("given two columns in a datatable and a pattern, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -69,31 +73,31 @@ tap.test("select-columns adaptor", async () => {
         "pattern": "date",
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
-      `"id","Country","date a","date b"
-"Bovine","de","Jan 29, 2007","2007-01-28"
-"Gibbon","fr",,
-"Orangutan",,,
-"Gorilla",,,
-"Human","gb",,
-"Mouse","gb",,
+      `"Country","id","date a","date b"
+"de","Bovine","Jan 29, 2007","2007-01-28"
+"fr","Gibbon",,
+,"Orangutan",,
+,"Gorilla",,
+"gb","Human",,
+"gb","Mouse",,
 `
     );
   });
 
-  tap.test("given two columns in a datatable and a pattern, it should return a datatable", async (t) => {
+  await t.test("given two columns in a datatable and a pattern, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column names": [ "Country", "id" ],
+        "column names": [ "id", "Country" ],
         "pattern": "/date?a?/",
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","date a","date b"
 "Bovine","de","Jan 29, 2007","2007-01-28"
