@@ -1,10 +1,42 @@
 // const stopwatch = require("../../utils/stopwatch.js");
+const { Datatable } = require("../../types/datatable.js");
+
+function trackValues() {
+  return {
+    rows: {},
+
+    add(rowIdx, query) {
+      const { count = 0, first = rowIdx } = this.rows[query] || {};
+      this.rows[query] = {
+        count: count + 1,
+        first,
+      };
+    },
+
+    _getRows() {
+      return Object
+        .entries(this.rows)
+        .map(([
+          value,
+          { first, count },
+        ]) => ({
+          "Value": value,
+          "First row": first,
+          "Row count": count,
+        }));
+    },
+
+    async getDatatable() {
+      return Datatable.createFromIterable(this._getRows());
+    },
+  };
+}
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["coordinates column"]);
-  const invalidValues = new Set();
+  const invalidValues = trackValues();
   const data = await args.data.transformSync(
-    (row) => {
+    (row, context) => {
       if (row[args["coordinates column"]]) {
         const query = row[args["coordinates column"]];
         if (query) {
@@ -12,7 +44,7 @@ module.exports = async function (args) {
           const parts = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9]+(-?\d+[\.,]?\d*)\s?([EW]?)/i);
           // stopwatch.stop("query.match")
           if (parts) {
-            const [ _, lat, north, long, east ] = parts;
+            const [_, lat, north, long, east] = parts;
             let latitude = lat.replace(",", ".");
             let longitude = long.replace(",", ".");
 
@@ -28,10 +60,9 @@ module.exports = async function (args) {
             row[args["longitude column"]] = longitude;
           }
           else {
-            console.error(row)
+            invalidValues.add(context.records, query);
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
-            invalidValues.add(query);
             return null;
           }
         }
@@ -43,7 +74,7 @@ module.exports = async function (args) {
 
   return {
     "data": data,
-    "invalid values": invalidValues,
+    "invalid values": await invalidValues.getDatatable(),
   };
 };
 

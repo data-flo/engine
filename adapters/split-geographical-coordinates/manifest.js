@@ -48,8 +48,8 @@ module.exports = {
     },
     {
       "name": "invalid values",
-      "type": "list",
-      "description": "A list of invalid coordinates.",
+      "type": "datatable",
+      "description": "A datatable with invalid coordinate values, the row in which they first appear and the number of times they appear.",
     },
   ],
 };
