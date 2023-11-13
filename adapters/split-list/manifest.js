@@ -18,14 +18,14 @@ module.exports = {
     {
       "name": "append",
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": false,
       "description": "Whether to append the separator value to the first list.\nIf unspecified, defaults to `False`.",
     },
     {
       "name": "prepend",
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": false,
       "description": "Whether to prepend the separator value to the second list.\nIf unspecified, defaults to `False`.",
     },
