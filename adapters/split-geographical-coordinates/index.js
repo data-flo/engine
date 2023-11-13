@@ -1,11 +1,44 @@
 // const stopwatch = require("../../utils/stopwatch.js");
 const { Datatable } = require("../../types/datatable.js");
 
+function trackValues() {
+  return {
+    rows: {},
+
+    add(rowIdx, query) {
+      const { count = 0, first = rowIdx } = this.rows[query] || {};
+      this.rows[query] = {
+        count: count + 1,
+        first,
+      };
+    },
+
+    _getRows() {
+      return Object
+        .entries(this.rows)
+        .map(([
+          value,
+          { first, count },
+        ]) => ({
+          "Value": value,
+          "First row": first,
+          "Row count": count,
+        }));
+    },
+
+    async getDatatable() {
+      return Datatable.createFromIterable(this._getRows());
+    },
+  };
+}
+
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["coordinates column"]);
-  const invalidRows = new Set();
+  const invalidValues = trackValues();
+  let rowIdx = 0;
   const data = await args.data.transformSync(
     (row) => {
+      rowIdx += 1;
       if (row[args["coordinates column"]]) {
         const query = row[args["coordinates column"]];
         if (query) {
@@ -30,7 +63,7 @@ module.exports = async function (args) {
           }
           else {
             console.error(row);
-            invalidRows.add(row);
+            invalidValues.add(rowIdx, query);
             row[args["latitude column"]] = "";
             row[args["longitude column"]] = "";
             return null;
@@ -44,7 +77,7 @@ module.exports = async function (args) {
 
   return {
     "data": data,
-    "invalid rows": await Datatable.createFromIterable(invalidRows),
+    "invalid values": await invalidValues.getDatatable(),
   };
 };
 

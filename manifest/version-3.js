@@ -371,8 +371,6 @@ module.exports = function (doc) {
   renameAdaptor("update-microreact-project", "export-to-microreact-project");
   renameAdaptorInput("export-to-microreact-project", "name", "project name");
 
-  renameAdaptorOutput("split-geographical-coordinates", "invalid values", "invalid rows");
-
   // renameAdaptor("", "new");
   // renameAdaptorInput("new", "", "");
   // renameAdaptorOutput("new", "", "");

@@ -47,9 +47,9 @@ module.exports = {
       "description": "A datatable with the latitude & longitude values added.",
     },
     {
-      "name": "invalid rows",
+      "name": "invalid values",
       "type": "datatable",
-      "description": "A datatable of the rows containing invalid coordinates.",
+      "description": "A datatable with invalid coordinate values, where they appear first and the number of times they appear",
     },
   ],
 };
