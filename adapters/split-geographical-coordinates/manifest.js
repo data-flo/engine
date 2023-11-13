@@ -49,7 +49,7 @@ module.exports = {
     {
       "name": "invalid values",
       "type": "datatable",
-      "description": "A datatable with invalid coordinate values, where they appear first and the number of times they appear",
+      "description": "A datatable with invalid coordinate values, the row in which they first appear and the number of times they appear.",
     },
   ],
 };
