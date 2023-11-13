@@ -16,7 +16,8 @@ module.exports = function (args) {
   const values = [];
   const complementary = [];
   for (const item of args.list) {
-    if (predicate(textNormaliser(item))) {
+    const condition = predicate(textNormaliser(item));
+    if (condition) {
       values.push(item);
     }
     else {

@@ -33,31 +33,31 @@ test("filter-list adaptor", async (t) => {
       adaptor,
       {
         "list": [ "red", "green", "blue", "yellow" ],
-        "pattern": "/ree?/",
-        "filter type": "equals",
-        "filter value": "blue",
+        "filter type": "regex",
+        "filter value": "re?",
+        "match case": "false",
       },
     );
     assert.ok(output.values, "adaptor should return values");
     assert.ok(output.complementary, "adaptor should return complementary");
     assert.deepEqual(
       output.values,
-      [ "red", "green", "blue" ],
+      [ "red", "green" ],
     );
     assert.deepEqual(
       output.complementary,
-      [ "yellow" ],
+      [ "blue", "yellow"],
     );
   });
 
-  await t.test("given match case and match diacritics set to true, it should return 4 elements", async () => {
+  await t.test("given match case as false and match diacritics set to true, it should return 4 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
-        "filter type": "not-number",
-        "match case": true,
+        "filter type": "regex",
+        "filter value": "peru",
+        "match case": false,
         "match diacritics": true,
       },
     );
@@ -73,15 +73,14 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match case set to true, it should return 2 elements", async () => {
+  await t.test("given match case set to false, it should return 2 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
-        "filter type": "excludes",
-        "filter value": "",
-        "match case": true,
+        "filter type": "regex",
+        "filter value": "peru",
+        "match case": false,
         "match diacritics": false,
       },
     );
@@ -102,11 +101,10 @@ test("filter-list adaptor", async (t) => {
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
-        "match case": false,
+        "match case": true,
         "match diacritics": true,
-        "filter type": "excludes",
-        "filter value": "",
+        "filter type": "regex",
+        "filter value": "peru",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -121,15 +119,14 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match case and match diacritics set to false, it should return 1 element", async () => {
+  await t.test("given match case set to true and match diacritics set to false, it should return 1 element", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
-        "filter type": "excludes",
-        "filter value": "",
-        "match case": false,
+        "filter type": "regex",
+        "filter value": "peru",
+        "match case": true,
         "match diacritics": false,
       },
     );
