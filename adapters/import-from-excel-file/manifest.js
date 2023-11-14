@@ -24,7 +24,7 @@ module.exports = {
     {
       "name": "skip",
       "type": "list",
-      "description": "A list of row numbers to be ignored.\nIf unspecified, then all rows in the range will be imported.",
+      "description": "A list of row numbers from the sheet to be ignored.\nIf unspecified, then all rows in the range will be imported.\nThe row containing the headers cannot be skipped.",
       "required": false,
     },
   ],
