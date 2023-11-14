@@ -58,11 +58,6 @@ module.exports = {
   ],
   "output": [
     {
-      "name": "data",
-      "type": "datatable",
-      "description": "The data exported to the Google Sheets spreadsheet.",
-    },
-    {
       "name": "updated row ids",
       "type": "list",
       "description": "A list of existing row IDs which have been updated.",
@@ -76,6 +71,11 @@ module.exports = {
       "name": "skipped row ids",
       "type": "list",
       "description": "A list of row IDs which in `data` which are missing from the Google Sheets spreadsheet when `append rows` is set to `False`.",
+    },
+    {
+      "name": "appended columns",
+      "type": "list",
+      "description": "A list of columns appended to the Google Sheets spreadsheet when `append columns` is set to `True`.",
     },
   ],
 };

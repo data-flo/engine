@@ -9,6 +9,7 @@ module.exports = async function (
   appendColumns,
 ) {
   const cellUpdates = [];
+  const appendedColumns = [];
   const updatedIds = new Set();
   const createdIds = new Set();
   const skippedIds = new Set();
@@ -22,6 +23,7 @@ module.exports = async function (
       columnsMapping.set(column, index);
     }
     else if (appendColumns) {
+      appendedColumns.push(column);
       columnsMapping.set(column, numberOfColumns);
       cellUpdates.push([0, numberOfColumns, column]);
       numberOfColumns += 1;
@@ -66,5 +68,6 @@ module.exports = async function (
     Array.from(updatedIds),
     Array.from(createdIds),
     Array.from(skippedIds),
+    appendedColumns,
   ];
 };
