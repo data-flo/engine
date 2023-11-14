@@ -1,17 +1,17 @@
 const crypto = require("crypto");
 
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
-  const columns = await args.data.getColumns();
-  const dataWriter = await Datatable.create({ columns });
-  const duplicatesWriter = await Datatable.create({ columns });
+  const allColumns = await args.data.getColumns();
+  const dataWriter = await Datatable.create({ "columns": allColumns });
+  const duplicatesWriter = await Datatable.create({ "columns": allColumns });
 
   const hashes = new Set();
-
+  const columns = args["column names"] || allColumns;
   for await (const row of args.data.getReader()) {
     const hash = crypto.createHash("md5");
-    for (const columnName of (args["column names"] || columns)) {
+    for (const columnName of columns) {
       if (args["case sensitive"] || typeof row[columnName] !== "string") {
         hash.update(row[columnName]);
       }

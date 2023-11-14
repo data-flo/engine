@@ -21,7 +21,7 @@ module.exports = {
       "type": "boolean",
       "description": "When set to `True`, lowercase and uppercase letters are treated as different. When set to `False`, lowercase and uppercase letters are treated as equivalent.\nIf unspecified, defaults to `False`",
       "required": false,
-      "default": true,
+      "default": false,
     },
   ],
   "output": [
