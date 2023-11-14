@@ -1,27 +1,27 @@
 const assert = require("node:assert");
 const path = require("path");
-const { describe, it, before, after } = require("node:test");
+const { before, test } = require("node:test");
 const adaptor = require("../index.js");
 const { compareFile } = require("../../../utils/testing/unit.js");
 
-const { dockerComposeUp, dockerComposeDown } = require("../../../utils/docker-compose/index.js");
+const dockerComposeUp = require("../../../utils/docker-compose/index.js");
 const { uploadFileToMinio } = require("./minio.js");
 
 const currentFolder = path.resolve(__dirname);
 
-describe("import-file-from-s3 adaptor", () => {
-  before(() => {
-    const dockerProcess = dockerComposeUp(currentFolder);
-    dockerProcess.on("close", (code) => {
-      if (code === 0) {
-        uploadFileToMinio();
-      }
-    });
-
+test("import-file-from-s3 adaptor", async (t) => {
+  before(async () => {
+    const dockerProcess = await dockerComposeUp(currentFolder);
+    // await uploadFileToMinio();
+    // console.log("Before block");
   });
 
-  it("given an URL, it should download it", () => {
-    assert.rejects(
+  // after(() => {
+  //   dockerComposeDown(currentFolder);
+  // });
+
+  await t.test("given an URL, it should download it", async () => {
+    await assert.rejects(
       adaptor(
         {
           "url": "http://192.168.1.99:9000/test/demo.nwk",
@@ -31,7 +31,7 @@ describe("import-file-from-s3 adaptor", () => {
     );
   });
 
-  it("given an URL, it should download it", async () => {
+  await t.test("given an URL, it should download it", async () => {
     const output = await adaptor(
       {
         "url": "http://localhost:9000/test/output",
@@ -45,10 +45,6 @@ describe("import-file-from-s3 adaptor", () => {
       output.file.getSource(),
       "(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);",
     );
-  });
-
-  after(() => {
-    dockerComposeDown(currentFolder);
   });
 
 });

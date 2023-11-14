@@ -15,7 +15,7 @@ function uploadFileToMinio() {
   const file = `${currentFolder}/output`;
 
   minioClient.makeBucket("test", "us-east-1", (err) => {
-    if (err) return console.log("There is an error");
+    if (err) return console.log(err);
 
     const metaData = {
       "Content-Type": "application/octet-stream",
