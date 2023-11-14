@@ -37,7 +37,11 @@ function checkRange(worksheetReader, sheetRange) {
   return requiredRange;
 }
 
-async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) {
+async function extractWorksheet(
+  worksheetReader,
+  sheetRange,
+  skippedRowIndices,
+) {
   const dataWriter = await Datatable.create();
 
   let range;
