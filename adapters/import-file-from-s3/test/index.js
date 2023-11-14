@@ -47,7 +47,7 @@ describe("import-file-from-s3 adaptor", () => {
     );
   });
 
-  after(async () => {
+  after(() => {
     dockerComposeDown(currentFolder);
   });
 
