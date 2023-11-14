@@ -9,7 +9,7 @@ const { uploadFileToMinio } = require("./minio.js");
 
 const currentFolder = path.resolve(__dirname);
 
-describe("import-file-from-s3 adaptor", async () => {
+describe("import-file-from-s3 adaptor", () => {
   before(() => {
     const dockerProcess = dockerComposeUp(currentFolder);
     dockerProcess.on("close", (code) => {
@@ -17,6 +17,7 @@ describe("import-file-from-s3 adaptor", async () => {
         uploadFileToMinio();
       }
     });
+
   });
 
   it("given an URL, it should download it", () => {
@@ -46,7 +47,7 @@ describe("import-file-from-s3 adaptor", async () => {
     );
   });
 
-  after(() => {
+  after(async () => {
     dockerComposeDown(currentFolder);
   });
 
