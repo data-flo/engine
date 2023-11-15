@@ -37,7 +37,11 @@ function checkRange(worksheetReader, sheetRange) {
   return requiredRange;
 }
 
-async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) {
+async function extractWorksheet(
+  worksheetReader,
+  sheetRange,
+  skippedRowIndices,
+) {
   const dataWriter = await Datatable.create();
 
   let range;
@@ -62,7 +66,12 @@ async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) 
         const dataRow = {};
         for (let index = range.start.col; index <= range.end.col; index++) {
           const columnNameIndex = index - range.start.col;
-          dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).text;
+          if (sheetRow.getCell(index).value instanceof Date) {
+            dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).value.toISOString();
+          }
+          else {
+            dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).text;
+          }
         }
         dataWriter.write(dataRow);
       }
@@ -81,16 +90,16 @@ async function extractWorksheet(worksheetReader, sheetRange, skippedRowIndices) 
 }
 
 module.exports = async function (args) {
-
-  // const options = {
-  //   entries: "ignore",
-  //   styles: "ignore",
-  //   sharedStrings: "ignore",
-  //   hyperlinks: "ignore",
-  //   worksheets: 'emit',
-  // };
-
-  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(args.file.getSource());
+  const workbookReader = new ExcelJS.stream.xlsx.WorkbookReader(
+    args.file.getSource(),
+    {
+      entries: "emit",
+      sharedStrings: "cache",
+      hyperlinks: "cache",
+      styles: "cache",
+      worksheets: "emit",
+    },
+  );
 
   const skippedRowIndices = getRowIndices(args.skip);
 
