@@ -66,7 +66,12 @@ async function extractWorksheet(
         const dataRow = {};
         for (let index = range.start.col; index <= range.end.col; index++) {
           const columnNameIndex = index - range.start.col;
-          dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).text;
+          if (sheetRow.getCell(index).value instanceof Date) {
+            dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).value.toISOString();
+          }
+          else {
+            dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).text;
+          }
         }
         dataWriter.write(dataRow);
       }
