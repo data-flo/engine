@@ -5,12 +5,16 @@ const contentDisposition = require("content-disposition");
 
 const { EmptyObject } = require("../constants");
 
-module.exports = async function (url) {
+module.exports = async function (
+  url,
+  requestHeaders,
+) {
   const { statusCode, data, headers } = await curly(
     url,
     {
       curlyStreamResponse: true,
       FOLLOWLOCATION: true,
+      HTTPHEADER: requestHeaders || undefined,
     },
   );
 
