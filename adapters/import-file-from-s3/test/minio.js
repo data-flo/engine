@@ -23,7 +23,6 @@ function uploadFileToMinio() {
 
     minioClient.fPutObject("test", "output", file, metaData, (error, etag) => {
       if (err) return console.log(error);
-      console.log("Put file in bucket");
     });
   });
 }

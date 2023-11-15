@@ -12,8 +12,7 @@ const currentFolder = path.resolve(__dirname);
 test("import-file-from-s3 adaptor", async (t) => {
   before(async () => {
     const dockerProcess = await dockerComposeUp(currentFolder);
-    // await uploadFileToMinio();
-    // console.log("Before block");
+    await uploadFileToMinio();
   });
 
   // after(() => {
@@ -48,11 +47,3 @@ test("import-file-from-s3 adaptor", async (t) => {
   });
 
 });
-// create a shell script for testing for specific adaptors
-// create test folder
-// put docker compose in the folder
-// change test.js file to call dock up and dock down, child process.spawn(docker compose up) to call out docker compose
-// test file goes to index.js
-// docker file will be in test folder
-// utils file will be in utils folder
-// in the utils file we have docker up and docker down and we need to check if a docker-compose file exists
