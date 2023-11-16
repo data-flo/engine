@@ -16,7 +16,7 @@ module.exports = async function (args) {
     secretKey: args["secret key"],
   });
   let file;
-  if (args["access key"] === undefined || args["secret key"] === undefined) {
+  if (!args["access key"] && !args["secret key"]) {
     const response = await fetch(
       args.url,
     );
