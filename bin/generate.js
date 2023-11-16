@@ -38,6 +38,11 @@ async function main() {
   for (const item of list) {
     console.info(item.name);
     directory[item.name] = item.manifest;
+    for (const spec of item.manifest.input) {
+      if (typeof spec.required !== "boolean") {
+        throw new Error(`required is missing from ${spec.name}`);
+      }
+    }
     directory[item.name].name = item.name;
     executables.push(`module.exports["${item.name}"] = require("./adapters/${item.name}/index.js");`);
   }
