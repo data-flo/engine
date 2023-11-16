@@ -24,8 +24,11 @@ services:
     entrypoint: >
       /bin/sh -c "
       /usr/bin/mc alias set myminio http://minio:9000 NNEV9C8ZYRHATNI2MRZ9 DgsAUwzoBssqAAa7WxzeBzO4Ty1rloXIFsTZFWXC;
-      /usr/bin/mc mb myminio/test;
-      echo '(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);' | /usr/bin/mc pipe myminio/test/output;
+      /usr/bin/mc mb myminio/private-bucket;
+      echo '(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);' | /usr/bin/mc pipe myminio/private-bucket/output;
+      /usr/bin/mc mb myminio/public-bucket;
+      /usr/bin/mc anonymous set public myminio/public-bucket;
+      echo '(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);' | /usr/bin/mc pipe myminio/public-bucket/output;
       exit 0;
       "
 
