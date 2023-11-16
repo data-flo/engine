@@ -1,5 +1,5 @@
-const test = require("node:test");
 const assert = require("node:assert");
+const test = require("node:test");
 
 const runAdaptor = require("../../runner/run-adaptor.js");
 
@@ -11,19 +11,20 @@ test("filter-list adaptor", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
-        list: [ "red", "green", "blue" ],
-        pattern: "green",
+        "list": [ "red", "green", "blue" ],
+        "filter type": "equals",
+        "filter value": "blue",
       },
     );
     assert.ok(output.values, "adaptor should return values");
     assert.ok(output.complementary, "adaptor should return complementary");
     assert.deepEqual(
       output.values,
-      [ "green" ],
+      ["blue"],
     );
     assert.deepEqual(
       output.complementary,
-      [ "red", "blue" ],
+      [ "red", "green" ],
     );
   });
 
@@ -31,8 +32,10 @@ test("filter-list adaptor", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
-        list: [ "red", "green", "blue" ],
-        pattern: "/ree?/",
+        "list": [ "red", "green", "blue", "yellow" ],
+        "filter type": "regex",
+        "filter value": "re?",
+        "case sensitive": "false",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -43,18 +46,19 @@ test("filter-list adaptor", async (t) => {
     );
     assert.deepEqual(
       output.complementary,
-      [ "blue" ],
+      [ "blue", "yellow"],
     );
   });
 
-  await t.test("given case sensitive and match diacritics set to false, it should return 4 elements", async () => {
+  await t.test("given case sensitive as false and match diacritics set to true, it should return 4 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
+        "filter type": "regex",
+        "filter value": "peru",
         "case sensitive": false,
-        "match diacritics": false,
+        "match diacritics": true,
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -69,14 +73,15 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match match diacritics to true, it should return 2 elements", async () => {
+  await t.test("given case sensitive set to false, it should return 2 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
+        "filter type": "regex",
+        "filter value": "peru",
         "case sensitive": false,
-        "match diacritics": true,
+        "match diacritics": false,
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -91,14 +96,15 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given case sensitive set to true, it should return 2 elements", async () => {
+  await t.test("given match diacritics set to true, it should return 2 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
         "case sensitive": true,
-        "match diacritics": false,
+        "match diacritics": true,
+        "filter type": "regex",
+        "filter value": "peru",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -113,14 +119,15 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given case sensitive and match diacritics set to true, it should return 1 element", async () => {
+  await t.test("given case sensitive set to true and match diacritics set to false, it should return 1 element", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "pattern": "peru",
+        "filter type": "regex",
+        "filter value": "peru",
         "case sensitive": true,
-        "match diacritics": true,
+        "match diacritics": false,
       },
     );
     assert.ok(output.values, "adaptor should return values");

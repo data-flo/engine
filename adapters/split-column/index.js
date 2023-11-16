@@ -12,7 +12,7 @@ module.exports = async function (args) {
     columns.splice(columns.indexOf(args["column name"]), 1);
   }
 
-  const regex = makeRegexp(args.separator, false, true);
+  const regex = makeRegexp(args.separator, true, true);
 
   const data = await args.data.transformSync(
     (row) => {

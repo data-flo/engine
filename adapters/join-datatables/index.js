@@ -9,7 +9,7 @@ function createMap(
   matchCase,
   matchDiacritics,
 ) {
-  if (!matchCase || !matchDiacritics) {
+  if (matchCase || matchDiacritics) {
     return new NormalisedMap(createTextNormaliser(matchCase, matchDiacritics));
   }
   return new Map();
@@ -19,7 +19,7 @@ function createSet(
   matchCase,
   matchDiacritics,
 ) {
-  if (!matchCase || !matchDiacritics) {
+  if (matchCase || matchDiacritics) {
     return new NormalisedSet(createTextNormaliser(matchCase, matchDiacritics));
   }
   return new Set();
@@ -120,6 +120,9 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   dataWriter.end();
   unmatchedWriter.end();
+
+  // const data = await dataWriter.finalise();
+  // const unmatched = await unmatchedWriter.finalise();
 
   const [ data, unmatched ] = await Promise.all([
     dataWriter.finalise(),

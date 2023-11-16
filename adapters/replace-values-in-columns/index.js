@@ -1,4 +1,4 @@
-const makeRegexp = require("../../utils/text/make-regexp.js");
+const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(Array.from(args.columns.keys));

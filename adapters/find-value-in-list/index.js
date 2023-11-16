@@ -4,7 +4,7 @@ const createTextNormaliser = require("../../utils/text/create-text-normaliser.js
 
 module.exports = function (args) {
   const textNormaliser = createTextNormaliser(
-    true,
+    false,
     args["match diacritics"],
   );
 

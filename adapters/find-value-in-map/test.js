@@ -75,13 +75,13 @@ test("find-value-in-map adaptor", async (t) => {
     assert.equal(result.value, "");
   });
 
-  await t.test("given match diacritics set to true, it should not find a value in a list", async () => {
+  await t.test("given match diacritics set to false, it should not find a value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
         "map": map,
         "key": "Peru",
-        "match diacritics": true,
+        "match diacritics": false,
       }
     );
     assert.equal(result.value, "");

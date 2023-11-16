@@ -21,12 +21,12 @@ module.exports = function (args) {
   }
   else if (args.map.has(args.key)) {
     return {
-      "value": args.map.get(args.key),
+      value: args.map.get(args.key),
     };
   }
 
   return {
-    "value": args["default value"],
+    value: args["default value"],
   };
 };
 

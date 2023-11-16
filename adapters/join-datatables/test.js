@@ -20,7 +20,6 @@ test("join-datatables adaptor", async (t) => {
 "Mouse","GB"
 "Peru","Peru"
 `);
-
   const rightCsvFilePath = await createTmpTextFile(`"code","name"
 "de","Germany"
 "fr","France"

@@ -1,22 +1,23 @@
-const makeRegexp = require("../../utils/text/make-regexp.js");
+const makePredicate = require("../../utils/expressions/make-predicate.js");
 
 const createTextNormaliser = require("../../utils/text/create-text-normaliser.js");
 
 module.exports = function (args) {
   const textNormaliser = createTextNormaliser(
-    true,
+    false,
     args["match diacritics"],
   );
-
-  const regexp = makeRegexp(
-    textNormaliser(args.pattern),
+  const predicate = makePredicate(
+    args["filter type"],
+    args["filter value"],
     args["case sensitive"],
   );
 
   const values = [];
   const complementary = [];
   for (const item of args.list) {
-    if (regexp.test(textNormaliser(item))) {
+    const condition = predicate(textNormaliser(item));
+    if (condition) {
       values.push(item);
     }
     else {
