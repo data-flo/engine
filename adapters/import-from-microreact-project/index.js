@@ -34,7 +34,10 @@ module.exports = async function (args, context) {
   const mainDataset = getMainDataset(info);
   const dataFile = info.files[mainDataset.file];
 
-  const stream = await getRequestAsStream(dataFile.url);
+  const stream = await getRequestAsStream(
+    dataFile.url,
+    [ `referer: ${args.project}` ],
+  );
 
   const datatableWriter = await Datatable.create();
 

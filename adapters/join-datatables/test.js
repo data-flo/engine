@@ -62,8 +62,8 @@ test("join-datatables adaptor", async (t) => {
         "main column": "Country",
         "other data": createDatatable(rightCsvFilePath),
         "other column": "code",
-        "match case": false,
-        "match diacritics": false,
+        "case sensitive": true,
+        "match diacritics": true,
       },
     );
     assert.ok(output.data, "adaptor should return data");

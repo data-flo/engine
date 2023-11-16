@@ -57,7 +57,7 @@ module.exports = async function adaptorJoinDatatable(args) {
 
   // Read other table and store its rows
   const rightRowsMap = createMap(
-    args["match case"],
+    args["case sensitive"],
     args["match diacritics"],
   );
 
@@ -83,7 +83,7 @@ module.exports = async function adaptorJoinDatatable(args) {
   const isFullJoin = (args["join type"] === "Full Join");
   const isLeftJoin = (args["join type"] === "Left Join");
   const matchedValues = createSet(
-    args["match case"],
+    args["case sensitive"],
     args["match diacritics"],
   );
 

@@ -35,7 +35,7 @@ test("filter-list adaptor", async (t) => {
         "list": [ "red", "green", "blue", "yellow" ],
         "filter type": "regex",
         "filter value": "re?",
-        "match case": "false",
+        "case sensitive": "false",
       },
     );
     assert.ok(output.values, "adaptor should return values");
@@ -50,14 +50,14 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match case as false and match diacritics set to true, it should return 4 elements", async () => {
+  await t.test("given case sensitive as false and match diacritics set to true, it should return 4 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "filter type": "regex",
         "filter value": "peru",
-        "match case": false,
+        "case sensitive": false,
         "match diacritics": true,
       },
     );
@@ -73,14 +73,14 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match case set to false, it should return 2 elements", async () => {
+  await t.test("given case sensitive set to false, it should return 2 elements", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "filter type": "regex",
         "filter value": "peru",
-        "match case": false,
+        "case sensitive": false,
         "match diacritics": false,
       },
     );
@@ -101,7 +101,7 @@ test("filter-list adaptor", async (t) => {
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
-        "match case": true,
+        "case sensitive": true,
         "match diacritics": true,
         "filter type": "regex",
         "filter value": "peru",
@@ -119,14 +119,14 @@ test("filter-list adaptor", async (t) => {
     );
   });
 
-  await t.test("given match case set to true and match diacritics set to false, it should return 1 element", async () => {
+  await t.test("given case sensitive set to true and match diacritics set to false, it should return 1 element", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ "Perú", "Peru", "perú", "peru" ],
         "filter type": "regex",
         "filter value": "peru",
-        "match case": true,
+        "case sensitive": true,
         "match diacritics": false,
       },
     );

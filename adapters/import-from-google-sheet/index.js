@@ -1,18 +1,12 @@
-const rateLimit = require("../../utils/async/rate-limit");
-const getSpreadsheetData = require("../../utils/google-api/get-spreadsheet-data");
-const spreadsheetUrlToId = require("../../utils/google-api/spreadsheet-url-to-id");
-const getClient = require("../../utils/google-api/get-glient");
+const rateLimit = require("../../utils/async/rate-limit.js");
 
-const { Datatable } = require("../../types/datatable");
+const getSpreadsheetData = require("../../utils/google-api/get-spreadsheet-data.js");
+const spreadsheetUrlToId = require("../../utils/google-api/spreadsheet-url-to-id.js");
+const getClient = require("../../utils/google-api/get-glient.js");
 
-const generateRows = require("./utils/generate-rows");
-
-function getSkippedRowIndices(skip) {
-  if (skip) {
-    return new Set(skip.map((x) => parseInt(x, 10)));
-  }
-  return undefined;
-}
+const getRowIndices = require("../../utils/spreadsheets/get-row-indices.js");
+const { Datatable } = require("../../types/datatable.js");
+const generateRows = require("./utils/generate-rows.js");
 
 module.exports = async function (args) {
   await rateLimit();
@@ -26,7 +20,7 @@ module.exports = async function (args) {
     args.range,
   );
 
-  const skippedRowIndices = getSkippedRowIndices(args.skip);
+  const skippedRowIndices = getRowIndices(args.skip);
 
   const dataStream = generateRows(
     spreadsheetData,

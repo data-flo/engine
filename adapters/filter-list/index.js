@@ -10,7 +10,7 @@ module.exports = function (args) {
   const predicate = makePredicate(
     args["filter type"],
     args["filter value"],
-    args["match case"],
+    args["case sensitive"],
   );
 
   const values = [];

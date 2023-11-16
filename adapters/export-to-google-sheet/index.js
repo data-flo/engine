@@ -1,10 +1,10 @@
-const getSpreadsheetData = require("../../utils/google-api/get-spreadsheet-data");
-const spreadsheetUrlToId = require("../../utils/google-api/spreadsheet-url-to-id");
-const getClient = require("../../utils/google-api/get-glient");
+const getSpreadsheetData = require("../../utils/google-api/get-spreadsheet-data.js");
+const spreadsheetUrlToId = require("../../utils/google-api/spreadsheet-url-to-id.js");
+const getClient = require("../../utils/google-api/get-glient.js");
 
-const checkSheetSize = require("./utils/check-sheet-size");
-const mergeData = require("./utils/merge-data");
-const updateSheetData = require("./utils/update-sheet-data");
+const checkSheetSize = require("./utils/check-sheet-size.js");
+const mergeData = require("./utils/merge-data.js");
+const updateSheetData = require("./utils/update-sheet-data.js");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["id column"]);
@@ -18,7 +18,13 @@ module.exports = async function (args) {
     args["sheet name"],
   );
 
-  const [ cellUpdates, updatedRowIds, createdRowId, skippedRowIds ] = await mergeData(
+  const [
+    cellUpdates,
+    updatedRowIds,
+    createdRowId,
+    skippedRowIds,
+    appendedColumns,
+  ] = await mergeData(
     spreadsheetData.sheetValues,
     args.data,
     args["id column"],
@@ -43,11 +49,11 @@ module.exports = async function (args) {
   );
 
   return {
-    "data": args.data,
     "updated cells": updated.totalUpdatedCells || 0,
     "updated row ids": updatedRowIds,
     "created row ids": createdRowId,
     "skipped row ids": skippedRowIds,
+    "appended columns": appendedColumns,
   };
 };
 

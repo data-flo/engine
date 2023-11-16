@@ -130,7 +130,7 @@ module.exports = function (doc) {
 
   changeAdaptorInput("join-datatables", "columns", (binding) => {
     if (binding.type === "value") {
-      binding.value = binding.value.map(([ key ]) => key);
+      binding.value = binding.value.map(([key]) => key);
     }
   });
   changeAdaptorInput("join-datatables", "inner join", (binding) => {

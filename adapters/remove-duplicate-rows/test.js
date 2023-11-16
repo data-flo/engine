@@ -1,12 +1,15 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../utils/testing/unit.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const runAdaptor = require("../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
 
-tap.test("remove-duplicate-rows adaptor", async () => {
+const adaptor = require("./index.js");
+
+test("remove-duplicate-rows adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","country","year"
 "Human","gb","2000"
 "Gibbon","fr",
@@ -16,7 +19,7 @@ tap.test("remove-duplicate-rows adaptor", async () => {
 "HUMAN","gb","2000"
 `);
 
-  tap.test("given id column, it should return the same datatable", async () => {
+  await t.test("given id column, it should return the same datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -24,10 +27,11 @@ tap.test("remove-duplicate-rows adaptor", async () => {
         "column names": [
           "id",
         ],
+        "case sensitive": true,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","country","year"
 "Human","gb","2000"
@@ -40,7 +44,7 @@ tap.test("remove-duplicate-rows adaptor", async () => {
     );
   });
 
-  tap.test("given no columns and case sensitive set to false, it should return 5 rows", async () => {
+  await t.test("given no columns and case sensitive set to false, it should return 5 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -48,8 +52,8 @@ tap.test("remove-duplicate-rows adaptor", async () => {
         "case sensitive": false,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","country","year"
 "Human","gb","2000"
@@ -61,7 +65,7 @@ tap.test("remove-duplicate-rows adaptor", async () => {
     );
   });
 
-  tap.test("given country column, it should return 4 rows", async () => {
+  await t.test("given country column, it should return 4 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -69,10 +73,11 @@ tap.test("remove-duplicate-rows adaptor", async () => {
         "column names": [
           "country",
         ],
+        "case sensitive": true,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","country","year"
 "Human","gb","2000"
@@ -83,7 +88,7 @@ tap.test("remove-duplicate-rows adaptor", async () => {
     );
   });
 
-  tap.test("given country column and case sensitive set to false, it should return 3 rows", async () => {
+  await t.test("given country column and case sensitive set to false, it should return 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -94,8 +99,8 @@ tap.test("remove-duplicate-rows adaptor", async () => {
         "case sensitive": false,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","country","year"
 "Human","gb","2000"
@@ -105,7 +110,7 @@ tap.test("remove-duplicate-rows adaptor", async () => {
     );
   });
 
-  tap.test("given id and country columns, and case sensitive set to false, it should return 5 rows", async () => {
+  await t.test("given id and country columns, and case sensitive set to false, it should return 5 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -117,8 +122,8 @@ tap.test("remove-duplicate-rows adaptor", async () => {
         "case sensitive": false,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","country","year"
 "Human","gb","2000"

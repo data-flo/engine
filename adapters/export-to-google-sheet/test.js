@@ -1,13 +1,13 @@
-const fs = require("fs");
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const createDatatable = require("../../types/datatable.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const adaptor = require("./index.js");
 
-tap.test("export-to-google-sheet adaptor", async () => {
+test("export-to-google-sheet adaptor", async (t) => {
   const csvText = `"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -18,7 +18,7 @@ tap.test("export-to-google-sheet adaptor", async () => {
 `;
   const testCsvFilePath = await createTmpTextFile(csvText);
 
-  tap.test("given a datatable, it should return a csv file", async (t) => {
+  await t.test("given a datatable, it should return a csv file", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -27,10 +27,10 @@ tap.test("export-to-google-sheet adaptor", async () => {
         "id column": "id",
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    t.ok(output["updated row ids"], "adaptor should return updated row ids");
-    t.ok(output["created row ids"], "adaptor should return created row ids");
-    t.ok(output["skipped row ids"], "adaptor should return skipped row ids");
+    assert.ok(output["updated row ids"], "adaptor should return updated row ids");
+    assert.ok(output["created row ids"], "adaptor should return created row ids");
+    assert.ok(output["skipped row ids"], "adaptor should return skipped row ids");
+    assert.ok(output["appended columns"], "adaptor should return appended columns");
   });
 
 });

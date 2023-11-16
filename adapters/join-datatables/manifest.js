@@ -40,7 +40,7 @@ module.exports = {
       "ui": { "must-be-one-of": JoinTypes },
     },
     {
-      "name": "match case",
+      "name": "case sensitive",
       "type": "boolean",
       "description": "When set to `True`, lowercase and uppercase letters are treated as equivalent when matching values, e.g. `Peru` = `peru`.\nIf unspecified, defaults to `True`.",
       "required": false,

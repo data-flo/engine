@@ -19,7 +19,7 @@ module.exports = {
       "default": true,
     },
     {
-      "name": "match case",
+      "name": "case sensitive",
       "type": "boolean",
       "description": "When set to `True`, lowercase and uppercase letters are treated as different when comparing text values. When set to `False`, lowercase and uppercase letters are treated as equivalent. If unspecified, defaults to `False`",
       "required": false,
