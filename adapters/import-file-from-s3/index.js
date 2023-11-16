@@ -17,9 +17,7 @@ module.exports = async function (args) {
   });
   let file;
   if (!args["access key"] && !args["secret key"]) {
-    const response = await fetch(
-      args.url,
-    );
+    const response = await fetch(args.url);
     if (!response.ok) {
       throw new Error(`Request failed with status code ${response.status}: ${response.statusText}`);
     }
