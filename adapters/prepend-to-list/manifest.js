@@ -7,7 +7,8 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list to which the value will be prepended.",
-      "required": true,
+      "required": false,
+      "default": [],
     },
     {
       "name": "value",

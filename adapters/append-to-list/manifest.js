@@ -7,7 +7,8 @@ module.exports = {
       "name": "list",
       "type": "list",
       "description": "The list to which the values will be appended.",
-      "required": true,
+      "required": false,
+      "default": [],
     },
     {
       "name": "value",
