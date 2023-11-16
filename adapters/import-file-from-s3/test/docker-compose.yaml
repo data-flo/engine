@@ -1,5 +1,5 @@
-# Used for local development
-version: "3.1"
+version: "3.8"
+
 services:
   minio:
     image: minio/minio
@@ -11,15 +11,28 @@ services:
       MINIO_SECRET_KEY: DgsAUwzoBssqAAa7WxzeBzO4Ty1rloXIFsTZFWXC # Password
     command: server /data --console-address ":9001"
     healthcheck:
-      test: curl --fail http://localhost:9000 || exit 1
-      interval: 60s
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 1s
       retries: 5
-      start_period: 20s
-      timeout: 10s
-  nginx: 
+      start_period: 1s
+      timeout: 1s
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 NNEV9C8ZYRHATNI2MRZ9 DgsAUwzoBssqAAa7WxzeBzO4Ty1rloXIFsTZFWXC;
+      /usr/bin/mc mb myminio/test;
+      echo '(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);' | /usr/bin/mc pipe myminio/test/output;
+      exit 0;
+      "
+
+  nginx:  
     image: nginx
     ports:
       - "8000:80"
     depends_on: 
-      - "minio"
-    
+      minio:
+        condition: service_healthy
