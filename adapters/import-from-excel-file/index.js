@@ -51,10 +51,6 @@ async function extractWorksheet(
       range = checkRange(worksheetReader, sheetRange);
     }
 
-    if (skippedRowIndices && skippedRowIndices.has(sheetRow.number)) {
-      continue;
-    }
-
     if (sheetRow.number >= range.start.row) {
       if (!columnNames) {
         columnNames = [];
@@ -63,6 +59,9 @@ async function extractWorksheet(
         }
       }
       else {
+        if (skippedRowIndices && skippedRowIndices.has(sheetRow.number)) {
+          continue;
+        }
         const dataRow = {};
         for (let index = range.start.col; index <= range.end.col; index++) {
           const columnNameIndex = index - range.start.col;
