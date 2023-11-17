@@ -3,7 +3,7 @@ const { URL } = require("url");
 const { curly } = require("node-libcurl");
 const contentDisposition = require("content-disposition");
 
-const { EmptyObject } = require("../constants");
+const { EmptyObject, EmptyArray } = require("../constants/index.js");
 
 module.exports = async function (
   url,
@@ -14,7 +14,7 @@ module.exports = async function (
     {
       curlyStreamResponse: true,
       FOLLOWLOCATION: true,
-      HTTPHEADER: requestHeaders || undefined,
+      HTTPHEADER: requestHeaders || EmptyArray,
     },
   );
 
