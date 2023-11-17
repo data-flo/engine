@@ -270,7 +270,6 @@ module.exports = function (doc) {
   renameAdaptorInput("list-to-datatable", "column", "column name");
 
   renameAdaptor("lookup-map-value", "find-value-in-map");
-  renameAdaptorInput("find-value-in-map", "dictionary", "map");
   renameAdaptorInput("find-value-in-map", "query", "key");
   renameAdaptorInput("find-value-in-map", "default", "default value");
 
