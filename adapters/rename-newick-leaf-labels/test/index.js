@@ -1,12 +1,13 @@
-/* eslint-disable quotes */
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-tap.test("reshape-wide-to-long adaptor", async () => {
+const adaptor = require("../index.js");
 
-  tap.test("given a Newick string, it should return 7 leaf labels", async () => {
+test("reshape-wide-to-long adaptor", async (t) => {
+
+  await t.test("given a Newick string, it should return 7 leaf labels", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -20,8 +21,8 @@ tap.test("reshape-wide-to-long adaptor", async () => {
         ),
       },
     );
-    tap.ok(output.newick, "adaptor should return newick");
-    tap.same(
+    assert.ok(output.newick, "adaptor should return newick");
+    assert.deepEqual(
       output.newick,
       "(a:0.69395,(Gibbon:0.0,(b:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);",
     );

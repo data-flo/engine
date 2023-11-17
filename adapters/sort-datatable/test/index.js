@@ -1,12 +1,15 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-tap.test("select-rows adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("select-rows adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Human","gb",,,
 "Gibbon","fr",,,
@@ -16,7 +19,7 @@ tap.test("select-rows adaptor", async () => {
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 `);
 
-  tap.test("given a datatable and one column, it should return a datatable", async () => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -26,8 +29,8 @@ tap.test("select-rows adaptor", async () => {
         ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
@@ -40,7 +43,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two columns, it should return a datatable", async () => {
+  await t.test("given a datatable and two columns, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -51,8 +54,8 @@ tap.test("select-rows adaptor", async () => {
         ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
 "Orangutan",,,,
@@ -65,7 +68,7 @@ tap.test("select-rows adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and two columns, it should return a datatable", async () => {
+  await t.test("given a datatable and two columns, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -76,8 +79,8 @@ tap.test("select-rows adaptor", async () => {
         ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","empty","date a","date b"
 "Orangutan",,,,

@@ -1,12 +1,15 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-tap.test("rename-columns adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("rename-columns adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -16,7 +19,7 @@ tap.test("rename-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a datatable and one column, it should return a datatable", async () => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -27,8 +30,8 @@ tap.test("rename-columns adaptor", async () => {
         ]),
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"Sample","Country","blank","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
@@ -41,7 +44,7 @@ tap.test("rename-columns adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and one column, it should return a datatable", async () => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -53,8 +56,8 @@ tap.test("rename-columns adaptor", async () => {
         "discard unmapped": true,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"Sample","blank"
 "Bovine",

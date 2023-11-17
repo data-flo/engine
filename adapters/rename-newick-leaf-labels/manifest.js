@@ -11,8 +11,8 @@ module.exports = {
     },
     {
       "name": "mapping",
-      "type": "map",
-      "description": "A mapping of existing labels (map keys) with new labels (map values).",
+      "type": "dictionary",
+      "description": "A mapping of existing labels (dictionary keys) with new labels (dictionary values).",
       "required": true,
     },
   ],

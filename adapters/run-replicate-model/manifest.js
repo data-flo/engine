@@ -11,7 +11,7 @@ module.exports = {
     },
     {
       "name": "input",
-      "type": "map",
+      "type": "dictionary",
       "description": "The input of the model to run.",
       "required": true,
     },
