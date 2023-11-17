@@ -1,7 +1,7 @@
 module.exports = {
   "description": "Creates a map from a datatable.",
   "group": "Transform",
-  "subgroup": "Map Manipulation",
+  "subgroup": "Dictionary Manipulation",
   "input": [
     {
       "name": "data",
