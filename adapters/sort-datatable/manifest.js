@@ -13,8 +13,8 @@ module.exports = {
     },
     {
       "name": "column names",
-      "type": "map",
-      "description": "A map of column names with sort direction, where the keys are the column names, and the values should be either `asc` (for ascending order) or `desc` (for descending order).",
+      "type": "dictionary",
+      "description": "A dictionary of column names with sort direction, where the keys are the column names, and the values should be either `asc` (for ascending order) or `desc` (for descending order).",
       "required": true,
       "ui": {
         "keys": { "column-in": "data" },

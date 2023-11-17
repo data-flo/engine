@@ -11,8 +11,8 @@ module.exports = {
     },
     {
       "name": "column types",
-      "type": "map",
-      "description": "A map of column name to data type.",
+      "type": "dictionary",
+      "description": "A dictionary of column name with data type.",
       "required": true,
     },
     {

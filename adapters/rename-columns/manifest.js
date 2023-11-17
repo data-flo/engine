@@ -11,7 +11,7 @@ module.exports = {
     },
     {
       "name": "column names",
-      "type": "map",
+      "type": "dictionary",
       "description": "The mapping of old column names to new ones.",
       "required": true,
       "ui": {

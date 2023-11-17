@@ -1,24 +1,24 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
-test("find-value-in-map adaptor", async (t) => {
+test("find-value-in-dictionary adaptor", async (t) => {
 
-  const map = new Map([
+  const dictionary = new Map([
     [ "A", "65" ],
     [ "B", "66" ],
     [ "C", "67" ],
     [ "Perú", "1" ],
   ]);
 
-  await t.test("given an existing key, it should find a value in a map", async () => {
+  await t.test("given an existing key, it should find a value in a dictionary", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        map,
+        "dictionary": dictionary,
         "key": "A",
       }
     );
@@ -29,11 +29,11 @@ test("find-value-in-map adaptor", async (t) => {
     );
   });
 
-  await t.test("given a non-existing key, it should not find a value in a map", async () => {
+  await t.test("given a non-existing key, it should not find a value in a dictionary", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        map,
+        "dictionary": dictionary,
         "key": "D",
       }
     );
@@ -44,7 +44,7 @@ test("find-value-in-map adaptor", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
-        map,
+        "dictionary": dictionary,
         "key": "D",
         "default value": 0,
       }
@@ -52,11 +52,11 @@ test("find-value-in-map adaptor", async (t) => {
     assert.equal(output.value, 0);
   });
 
-  await t.test("given case sensitive and match diacritics set to false, it should find a text value in a list", async () => {
+  await t.test("given case sensitive and match diacritics set to false, it should find a text value in a dictionary", async () => {
     const result = await runAdaptor(
       adaptor,
       {
-        "map": map,
+        "dictionary": dictionary,
         "key": "perú",
       }
     );
@@ -67,7 +67,7 @@ test("find-value-in-map adaptor", async (t) => {
     const result = await runAdaptor(
       adaptor,
       {
-        "map": map,
+        "dictionary": dictionary,
         "key": "perú",
         "case sensitive": true,
       }
@@ -75,13 +75,13 @@ test("find-value-in-map adaptor", async (t) => {
     assert.equal(result.value, "");
   });
 
-  await t.test("given match diacritics set to false, it should not find a value in a list", async () => {
+  await t.test("given match diacritics set to true, it should not find a value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
-        "map": map,
+        "dictionary": dictionary,
         "key": "Peru",
-        "match diacritics": false,
+        "match diacritics": true,
       }
     );
     assert.equal(result.value, "");

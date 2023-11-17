@@ -47,7 +47,7 @@ module.exports = {
     },
     {
       "name": "summary",
-      "type": "map",
+      "type": "dictionary",
       "description": "A summary of the transformed values.",
     },
   ],

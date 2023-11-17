@@ -1,12 +1,15 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-tap.test("map-column-values adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("map-column-values adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country"
 "Bovine","de"
 "Gibbon","fr"
@@ -16,7 +19,7 @@ tap.test("map-column-values adaptor", async () => {
 "Mouse","GB"
 `);
 
-  tap.test("given a datatable and original column, it should write results to the same original column", async (t) => {
+  await t.test("given a datatable and original column, it should write results to the same original column", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -30,8 +33,8 @@ tap.test("map-column-values adaptor", async () => {
         "case sensitive": false,
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country"
 "Bovine","Germany"
@@ -44,7 +47,7 @@ tap.test("map-column-values adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable, original column and case sensitive, it should write results to the same original column", async (t) => {
+  await t.test("given a datatable, original column and case sensitive, it should write results to the same original column", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -58,8 +61,8 @@ tap.test("map-column-values adaptor", async () => {
         "case sensitive": true,
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country"
 "Bovine","Germany"
@@ -72,7 +75,7 @@ tap.test("map-column-values adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable, original column and include unmapped values, it should write results to the same original column", async (t) => {
+  await t.test("given a datatable, original column and include unmapped values, it should write results to the same original column", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -87,8 +90,8 @@ tap.test("map-column-values adaptor", async () => {
         "unmapped values": "include",
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country"
 "Bovine","Germany"
@@ -101,7 +104,7 @@ tap.test("map-column-values adaptor", async () => {
     );
   });
 
-  tap.test("given a datatable and original column, it should write results to the same original column", async (t) => {
+  await t.test("given a datatable and original column, it should write results to the same original column", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -116,8 +119,8 @@ tap.test("map-column-values adaptor", async () => {
         "case sensitive": true,
       },
     );
-    t.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","Country","Country Name"
 "Bovine","de","Germany"

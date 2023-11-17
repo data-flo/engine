@@ -12,8 +12,8 @@ module.exports = {
 
     {
       "name": "columns",
-      "type": "map",
-      "description": "A map of existing column names with names of new columns, where the map keys are the names of existing columns, and the map values are the names of the columns to which the replacement values are written.\nIf a map value is left blank, the replacement values are written to the original column.",
+      "type": "dictionary",
+      "description": "A dictionary of existing column names with names of new columns, where the dictionary keys are the names of existing columns, and the dictionary values are the names of the columns to which the replacement values are written.\nIf a dictionary value is left blank, the replacement values are written to the original column.",
       "required": true,
       "ui": {
         "keys": { "column-in": "data" },

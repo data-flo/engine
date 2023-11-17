@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       "name": "values",
-      "type": "map",
+      "type": "dictionary",
       "description": "The map of existing values with new values, where the map keys are the existing values in original column, and the map values are the corresponding values to be written to new column.",
       "required": true,
     },

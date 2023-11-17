@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       "name": "headers",
-      "type": "map",
+      "type": "dictionary",
       "description": "Any headers you want to add to the request.",
       "required": false,
     },
@@ -43,7 +43,7 @@ module.exports = {
     },
     {
       "name": "response headers",
-      "type": "map",
+      "type": "dictionary",
       "description": "The response headers.",
     },
   ],

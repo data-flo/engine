@@ -20,8 +20,8 @@ module.exports = {
     },
     {
       "name": "aggregations",
-      "type": "map",
-      "description": "A map of column names with aggregation method, where the keys are the column names, and the values should be either `max`, `mean`, `median`, `min`, `mode`, `sum`, `unique` (distinct).",
+      "type": "dictionary",
+      "description": "A dictionary of column names with aggregation method, where the keys are the column names, and the values should be either `max`, `mean`, `median`, `min`, `mode`, `sum`, `unique` (distinct).",
       "required": true,
       "ui": {
         "keys": { "column-in": "data" },
