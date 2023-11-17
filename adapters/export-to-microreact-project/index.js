@@ -79,6 +79,7 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
     data: dataUrl,
     tree: treeUrl,
     network: networkUrl,
+    dataStream: args["data file"] ? args["data file"].getReader() : undefined,
   });
 
   projectDoc.meta.name = newDocument.meta.name || projectDoc.meta.name;
