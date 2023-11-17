@@ -14,7 +14,7 @@ module.exports = {
     {
       "name": "encoding",
       "type": "text",
-      "description": "The character encoding of the input `file`.\nIf unspecified, defaults to `utf8`.",
+      "description": "The character encoding of the output `text`.\nIf unspecified, defaults to `utf8`.",
       "required": false,
       "default": "utf8",
       "ui": { "must-be-one-of": FileEncodings },
