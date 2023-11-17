@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Creates a map from a datatable.",
+  "description": "Creates a dictionary from two columns in a datatable.",
   "group": "Transform",
   "subgroup": "Dictionary Manipulation",
   "input": [
@@ -28,9 +28,9 @@ module.exports = {
   ],
   "output": [
     {
-      "name": "map",
-      "type": "map",
-      "description": "A map containing key-value pairs.",
+      "name": "dictionary",
+      "type": "dictionary",
+      "description": "A dictionary containing key-value pairs.",
     },
   ],
 };

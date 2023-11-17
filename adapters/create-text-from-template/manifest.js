@@ -11,8 +11,8 @@ module.exports = {
     },
     {
       "name": "variables",
-      "type": "map",
-      "description": "A map of variable names (map keys) with values (map values).",
+      "type": "dictionary",
+      "description": "A dictionary of variable names (dictionary keys) with values (dictionary values).",
       "required": true,
     },
   ],

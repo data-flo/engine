@@ -1,11 +1,12 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const { compareFile } = require("../../utils/testing/unit.js");
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createDatatable = require("../../types/datatable.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("add-column adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
@@ -18,11 +19,14 @@ test("add-column adaptor", async (t) => {
 `);
 
   await t.test("given a datatable, it should add a column", async () => {
-    const output = await adaptor({
-      "data": createDatatable(testCsvFilePath),
-      "column name": "ones",
-      "value": "1",
-    });
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column name": "ones",
+        "value": "1",
+      },
+    );
     assert.ok(output.data);
     compareFile(
       output.data.getSource(),
@@ -38,10 +42,13 @@ test("add-column adaptor", async (t) => {
   });
 
   await t.test("given no value, it should add an empty column", async () => {
-    const output = await adaptor({
-      "data": createDatatable(testCsvFilePath),
-      "column name": "ones",
-    });
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column name": "ones",
+      },
+    );
     assert.ok(output.data);
     compareFile(
       output.data.getSource(),

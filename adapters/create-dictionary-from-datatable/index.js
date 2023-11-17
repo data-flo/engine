@@ -1,10 +1,12 @@
+const createDictionary = require("../../types/dictionary.js");
+
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(
     args["key column"],
     args["value column"],
   );
 
-  const dictionary = new Map();
+  const dictionary = createDictionary();
 
   for await (const row of args.data.getPartialReader([ args["key column"], args["value column"] ])) {
     const key = row[args["key column"]];
@@ -17,7 +19,7 @@ module.exports = async function (args) {
   }
 
   return {
-    map: dictionary,
+    "dictionary": dictionary,
   };
 };
 

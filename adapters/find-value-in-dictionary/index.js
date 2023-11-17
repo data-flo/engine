@@ -11,7 +11,7 @@ module.exports = function (args) {
       args["match diacritics"],
     );
     const queryKey = textNormaliser(args.key);
-    for (const [key, value] of args.map.entries()) {
+    for (const [key, value] of args.dictionary.entries()) {
       if (queryKey === textNormaliser(key)) {
         return {
           "value": value,
@@ -19,9 +19,9 @@ module.exports = function (args) {
       }
     }
   }
-  else if (args.map.has(args.key)) {
+  else if (args.dictionary.has(args.key)) {
     return {
-      value: args.map.get(args.key),
+      value: args.dictionary.get(args.key),
     };
   }
 
