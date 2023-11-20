@@ -6,14 +6,14 @@ const createDatatable = require("../../types/datatable");
 
 const adaptor = require("./index");
 
-tap.test("calculate-time-difference adaptor", async () => {
+await t.test("calculate-time-difference adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"one","two","three"
 "aaa","aaa",
 "AAA","aaa",
 "a","b","c"
 `);
 
-  tap.test("given two columns, it should return concatenated text", async (t) => {
+  await t.test("given two columns, it should return concatenated text", async (t) => {
     const output = await adaptor({
       "data": createDatatable(testCsvFilePath),
       "columns": [ "one", "two" ],
@@ -30,7 +30,7 @@ tap.test("calculate-time-difference adaptor", async () => {
     t.equal(actual, expected);
   });
 
-  tap.test("given three columns, it should return concatenated text", async (t) => {
+  await t.test("given three columns, it should return concatenated text", async (t) => {
     const output = await adaptor({
       "data": createDatatable(testCsvFilePath),
       "columns": [ "one", "two", "three" ],
@@ -47,7 +47,7 @@ tap.test("calculate-time-difference adaptor", async () => {
     t.equal(actual, expected);
   });
 
-  tap.test("given one column only, it should throw an error", async (t) => {
+  await t.test("given one column only, it should throw an error", async (t) => {
     await t.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
@@ -57,7 +57,7 @@ tap.test("calculate-time-difference adaptor", async () => {
     );
   });
 
-  tap.test("given non-existing columns, it should throw an error", async (t) => {
+  await t.test("given non-existing columns, it should throw an error", async (t) => {
     await t.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
@@ -67,7 +67,7 @@ tap.test("calculate-time-difference adaptor", async () => {
     );
   });
 
-  tap.test("given an existing column, it should throw an error", async (t) => {
+  await t.test("given an existing column, it should throw an error", async (t) => {
     await t.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),

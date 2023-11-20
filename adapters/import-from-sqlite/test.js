@@ -7,10 +7,10 @@ const tmpFilePath = require("../../utils/file/tmp-path");
 
 const adaptor = require("./index");
 
-tap.test("import-from-sql-server adaptor", async () => {
+await t.test("import-from-sql-server adaptor", async () => {
   const filePath = await tmpFilePath();
 
-  tap.test("given a query, it should return a datatable with 3 rows", async () => {
+  await t.test("given a query, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -24,8 +24,8 @@ tap.test("import-from-sql-server adaptor", async () => {
         `,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"field1","field2"
 "1","a"

@@ -4,9 +4,9 @@ const tap = require("../../utils/testing/unit");
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 
-tap.test("apply-force-directed-layout adaptor", async () => {
+await t.test("apply-force-directed-layout adaptor", async () => {
 
-  tap.test("given a Newick string, it should return 7 leaf labels", async () => {
+  await t.test("given a Newick string, it should return 7 leaf labels", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -28,10 +28,10 @@ tap.test("apply-force-directed-layout adaptor", async () => {
         "repulsion": 3,
       },
     );
-    tap.ok(output.graph, "adaptor should return graph");
+    assert.ok(output.graph, "adaptor should return graph");
     for (const node of output.graph.nodes) {
-      tap.type(node.attributes.x, "number");
-      tap.type(node.attributes.y, "number");
+      assert.ok(typeof node.attributes.x === "number");
+      assert.ok(typeof node.attributes.y === "number");
     }
   });
 

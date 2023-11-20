@@ -3,23 +3,23 @@ const tap = require("../../utils/testing/unit");
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 
-tap.test("import-csv-file adaptor", async () => {
+await t.test("import-csv-file adaptor", async () => {
 
-  tap.test("given a list, it should return a datatable", async () => {
+  await t.test("given a list, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "list": [ 1, 2, 3 ],
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"value"\n"1"\n"2"\n"3"\n`,
     );
   });
 
-  tap.test("given a list and a column name, it should return a datatable", async () => {
+  await t.test("given a list and a column name, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -27,8 +27,8 @@ tap.test("import-csv-file adaptor", async () => {
         "column name": "id",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id"\n"1"\n"2"\n"3"\n`,
     );

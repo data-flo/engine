@@ -3,9 +3,9 @@ const tap = require("../../utils/testing/unit");
 const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 
-tap.test("create-list-from-datatable adaptor", async () => {
+await t.test("create-list-from-datatable adaptor", async () => {
 
-  tap.test("given a text, it should return a list", async (t) => {
+  await t.test("given a text, it should return a list", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -18,7 +18,7 @@ tap.test("create-list-from-datatable adaptor", async () => {
     t.same(actual, expected);
   });
 
-  tap.test("given a text, it should return a list", async (t) => {
+  await t.test("given a text, it should return a list", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -32,7 +32,7 @@ tap.test("create-list-from-datatable adaptor", async () => {
     t.same(actual, expected);
   });
 
-  tap.test("given a text, it should return a list", async (t) => {
+  await t.test("given a text, it should return a list", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -46,7 +46,7 @@ tap.test("create-list-from-datatable adaptor", async () => {
     t.same(actual, expected);
   });
 
-  tap.test("given a text and a limit, it should return a list", async (t) => {
+  await t.test("given a text and a limit, it should return a list", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

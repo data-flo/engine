@@ -7,7 +7,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("export-to-csv-file adaptor", async () => {
+await t.test("export-to-csv-file adaptor", async () => {
   const csvText = `"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -18,7 +18,7 @@ tap.test("export-to-csv-file adaptor", async () => {
 `;
   const testCsvFilePath = await createTmpTextFile(csvText);
 
-  tap.test("given a datatable, it should return a csv file", async (t) => {
+  await t.test("given a datatable, it should return a csv file", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -38,7 +38,7 @@ tap.test("export-to-csv-file adaptor", async () => {
     t.equal(actual, expected);
   });
 
-  tap.test("given a datatable, it should return a csv file", async (t) => {
+  await t.test("given a datatable, it should return a csv file", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

@@ -6,7 +6,7 @@ const createDatatable = require("../../types/datatable.js");
 
 const adaptor = require("./index.js");
 
-tap.test("sample-datatable adaptor", async () => {
+await t.test("sample-datatable adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","num"
 "Bovine","de","1"
 "Gibbon","fr","1"
@@ -16,15 +16,15 @@ tap.test("sample-datatable adaptor", async () => {
 "Mouse","GB",
 `);
 
-  tap.test("given a datatable, it should return the first 100 rows", async () => {
+  await t.test("given a datatable, it should return the first 100 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
       },
     );
-    tap.ok(output["sample data"], "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output["sample data"], "adaptor should return data");
+    compareFile(
       output["sample data"].getSource(),
       `"id","Country","num"
 "Bovine","de","1"
@@ -37,7 +37,7 @@ tap.test("sample-datatable adaptor", async () => {
     );
   });
 
-  tap.test("given a sample size of 2, it should return 2 rows", async () => {
+  await t.test("given a sample size of 2, it should return 2 rows", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -45,8 +45,8 @@ tap.test("sample-datatable adaptor", async () => {
         "sample size": "2",
       },
     );
-    tap.ok(output["sample data"], "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output["sample data"], "adaptor should return data");
+    compareFile(
       output["sample data"].getSource(),
       `"id","Country","num"
 "Bovine","de","1"

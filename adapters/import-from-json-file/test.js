@@ -5,8 +5,8 @@ const createTmpTextFile = require("../../utils/file/tmp-text.js");
 
 const adaptor = require("./index.js");
 
-tap.test("import-from-json-file adaptor", async () => {
-  tap.test("given a json file, it should return a datatable", async () => {
+await t.test("import-from-json-file adaptor", async () => {
+  await t.test("given a json file, it should return a datatable", async () => {
     const testFilePath = await createTmpTextFile(`
     [
       { "id": 1, "label": "a" },
@@ -21,8 +21,8 @@ tap.test("import-from-json-file adaptor", async () => {
         "json": testFilePath,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","label"
 "1","a"
@@ -32,7 +32,7 @@ tap.test("import-from-json-file adaptor", async () => {
     );
   });
 
-  tap.test("given a json file, it should return a datatable", async () => {
+  await t.test("given a json file, it should return a datatable", async () => {
     const testFilePath = await createTmpTextFile(`
     [
       { "id": 1 },
@@ -47,8 +47,8 @@ tap.test("import-from-json-file adaptor", async () => {
         "json": testFilePath,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","label"
 "1",

@@ -5,7 +5,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("create-list-from-datatable adaptor", async () => {
+await t.test("create-list-from-datatable adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -15,7 +15,7 @@ tap.test("create-list-from-datatable adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  tap.test("given a column in a datatable, it should return a list of the column values", async (t) => {
+  await t.test("given a column in a datatable, it should return a list of the column values", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -29,7 +29,7 @@ tap.test("create-list-from-datatable adaptor", async () => {
     t.same(actual, expected);
   });
 
-  tap.test("given a column in a datatable, it should return a list of the column values", async (t) => {
+  await t.test("given a column in a datatable, it should return a list of the column values", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

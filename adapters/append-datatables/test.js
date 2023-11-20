@@ -5,7 +5,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("append-datatables adaptor", async () => {
+await t.test("append-datatables adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","name","country"
 "1","Bovine","de"
 "2","Gibbon","fr"
@@ -24,7 +24,7 @@ tap.test("append-datatables adaptor", async () => {
 "12","Mouse","gb"
 `);
 
-  tap.test("given two datatable, it should return a datatable with 4 columns", async () => {
+  await t.test("given two datatable, it should return a datatable with 4 columns", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -32,8 +32,8 @@ tap.test("append-datatables adaptor", async () => {
         "second data": createDatatable(testCsvFilePath2),
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","name","country","Country"
 "1","Bovine","de",
@@ -52,7 +52,7 @@ tap.test("append-datatables adaptor", async () => {
     );
   });
 
-  tap.test("given two datatable, it should return a datatable with 4 columns", async () => {
+  await t.test("given two datatable, it should return a datatable with 4 columns", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -61,8 +61,8 @@ tap.test("append-datatables adaptor", async () => {
         "exclude unmatched columns": true,
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"id","name"
 "1","Bovine"

@@ -1,7 +1,7 @@
 const tap = require("../testing/unit");
 const parseRange = require("./parse-range");
 
-tap.test("given a valid range, it should return [1,1] to [100,1]", async (t) => {
+await t.test("given a valid range, it should return [1,1] to [100,1]", async (t) => {
   const actual = parseRange("A1:K100");
   const expected = {
     start: { row: 1, col: 1 },
@@ -10,7 +10,7 @@ tap.test("given a valid range, it should return [1,1] to [100,1]", async (t) => 
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [2,null] to [null,null]", async (t) => {
+await t.test("given a valid range, it should return [2,null] to [null,null]", async (t) => {
   const actual = parseRange("2");
   const expected = {
     start: { row: 2, col: null },
@@ -19,7 +19,7 @@ tap.test("given a valid range, it should return [2,null] to [null,null]", async 
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
+await t.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
   const actual = parseRange("B2");
   const expected = {
     start: { row: 2, col: 2 },
@@ -28,7 +28,7 @@ tap.test("given a valid range, it should return [2,2] to [null,null]", async (t)
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
+await t.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
   const actual = parseRange("B2:");
   const expected = {
     start: { row: 2, col: 2 },
@@ -37,7 +37,7 @@ tap.test("given a valid range, it should return [2,2] to [null,null]", async (t)
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [2,2] to [null,4]", async (t) => {
+await t.test("given a valid range, it should return [2,2] to [null,4]", async (t) => {
   const actual = parseRange("B2:D");
   const expected = {
     start: { row: 2, col: 2 },
@@ -46,7 +46,7 @@ tap.test("given a valid range, it should return [2,2] to [null,4]", async (t) =>
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [null,2] to [null,4]", async (t) => {
+await t.test("given a valid range, it should return [null,2] to [null,4]", async (t) => {
   const actual = parseRange("B:D");
   const expected = {
     start: { row: null, col: 2 },
@@ -55,7 +55,7 @@ tap.test("given a valid range, it should return [null,2] to [null,4]", async (t)
   t.same(actual, expected);
 });
 
-tap.test("given a valid range, it should return [null,2] to [null,null]", async (t) => {
+await t.test("given a valid range, it should return [null,2] to [null,null]", async (t) => {
   const actual = parseRange("B:");
   const expected = {
     start: { row: null, col: 2 },

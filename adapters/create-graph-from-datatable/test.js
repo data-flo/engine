@@ -6,7 +6,7 @@ const createDatatable = require("../../types/datatable");
 
 const adaptor = require("./index");
 
-tap.test("create-graph-from-datatable adaptor", async () => {
+await t.test("create-graph-from-datatable adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"source","target","label"
 "A","B","edge-0"
 "A","C","edge-1"
@@ -14,7 +14,7 @@ tap.test("create-graph-from-datatable adaptor", async () => {
 "C","D","edge-3"
 `);
 
-  tap.test("given two columns, it should return concatenated text", async (t) => {
+  await t.test("given two columns, it should return concatenated text", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

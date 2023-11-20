@@ -3,9 +3,9 @@ const runAdaptor = require("../../runner/run-adaptor");
 
 const adaptor = require("./index");
 
-tap.test("replace-values-in-list adaptor", async () => {
+await t.test("replace-values-in-list adaptor", async () => {
 
-  tap.test("given a text without replacement, it should replace with blank", async () => {
+  await t.test("given a text without replacement, it should replace with blank", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -13,14 +13,14 @@ tap.test("replace-values-in-list adaptor", async () => {
         "pattern": "en",
       },
     );
-    tap.ok(output.list, "adaptor should return list");
-    tap.same(
+    assert.ok(output.list, "adaptor should return list");
+    assert.deepEqual(
       output.list,
       [ "Ctre", "for", "Gomic", "Pathog", "Surveillance" ],
     );
   });
 
-  tap.test("given a text with replacement, it should replace with *", async () => {
+  await t.test("given a text with replacement, it should replace with *", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -29,14 +29,14 @@ tap.test("replace-values-in-list adaptor", async () => {
         "replacement": "*",
       },
     );
-    tap.ok(output.list, "adaptor should return list");
-    tap.same(
+    assert.ok(output.list, "adaptor should return list");
+    assert.deepEqual(
       output.list,
       [ "C*tre", "for", "G*omic", "Pathog*", "Surveillance" ],
     );
   });
 
-  tap.test("given a text with replacement, it should replace with *", async () => {
+  await t.test("given a text with replacement, it should replace with *", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -45,14 +45,14 @@ tap.test("replace-values-in-list adaptor", async () => {
         "replacement": "*",
       },
     );
-    tap.ok(output.list, "adaptor should return list");
-    tap.same(
+    assert.ok(output.list, "adaptor should return list");
+    assert.deepEqual(
       output.list,
       [ "C*tr*", "for", "G*omic", "Pathog*", "Surv*llanc*" ],
     );
   });
 
-  tap.test("given a text with replacement, it should replace with *", async () => {
+  await t.test("given a text with replacement, it should replace with *", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -61,8 +61,8 @@ tap.test("replace-values-in-list adaptor", async () => {
         "replacement": "*",
       },
     );
-    tap.ok(output.list, "adaptor should return list");
-    tap.same(
+    assert.ok(output.list, "adaptor should return list");
+    assert.deepEqual(
       output.list,
       [ "one*", "fo*r" ],
     );

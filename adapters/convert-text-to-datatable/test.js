@@ -4,9 +4,9 @@ const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 const compareFileContent = require("../../utils/file/compare");
 
-tap.test("convert-text-to-datatable adaptor", async () => {
+await t.test("convert-text-to-datatable adaptor", async () => {
 
-  tap.test("given a csv text, it should return a datatable", async (t) => {
+  await t.test("given a csv text, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -29,7 +29,7 @@ tap.test("convert-text-to-datatable adaptor", async () => {
     );
   });
 
-  tap.test("given a csv text with semicolon, it should return a datatable", async (t) => {
+  await t.test("given a csv text with semicolon, it should return a datatable", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

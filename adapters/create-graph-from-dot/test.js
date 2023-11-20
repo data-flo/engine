@@ -4,9 +4,9 @@ const runAdaptor = require("../../runner/run-adaptor");
 
 const adaptor = require("./index");
 
-tap.test("create-graph-from-dot adaptor", async () => {
+await t.test("create-graph-from-dot adaptor", async () => {
 
-  tap.test("given a DOT string columns, it should return a graph", async (t) => {
+  await t.test("given a DOT string columns, it should return a graph", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

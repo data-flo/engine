@@ -4,9 +4,9 @@ const adaptor = require("./index");
 const runAdaptor = require("../../runner/run-adaptor");
 const urlToId = require("../../utils/google-api/folder-url-to-id");
 
-tap.test("create-google-drive-folder adaptor", async () => {
+await t.test("create-google-drive-folder adaptor", async () => {
 
-  tap.test("given two text without separator, it should return the concatenated text", async (t) => {
+  await t.test("given two text without separator, it should return the concatenated text", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

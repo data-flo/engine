@@ -6,13 +6,13 @@ const runAdaptor = require("../../runner/run-adaptor.js");
 
 const adaptor = require("./index.js");
 
-tap.test("format-time-column adaptor", async () => {
+await t.test("format-time-column adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"a","b"
 "1","3"
 "2","4"
 `);
 
-  tap.test("given no operation, it should add values", async () => {
+  await t.test("given no operation, it should add values", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -22,8 +22,8 @@ tap.test("format-time-column adaptor", async () => {
         "result column": "c",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"a","b","c"
 "1","3","4"

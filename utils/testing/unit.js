@@ -1,13 +1,13 @@
-const assert = require("assert");
-const fs = require("fs");
-const zlib = require("zlib");
-const path = require("path");
-const { spawn, spawnSync } = require("child_process");
+const assert = require("node:assert");
+const { before, after } = require("node:test");
+const fs = require("node:fs");
+const zlib = require("node:zlib");
+const path = require("node:path");
+const { spawn, spawnSync } = require("node:child_process");
 
-const tap = require("tap");
 const isGzip = require("is-gzip");
 
-tap.compareFile = function (filePath, expectedFileContent) {
+function compareFile(filePath, expectedFileContent) {
   let actual = fs.readFileSync(filePath);
   if (isGzip(actual)) {
     actual = zlib.gunzipSync(actual);
@@ -19,9 +19,7 @@ tap.compareFile = function (filePath, expectedFileContent) {
   }
 
   return assert.equal(actual, expectedFileContent);
-};
-
-tap._test = () => {};
+}
 
 async function waitForPort(port = 8000) {
   console.log("Waiting for services...");
@@ -102,9 +100,13 @@ async function dockerComposeUp(folderPath) {
   return dockerComposeProcess;
 }
 
-module.exports = tap;
+function setupServices(dirname) {
+  before(() => dockerComposeUp(dirname));
+  after(() => dockerComposeDown(dirname));
+}
 
+module.exports.setupServices = setupServices;
 module.exports.dockerComposeDown = dockerComposeDown;
 module.exports.dockerComposeUp = dockerComposeUp;
 
-module.exports.compareFile = tap.compareFile;
+module.exports.compareFile = compareFile;

@@ -3,9 +3,9 @@ const runAdaptor = require("../../runner/run-adaptor");
 
 const adaptor = require("./index");
 
-tap.test("replace-values-in-text adaptor", async () => {
+await t.test("replace-values-in-text adaptor", async () => {
 
-  tap.test("given a text without replacement, it should replace with blank", async () => {
+  await t.test("given a text without replacement, it should replace with blank", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -13,14 +13,14 @@ tap.test("replace-values-in-text adaptor", async () => {
         "pattern": "en",
       },
     );
-    tap.ok(output.text, "adaptor should return text");
-    tap.same(
+    assert.ok(output.text, "adaptor should return text");
+    assert.deepEqual(
       output.text,
       "Ctre for Gomic Pathog Surveillance"
     );
   });
 
-  tap.test("given a text with replacement, it should replace with *", async () => {
+  await t.test("given a text with replacement, it should replace with *", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -29,14 +29,14 @@ tap.test("replace-values-in-text adaptor", async () => {
         "replacement": "*",
       },
     );
-    tap.ok(output.text, "adaptor should return text");
-    tap.same(
+    assert.ok(output.text, "adaptor should return text");
+    assert.deepEqual(
       output.text,
       "C*tre for G*omic Pathog* Surveillance"
     );
   });
 
-  tap.test("given a text with replacement, it should replace with *", async () => {
+  await t.test("given a text with replacement, it should replace with *", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -45,8 +45,8 @@ tap.test("replace-values-in-text adaptor", async () => {
         "replacement": "*",
       },
     );
-    tap.ok(output.text, "adaptor should return text");
-    tap.same(
+    assert.ok(output.text, "adaptor should return text");
+    assert.deepEqual(
       output.text,
       "C*tr* for G*omic Pathog* Surv*llanc*"
     );

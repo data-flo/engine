@@ -8,9 +8,9 @@ const runAdaptor = require("../../runner/run-adaptor");
 const adaptor = require("./index");
 const createFile = require("../../types/file");
 
-tap.test("import-from-excel-file adaptor", async () => {
+await t.test("import-from-excel-file adaptor", async () => {
 
-  tap.test("given an excel file, it should return a datatable", async () => {
+  await t.test("given an excel file, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -18,14 +18,14 @@ tap.test("import-from-excel-file adaptor", async () => {
         "sheet name": "Sheet1",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"a","b","c"\n"1","2","3"\n"1","2","3"\n`,
     );
   });
 
-  tap.test("given an excel file, it should return a datatable", async () => {
+  await t.test("given an excel file, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -34,14 +34,14 @@ tap.test("import-from-excel-file adaptor", async () => {
         "range": "A1:C2",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"a","b","c"\n"1","2","3"\n`,
     );
   });
 
-  tap.test("given an excel file, it should return a datatable", async () => {
+  await t.test("given an excel file, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -50,14 +50,14 @@ tap.test("import-from-excel-file adaptor", async () => {
         "range": "A2:",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"1","2","3"\n"1","2","3"\n`,
     );
   });
 
-  tap._test("given an excel file, it should return a datatable", async () => {
+  await t.test("given an excel file, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -66,8 +66,8 @@ tap.test("import-from-excel-file adaptor", async () => {
         "range": "B1:C3",
       },
     );
-    tap.ok(output.data, "adaptor should return data");
-    tap.compareFile(
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
       output.data.getSource(),
       `"b","c"\n"2","3"\n"2","3"\n`,
     );

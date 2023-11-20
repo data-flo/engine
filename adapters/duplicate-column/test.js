@@ -7,7 +7,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("duplicate-column adaptor", async () => {
+await t.test("duplicate-column adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country"
 "Bovine","de"
 "Gibbon","fr"
@@ -17,7 +17,7 @@ tap.test("duplicate-column adaptor", async () => {
 "Mouse","gb"
 `);
 
-  tap.test("given a column in a datatable, it should return a datatable with the duplicated column", async (t) => {
+  await t.test("given a column in a datatable, it should return a datatable with the duplicated column", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {

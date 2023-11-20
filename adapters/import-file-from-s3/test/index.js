@@ -1,12 +1,11 @@
 const assert = require("node:assert");
 const path = require("path");
-const { before, after, test } = require("node:test");
+const test = require("node:test");
 const adaptor = require("../index.js");
-const { compareFile, dockerComposeUp, dockerComposeDown } = require("../../../utils/testing/unit.js");
+const { compareFile, setupServices } = require("../../../utils/testing/unit.js");
 
 test("import-file-from-s3 adaptor", async (t) => {
-  before(() => dockerComposeUp(path.resolve(__dirname)));
-  after(() => dockerComposeDown(path.resolve(__dirname)));
+  setupServices(path.resolve(__dirname));
 
   await t.test("given a pubic object with keys, it should download it", async () => {
     const output = await adaptor(

@@ -5,7 +5,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createDatatable = require("../../types/datatable");
 
-tap.test("forward-geocoding adaptor", async () => {
+await t.test("forward-geocoding adaptor", async () => {
   const testCsvFilePath = await createTmpTextFile(`"location"
 "Babraham Road, Sawston, CB22 3DQ, United Kingdom"
 "1330 Middle Avenue, Menlo Park, CA 94025, United States of America"
@@ -18,7 +18,7 @@ tap.test("forward-geocoding adaptor", async () => {
 `);
   const data = createDatatable(testCsvFilePath);
 
-  tap.test("given a location column, it should return latitude and longitude", async (t) => {
+  await t.test("given a location column, it should return latitude and longitude", async (t) => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -32,7 +32,7 @@ tap.test("forward-geocoding adaptor", async () => {
       },
     );
     t.ok(output.data);
-    tap.compareFile(
+    compareFile(
       output.data.getSource(),
       `"location","latitude","longitude","type"
 "Babraham Road, Sawston, CB22 3DQ, United Kingdom","52.1270","0.1716","postcode"

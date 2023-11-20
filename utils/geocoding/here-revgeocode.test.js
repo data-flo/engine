@@ -1,7 +1,7 @@
 const tap = require("../testing/unit");
 const reverseGeocoder = require("./here-revgeocode");
 
-tap.test("given an address string, it should return a location", async (t) => {
+await t.test("given an address string, it should return a location", async (t) => {
   const expected = [
     37.37634,
     -122.03405,
@@ -16,7 +16,7 @@ tap.test("given an address string, it should return a location", async (t) => {
   t.same(actual, expected);
 });
 
-tap.test("given a city, it should return a location", async (t) => {
+await t.test("given a city, it should return a location", async (t) => {
   const expected = [
     51.50643,
     -0.12719,
@@ -31,7 +31,7 @@ tap.test("given a city, it should return a location", async (t) => {
   t.same(actual, expected);
 });
 
-tap.test("given a city and a geographic area, it should return a location", async (t) => {
+await t.test("given a city and a geographic area, it should return a location", async (t) => {
   const expected = [
     37.12723,
     -84.08383,
@@ -47,7 +47,7 @@ tap.test("given a city and a geographic area, it should return a location", asyn
   t.same(actual, expected);
 });
 
-tap.test("given an invalid string, it should return undefined", async (t) => {
+await t.test("given an invalid string, it should return undefined", async (t) => {
   const expected = undefined;
   const actual = await reverseGeocoder(
     process.env.HERE_API_KEY,

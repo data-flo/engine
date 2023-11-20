@@ -6,7 +6,7 @@ const adaptor = require("./index");
 const createTmpTextFile = require("../../utils/file/tmp-text");
 const createFile = require("../../types/file");
 
-tap.test("import-list-from-text-file adaptor", async () => {
+await t.test("import-list-from-text-file adaptor", async () => {
   const testFilePath = await createTmpTextFile(`id,
 Human
 Gibbon
@@ -16,7 +16,7 @@ Mouse
 Bovine
 `);
 
-  tap.test("given a datatable and one column, it should return a datatable", async () => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -26,8 +26,8 @@ Bovine
         ],
       },
     );
-    tap.ok(output.list, "adaptor should return list");
-    tap.same(
+    assert.ok(output.list, "adaptor should return list");
+    assert.deepEqual(
       output.list,
       [
         "id,",

@@ -2,9 +2,9 @@ const tap = require("../../utils/testing/unit");
 
 const adaptor = require("./index");
 
-tap.test("concatenate-text adaptor", async () => {
+await t.test("concatenate-text adaptor", async () => {
 
-  tap.test("given two text without separator, it should return the concatenated text", async (t) => {
+  await t.test("given two text without separator, it should return the concatenated text", async (t) => {
     const output = await adaptor({
       "text one": "Hello",
       "text two": "World",
@@ -16,7 +16,7 @@ tap.test("concatenate-text adaptor", async () => {
     t.equal(actual, expected);
   });
 
-  tap.test("given two text with separator, it should return the concatenated text", async (t) => {
+  await t.test("given two text with separator, it should return the concatenated text", async (t) => {
     const output = await adaptor({
       "text one": "Hello",
       "text two": "World",

@@ -7,7 +7,7 @@ const createFile = require("../../types/file.js");
 
 const adaptor = require("./index.js");
 
-tap.test("import-text-from-file adaptor", async () => {
+await t.test("import-text-from-file adaptor", async () => {
   const testFilePath = await createTmpTextFile(`id,
 Human
 Gibbon
@@ -17,15 +17,15 @@ Mouse
 Bovine
 `);
 
-  tap.test("given a datatable and one column, it should return a datatable", async () => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "file": createFile(testFilePath),
       },
     );
-    tap.ok(output.text, "adaptor should return text");
-    tap.same(
+    assert.ok(output.text, "adaptor should return text");
+    assert.deepEqual(
       output.text,
       `id,
 Human
