@@ -1,0 +1,64 @@
+{
+  "input": [
+    {
+      "id": "kars9jfq",
+      "name": "input-1",
+      "required": true,
+      "type": "text",
+      "ui": {
+        "x": 160,
+        "y": 350
+      }
+    },
+    {
+      "id": "q4aead1b",
+      "name": "input-2",
+      "required": true,
+      "type": "text",
+      "ui": {
+        "x": 140,
+        "y": 450
+      }
+    }
+  ],
+  "output": [
+    {
+      "argument": "combination",
+      "id": "i7nvh81r",
+      "name": "output-1",
+      "transformation": "transform-1",
+      "type": "text",
+      "ui": {
+        "x": 510,
+        "y": 450
+      }
+    }
+  ],
+  "transform": [
+    {
+      "name": "transform-1",
+      "type": "adaptor",
+      "adaptor": "concatenate-text",
+      "description": null,
+      "binding": [
+        {
+          "target": "text one",
+          "type": "input",
+          "input": "input-1"
+        },
+        {
+          "target": "text two",
+          "type": "input",
+          "input": "input-2"
+        }
+      ],
+      "id": "22o48tqh",
+      "ui": {
+        "x": 300,
+        "y": 430
+      },
+      "label": "#1"
+    }
+  ],
+  "version": 3
+}

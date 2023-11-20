@@ -1,20 +1,14 @@
-/*
-docker run \
-  --rm \
-  --name mssql \
-  --env ACCEPT_EULA=Y \
-  --env SA_PASSWORD=root \
-  --publish 1433:1433 \
-  mcr.microsoft.com/mssql/server
-*/
+const test = require("node:test");
+const assert = require("node:assert");
+const path = require("path");
+const { compareFile, setupServices } = require("../../../utils/testing/unit.js");
 
-const tap = require("../../utils/testing/unit");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const adaptor = require("../index.js");
 
-const adaptor = require("./index");
-
-await t.test("import-from-sql-server adaptor", async () => {
+test("import-from-sql-server adaptor", async (t) => {
+  setupServices(path.resolve(__dirname));
 
   await t.test("given a query, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
@@ -23,7 +17,7 @@ await t.test("import-from-sql-server adaptor", async () => {
         "hostname": "localhost",
         "port": 1433,
         "username": "sa",
-        "password": "fPaKMc56",
+        "password": "fPaKMc56_",
         "database": "master",
         "query": `
           SELECT 1 AS field1, 'a' AS field2

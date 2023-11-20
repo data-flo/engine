@@ -1,9 +1,11 @@
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
   if (args.columns.length < 2) {
     throw new Error("At least two columns are required");
   }
+
+  await args.data.shouldIncludeColumns(args.columns);
 
   const sameWriter = await Datatable.create();
   const differentWriter = await Datatable.create();
@@ -22,8 +24,7 @@ module.exports = async function (args) {
           row[args.columns[0]].toString().localeCompare(row[args.columns[index]], undefined, { sensitivity }) === 0
         )
       );
-      if (!same)
-      {
+      if (!same) {
         allColumnValuesAreSame = false;
         break;
       }

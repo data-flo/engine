@@ -1,13 +1,13 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const { compareFile } = require("../../utils/testing/unit.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createDatatable = require("../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("remove-duplicate-rows adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","country","year"

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_PID: Express
+      MSSQL_SA_PASSWORD: fPaKMc56_
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "/opt/mssql-tools/bin/sqlcmd",
+          "-Usa",
+          "-PfPaKMc56_",
+          "-Q",
+          "select 1",
+        ]
+      interval: 10s
+      retries: 20
+  nginx:
+    image: nginx
+    ports:
+      - "8000:80"
+    depends_on:
+      sql-server:
+        condition: service_healthy

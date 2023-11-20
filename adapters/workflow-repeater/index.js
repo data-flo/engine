@@ -1,4 +1,8 @@
 module.exports = async function (args) {
+  if (!args.workflow) {
+    throw new Error("A value is required for input workflow");
+  }
+
   const workflowManifest = await this.getDataflowManifest(args.workflow);
 
   const inColumns = {};
@@ -11,10 +15,10 @@ module.exports = async function (args) {
   await args.data.shouldIncludeColumns(Object.values(inColumns));
 
   const outColumns = {};
-  for (const workflowInput of workflowManifest.output) {
-    const argumentName = `${workflowInput.name} column`;
+  for (const workflowOutput of workflowManifest.output) {
+    const argumentName = `${workflowOutput.name} column`;
     if (argumentName in args) {
-      outColumns[workflowInput.name] = args[argumentName];
+      outColumns[workflowOutput.name] = args[argumentName];
     }
   }
   await args.data.shouldExcludeColumns(Object.values(outColumns));
