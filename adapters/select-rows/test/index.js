@@ -1,12 +1,14 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const adaptor = require("../index.js");
 
-await t.test("select-rows adaptor", async () => {
+test("select-rows adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
