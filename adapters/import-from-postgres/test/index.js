@@ -1,20 +1,14 @@
-/*
-docker run \
-  --rm \
-  --name postgres \
-  --env POSTGRES_PASSWORD=postgres \
-  --env POSTGRES_USER=postgres \
-  --publish 5432:5432 \
-  postgres
-*/
+const test = require("node:test");
+const assert = require("node:assert");
+const path = require("path");
 
-const tap = require("../../utils/testing/unit");
+const { compareFile, setupServices } = require("../../../utils/testing/unit.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const adaptor = require("../index.js");
 
-const adaptor = require("./index");
-
-await t.test("import-from-postgres adaptor", async () => {
+test("import-from-postgres adaptor", async (t) => {
+  setupServices(path.resolve(__dirname));
 
   await t.test("given a query, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
@@ -24,6 +18,7 @@ await t.test("import-from-postgres adaptor", async () => {
         "username": "postgres",
         "password": "postgres",
         "database": "postgres",
+        "port": "5444",
         "query": `
           SELECT * FROM (
             SELECT 1 AS field1, 'a' AS field2

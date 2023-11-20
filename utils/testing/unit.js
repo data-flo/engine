@@ -23,7 +23,7 @@ function compareFile(filePath, expectedFileContent) {
 
 async function waitForPort(port = 8000) {
   console.log("Waiting for services...");
-  const MAX_RETRIES = 10;
+  const MAX_RETRIES = 20;
   for (let index = 0; index < MAX_RETRIES; index++) {
     try {
       const response = await fetch("http://localhost:8000");
@@ -41,7 +41,7 @@ async function waitForPort(port = 8000) {
 }
 
 function dockerComposeDown(folderPath) {
-  console.log("Stoping services.");
+  console.log("Stopping services.");
   const dockerComposeProcess = spawnSync(
     "docker-compose",
     ["down", "--remove-orphans"],
@@ -51,7 +51,7 @@ function dockerComposeDown(folderPath) {
 }
 
 async function dockerComposeUp(folderPath) {
-  console.log("Staring services.");
+  console.log("Starting services.");
 
   const dockerComposeFilePath = path.join(
     folderPath,
