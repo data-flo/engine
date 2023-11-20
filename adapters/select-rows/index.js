@@ -12,9 +12,7 @@ module.exports = async function (args) {
   }
 
   if (args.begin < 0 || args.end < -1) {
-    for await (const row of args.data.getReader()) {
-      totalRows += 1;
-    }
+    totalRows = await args.data.getNumberOfRows();
   }
 
   let firstRowNumber = args.begin;
