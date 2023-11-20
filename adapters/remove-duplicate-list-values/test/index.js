@@ -1,10 +1,11 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
+const adaptor = require("../index.js");
 
-await t.test("remove-duplicate-list-values adaptor", async () => {
+test("remove-duplicate-list-values adaptor", async (t) => {
 
   await t.test("given a list, it should return a set", async () => {
     const output = await runAdaptor(
