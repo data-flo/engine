@@ -18,7 +18,7 @@ module.exports = {
     {
       "name": "separator",
       "type": "text",
-      "description": "Specifies text to separate the concatenated texts.\nIf unspecified, defaults to blank.",
+      "description": "Specifies text to separate the concatenated texts. If unspecified, defaults to no separator.",
       "required": false,
       "default": "",
     },
