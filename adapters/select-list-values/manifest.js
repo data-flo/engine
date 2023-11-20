@@ -28,7 +28,6 @@ module.exports = {
       "type": "number",
       "description": "A positive number specifying a limit on the number of values to be selected.\nIf unspecified, no limit will be applied.",
       "required": false,
-      "default": null,
     },
   ],
   "output": [
