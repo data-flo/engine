@@ -1,11 +1,11 @@
 const assert = require("node:assert");
 const test = require("node:test");
 
-const { compareFile } = require("../../utils/testing/unit.js");
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createDatatable = require("../../types/datatable.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("jittering adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b", "numbers"
