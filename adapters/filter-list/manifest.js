@@ -22,7 +22,7 @@ module.exports = {
     {
       "name": "filter value",
       "type": "text",
-      "description": "A text or a regular expression to be searched for within the datatable columns.",
+      "description": "A text or a regular expression to be searched for within the datatable columns. For when a range is needed, please use this format: number,number",
       "required": false,
     },
     {
