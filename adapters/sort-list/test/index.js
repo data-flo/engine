@@ -1,10 +1,10 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const adaptor = require("../index.js");
 
-const adaptor = require("./index");
-
-await t.test("sort-list adaptor", async () => {
+test("sort-list adaptor", async (t) => {
 
   await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
