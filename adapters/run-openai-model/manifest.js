@@ -35,7 +35,7 @@ module.exports = {
   "output": [
     {
       "name": "assistant message",
-      "type": "test",
+      "type": "text",
       "description": "The model prediction.",
     },
     {
