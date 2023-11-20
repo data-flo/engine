@@ -21,12 +21,12 @@ module.exports = function (args) {
   }
   else if (args.dictionary.has(args.key)) {
     return {
-      value: args.dictionary.get(args.key),
+      "value": args.dictionary.get(args.key),
     };
   }
 
   return {
-    value: args["default value"],
+    "value": args["default value"],
   };
 };
 
