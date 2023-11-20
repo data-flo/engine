@@ -20,6 +20,7 @@ function addNoise(
 }
 
 module.exports = async function (args) {
+
   await args.data.shouldIncludeColumns(args.columns);
 
   const data = await args.data.transformSync(
@@ -29,12 +30,11 @@ module.exports = async function (args) {
         if (!Number.isNaN(value)) {
           row[columnName] = addNoise(
             value,
-            args.kms,
+            args.range,
             args.digits,
           );
         }
       }
-
       return row;
     }
   );
