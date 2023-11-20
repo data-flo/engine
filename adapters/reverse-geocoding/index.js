@@ -15,6 +15,8 @@ function isValidLatitude(latitude) {
       }
     }
   }
+
+  return false;
 }
 
 function isValidLongitude(longitude) {
@@ -26,15 +28,17 @@ function isValidLongitude(longitude) {
       }
     }
   }
+
+  return false;
 }
 
 module.exports = async function (args) {
-  let sum3 = 0;
-  let count3 = 0;
-  let sum4 = 0;
-  let count4 = 0;
-  let sum5 = 0;
-  let count5 = 0;
+  // let sum3 = 0;
+  // let count3 = 0;
+  // let sum4 = 0;
+  // let count4 = 0;
+  // let sum5 = 0;
+  // let count5 = 0;
 
   // const Queue = await import("yocto-queue");
   // const queue = new Queue.default();
@@ -73,32 +77,32 @@ module.exports = async function (args) {
       row[args["location column"]] = "";
 
       if (row[args["latitude column"]] && row[args["longitude column"]]) {
-        const t3 = performance.now();
+        // const t3 = performance.now();
         const coordinates = `${row[args["latitude column"]]},${row[args["longitude column"]]}`;
         const cacheKey = `reverse-geocoding ${coordinates}`;
 
-        const t5 = performance.now();
+        // const t5 = performance.now();
 
         const place = await cache(
           cacheKey,
           async () => {
-            const t4 = performance.now();
+            // const t4 = performance.now();
             const res = await geocoder(
               args["api key"],
               coordinates,
             );
-            sum4 += (performance.now() - t4);
-            count4 += 1;
+            // sum4 += (performance.now() - t4);
+            // count4 += 1;
             return res;
           },
           360 * 24,
         );
 
-        sum5 += (performance.now() - t5);
-        count5 += 1;
+        // sum5 += (performance.now() - t5);
+        // count5 += 1;
 
-        sum3 += (performance.now() - t3);
-        count3 += 1;
+        // sum3 += (performance.now() - t3);
+        // count3 += 1;
 
         if (place) {
           const feature = formater(place, args["location type"]);

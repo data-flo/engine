@@ -1,13 +1,16 @@
-const fs = require("fs");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const tap = require("../../utils/testing/unit");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const adaptor = require("../index.js");
 
-await t.test("reverse-geocoding adaptor", async () => {
+test("reverse-geocoding adaptor", async (t) => {
+  assert.ok(process.env.OPENCAGE_API_KEY, "OPENCAGE_API_KEY is missing from env");
+
   const testCsvFilePath = await createTmpTextFile(`"latitude","longitude"
 "-13.163068","-72.545128"
 "37.4396","-122.1864"
@@ -20,7 +23,6 @@ await t.test("reverse-geocoding adaptor", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "api key": process.env.HERE_API_KEY,
         "data": createDatatable(testCsvFilePath),
         "latitude column": "latitude",
         "longitude column": "longitude",
@@ -29,10 +31,10 @@ await t.test("reverse-geocoding adaptor", async () => {
     );
     assert.ok(output.data);
     const expected = `"latitude","longitude","address"
-"-13.163068","-72.545128","Machu Picchu, Path to Inka Bridge, Machupicchu 08680, Peru"
-"37.4396","-122.1864","1330 Middle Avenue, Menlo Park, CA 94025, United States of America"
-"51.50643","-0.12719","Whitehall / Trafalgar Square, Whitehall, Westminster, London, SW1A 2EG, United Kingdom"
-"51.50108","-0.12459","Portcullis House, Canon Row, Westminster, London, SW1A 2LW, United Kingdom "
+"-13.163068","-72.545128","PE"
+"37.4396","-122.1864","US"
+"51.50643","-0.12719","GB"
+"51.50108","-0.12459","GB"
 ,,
 `;
     compareFile(output.data.getSource(), expected);
@@ -42,11 +44,10 @@ await t.test("reverse-geocoding adaptor", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "api key": process.env.HERE_API_KEY,
         "data": createDatatable(testCsvFilePath),
         "latitude column": "latitude",
         "longitude column": "longitude",
-        "location type": "country code",
+        "location type": "ISO-3166-1-alpha-3",
         "location column": "address",
       },
     );
@@ -61,12 +62,11 @@ await t.test("reverse-geocoding adaptor", async () => {
     compareFile(output.data.getSource(), expected);
   });
 
-  await t.test("given an invalid feature, it should throw an error", async (t) => {
-    await t.rejects(
+  await t.test("given an invalid feature, it should throw an error", async () => {
+    await assert.rejects(
       runAdaptor(
         adaptor,
         {
-          "api key": process.env.HERE_API_KEY,
           "data": createDatatable(testCsvFilePath),
           "latitude column": "latitude",
           "longitude column": "longitude",
@@ -74,7 +74,7 @@ await t.test("reverse-geocoding adaptor", async () => {
           "location column": "address",
         },
       ),
-      ("Invalid feature"),
+      new Error("Invalid feature"),
     );
   });
 
