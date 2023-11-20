@@ -1,7 +1,7 @@
-const geocoder = require("../../utils/geocoding/opencage-geocoder");
-const formater = require("../../utils/geocoding/opencage-formater");
+const geocoder = require("../../utils/geocoding/opencage-geocoder.js");
+const formater = require("../../utils/geocoding/opencage-formater.js");
 
-const cache = require("../../utils/cache");
+const cache = require("../../utils/cache/index.js");
 
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["location column"]);
@@ -22,11 +22,11 @@ module.exports = async function (args) {
 
         if (place) {
           const [latitude, longitude] = formater(place, "position");
-          row[args["latitude column"]] = latitude.toFixed(args.digits);
-          row[args["longitude column"]] = longitude.toFixed(args.digits);
-          if (args["type column"]) {
+          row[args["latitude column"]] = latitude.toFixed(args["decimal places"]);
+          row[args["longitude column"]] = longitude.toFixed(args["decimal places"]);
+          if (args["place type column"]) {
             const type = formater(place, "type");
-            row[args["type column"]] = type;
+            row[args["place type column"]] = type;
           }
         }
       }

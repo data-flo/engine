@@ -18,6 +18,10 @@ function compareFile(filePath, expectedFileContent) {
     actual = actual.substring(1);
   }
 
+  if (actual !== expectedFileContent) {
+    console.error(actual)
+  }
+
   return assert.equal(actual, expectedFileContent);
 }
 
