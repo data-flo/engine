@@ -4,20 +4,21 @@ const createTextNormaliser = require("../../utils/text/create-text-normaliser.js
 
 module.exports = function (args) {
   const textNormaliser = createTextNormaliser(
-    false,
+    true,
     args["match diacritics"],
   );
+
   const predicate = makePredicate(
     args["filter type"],
-    args["filter value"],
+    textNormaliser(args["filter value"]),
     args["case sensitive"],
   );
 
   const values = [];
   const complementary = [];
   for (const item of args.list) {
-    const condition = predicate(textNormaliser(item));
-    if (condition) {
+    const value = predicate(textNormaliser(item));
+    if (value) {
       values.push(item);
     }
     else {

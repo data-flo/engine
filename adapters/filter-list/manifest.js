@@ -12,20 +12,6 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "match diacritics",
-      "type": "boolean",
-      "description": "When set to `True`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `True`.",
-      "required": false,
-      "default": true,
-    },
-    {
-      "name": "case sensitive",
-      "type": "boolean",
-      "description": "When set to `True`, lowercase and uppercase letters are treated as different when comparing text values. When set to `False`, lowercase and uppercase letters are treated as equivalent. If unspecified, defaults to `False`",
-      "required": false,
-      "default": false,
-    },
-    {
       "name": "filter type",
       "type": "text",
       "description": "The type of filter applied.",
@@ -38,6 +24,20 @@ module.exports = {
       "type": "text",
       "description": "A text or a regular expression to be searched for within the datatable columns.",
       "required": false,
+    },
+    {
+      "name": "match diacritics",
+      "type": "boolean",
+      "description": "When set to `True`, letters with and without diacritics are treated as equivalent when matching values, e.g. `Perú` = `Peru`.\nIf unspecified, defaults to `True`.",
+      "required": false,
+      "default": false,
+    },
+    {
+      "name": "case sensitive",
+      "type": "boolean",
+      "description": "When set to `True`, lowercase and uppercase letters are treated as different when comparing text values. When set to `False`, lowercase and uppercase letters are treated as equivalent. If unspecified, defaults to `False`",
+      "required": false,
+      "default": false,
     },
   ],
   "output": [
