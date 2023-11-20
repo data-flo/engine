@@ -315,11 +315,11 @@ module.exports = function (doc) {
 
   renameAdaptorInput("select-columns", "columns", "column names");
 
-  renameAdaptorInput("send-email-message", "stmp host", "smto host");
-  renameAdaptorInput("send-email-message", "stmp port", "smto port");
-  renameAdaptorInput("send-email-message", "stmp username", "smto username");
-  renameAdaptorInput("send-email-message", "stmp password", "smto password");
-  renameAdaptorInput("send-email-message", "stmp secure", "smto secure");
+  renameAdaptorInput("send-email-message", "stmp host", "smtp host");
+  renameAdaptorInput("send-email-message", "stmp port", "smtp port");
+  renameAdaptorInput("send-email-message", "stmp username", "smtp username");
+  renameAdaptorInput("send-email-message", "stmp password", "smtp password");
+  renameAdaptorInput("send-email-message", "stmp secure", "smtp secure");
   renameAdaptorOutput("send-email-message", "response", "status code");
 
   renameAdaptor("slice-datatable", "select-rows");

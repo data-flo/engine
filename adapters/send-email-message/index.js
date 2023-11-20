@@ -1,15 +1,18 @@
 const nodemailer = require("nodemailer");
 
 module.exports = async function (args) {
-  const transporter = nodemailer.createTransport({
+  const options = {
     host: args["smtp host"],
     port: args["smtp port"],
     secure: args["smtp secure"],
-    auth: {
+  };
+  if (args["smtp username"] && args["smtp password"]) {
+    options.auth = {
       user: args["smtp username"],
       pass: args["smtp password"],
-    },
-  });
+    };
+  }
+  const transporter = nodemailer.createTransport(options);
 
   const info = await transporter.sendMail({
     from: args["from address"],

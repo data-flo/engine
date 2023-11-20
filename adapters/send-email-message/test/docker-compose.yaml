@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  smtp:
+    image: reachfive/fake-smtp-server
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    environment:
+      MINIO_ACCESS_KEY: NNEV9C8ZYRHATNI2MRZ9 # Username
+      MINIO_SECRET_KEY: DgsAUwzoBssqAAa7WxzeBzO4Ty1rloXIFsTZFWXC # Password
+    healthcheck:
+      test: apk add curl && curl --fail http://localhost:1080/api/emails || exit 1
+      interval: 1s
+      retries: 5
+      start_period: 1s
+      timeout: 1s
+
+  nginx:  
+    image: nginx
+    ports:
+      - "8000:80"
+    depends_on: 
+      smtp:
+        condition: service_healthy

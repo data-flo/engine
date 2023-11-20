@@ -4,31 +4,31 @@ module.exports = {
   "subgroup": "Data Destinations",
   "input": [
     {
-      "name": "stmp host",
+      "name": "smtp host",
       "type": "text",
       "description": "The hostname or IP address of the SMTP server.",
       "required": true,
     },
     {
-      "name": "stmp port",
+      "name": "smtp port",
       "type": "number",
       "description": "The port of the SMTP server.",
       "required": true,
     },
     {
-      "name": "stmp username",
+      "name": "smtp username",
       "type": "text",
       "description": "The username of the SMTP account.",
-      "required": true,
+      "required": false,
     },
     {
-      "name": "stmp password",
+      "name": "smtp password",
       "type": "text",
       "description": "The password of the SMTP account.",
-      "required": true,
+      "required": false,
     },
     {
-      "name": "stmp secure",
+      "name": "smtp secure",
       "type": "boolean",
       "description": "When set to `True`, the connection to the server will use TLS protocol.",
       "required": true,
