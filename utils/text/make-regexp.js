@@ -2,11 +2,11 @@ const escapeStringRegexp = require("escape-string-regexp");
 
 module.exports = function makeRegexp(
   expression,
-  matchCase = true,
+  matchCase = false,
   global = false,
 ) {
   const flags = [];
-  if (matchCase) {
+  if (!matchCase) {
     flags.push("i");
   }
   if (global) {

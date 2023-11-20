@@ -1,8 +1,8 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
-const adaptor = require("./index.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const adaptor = require("../index.js");
 
 test("find-value-in-list adaptor", async (t) => {
 
@@ -30,7 +30,7 @@ test("find-value-in-list adaptor", async (t) => {
     assert.equal(result.index, 3);
   });
 
-  await t.test("given case sensitive and match diacritics set to false, it should find a text value in a list", async () => {
+  await t.test("given case sensitive and match diacritics set to default, it should find a text value in a list", async () => {
     const result = await runAdaptor(
       adaptor,
       {
@@ -61,7 +61,7 @@ test("find-value-in-list adaptor", async (t) => {
       {
         "list": ["Perú", "green", "blue"],
         "pattern": "Peru",
-        "match diacritics": false,
+        "match diacritics": true,
       }
     );
     assert.equal(result.value, null);

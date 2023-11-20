@@ -1,7 +1,7 @@
 const makeRegexp = require("../../utils/text/make-regexp.js");
 
 module.exports = function (args) {
-  let regex = makeRegexp(args.separator);
+  let regex = makeRegexp(args.separator, true);
   if (args.separator === "\\u0020") {
     regex = "\u0020";
   }
