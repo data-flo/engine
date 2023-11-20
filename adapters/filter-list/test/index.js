@@ -1,9 +1,9 @@
 const assert = require("node:assert");
 const test = require("node:test");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("filter-list adaptor", async (t) => {
 
