@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Runs a Workflow for each row in a datatable.",
+  "description": "Runs a data-flo adaptor(s) from another Workflow within the current Workflow. This adaptor applies the reference Workflow adaptors to each row of your current Workflow.",
   "group": "Workflows",
   "subgroup": "Workflows",
   "input": [
