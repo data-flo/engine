@@ -1,18 +1,20 @@
-const test = require("node:test");
 const assert = require("node:assert");
+const path = require("node:path");
+const test = require("node:test");
 
-const { compareFile } = require("../../../utils/testing/unit.js");
+const { compareFile, setupServices } = require("../../../utils/testing/unit.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+const adaptor = require("../index.js");
 
 test("import-file-from-smb-share adaptor", async (t) => {
+  setupServices(path.resolve(__dirname));
 
   await t.test("given an URL, it should download it", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "share address": "\\\\localhost\\projects",
+        "share address": "\\\\localhost\\share",
         "file path": "data\\demo.nwk",
         "port": 8445,
         "username": "joe",

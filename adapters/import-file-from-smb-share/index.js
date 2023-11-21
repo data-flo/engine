@@ -1,8 +1,8 @@
 const path = require("path");
 const SambaClient = require("samba-client");
 
-const { FileStream } = require("../../types/file");
-const lastElement = require("../../utils/arrays/last-element");
+const { FileStream } = require("../../types/file.js");
+const lastElement = require("../../utils/arrays/last-element.js");
 
 module.exports = async function (args) {
   let shareAddress = args["share address"];
