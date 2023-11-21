@@ -7,30 +7,29 @@ const runAdaptor = require("../../../runner/run-adaptor.js");
 
 const adaptor = require("../index.js");
 
-const baseArgs = {
-  "hostname": "localhost",
-  "username": "postgres",
-  "password": "postgres",
-  "database": "postgres",
-  "port": "5444",
-  "query": `
-          SELECT * FROM (
-            SELECT 1 AS field1, 'a' AS field2
-            UNION
-            SELECT 2 AS field1, 'b' AS field2
-            UNION
-            SELECT 3 AS field1, 'c' AS field2
-          ) as x
-          Order by field1
-        `,
-};
 test("import-from-postgres adaptor", async (t) => {
   setupServices(path.resolve(__dirname));
 
   await t.test("given a query, it should return a datatable with 3 rows", async () => {
     const output = await runAdaptor(
       adaptor,
-      baseArgs,
+      {
+        "hostname": "localhost",
+        "username": "postgres",
+        "password": "postgres",
+        "database": "postgres",
+        "port": "5444",
+        "query": `
+                SELECT * FROM (
+                  SELECT 1 AS field1, 'a' AS field2
+                  UNION
+                  SELECT 2 AS field1, 'b' AS field2
+                  UNION
+                  SELECT 3 AS field1, 'c' AS field2
+                ) as x
+                Order by field1
+              `,
+      },
     );
     assert.ok(output.data, "adaptor should return data");
     compareFile(
@@ -45,14 +44,19 @@ test("import-from-postgres adaptor", async (t) => {
 
   await t.test("given an invalid port, it should throw an error", async () => {
     await assert.rejects(
-      adaptor({
-        ...baseArgs,
-        "port": "9999",
-      }),
+      runAdaptor(
+        adaptor,
+        {
+          "hostname": "localhost",
+          "database": "postgres",
+          "port": "9999",
+          "query": "SELECT 1",
+        },
+      ),
       {
-        name: "ConnectionError",
-        message: "Failed to connect to localhost:9999 - Could not connect (sequence)",
-      }
+        name: "Error",
+        message: "connect ECONNREFUSED ::1:9999",
+      },
     );
   });
 
