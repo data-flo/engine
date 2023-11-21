@@ -1,9 +1,11 @@
-const tap = require("../../utils/testing/unit");
-const runAdaptor = require("../../runner/run-adaptor");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const adaptor = require("./index");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("replace-values-in-list adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("replace-values-in-list adaptor", async (t) => {
 
   await t.test("given a text without replacement, it should replace with blank", async () => {
     const output = await runAdaptor(
@@ -56,15 +58,15 @@ await t.test("replace-values-in-list adaptor", async () => {
     const output = await runAdaptor(
       adaptor,
       {
-        "list": [ "one1", "1" ],
-        "pattern": "1",
-        "replacement": "*",
+        "list": [ "Centre", "for", "Genomic", "Pathogen", "Surveillance" ],
+        "pattern": "ce",
+        "replacement": "-",
       },
     );
     assert.ok(output.list, "adaptor should return list");
     assert.deepEqual(
       output.list,
-      [ "one*", "fo*r" ],
+      [ "-ntre", "for", "Genomic", "Pathogen", "Surveillan-" ],
     );
   });
 

@@ -1,7 +1,7 @@
 const makeRegexp = require("../../utils/text/make-regexp");
 
 module.exports = function (args) {
-  const pattern = makeRegexp(args.pattern);
+  const pattern = makeRegexp(args.pattern, false, true);
 
   const list = [];
 
