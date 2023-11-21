@@ -1,11 +1,14 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("replace-blank-values adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("replace-blank-values adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(
     `"id","name","country"\n"1","Bovine","de"\n"2","Gibbon","de"\n"3","Orangutan","fr"\n"4",,\n"5","Human",\n"6","Mouse","gb"\n`
   );
