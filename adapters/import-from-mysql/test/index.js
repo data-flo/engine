@@ -1,30 +1,22 @@
-/*
-docker run \
-  --rm \
-  --name mysql \
-  --env MYSQL_ALLOW_EMPTY_PASSWORD=yes \
-  --env MYSQL_ROOT_PASSWORD="root" \
-  --publish 3306:3306 \
-  mysql:5
-*/
+const test = require("node:test");
+const assert = require("node:assert");
+const path = require("path");
 
-const tap = require("../../utils/testing/unit");
+const { compareFile, setupServices } = require("../../../utils/testing/unit.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const adaptor = require("../index.js");
 
-const adaptor = require("./index");
-
-await t.test("import-from-mysql adaptor", async () => {
+test("import-from-mysql adaptor", async (t) => {
+  setupServices(path.resolve(__dirname));
 
   await t.test("given a query, it should return a datatable with 3 rows", async () => {
-    const output = await runAdaptor(
-      adaptor,
+    const output = await adaptor(
       {
         "hostname": "localhost",
         "port": 3306,
-        "username": "root",
-        "password": "root",
-        "database": "sys",
+        "username": "user_name",
+        "password": "user_password",
+        "database": "database_name",
         "query": `
           SELECT 1 AS field1, 'a' AS field2
           UNION

@@ -1,9 +1,9 @@
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
-const queryDatabase = require("../../utils/databases/query");
+const queryDatabase = require("../../utils/databases/query.js");
 
 module.exports = async function (args) {
-  const client = "mysql";
+  const client = "mysql"; // TODO: This client doesn't work with mysql:8 without a hack (see command in docker file)
   const connection = {
     host: args.hostname,
     port: args.port,
