@@ -1,9 +1,13 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("import-from-microreact-project adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("import-from-microreact-project adaptor", async (t) => {
+
   await t.test("given a project, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
