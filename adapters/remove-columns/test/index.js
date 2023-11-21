@@ -1,12 +1,14 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const adaptor = require("../index.js");
 
-await t.test("remove-columns adaptor", async () => {
+test("remove-columns adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -16,7 +18,7 @@ await t.test("remove-columns adaptor", async () => {
 "Mouse","gb",,,
 `);
 
-  await t.test("given a datatable and one column, it should return a datatable", async (t) => {
+  await t.test("given a datatable and one column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -24,7 +26,7 @@ await t.test("remove-columns adaptor", async () => {
         "columns": [ "id", "empty", "date a", "date b" ],
       },
     );
-    t.ok(output.data, "adaptor should return data");
+    assert.ok(output.data, "adaptor should return data");
     compareFile(
       output.data.getSource(),
       `"Country"
@@ -38,7 +40,7 @@ await t.test("remove-columns adaptor", async () => {
     );
   });
 
-  await t.test("given a datatable and two column, it should return a datatable", async (t) => {
+  await t.test("given a datatable and two column, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -46,7 +48,7 @@ await t.test("remove-columns adaptor", async () => {
         "columns": [ "empty", "date a", "date b" ],
       },
     );
-    t.ok(output.data, "adaptor should return data");
+    assert.ok(output.data, "adaptor should return data");
     compareFile(
       output.data.getSource(),
       `"id","Country"
