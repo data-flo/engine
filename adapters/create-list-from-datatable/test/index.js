@@ -1,11 +1,13 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("create-list-from-datatable adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("create-list-from-datatable adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","empty","date a","date b"
 "Bovine","de",,"Jan 29, 2007","2007-01-28"
 "Gibbon","fr",,,
@@ -23,10 +25,10 @@ await t.test("create-list-from-datatable adaptor", async () => {
         "column name": "id",
       },
     );
-    t.ok(output.list, "adaptor should return list");
+    assert.ok(output.list, "adaptor should return list");
     const actual = output.list;
     const expected = [ "Bovine", "Gibbon", "Orangutan", "Gorilla", "Human", "Mouse" ];
-    t.same(actual, expected);
+    assert.deepEqual(actual, expected);
   });
 
   await t.test("given a column in a datatable, it should return a list of the column values", async (t) => {
@@ -37,10 +39,10 @@ await t.test("create-list-from-datatable adaptor", async () => {
         "column name": "Country",
       },
     );
-    t.ok(output.list, "adaptor should return list");
+    assert.ok(output.list, "adaptor should return list");
     const actual = output.list;
     const expected = [ "de", "fr", "gb", "gb" ];
-    t.same(actual, expected);
+    assert.deepEqual(actual, expected);
   });
 
 });
