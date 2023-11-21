@@ -1,18 +1,18 @@
-const path = require("path");
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const createFile = require("../../types/file");
-const tmpFilePath = require("../../utils/file/tmp-path");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index");
+const createFile = require("../../../types/file.js");
+const tmpFilePath = require("../../../utils/file/tmp-path.js");
 
-await t.test("import-from-sql-server adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("import-from-sqlite adaptor", async (t) => {
   const filePath = await tmpFilePath();
 
   await t.test("given a query, it should return a datatable with 3 rows", async () => {
-    const output = await runAdaptor(
-      adaptor,
+    const output = await adaptor(
       {
         "sqlite file": createFile(filePath),
         "query": `
