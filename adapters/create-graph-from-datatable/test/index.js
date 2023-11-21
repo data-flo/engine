@@ -1,12 +1,13 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
+const adaptor = require("../index.js");
 
-await t.test("create-graph-from-datatable adaptor", async () => {
+test("create-graph-from-datatable adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"source","target","label"
 "A","B","edge-0"
 "A","C","edge-1"
@@ -14,7 +15,7 @@ await t.test("create-graph-from-datatable adaptor", async () => {
 "C","D","edge-3"
 `);
 
-  await t.test("given two columns, it should return concatenated text", async (t) => {
+  await t.test("given two columns, it should return concatenated text", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -23,7 +24,7 @@ await t.test("create-graph-from-datatable adaptor", async () => {
         "to column": "target",
       },
     );
-    t.ok(output.graph, "adaptor should return graph");
+    assert.ok(output.graph, "adaptor should return graph");
     const actual = output.graph;
     const expected = {
       nodes: [
@@ -39,7 +40,7 @@ await t.test("create-graph-from-datatable adaptor", async () => {
         { id: "edge-4", from: "C", to: "D", direction: "none", attributes: { label: "edge-3" } },
       ],
     };
-    t.same(actual, expected);
+    assert.deepEqual(actual, expected);
   });
 
 });
