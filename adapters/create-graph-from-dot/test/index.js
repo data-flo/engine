@@ -1,12 +1,13 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index");
+const adaptor = require("../index.js");
 
-await t.test("create-graph-from-dot adaptor", async () => {
+test("create-graph-from-dot adaptor", async (t) => {
 
-  await t.test("given a DOT string columns, it should return a graph", async (t) => {
+  await t.test("given a DOT string columns, it should return a graph", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -15,7 +16,7 @@ await t.test("create-graph-from-dot adaptor", async () => {
         "to column": "target",
       },
     );
-    t.ok(output.graph, "adaptor should return graph");
+    assert.ok(output.graph, "adaptor should return graph");
     const actual = output.graph;
     const expected = {
       nodes: [
@@ -31,7 +32,7 @@ await t.test("create-graph-from-dot adaptor", async () => {
         { id: "edge-3", from: "C", to: "D", direction: "none", attributes: {} },
       ],
     };
-    t.same(actual, expected);
+    assert.deepEqual(actual, expected);
   });
 
 });
