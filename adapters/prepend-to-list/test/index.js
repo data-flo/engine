@@ -1,9 +1,11 @@
-const tap = require("../../utils/testing/unit");
-const runAdaptor = require("../../runner/run-adaptor");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const adaptor = require("./index");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("prepend-to-list adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("prepend-to-list adaptor", async (t) => {
 
   await t.test("given a list, it should add a value to the beginning of the list", async () => {
     const output = await runAdaptor(
