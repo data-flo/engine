@@ -41,7 +41,7 @@ module.exports = async function (args) {
         const query = row[args["coordinates column"]];
         if (query) {
           // stopwatch.start("query.match")
-          const parts = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9]+(-?\d+[\.,]?\d*)\s?([EW]?)/i);
+          const parts = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9-]+(-?\d+[\.,]?\d*)\s?([EW]?)/i);
           // stopwatch.stop("query.match")
           if (parts) {
             const [_, lat, north, long, east] = parts;
