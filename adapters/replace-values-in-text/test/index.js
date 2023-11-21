@@ -1,9 +1,11 @@
-const tap = require("../../utils/testing/unit");
-const runAdaptor = require("../../runner/run-adaptor");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const adaptor = require("./index");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("replace-values-in-text adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("replace-values-in-text adaptor", async (t) => {
 
   await t.test("given a text without replacement, it should replace with blank", async () => {
     const output = await runAdaptor(

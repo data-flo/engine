@@ -1,12 +1,14 @@
-/* eslint-disable quotes */
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createDatatable = require("../../types/datatable");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("reshape-wide-to-long adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("reshape-wide-to-long adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(
     "subject,sex,control,cond1,cond2\n1,M, 7.9,12.3,10.7\n2,F, 6.3,10.6,11.1\n3,F, 9.5,13.1,13.8\n4,M,11.5,13.4,12.9\n"
   );
