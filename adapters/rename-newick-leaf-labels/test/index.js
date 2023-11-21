@@ -7,7 +7,7 @@ const adaptor = require("../index.js");
 
 test("reshape-wide-to-long adaptor", async (t) => {
 
-  await t.test("given a Newick string, it should return 7 leaf labels", async () => {
+  await t.test("given a Newick string, it should rename 7 leaf labels", async () => {
     const output = await runAdaptor(
       adaptor,
       {
