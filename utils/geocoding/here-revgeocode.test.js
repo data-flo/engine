@@ -13,7 +13,7 @@ await t.test("given an address string, it should return a location", async (t) =
     process.env.HERE_API_KEY,
     "37.37634,-122.03405",
   );
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a city, it should return a location", async (t) => {
@@ -28,7 +28,7 @@ await t.test("given a city, it should return a location", async (t) => {
     process.env.HERE_API_KEY,
     "london",
   );
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a city and a geographic area, it should return a location", async (t) => {
@@ -44,7 +44,7 @@ await t.test("given a city and a geographic area, it should return a location", 
     "london",
     "USA",
   );
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given an invalid string, it should return undefined", async (t) => {
@@ -53,5 +53,5 @@ await t.test("given an invalid string, it should return undefined", async (t) =>
     process.env.HERE_API_KEY,
     "52.12670207561581, 0.17255181706350176",
   );
-  t.equal(actual, expected);
+  assert.equal(actual, expected);
 });

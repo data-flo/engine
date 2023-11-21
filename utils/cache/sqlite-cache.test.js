@@ -11,12 +11,12 @@ await t.test("given an invalid string, it should return undefined", async (t) =>
     },
   );
 
-  t.same(
+  assert.deepEqual(
     await cache(key),
     { a: "value1" },
   );
 
-  t.same(
+  assert.deepEqual(
     await cache(key),
     { a: "value1" },
   );

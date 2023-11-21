@@ -7,7 +7,7 @@ await t.test("given a valid range, it should return [1,1] to [100,1]", async (t)
     start: { row: 1, col: 1 },
     end: { row: 100, col: 11 },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [2,null] to [null,null]", async (t) => {
@@ -16,7 +16,7 @@ await t.test("given a valid range, it should return [2,null] to [null,null]", as
     start: { row: 2, col: null },
     end: { row: null, col: null },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
@@ -25,7 +25,7 @@ await t.test("given a valid range, it should return [2,2] to [null,null]", async
     start: { row: 2, col: 2 },
     end: { row: null, col: null },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [2,2] to [null,null]", async (t) => {
@@ -34,7 +34,7 @@ await t.test("given a valid range, it should return [2,2] to [null,null]", async
     start: { row: 2, col: 2 },
     end: { row: null, col: null },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [2,2] to [null,4]", async (t) => {
@@ -43,7 +43,7 @@ await t.test("given a valid range, it should return [2,2] to [null,4]", async (t
     start: { row: 2, col: 2 },
     end: { row: null, col: 4 },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [null,2] to [null,4]", async (t) => {
@@ -52,7 +52,7 @@ await t.test("given a valid range, it should return [null,2] to [null,4]", async
     start: { row: null, col: 2 },
     end: { row: null, col: 4 },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
 
 await t.test("given a valid range, it should return [null,2] to [null,null]", async (t) => {
@@ -61,5 +61,5 @@ await t.test("given a valid range, it should return [null,2] to [null,null]", as
     start: { row: null, col: 2 },
     end: { row: null, col: null },
   };
-  t.same(actual, expected);
+  assert.deepEqual(actual, expected);
 });
