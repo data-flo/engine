@@ -1,13 +1,13 @@
-const tap = require("../../utils/testing/unit.js");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createFile = require("../../../types/file.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createFile = require("../../types/file.js");
+const adaptor = require("../index.js");
 
-const adaptor = require("./index.js");
-
-await t.test("import-text-from-file adaptor", async () => {
+test("import-text-from-file adaptor", async (t) => {
   const testFilePath = await createTmpTextFile(`id,
 Human
 Gibbon
