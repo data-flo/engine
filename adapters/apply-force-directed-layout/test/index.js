@@ -1,12 +1,13 @@
-/* eslint-disable quotes */
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-await t.test("apply-force-directed-layout adaptor", async () => {
+const adaptor = require("../index.js");
 
-  await t.test("given a Newick string, it should return 7 leaf labels", async () => {
+test("apply-force-directed-layout adaptor", async (t) => {
+
+  await t.test("given a graph, it should return a graph with x and y attributes", async () => {
     const output = await runAdaptor(
       adaptor,
       {
