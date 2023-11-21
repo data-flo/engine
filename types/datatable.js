@@ -103,15 +103,12 @@ class Datatable {
   static async createFromAsyncIterable(rows, options) {
     const dataWriter = await Datatable.create(options);
 
-    for await (const row of rows) {
-      dataWriter.write(row);
-    }
-
-    dataWriter.end();
+    await stream.promises.pipeline(
+      rows,
+      dataWriter,
+    );
 
     const data = await dataWriter.finalise();
-
-    await stream.promises.finished(rows);
 
     return data;
   }
