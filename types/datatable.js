@@ -103,11 +103,10 @@ class Datatable {
   static async createFromAsyncIterable(rows, options) {
     const dataWriter = await Datatable.create(options);
 
-    for await (const row of rows) {
-      dataWriter.write(row);
-    }
-
-    dataWriter.end();
+    await stream.promises.pipeline(
+      rows,
+      dataWriter,
+    );
 
     const data = await dataWriter.finalise();
 
@@ -169,7 +168,7 @@ class Datatable {
   }
 
   async getNumberOfRows() {
-    const [ rowCount ] = await this.getIndex();
+    const [rowCount] = await this.getIndex();
     return rowCount;
   }
 

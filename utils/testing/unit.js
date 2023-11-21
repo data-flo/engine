@@ -27,7 +27,7 @@ function compareFile(filePath, expectedFileContent) {
 
 async function waitForPort(port = 8000) {
   console.debug("Waiting for services...");
-  const MAX_RETRIES = 20;
+  const MAX_RETRIES = 120;
   for (let index = 0; index < MAX_RETRIES; index++) {
     try {
       const response = await fetch("http://localhost:8000");
@@ -99,7 +99,16 @@ async function dockerComposeUp(folderPath) {
     },
   );
 
-  await waitForPort();
+  try {
+    await waitForPort();
+  }
+  catch (e) {
+    dockerComposeProcess.stdout.destroy();
+    dockerComposeProcess.stdin.destroy();
+    dockerComposeProcess.stderr.destroy();
+    dockerComposeProcess.kill();
+    throw e;
+  }
 
   return dockerComposeProcess;
 }

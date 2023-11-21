@@ -4,6 +4,7 @@ const queryDatabase = require("../../utils/databases/query.js");
 
 module.exports = async function (args) {
   const client = "pg";
+
   const connection = {
     host: args.hostname,
     port: args.port,
@@ -11,6 +12,7 @@ module.exports = async function (args) {
     password: args.password,
     database: args.database,
   };
+
   const stream = queryDatabase(
     client,
     connection,
