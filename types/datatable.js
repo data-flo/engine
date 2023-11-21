@@ -111,6 +111,8 @@ class Datatable {
 
     const data = await dataWriter.finalise();
 
+    await stream.promises.finished(rows);
+
     return data;
   }
 
@@ -169,7 +171,7 @@ class Datatable {
   }
 
   async getNumberOfRows() {
-    const [ rowCount ] = await this.getIndex();
+    const [rowCount] = await this.getIndex();
     return rowCount;
   }
 
