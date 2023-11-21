@@ -1,11 +1,14 @@
-const tap = require("../../utils/testing/unit.js");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
 
-await t.test("import-from-json-file adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("import-from-json-file adaptor", async (t) => {
   await t.test("given a json file, it should return a datatable", async () => {
     const testFilePath = await createTmpTextFile(`
     [
