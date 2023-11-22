@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+
+  sftp:
+    image: "emberstack/sftp"
+    ports:
+      - "8022:22"
+    volumes:
+      - ./config.json:/app/config/sftp.json:ro
+    # healthcheck:
+    #   test: ["CMD", "mc", "ready", "local"]
+    #   interval: 1s
+    #   retries: 5
+    #   start_period: 1s
+    #   timeout: 1s
+
+  nginx:  
+    image: nginx
+    ports:
+      - "8000:80"
+    depends_on: 
+      minio:
+        condition: service_healthy
