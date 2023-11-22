@@ -17,6 +17,8 @@ module.exports = async function (args) {
     args.delimiter === ","
     &&
     args.trim === true
+    &&
+    !args["column names"]
   ) {
     data = new Datatable(args.file.getSource());
   }
