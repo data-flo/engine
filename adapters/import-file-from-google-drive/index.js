@@ -1,5 +1,5 @@
-const { FileStream } = require("../../types/file");
-const getRequestAsStream = require("../../utils/requests/get-as-stream");
+const { FileStream } = require("../../types/file.js");
+const getRequestAsStream = require("../../utils/requests/get-as-stream.js");
 
 module.exports = async function (args) {
   const validUrl = /^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=)([^\/]+)/i;
