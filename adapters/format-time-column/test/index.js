@@ -1,12 +1,14 @@
-const tap = require("../../utils/testing/unit.js");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createDatatable = require("../../types/datatable.js");
-const runAdaptor = require("../../runner/run-adaptor.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
-await t.test("format-time-column adaptor", async () => {
+test("format-time-column adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","duration"
 "1ms","1000"
 "1hour","3600000"
