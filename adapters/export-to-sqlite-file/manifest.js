@@ -4,6 +4,12 @@ module.exports = {
   "subgroup": "Data Destinations",
   "input": [
     {
+      "name": "sqlite",
+      "type": "file",
+      "description": "The SQLite DB file to white data will be exported.",
+      "required": true,
+    },
+    {
       "name": "data",
       "type": "datatable",
       "description": "The datatable to be exported.",
