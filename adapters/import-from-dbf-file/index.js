@@ -1,6 +1,6 @@
 const DBFFile = require("dbffile");
 
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
   const dbf = await DBFFile.open(args.dbf.getSource());
