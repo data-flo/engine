@@ -7,7 +7,7 @@ module.exports = async function (args) {
   const match = validUrl.exec(args.url);
 
   if (!match) {
-    throw new Error("Invalid Dropbox file URL.");
+    throw new Error("Invalid Dropbox file URL");
   }
 
   const url = args.url.replace("dl=0", "dl=1");
@@ -15,6 +15,9 @@ module.exports = async function (args) {
   const stream = await getRequestAsStream(url);
 
   const file = await FileStream.createFromStream(stream);
+
+  // TODO: Handle incorrect file paths
+  // Dropbox returns a 200, even if the URL is wrong, instead of a 404
 
   return { file };
 };

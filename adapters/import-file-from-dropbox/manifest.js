@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "url",
       "type": "text",
-      "description": "The URL of the Dropbox file to be imported.",
+      "description": "The URL of the Dropbox file to be imported. You can find this in Dropbox by getting a share link for the file.",
       "required": true,
     },
   ],
