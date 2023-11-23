@@ -27,10 +27,10 @@ module.exports = async function (args) {
   if (parsedUrlInfo.protocol === "sftp:") {
     const client = new SFTPClient();
     await client.connect({
-      host: parsedUrlInfo.host,
-      username: parsedUrlInfo.username,
+      host: parsedUrlInfo.hostname,
       password: parsedUrlInfo.password,
-      // privateKey: FS.readFileSync(`${process.env.HOME}/.ssh/id_rsa`),
+      port: parsedUrlInfo.port,
+      username: parsedUrlInfo.username,
     });
 
     file = await FileStream.createEmpty();

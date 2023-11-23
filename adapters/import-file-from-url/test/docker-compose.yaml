@@ -3,22 +3,23 @@ version: "3.8"
 services:
 
   sftp:
-    image: "emberstack/sftp"
+    image: "atmoz/sftp"
     ports:
-      - "8022:22"
+      - "2222:22"
     volumes:
-      - ./config.json:/app/config/sftp.json:ro
-    # healthcheck:
-    #   test: ["CMD", "mc", "ready", "local"]
-    #   interval: 1s
-    #   retries: 5
-    #   start_period: 1s
-    #   timeout: 1s
+      - ./:/home/foo/upload/
+    command: foo:pass:1001
+    healthcheck:
+      test: bash -c "exec 6<> /dev/tcp/localhost/22"
+      interval: 1s
+      retries: 5
+      start_period: 1s
+      timeout: 1s
 
   nginx:  
     image: nginx
     ports:
       - "8000:80"
     depends_on: 
-      minio:
+      sftp:
         condition: service_healthy
