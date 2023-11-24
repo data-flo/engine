@@ -2,11 +2,11 @@ const test = require("node:test");
 const assert = require("node:assert");
 const fs = require("node:fs");
 
-const { compareFile } = require("../../utils/testing/unit.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const tmpPath = require("../../utils/file/tmp-path.js");
-const createDatatable = require("../../types/datatable.js");
-const adaptor = require("./index.js");
+const tmpPath = require("../../../utils/file/tmp-path.js");
+const createDatatable = require("../../../types/datatable.js");
+const adaptor = require("../index.js");
 
 test(
   "change-column-case adaptor",
