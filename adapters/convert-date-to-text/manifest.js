@@ -14,7 +14,7 @@ module.exports = {
     {
       "name": "format",
       "type": "text",
-      "description": "The format of data in column one based on Unicode Technical Standard #35: https://date-fns.org/v2.30.0/docs/parse#:~:text=Accepted%20format%20string%20patterns%3A.\nIf unspecified, defaults to ISO 8601 date/time.",
+      "description": "The format of data in column one based on Unicode Technical Standard #35: https://date-fns.org/v2.0.1/docs/parse#:~:text=Accepted%20format%20string%20patterns%3A.\nIf unspecified, defaults to ISO 8601 date/time.",
       "required": false,
       "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
       "ui": { "can-be-one-of": DateFormats },
