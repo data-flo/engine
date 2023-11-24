@@ -13,7 +13,6 @@ function calculateSampleSize(input, totalRowCount) {
 module.exports = async function (args) {
   const dataWriter = await Datatable.create();
 
-  let index = 1;
   const totalRowCount = await args["data"].getNumberOfRows();
   const sampleSize = calculateSampleSize(
     args["sample size"],
@@ -28,6 +27,7 @@ module.exports = async function (args) {
   }
 
   if (args["sampling method"] === "first") {
+    let index = 1;
     for await (const row of args.data.getReader()) {
       if (index <= sampleSize) {
         dataWriter.write(row);
@@ -40,6 +40,7 @@ module.exports = async function (args) {
     }
   }
   else if (args["sampling method"] === "last") {
+    let index = 1;
     const startRow = totalRowCount - sampleSize + 1;
     for await (const row of args.data.getReader()) {
       if (index >= startRow) {
@@ -50,10 +51,22 @@ module.exports = async function (args) {
     }
   }
   else if (args["sampling method"] === "random") {
-    const prob = sampleSize / totalRowCount;
     let sampled = 0;
+    const sampledRows = [];
+    const allRows = [];
+    for (let rowNum = 1; rowNum <= totalRowCount; rowNum++) {
+      allRows.push(rowNum);
+    }
+    while (sampledRows.length < sampleSize) {
+      const [ rowNum ] = allRows.splice(
+        Math.floor(Math.random() * allRows.length),
+        1,
+      );
+      sampledRows.push(rowNum);
+    }
+    let index = 1;
     for await (const row of args.data.getReader()) {
-      if (Math.random() >= prob) {
+      if (sampledRows.includes(index)) {
         dataWriter.write(row);
         sampled += 1;
       }
