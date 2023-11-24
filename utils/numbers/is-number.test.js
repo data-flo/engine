@@ -1,22 +1,24 @@
-const tap = require("../testing/unit");
-const isNumber = require("./is-number");
+const test = require("node:test");
+const assert = require("node:assert");
 
-await t.test("given a number, it should return true", async () => {
+const isNumber = require("./is-number.js");
+
+test("given a number, it should return true", async () => {
   const actual = isNumber(1);
   assert.deepEqual(actual, true);
 });
 
-await t.test("given a valid string, it should return true", async () => {
+test("given a valid string, it should return true", async () => {
   const actual = isNumber("1");
   assert.deepEqual(actual, true);
 });
 
-await t.test("given an invalid string, it should return false", async () => {
+test("given an invalid string, it should return false", async () => {
   const actual = isNumber("A1");
   assert.deepEqual(actual, false);
 });
 
-await t.test("given an invalid string, it should return false", async () => {
+test("given an invalid string, it should return false", async () => {
   const actual = isNumber("123abc");
   assert.deepEqual(actual, false);
 });

@@ -1,7 +1,9 @@
-const tap = require("../testing/unit");
-const cache = require("./sqlite-cache");
+const test = require("node:test");
+const assert = require("node:assert");
 
-await t.test("given an invalid string, it should return undefined", async (t) => {
+const cache = require("./sqlite-cache.js");
+
+test("given an invalid string, it should return undefined", async (t) => {
   const key = "key1";
   await cache(
     key,
