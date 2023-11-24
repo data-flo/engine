@@ -1,11 +1,11 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
-const createTmpTextFile = require("../../utils/file/tmp-text.js");
-const createDatatable = require("../../types/datatable.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createDatatable = require("../../../types/datatable.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("export-to-google-sheet adaptor", async (t) => {
   const csvText = `"id","Country","empty","date a","date b"
