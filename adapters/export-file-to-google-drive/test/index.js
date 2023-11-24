@@ -48,4 +48,23 @@ test("export-file-to-google-drive adaptor", async (t) => {
     assert.ok(output.id, "adaptor should return id");
     assert.ok(output.url, "adaptor should return url");
   });
+
+  await t.test("given an incorrect folder path, it should throw an error", async () => {
+    const testFilePath = await createTmpTextFile(`(Bovine:0.69395,(Gibbon:0.0,(Orangutan:0.0,(Gorilla:0.0,(Chimp:0.0,Human:0.0)123:0.0)test:0.06124):0.0):0.54939,Mouse:1.21460);`);
+    const file = createFile(testFilePath);
+    const badFolderUrl = "https://drive.google.com/drive/folders/fdsfsafasdfasdfdsa-i03YI-2yd-2?usp=share_link";
+    file.name = "tree.newick";
+    file.mediaType = "text/plain";
+    await assert.rejects(
+      runAdaptor(
+        adaptor,
+        {
+          "file": file,
+          "folder url": badFolderUrl,
+          "output file name": "text",
+        }
+      ),
+      new Error(`Cannot access Google Drive folder ${badFolderUrl}. Make sure it exists and it has been shared with data-flo@data-flo.iam.gserviceaccount.com`)
+    );
+  });
 });
