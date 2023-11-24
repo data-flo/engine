@@ -25,23 +25,30 @@ function compareFile(filePath, expectedFileContent) {
   return assert.equal(actual, expectedFileContent);
 }
 
-async function waitForPort(port = 8000) {
-  console.debug("Waiting for services...");
+async function waitForPort(stdout) {
   const MAX_RETRIES = 120;
-  for (let index = 0; index < MAX_RETRIES; index++) {
-    try {
-      const response = await fetch("http://localhost:8000");
-      if (response.ok) {
-        return true;
+  let found = false;
+  return new Promise((resolve, reject) => {
+    const timeoutHandle = setTimeout(
+      () => {
+        reject(new Error("Timed out waiting for services"));
+      },
+      MAX_RETRIES * 1000,
+    );
+    stdout.on("data", (data) => {
+      if (data.toString().includes("[dataflo] service is up and running")) {
+        found = true;
+        clearTimeout(timeoutHandle);
+        resolve();
       }
-    }
-    catch (err) {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
-      });
-    }
-  }
-  throw new Error(`Timed out waiting for port ${port}`);
+    });
+    stdout.on("close", () => {
+      clearTimeout(timeoutHandle);
+      if (!found) {
+        reject(new Error("Services did not start"));
+      }
+    });
+  });
 }
 
 function dockerComposeDown(folderPath) {
@@ -100,7 +107,7 @@ async function dockerComposeUp(folderPath) {
   );
 
   try {
-    await waitForPort();
+    await waitForPort(dockerComposeProcess.stdout);
   }
   catch (e) {
     dockerComposeProcess.stdout.destroy();

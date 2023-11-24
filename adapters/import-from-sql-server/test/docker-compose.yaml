@@ -1,7 +1,8 @@
 version: "3.8"
 
 services:
-  sql-server:
+
+  mssql:
     image: mcr.microsoft.com/mssql/server
     environment:
       ACCEPT_EULA: Y
@@ -24,10 +25,10 @@ services:
         ]
       interval: 10s
       retries: 20
-  nginx:
-    image: nginx
-    ports:
-      - "8000:80"
-    depends_on:
-      sql-server:
+
+  nginx:  
+    image: alpine
+    command: echo "[dataflo] service is up and running"
+    depends_on: 
+      mssql:
         condition: service_healthy

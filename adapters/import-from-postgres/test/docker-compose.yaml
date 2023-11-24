@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+
   postgres:
     image: postgres
     ports:
@@ -14,10 +15,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  nginx:
-    image: nginx
-    ports:
-      - "8000:80"
-    depends_on:
+
+  nginx:  
+    image: alpine
+    command: echo "[dataflo] service is up and running"
+    depends_on: 
       postgres:
         condition: service_healthy

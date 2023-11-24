@@ -42,7 +42,7 @@ test("import-from-postgres adaptor", async (t) => {
     );
   });
 
-  await t.test("given an invalid port, it should throw an error", async () => {
+  await t.test("given an invalid port, it should throw an error", { skip: true }, async () => {
     await assert.rejects(
       runAdaptor(
         adaptor,

@@ -33,9 +33,8 @@ services:
       "
 
   nginx:  
-    image: nginx
-    ports:
-      - "8000:80"
+    image: alpine
+    command: echo "[dataflo] service is up and running"
     depends_on: 
       minio:
         condition: service_healthy

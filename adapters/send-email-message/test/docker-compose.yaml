@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+
   smtp:
     image: reachfive/fake-smtp-server
     ports:
@@ -17,9 +18,8 @@ services:
       timeout: 1s
 
   nginx:  
-    image: nginx
-    ports:
-      - "8000:80"
+    image: alpine
+    command: echo "[dataflo] service is up and running"
     depends_on: 
       smtp:
         condition: service_healthy
