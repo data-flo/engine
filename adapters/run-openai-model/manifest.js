@@ -16,7 +16,7 @@ module.exports = {
     {
       "name": "system message",
       "type": "text",
-      "description": "The system message helps set the behavior of the assistant.\nFor example, you can modify the personality of the assistant or provide specific instructions about how it should behave throughout the conversation.\nSee https://platform.openai.com/docs/guides/gpt/chat-completions-api",
+      "description": "The system message helps set the behavior of the assistant (e.g. `You are a helpful assistant`).\nYou can modify the personality of the assistant or provide specific instructions about how it should behave throughout the conversation.\nSee https://platform.openai.com/docs/guides/gpt/chat-completions-api",
       "required": true,
     },
     {
