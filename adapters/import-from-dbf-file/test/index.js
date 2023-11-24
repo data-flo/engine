@@ -1,16 +1,16 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const Path = require("path");
+const path = require("node:path");
+
 const { compareFile } = require("../../../utils/testing/unit.js");
 
 const runAdaptor = require("../../../runner/run-adaptor.js");
 const createFile = require("../../../types/file.js");
 const adaptor = require("../index.js");
 
-const file = Path.resolve(__dirname, "..", "..", "..", "dev", "data", "time-difference.dbf");
-
 test("import-from-dbf-file adaptor", async (t) => {
   await t.test("given an dbf file, it should return a datatable", async () => {
+    const file = path.resolve(__dirname, "..", "..", "..", "dev", "data", "time-difference.dbf");
     const output = await runAdaptor(
       adaptor,
       {
