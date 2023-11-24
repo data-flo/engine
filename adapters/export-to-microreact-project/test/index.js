@@ -1,11 +1,15 @@
-const tap = require("../../utils/testing/unit");
+const test = require("node:test");
+const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createFile = require("../../types/file");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const createFile = require("../../../types/file.js");
 
-await t.test("export-to-microreact-project adaptor", async () => {
+const adaptor = require("../index.js");
+
+test("export-to-microreact-project adaptor", async (t) => {
+  assert.ok(process.env.MICROREACT_ACCESS_TOKEN, "MICROREACT_ACCESS_TOKEN is missing from env");
+
   const csvText = `"id","Country","empty","date a","date b"
   "Bovine","de",,"Jan 29, 2007","2007-01-28"
   "Gibbon","fr",,,
