@@ -12,7 +12,7 @@ module.exports = {
     {
       "name": "column types",
       "type": "dictionary",
-      "description": "A dictionary of column name with data type.",
+      "description": "A dictionary of column name with data type (https://www.dbase.com/Knowledgebase/INT/db7_file_fmt.htm).",
       "required": true,
     },
     {
