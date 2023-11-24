@@ -1,11 +1,16 @@
-const tap = require("../../utils/testing/unit");
+const assert = require("node:assert");
+const test = require("node:test");
+const { loadEnv } = require("../../../utils/testing/unit.js");
+const createTmpTextFile = require("../../../utils/file/tmp-text.js");
+const createFile = require("../../../types/file.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
 
-const runAdaptor = require("../../runner/run-adaptor");
-const adaptor = require("./index");
-const createTmpTextFile = require("../../utils/file/tmp-text");
-const createFile = require("../../types/file");
+const adaptor = require("../index.js");
 
-await t.test("export-file-to-google-drive adaptor", async () => {
+loadEnv();
+test("export-file-to-google-drive adaptor", async (t) => {
+  assert.ok(process.env.GOOGLE_APPLICATION_CREDENTIALS, "GOOGLE_APPLICATION_CREDENTIALS is missing from env");
+
   let uploaded;
 
   await t.test("given a file, it should upload it", async () => {
@@ -42,7 +47,5 @@ await t.test("export-file-to-google-drive adaptor", async () => {
     );
     assert.ok(output.id, "adaptor should return id");
     assert.ok(output.url, "adaptor should return url");
-
   });
-
 });

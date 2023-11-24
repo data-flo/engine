@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const zlib = require("node:zlib");
 const path = require("node:path");
 const { spawn, spawnSync } = require("node:child_process");
-
+const dotEnv = require("dotenv");
 const isGzip = require("is-gzip");
 
 function compareFile(filePath, expectedFileContent) {
@@ -118,8 +118,13 @@ function setupServices(dirname) {
   after(() => dockerComposeDown(dirname));
 }
 
+function loadEnv() {
+  dotEnv.config({ path: path.resolve(__dirname, "../../.env.test") });
+}
+
 module.exports.setupServices = setupServices;
 module.exports.dockerComposeDown = dockerComposeDown;
 module.exports.dockerComposeUp = dockerComposeUp;
+module.exports.loadEnv = loadEnv;
 
 module.exports.compareFile = compareFile;
