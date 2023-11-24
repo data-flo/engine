@@ -4,7 +4,7 @@
 
 This project uses `node:test` and `node:assert`
 
-We recommend running tests in isolation due to fact that some tests need to spin up docker containers, and may take some time.
+We recommend running tests in isolation as some tests need to spin up docker containers and may take a long time.
 
 Run all the tests with `npm t`
 Run a single test with `node ./adapters/export-file-to-google-drive/test`
