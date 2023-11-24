@@ -1,10 +1,10 @@
 const test = require("node:test");
 const assert = require("node:assert");
 
-const runAdaptor = require("../../runner/run-adaptor.js");
-const { compareFile } = require("../../utils/testing/unit.js");
+const runAdaptor = require("../../../runner/run-adaptor.js");
+const { compareFile } = require("../../../utils/testing/unit.js");
 
-const adaptor = require("./index.js");
+const adaptor = require("../index.js");
 
 test("export-text-to-file adaptor", async (t) => {
   const text = `id,\nHuman\nGibbon\nOrangutan\nGorilla\nMouse\nBovine\n`;
