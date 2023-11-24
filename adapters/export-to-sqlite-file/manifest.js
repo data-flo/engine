@@ -28,6 +28,12 @@ module.exports = {
       "required": false,
       "default": null,
     },
+    // {
+    //   "name": "column types",
+    //   "type": "dictionary",
+    //   "description": "A dictionary of column name with data type (https://www.sqlite.org/datatype3.html).",
+    //   "required": true,
+    // },
   ],
   "output": [
     {

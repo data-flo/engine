@@ -8,6 +8,11 @@ const tmpFilePath = require("../utils/file/tmp-path.js");
 
 class FileStream {
 
+  static async createTempPath(options = EmptyObject) {
+    const filePath = await tmpFilePath(options);
+    return filePath;
+  }
+
   static async createEmpty(options = EmptyObject) {
     const { name, mediaType, ...rest } = options;
     const filePath = await tmpFilePath(rest);

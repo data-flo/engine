@@ -4,27 +4,38 @@ const { FileStream } = require("../../types/file.js");
 
 module.exports = async function (args) {
   const fieldDescriptors = [];
-  for (const [ key, value ] of args.columns.entries()) {
+  for (const [ key, value ] of args["column types"].entries()) {
     const [ type, size ] = value.split(" ");
-    fieldDescriptors.push({
+    const fieldDescriptor = {
       name: key,
       type,
-      size: size ? parseInt(size) : undefined,
-    });
+    };
+    if (size) {
+      fieldDescriptor.size = parseInt(size);
+    }
+    fieldDescriptors.push(fieldDescriptor);
   }
 
-  const file = await FileStream.createEmpty({ postfix: ".dbf" });
+  const filePath = await FileStream.createTempPath({
+    skipTouch: true,
+    postfix: ".dbf",
+  });
 
-  const dbf = await DBFFile.create(file.getSource(), fieldDescriptors);
+  const dbf = await DBFFile.create(
+    filePath,
+    fieldDescriptors,
+  );
 
   for await (const row of args.data.getReader()) {
     await dbf.append([ row ]);
   }
 
+  const file = new FileStream(filePath);
+
   file.name = args["output file name"];
   file.mediaType = "application/dbf";
 
-  return { file };
+  return { "dbf": file };
 };
 
 module.exports.manifest = require("./manifest.js");

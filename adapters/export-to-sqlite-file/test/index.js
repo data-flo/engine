@@ -27,7 +27,8 @@ test("export-to-sqlite adaptor", async (t) => {
     await db.run("INSERT INTO data (a, b) VALUES (?, ?)", "alpha 1", "beta 1");
     await db.close();
 
-    const output = await adaptor(
+    const output = await runAdaptor(
+      adaptor,
       {
         "sqlite": createFile(sqliteFilePath),
         "data": createDatatable(testCsvFilePath),
