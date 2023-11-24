@@ -40,7 +40,7 @@ module.exports = async function (args) {
     }
   }
   else if (args["sampling method"] === "last") {
-    const startRow = totalRowCount - sampleSize;
+    const startRow = totalRowCount - sampleSize + 1;
     for await (const row of args.data.getReader()) {
       if (index >= startRow) {
         dataWriter.write(row);
