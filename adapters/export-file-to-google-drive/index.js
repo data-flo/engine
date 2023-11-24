@@ -1,9 +1,8 @@
 const { google } = require("googleapis");
-
-const folderUrlToId = require("../../utils/google-api/folder-url-to-id");
-const fileUrlToId = require("../../utils/google-api/file-url-to-id");
-const fileIdToUrl = require("../../utils/google-api/file-id-to-url");
-const getClient = require("../../utils/google-api/get-glient");
+const folderUrlToId = require("../../utils/google-api/folder-url-to-id.js");
+const fileUrlToId = require("../../utils/google-api/file-url-to-id.js");
+const fileIdToUrl = require("../../utils/google-api/file-id-to-url.js");
+const getClient = require("../../utils/google-api/get-glient.js");
 
 module.exports = async function (args) {
   let fileId;
@@ -16,7 +15,7 @@ module.exports = async function (args) {
 
   try {
     const method = fileId ? "update" : "create";
-    const parents = fileId ? undefined : [ folderUrlToId(args["folder url"]) ];
+    const parents = fileId ? undefined : [folderUrlToId(args["folder url"])];
     const response = await drive.files[method]({
       resource: {
         name: args["output file name"] || args.file.name || "Untitled",

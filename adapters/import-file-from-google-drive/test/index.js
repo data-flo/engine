@@ -6,7 +6,7 @@ const runAdaptor = require("../../../runner/run-adaptor.js");
 
 const adaptor = require("../index.js");
 
-test("import-file-from-google-drive", async (t) => {
+test("import-file-from-google-drive adaptor", async (t) => {
   await t.test("given a Google Drive file URL, it should download it", async () => {
     const output = await runAdaptor(
       adaptor,

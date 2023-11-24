@@ -4,7 +4,7 @@ const assert = require("node:assert");
 const runAdaptor = require("../../../runner/run-adaptor.js");
 const adaptor = require("../index.js");
 
-test("import-file-from-dropbox adaptor", async (t) => {
+test("import-file-from-figshare adaptor", async (t) => {
   await t.test("given a figshare https URL, it should download it", async () => {
     const output = await runAdaptor(
       adaptor,
