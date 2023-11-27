@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const { AsyncDatabase } = require("promised-sqlite3");
+
+const knex = require("knex");
 
 const { compareFile } = require("../../../utils/testing/unit.js");
 const createTmpTextFile = require("../../../utils/file/tmp-text.js");
@@ -20,12 +21,13 @@ test("export-to-sqlite adaptor", async (t) => {
   const sqliteFilePath = await tmpFilePath();
 
   await t.test("given a datatable with two rows, it should export it to a sqlite db", async () => {
-    let db = await AsyncDatabase.open(sqliteFilePath);
-    await db.run(
-      "CREATE TABLE IF NOT EXISTS data (id INTEGER PRIMARY KEY AUTOINCREMENT, a TEXT NOT NULL, b TEXT)"
-    );
-    await db.run("INSERT INTO data (a, b) VALUES (?, ?)", "alpha 1", "beta 1");
-    await db.close();
+    const instance = knex({
+      "client": "sqlite3",
+      "connection": { "filename": sqliteFilePath },
+      "useNullAsDefault": true,
+    });
+    await instance.raw("CREATE TABLE IF NOT EXISTS data (id INTEGER PRIMARY KEY AUTOINCREMENT, a TEXT NOT NULL, b TEXT)");
+    await instance.raw(`INSERT INTO data (a, b) VALUES ("alpha 1", "beta 1")`);
 
     const output = await runAdaptor(
       adaptor,
@@ -38,16 +40,16 @@ test("export-to-sqlite adaptor", async (t) => {
     );
 
     assert.ok(output.sqlite, "adaptor should return sqlite");
-    db = await AsyncDatabase.open(sqliteFilePath);
     assert.deepEqual(
-      await db.all("SELECT * FROM data"),
+      await instance.raw("SELECT * FROM data"),
       [
         { id: 1, a: "alpha 1", b: "beta 1" },
         { id: 2, a: "alpha 2", b: "beta 2" },
         { id: 3, a: "alpha 3", b: "beta 3" },
       ],
     );
-    await db.close();
+
+    await instance.destroy();
   });
 
 });
