@@ -49,7 +49,7 @@ module.exports = async function adaptorJoinDatatable(args) {
     if (!rightColumns.includes(columnName)) {
       throw new Error(`Other datatable does not include a column named \`${columnName}\``);
     }
-    if (leftColumns.includes(columnName)) {
+    if (columnName !== rightIdColumn && leftColumns.includes(columnName)) {
       throw new Error(`Main datatable already includes a column named \`${columnName}\``);
     }
     joinedColumnNames.push({ key: columnName, header: `${args.prefix || ""}${columnName}` });
