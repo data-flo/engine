@@ -1,4 +1,4 @@
-const apiRequest = require("./api-request");
+const apiRequest = require("./api-request.js");
 
 module.exports = function updateProject(apiUrl, accessToken, projectId, json) {
   return apiRequest({
@@ -11,4 +11,4 @@ module.exports = function updateProject(apiUrl, accessToken, projectId, json) {
       "access-token": accessToken,
     },
   });
-}
+};
