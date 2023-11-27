@@ -85,13 +85,15 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
   projectDoc.meta.name = newDocument.meta.name || projectDoc.meta.name;
   projectDoc.meta.description = newDocument.meta.description || projectDoc.meta.description;
 
-  if (args.data) {
+  if (dataUrl) {
     if (dataFileId) {
       projectDoc.files[dataFileId] = newDocument.files["data-file-1"];
     }
   }
 
-  if (args.tree) {
+  let resetPanes = false;
+
+  if (treeUrl) {
     const treeFileId = findFile(
       projectDoc.files,
       [ "text/x-nh" ],
@@ -101,10 +103,13 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
     }
     else {
       projectDoc.files["tree-file-1"] = newDocument.files["tree-file-1"];
+      projectDoc.trees = projectDoc.trees ?? {};
+      projectDoc.trees["tree-1"] = newDocument.trees["tree-1"];
+      resetPanes = true;
     }
   }
 
-  if (args.network) {
+  if (networkUrl) {
     const networkFileId = findFile(
       projectDoc.files,
       [ "text/vnd.graphviz" ],
@@ -114,7 +119,14 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
     }
     else {
       projectDoc.files["network-file-1"] = newDocument.files["network-file-1"];
+      projectDoc.networks = projectDoc.networks ?? {};
+      projectDoc.networks["network-1"] = newDocument.networks["network-1"];
+      resetPanes = true;
     }
+  }
+
+  if (resetPanes && projectDoc.panes.model) {
+    delete projectDoc.panes.model;
   }
 
   const response = await updateProject(
