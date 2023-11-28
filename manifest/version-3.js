@@ -121,6 +121,10 @@ module.exports = function (doc) {
     }
   }
 
+  renameAdaptor("add-value-to-map", "add-value-to-dictionary");
+  renameAdaptor("create-map-from-datatable", "create-dictionary-from-datatable");
+  renameAdaptor("find-value-in-map", "find-value-in-dictionary");
+
   renameAdaptorInput("add-column", "column", "column name");
 
   renameAdaptor("csv-file-to-datatable", "import-from-csv-file");
