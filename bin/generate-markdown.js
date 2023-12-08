@@ -39,13 +39,13 @@ function generateAdaptorMarkdown(
 
   markdown.push(`## Inputs\n\n`);
   for (const spec of adaptorManifest.input) {
-    markdown.push(`* \`${spec.name}\`\\\nType: \`datatable\` Required: ${spec.required ? "Yes" : "No"}\\\n${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`* \`${spec.name}\`\\\nType: \`${spec.type}\` Required: ${spec.required ? "Yes" : "No"}\\\n${spec.description.replace(/\n/g, " ")}\n`);
   }
   markdown.push(`\n\n`);
 
   markdown.push(`## Outputs\n\n`);
   for (const spec of adaptorManifest.output) {
-    markdown.push(`* \`${spec.name}\`\\\nType: \`datatable\`\\\n${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`* \`${spec.name}\`\\\nType: \`${spec.type}\`\\\n${spec.description.replace(/\n/g, " ")}\n`);
   }
   markdown.push(`\n\n`);
 
