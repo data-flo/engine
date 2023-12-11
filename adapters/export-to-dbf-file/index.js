@@ -17,7 +17,7 @@ module.exports = async function (args) {
   }
 
   const filePath = await FileStream.createTempPath({
-    skipTouch: true,
+    touch: false,
     postfix: ".dbf",
   });
 
