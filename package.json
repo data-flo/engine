@@ -52,6 +52,7 @@
     "pg": "^8.7.1",
     "pg-query-stream": "^4.2.3",
     "promise-map-limit": "^1.0.0",
+    "rbql": "^0.27.0",
     "replicate": "^0.16.1",
     "request": "^2.87.0",
     "samba-client": "^5.0.2",
