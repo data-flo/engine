@@ -4,9 +4,8 @@ const touch = require("touch");
 const { EmptyObject } = require("../constants/index.js");
 
 module.exports = async function (options = EmptyObject) {
-  const { skipTouch, ...rest } = options;
-  const path = await tmp.tmpName(rest);
-  if (!skipTouch) {
+  const path = await tmp.tmpName(options);
+  if (options.touch ?? true) {
     await touch(path);
   }
   // const { path } = await tmp.file({
