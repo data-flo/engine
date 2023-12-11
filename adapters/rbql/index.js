@@ -2,8 +2,7 @@ const rbql = require("rbql");
 
 const tmpFilePath = require("../../utils/file/tmp-path.js");
 
-const { FileStream } = require("../../types/file");
-const { Datatable } = require("../../types/datatable");
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
   const filePath = await tmpFilePath({ touch: false });
@@ -22,7 +21,7 @@ module.exports = async function (args) {
     warnings,
     true /* with_headers */,
   );
-console.error({warnings, filePath})
+
   const data = new Datatable(filePath);
 
   return { data };
