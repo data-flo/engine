@@ -7,7 +7,7 @@ const createDatatable = require("../../../types/datatable.js");
 
 const adaptor = require("../index.js");
 
-test("rbql adaptor", async (t) => {
+test("query-datatable adaptor", async (t) => {
   const testCsvFilePath = await createTmpTextFile(`"id","Country","num"
 "Bovine","de","1"
 "Gibbon","fr","1"
