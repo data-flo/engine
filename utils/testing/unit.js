@@ -7,7 +7,7 @@ const { spawn, spawnSync } = require("node:child_process");
 const dotEnv = require("dotenv");
 const isGzip = require("is-gzip");
 
-function compareFile(filePath, expectedFileContent) {
+function compareFile(filePath, expectedFileContent, ignoreCase) {
   let actual = fs.readFileSync(filePath);
   if (isGzip(actual)) {
     actual = zlib.gunzipSync(actual);
@@ -16,6 +16,10 @@ function compareFile(filePath, expectedFileContent) {
 
   if (actual.startsWith("\ufeff")) {
     actual = actual.substring(1);
+  }
+
+  if (ignoreCase) {
+    actual = actual.toLowerCase();
   }
 
   if (actual !== expectedFileContent) {

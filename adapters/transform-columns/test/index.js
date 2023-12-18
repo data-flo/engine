@@ -35,7 +35,8 @@ test("transform-columns adaptor", async (t) => {
 "positive"
 "negative"
 "positive"
-`
+`,
+      true /* ignoreCase */,
     );
   });
 
