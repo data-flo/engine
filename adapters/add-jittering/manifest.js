@@ -29,7 +29,7 @@ module.exports = {
       "description": "The unit of the range value. For jittering geographical coordinates use either `kilometers`, `miles`.",
       "required": false,
       "default": "none",
-      "ui": { "must-be-one-of": [ "kilometers", "miles", "none" ] },
+      "ui": { "must-be-one-of": [ "kilometers", "meters", "miles", "none" ] },
     },
     {
       "name": "digits",

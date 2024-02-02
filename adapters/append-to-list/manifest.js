@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "list",
       "type": "list",
-      "description": "The list to which the values will be appended.",
+      "description": "The list to which the values will be appended.\nIf not specified, the value will be added to a new list.",
       "required": false,
       "default": [],
     },
@@ -21,7 +21,7 @@ module.exports = {
     {
       "name": "list",
       "type": "list",
-      "description": "A new list with the value appended.",
+      "description": "A list with the value appended.",
     },
   ],
 };
