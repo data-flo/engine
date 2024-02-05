@@ -6,7 +6,7 @@ module.exports = {
     {
       "name": "connection string",
       "type": "text",
-      "description": "An Easy Connect string (e.g. hostname:port/service), a Connect Descriptor string, or the SID of a local Oracle Database instance.\nIf unspecified, defaults to `localhost:1521/XEPDB1`.",
+      "description": "An Easy Connect string (e.g. hostname:port/service), a Connect Descriptor string, or the SID of a local Oracle Database instance.",
       "required": true,
     },
     {

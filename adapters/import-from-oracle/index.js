@@ -1,38 +1,43 @@
-const { Datatable } = require("../../types/datatable");
-
-const queryDatabase = require("../../utils/databases/query");
-
-/*
-const path = require("path");
 const oracledb = require("oracledb");
-// On Windows and macOS, you can specify the directory containing the Oracle
-// Client Libraries at runtime, or before Node.js starts.  On other platforms
-// the system library search path must always be set before Node.js is started.
-// See the node-oracledb installation documentation.
-// If the search path is not correct, you will get a DPI-1047 error.
-if (process.platform === "win32") { // Windows
-  oracledb.initOracleClient({ libDir: "C:\\oracle\\instantclient_19_11" });
-}
-else if (process.platform === "darwin") { // macOS
-  oracledb.initOracleClient({ libDir: path.join(process.env.HOME, "/Downloads/instantclient_19_8") });
-}
-*/
+
+const { Datatable } = require("../../types/datatable.js");
 
 module.exports = async function (args) {
-  const client = "oracledb";
-  const connection = {
+  const connection = await oracledb.getConnection({
     user: args.username,
     password: args.password,
     connectString: args["connection string"],
-  };
+    externalAuth: false,
+  });
 
-  const stream = queryDatabase(
-    client,
-    connection,
+  // https://node-oracledb.readthedocs.io/en/latest/user_guide/sql_execution.html
+  const result = await connection.execute(
     args.query,
+    {}, // binds
+    {
+      resultSet: true,
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    },
   );
 
-  const data = await Datatable.createFromAsyncIterable(stream);
+  const datatableWriter = await Datatable.create();
+
+  const rs = result.resultSet;
+  let rows;
+  const batchSize = 100;
+  do {
+    rows = await rs.getRows(batchSize);
+    for (const row of rows) {
+      datatableWriter.write(row);
+    }
+  } while (rows.length === batchSize);
+
+  datatableWriter.end();
+
+  await rs.close();
+  await connection.close();
+
+  const data = await datatableWriter.finalise();
 
   return { data };
 };
