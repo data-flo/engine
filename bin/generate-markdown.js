@@ -1,8 +1,13 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const Filehound = require("filehound");
+const changeCase = require("change-case");
 
 const getAdaptorExecutable = require("../runner/get-adaptor-executable.js");
+
+function adaptorNameToTitle(adaptorName) {
+  return changeCase.sentenceCase(adaptorName).replaceAll("-", " ");
+}
 
 function getAdaptorsList() {
   return (
@@ -35,19 +40,19 @@ function generateAdaptorMarkdown(
 ) {
   const markdown = [];
 
-  markdown.push(`# ${adaptorName}\n\n`);
+  markdown.push(`# ${adaptorNameToTitle(adaptorName)}\n\n`);
 
   markdown.push(`## Inputs\n\n`);
   for (const spec of adaptorManifest.input) {
-    markdown.push(`* \`${spec.name}\`\\\nType: \`${spec.type}\` Required: ${spec.required ? "Yes" : "No"}\\\n${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`* \`${spec.name}\`\\\n  Type: \`${spec.type}\` Required: ${spec.required ? "Yes" : "No"}\\\n  ${spec.description.replace(/\n/g, " ")}\n`);
   }
-  markdown.push(`\n\n`);
+  markdown.push(`\n`);
 
   markdown.push(`## Outputs\n\n`);
   for (const spec of adaptorManifest.output) {
-    markdown.push(`* \`${spec.name}\`\\\nType: \`${spec.type}\`\\\n${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`* \`${spec.name}\`\\\n  Type: \`${spec.type}\`\\\n  ${spec.description.replace(/\n/g, " ")}\n`);
   }
-  markdown.push(`\n\n`);
+  markdown.push(`\n`);
 
   return markdown.join("");
 }
