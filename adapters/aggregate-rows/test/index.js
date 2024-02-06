@@ -22,7 +22,7 @@ test("aggregate-rows adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "group column names": [ "country" ],
+        "group column names": ["country"],
         "aggregations": {
           "id": "sum",
         },
@@ -31,7 +31,7 @@ test("aggregate-rows adaptor", async (t) => {
     assert.ok(output.data, "adaptor should return data");
     compareFile(
       output.data.getSource(),
-      `"country","id"\n"de","3"\n"fr","3"\n,"4"\n"gb","11"\n`,
+      `"country (aggregated)","id (sum)"\n"de","3"\n"fr","3"\n,"4"\n"gb","11"\n`,
     );
   });
 
@@ -40,7 +40,7 @@ test("aggregate-rows adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "group column names": [ "country" ],
+        "group column names": ["country"],
         "aggregations": {
           "id": "sum",
           "city": "unique-values",
@@ -50,7 +50,7 @@ test("aggregate-rows adaptor", async (t) => {
     assert.ok(output.data, "adaptor should return data");
     compareFile(
       output.data.getSource(),
-      `"country","id","city"\n"de","3","berlin"\n"fr","3",\n,"4",\n"gb","11","london,manchester"\n`,
+      `"country (aggregated)","id (sum)","city (unique-values)"\n"de","3","berlin"\n"fr","3",\n,"4",\n"gb","11","london,manchester"\n`,
     );
   });
 
@@ -59,7 +59,7 @@ test("aggregate-rows adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "group column names": [ "country", "city" ],
+        "group column names": ["country", "city"],
         "aggregations": {
           "id": "sum",
         },
@@ -68,7 +68,7 @@ test("aggregate-rows adaptor", async (t) => {
     assert.ok(output.data, "adaptor should return data");
     compareFile(
       output.data.getSource(),
-      `"country","city","id"\n"de","berlin","3"\n"fr",,"3"\n,,"4"\n"gb","london","5"\n"gb","manchester","6"\n`,
+      `"country (aggregated)","city (aggregated)","id (sum)"\n"de","berlin","3"\n"fr",,"3"\n,,"4"\n"gb","london","5"\n"gb","manchester","6"\n`,
     );
   });
 
