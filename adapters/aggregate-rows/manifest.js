@@ -21,7 +21,8 @@ module.exports = {
     {
       "name": "aggregations",
       "type": "dictionary",
-      "description": "A dictionary of column names with aggregation method, where the keys are the column names, and the values should be either `max`, `mean`, `median`, `min`, `mode`, `sum`, `unique` (distinct).",
+      "description":
+        "A dictionary of column names with aggregation method, where the keys are the column names, and the values should be either `max`, `mean`, `median`, `min`, `mode`, `sum`, `unique-values` (list of distinct values), `unique-number` (number of distinct values).",
       "required": true,
       "ui": {
         "keys": { "column-in": "data" },
