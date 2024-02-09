@@ -44,13 +44,32 @@ function generateAdaptorMarkdown(
 
   markdown.push(`## Inputs\n\n`);
   for (const spec of adaptorManifest.input) {
-    markdown.push(`* \`${spec.name}\`\\\n  Type: \`${spec.type}\` Required: ${spec.required ? "Yes" : "No"}\\\n  ${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`**\`${spec.name}\`** \\`);
+    markdown.push(`\n`);
+
+    markdown.push(` ⁃ *Type*: ${spec.type} \\`);
+    markdown.push(`\n`);
+
+    markdown.push(` ⁃ *Required*: ${spec.required ? "Yes" : "No"} \\`);
+    markdown.push(`\n`);
+
+    markdown.push(spec.description.replace(/\n/g, " "));
+    markdown.push(`\n`);
+    markdown.push(`\n`);
   }
   markdown.push(`\n`);
 
   markdown.push(`## Outputs\n\n`);
   for (const spec of adaptorManifest.output) {
-    markdown.push(`* \`${spec.name}\`\\\n  Type: \`${spec.type}\`\\\n  ${spec.description.replace(/\n/g, " ")}\n`);
+    markdown.push(`**\`${spec.name}\`** \\`);
+    markdown.push(`\n`);
+
+    markdown.push(` ⁃ *Type*: ${spec.type} \\`);
+    markdown.push(`\n`);
+
+    markdown.push(spec.description.replace(/\n/g, " "));
+    markdown.push(`\n`);
+    markdown.push(`\n`);
   }
   markdown.push(`\n`);
 
