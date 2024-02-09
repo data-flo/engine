@@ -20,6 +20,7 @@ module.exports = {
       "type": "text",
       "description": "The Epicollect5 Client Secret to access private projects.\nNot required for public projects.\nSee https://docs.epicollect.net/developers/apps.",
       "required": false,
+      "ui": { "secret": true },
     },
     {
       "name": "map index",

@@ -33,6 +33,7 @@ module.exports = {
       "type": "text",
       "description": "The password required to access the specified service on the server.",
       "required": false,
+      "ui": { "secret": true },
     },
     {
       "name": "file path",

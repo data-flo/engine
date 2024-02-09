@@ -20,6 +20,7 @@ module.exports = {
       "type": "text",
       "description": "The secret key is the password to your account.\nRequired when the ACL of the object is private.",
       "required": false,
+      "ui": { "secret": true },
     },
   ],
 

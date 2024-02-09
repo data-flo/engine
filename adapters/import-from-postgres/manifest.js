@@ -34,6 +34,7 @@ module.exports = {
       "type": "text",
       "description": "The password to connect to the database.",
       "required": false,
+      "ui": { "secret": true },
     },
     {
       "name": "query",
