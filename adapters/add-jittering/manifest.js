@@ -19,14 +19,14 @@ module.exports = {
     {
       "name": "range",
       "type": "number",
-      "description": "The maximum distance from the original value.",
+      "description": "The maximum distance from the original value.\nIf unspecified, defaults to `1`.",
       "required": false,
       "default": 1,
     },
     {
       "name": "unit",
       "type": "text",
-      "description": "The unit of the range value. For jittering geographical coordinates use either `kilometers`, `miles`.",
+      "description": "The unit of the range value. For jittering geographical coordinates use either `kilometers`, `meters`, `miles`, or `none`.\nIf unspecified, defaults to `none`.",
       "required": false,
       "default": "none",
       "ui": { "must-be-one-of": [ "kilometers", "meters", "miles", "none" ] },
