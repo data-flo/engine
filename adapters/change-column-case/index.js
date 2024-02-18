@@ -27,7 +27,15 @@ const conversions = {
 };
 
 module.exports = async function (args) {
-  const conversion = conversions[args.case];
+  let conversionCase = args.case;
+
+  const index = conversionCase.indexOf(" case");
+  if (index >= 0) {
+    conversionCase = conversionCase.substring(0, index);
+  }
+
+  const conversion = conversions[conversionCase];
+
   if (!conversion) {
     const validConversions = Object.keys(conversions).map((x) => `\`${x}\``).join(", ");
     throw new Error(`Invalid case conversion. Supported conversions are: ${validConversions}`);
