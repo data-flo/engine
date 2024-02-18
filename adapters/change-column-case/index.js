@@ -27,8 +27,8 @@ const conversions = {
 };
 
 module.exports = async function (args) {
-  const conversio = conversions[args.case];
-  if (!conversio) {
+  const conversion = conversions[args.case];
+  if (!conversion) {
     const validConversions = Object.keys(conversions).map((x) => `\`${x}\``).join(", ");
     throw new Error(`Invalid case conversion. Supported conversions are: ${validConversions}`);
   }
@@ -37,7 +37,7 @@ module.exports = async function (args) {
     args.column,
     (row, context, sourceValue) => {
       if (sourceValue) {
-        return conversio(sourceValue);
+        return conversion(sourceValue);
       }
       else {
         return sourceValue;
