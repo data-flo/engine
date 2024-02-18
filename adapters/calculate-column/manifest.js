@@ -28,7 +28,7 @@ module.exports = {
     {
       "name": "operation",
       "type": "text",
-      "description": "The calculate operation to be used.\nIf unspecified, defaults to `add`.",
+      "description": "The calculate operation to be used.\n Can be either `add`, `subtract`, `multiply`, `divide`, `percent`, or `exponent`.\nIf unspecified, defaults to `add`.",
       "required": false,
       "default": "add",
       "ui": { "can-be-one-of": Operators },
