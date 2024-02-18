@@ -302,6 +302,22 @@ test(
       },
     );
 
+    await t.test(
+      "given a text, it should change its case to upper case",
+      async () => {
+        const output = await adaptor({
+          "data": createDatatable(tmpCsvFilePath),
+          "column": "text",
+          "case": "upper case",
+        });
+        assert.ok(output.data);
+        compareFile(
+          output.data.getSource(),
+          "\"text\"\n\"OFMICE AND MEN\"\n\n",
+        );
+      },
+    );
+
     await t.test("given a wrong case name, it should throw an error", async () => {
       await assert.rejects(
         adaptor({
