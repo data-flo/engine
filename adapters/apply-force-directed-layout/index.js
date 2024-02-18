@@ -20,7 +20,8 @@ function runForceDirectedLayout(graph, options) {
     );
     try {
       renderer.start();
-    } catch (error) {
+    }
+    catch (error) {
       reject(error);
     }
   });
