@@ -14,12 +14,14 @@ module.exports = {
       "type": "text",
       "description": "The name of the column containing the origin node of the edge.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "to column",
       "type": "text",
       "description": "The name of the column containing the destination node of the edge.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "directed",
