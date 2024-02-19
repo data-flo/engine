@@ -1,12 +1,13 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const Filehound = require("filehound");
-const changeCase = require("change-case");
+// const changeCase = require("change-case");
 
 const getAdaptorExecutable = require("../runner/get-adaptor-executable.js");
 
 function adaptorNameToTitle(adaptorName) {
-  return changeCase.sentenceCase(adaptorName).replaceAll("-", " ");
+  return adaptorName;
+  // return changeCase.sentenceCase(adaptorName).replaceAll("-", " ");
 }
 
 function getAdaptorsList() {
