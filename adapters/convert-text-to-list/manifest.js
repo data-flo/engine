@@ -14,7 +14,7 @@ module.exports = {
     {
       "name": "separator",
       "type": "text",
-      "description": "The separator text, or regular expression, which denotes the points at which each split should occur. \nThe separator is treated as a regular expression if it begins and ends with `/`.\nIf unspecified, defaults to `\n` (newline).",
+      "description": "The separator text, or regular expression, which denotes the points at which each split should occur. \nThe separator is treated as a regular expression if it begins and ends with `/`.\nIf unspecified, defaults to `\\n` (newline).",
       "required": false,
       "default": "\n",
       "ui": { "can-be-one-of": CommonLineEndings },
