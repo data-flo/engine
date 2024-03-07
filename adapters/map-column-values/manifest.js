@@ -16,6 +16,7 @@ module.exports = {
       "type": "text",
       "description": "The name of an existing column containing values to be mapped.",
       "required": true,
+      "ui": { "column-in": "data" },
     },
     {
       "name": "values",
