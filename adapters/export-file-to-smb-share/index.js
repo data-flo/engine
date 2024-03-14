@@ -1,6 +1,6 @@
 const SambaClient = require("samba-client");
 
-const parseSMBSharePath = require("../../utils/file/parse-smb-share-path");
+const parseSMBSharePath = require("../../utils/file/parse-smb-share-path.js");
 
 module.exports = async function (args) {
   const [ shareAddress, remoteFilePath ] = parseSMBSharePath(
