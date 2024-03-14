@@ -1,6 +1,7 @@
 const SambaClient = require("samba-client");
 
 const parseSMBSharePath = require("../../utils/file/parse-smb-share-path.js");
+const cleanErrorMessage = require("../../utils/file/clean-smb-error.js");
 
 module.exports = async function (args) {
   const [ shareAddress, remoteFilePath ] = parseSMBSharePath(
@@ -8,24 +9,30 @@ module.exports = async function (args) {
     args["file path"],
   );
 
-  const client = new SambaClient({
-    address: shareAddress,
-    domain: args.domain,
-    username: args.username,
-    password: args.password,
-    port: args.port,
-  });
+  try {
+    const client = new SambaClient({
+      address: shareAddress,
+      domain: args.domain,
+      username: args.username,
+      password: args.password,
+      port: args.port,
+    });
 
-  if (!args.overwrite) {
-    if (await client.fileExists(remoteFilePath)) {
-      throw new Error("File Exists");
+    if (!args.overwrite) {
+      if (await client.fileExists(remoteFilePath)) {
+        throw new Error("File Exists");
+      }
     }
-  }
 
-  await client.sendFile(
-    args.file.getSource(),
-    remoteFilePath,
-  );
+    await client.sendFile(
+      args.file.getSource(),
+      remoteFilePath,
+    );
+  }
+  catch (err) {
+    cleanErrorMessage(err, args);
+    throw err;
+  }
 
   return { file: args.file };
 };
