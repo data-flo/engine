@@ -1,6 +1,5 @@
 const SambaClient = require("samba-client");
 
-const { FileStream } = require("../../types/file");
 const parseSMBSharePath = require("../../utils/file/parse-smb-share-path");
 
 module.exports = async function (args) {
