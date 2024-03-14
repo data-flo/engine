@@ -1,4 +1,3 @@
-const path = require("path");
 const SambaClient = require("samba-client");
 
 const { FileStream } = require("../../types/file");
