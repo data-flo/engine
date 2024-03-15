@@ -41,17 +41,17 @@ function generateAdaptorMarkdown(
 ) {
   const markdown = [];
 
-  markdown.push(`# ${adaptorNameToTitle(adaptorName)}\n\n`);
+  // markdown.push(`# ${adaptorNameToTitle(adaptorName)}\n\n`);
 
   markdown.push(`## Inputs\n\n`);
   for (const spec of adaptorManifest.input) {
     markdown.push(`**\`${spec.name}\`** \\`);
     markdown.push(`\n`);
 
-    markdown.push(` ⁃ *Type*: ${spec.type} \\`);
+    markdown.push(`Type: \`${spec.type}\` \\`);
     markdown.push(`\n`);
 
-    markdown.push(` ⁃ *Required*: ${spec.required ? "Yes" : "No"} \\`);
+    markdown.push(`Required: ${spec.required ? "Yes" : "No"} \\`);
     markdown.push(`\n`);
 
     markdown.push(spec.description.replace(/\n/g, " "));
@@ -65,7 +65,7 @@ function generateAdaptorMarkdown(
     markdown.push(`**\`${spec.name}\`** \\`);
     markdown.push(`\n`);
 
-    markdown.push(` ⁃ *Type*: ${spec.type} \\`);
+    markdown.push(`Type: \`${spec.type}\` \\`);
     markdown.push(`\n`);
 
     markdown.push(spec.description.replace(/\n/g, " "));
@@ -81,12 +81,15 @@ function mergeMarkdownDocs(
   originalDoc,
   update,
 ) {
-  const [_, contentToKeep] = originalDoc.split("## Description\n");
+  const [pageTitle, contentToKeep1] = originalDoc.split("## Inputs\n");
+
+  const [_, contentToKeep2] = contentToKeep1.split("## Examples\n");
 
   return [
+    pageTitle,
     update,
-    "## Description\n",
-    contentToKeep,
+    "## Examples\n",
+    contentToKeep2,
   ].join("");
 }
 
@@ -100,7 +103,7 @@ function processAdaptor(
     adaptorManifest,
   );
 
-  const markdownFilePth = path.join(docsDir, "adaptors", `${adaptorName}.md`);
+  const markdownFilePth = path.join(docsDir, "theory", "adaptors", "reference-guide", `${adaptorName}.md`);
 
   if (fs.existsSync(markdownFilePth)) {
     markdown = mergeMarkdownDocs(
