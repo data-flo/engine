@@ -121,7 +121,17 @@ module.exports = function (doc) {
     }
   }
 
-  renameAdaptor("add-value-to-map", "add-value-to-dictionary");
+  renameAdaptor("datatable-to-sqlite-file", "export-to-sqlite-file");
+  renameAdaptor("text-to-file", "export-text-to-file");
+  renameAdaptor("postgress-database", "import-from-postgres");
+  renameAdaptor("file-to-text", "import-text-from-file");
+  renameAdaptor("replace-column-values", "replace-values-in-columns");
+  renameAdaptor("replace-value", "replace-values-in-columns");
+  renameAdaptor("replace-text-in-list", "replace-values-in-list");
+  renameAdaptor("replace-text", "replace-values-in-text");
+  renameAdaptor("rename-column", "rename-columns");
+
+  renameAdaptor("add-text-to-map", "add-value-to-dictionary");
   renameAdaptor("create-map-from-datatable", "create-dictionary-from-datatable");
   renameAdaptor("find-value-in-map", "find-value-in-dictionary");
 
