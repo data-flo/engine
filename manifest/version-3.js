@@ -129,7 +129,21 @@ module.exports = function (doc) {
   renameAdaptor("replace-value", "replace-values-in-columns");
   renameAdaptor("replace-text-in-list", "replace-values-in-list");
   renameAdaptor("replace-text", "replace-values-in-text");
-  renameAdaptor("rename-column", "rename-columns");
+  changeAdaptor("rename-column", (step) => {
+    step.adaptor = "rename-columns";
+    const sourceBinding = step.binding.find((x) => x.target === "source" && x.type === "value");
+    const targetBinding = step.binding.find((x) => x.target === "target" && x.type === "value");
+    if (sourceBinding?.value && targetBinding?.value) {
+      step.binding.push({
+        target: "column names",
+        type: "value",
+        value: [ { key: sourceBinding.value, value: targetBinding.value } ],
+      });
+    }
+    step.binding.splice(step.binding.indexOf(sourceBinding), 1);
+    step.binding.splice(step.binding.indexOf(targetBinding), 1);
+  });
+  deleteAdaptorInput("rename-columns", "target");
 
   renameAdaptor("add-text-to-map", "add-value-to-dictionary");
   renameAdaptor("create-map-from-datatable", "create-dictionary-from-datatable");
