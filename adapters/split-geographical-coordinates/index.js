@@ -1,3 +1,5 @@
+const { convert } = require("geo-coordinates-parser"); // CommonJS
+
 // const stopwatch = require("../../utils/stopwatch.js");
 const { Datatable } = require("../../types/datatable.js");
 
@@ -32,6 +34,16 @@ function trackValues() {
   };
 }
 
+// function dmsToDecimal(degrees, minutes, seconds, direction) {
+//   let dd = parseFloat(degrees) + parseFloat(minutes) / 60 + parseFloat(seconds) / (60 * 60);
+
+//   if (direction === "S" || direction === "W") {
+//     dd *= -1;
+//   }
+
+//   return dd;
+// }
+
 module.exports = async function (args) {
   await args.data.shouldIncludeColumns(args["coordinates column"]);
   const invalidValues = trackValues();
@@ -40,8 +52,21 @@ module.exports = async function (args) {
       if (row[args["coordinates column"]]) {
         const query = row[args["coordinates column"]];
         if (query) {
+          // 32° 18' 23.1" N 122° 36' 52.5" W
+          const DMSParts = query.match(/^(\d+[\.,]?\d*)°\s?(-?\d+[\.,]?\d*')?\s?(-?\d+[\.,]?\d*")?\s?([NS]?)\s?(\d+[\.,]?\d*)°\s?(-?\d+[\.,]?\d*')?\s?(-?\d+[\.,]?\d*")?\s?([EW]?)$/i);
+          if (DMSParts) {
+            const { decimalLatitude, decimalLongitude } = convert(query);
+            console.log({decimalLatitude, decimalLongitude})
+            // const [_, latDegrees, latMinutes, latSeconds, latDirection, longDegrees, longMinutes, longSeconds, longDirection] = DMSParts;
+            // const latitude = dmsToDecimal(latDegrees.replace(",", "."), latMinutes.replace(",", "."), latSeconds.replace(",", "."), latDirection);
+            // const longitude = dmsToDecimal(longDegrees.replace(",", "."), longMinutes.replace(",", "."), longSeconds.replace(",", "."), longDirection);
+            row[args["latitude column"]] = decimalLatitude;
+            row[args["longitude column"]] = decimalLongitude;
+            return row;
+          }
+
           // stopwatch.start("query.match")
-          const parts = query.match(/(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9-]+(-?\d+[\.,]?\d*)\s?([EW]?)/i);
+          const parts = query.match(/^(-?\d+[\.,]?\d*)\s?([NS]?)[^0-9-]+(-?\d+[\.,]?\d*)\s?([EW]?)$/i);
           // stopwatch.stop("query.match")
           if (parts) {
             const [_, lat, north, long, east] = parts;
@@ -58,13 +83,13 @@ module.exports = async function (args) {
 
             row[args["latitude column"]] = latitude;
             row[args["longitude column"]] = longitude;
+            return row;
           }
-          else {
-            invalidValues.add(context.records, query);
-            row[args["latitude column"]] = "";
-            row[args["longitude column"]] = "";
-            return null;
-          }
+
+          invalidValues.add(context.records, query);
+          row[args["latitude column"]] = "";
+          row[args["longitude column"]] = "";
+          return null;
         }
       }
 
