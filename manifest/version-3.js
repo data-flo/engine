@@ -133,7 +133,7 @@ module.exports = function (doc) {
 
   renameAdaptor("add-text-to-map", "add-value-to-dictionary");
   renameAdaptor("create-map-from-datatable", "create-dictionary-from-datatable");
-  renameAdaptor("find-value-in-map", "find-value-in-dictionary");
+  renameAdaptor("find-value-in-dictionary", "find-value-in-dictionary");
 
   renameAdaptorInput("add-column", "column", "column name");
 
@@ -202,9 +202,9 @@ module.exports = function (doc) {
   renameAdaptorOutput("export-to-csv-file", "csv", "file");
 
   renameAdaptor("datatable-to-list", "create-list-from-datatable");
-  renameAdaptor("create-list-from-datatable", "column", "column name");
+  renameAdaptorInput("create-list-from-datatable", "column", "column name");
 
-  renameAdaptor("datatable-to-map", "create-map-from-datatable");
+  renameAdaptor("datatable-to-map", "create-dictionary-from-datatable");
 
   renameAdaptor("date-to-text", "convert-date-to-text");
 
@@ -283,9 +283,9 @@ module.exports = function (doc) {
   renameAdaptor("list-to-datatable", "convert-list-to-datatable");
   renameAdaptorInput("list-to-datatable", "column", "column name");
 
-  renameAdaptor("lookup-map-value", "find-value-in-map");
-  renameAdaptorInput("find-value-in-map", "query", "key");
-  renameAdaptorInput("find-value-in-map", "default", "default value");
+  renameAdaptor("lookup-map-value", "find-value-in-dictionary");
+  renameAdaptorInput("find-value-in-dictionary", "query", "key");
+  renameAdaptorInput("find-value-in-dictionary", "default", "default value");
 
   renameAdaptor("map-columns", "rename-columns");
 
@@ -340,8 +340,8 @@ module.exports = function (doc) {
 
   renameAdaptor("slice-list", "select-list-values");
 
-  renameAdaptor("smb-file", "import-file-from-shared-drive");
-  renameAdaptorInput("import-file-from-shared-drive", "share", "drive address");
+  renameAdaptor("smb-file", "import-file-from-smb-share");
+  renameAdaptorInput("import-file-from-smb-share", "share", "drive address");
 
   renameAdaptor("spread-rows", "reshape-long-to-wide");
   renameAdaptorInput("reshape-long-to-wide", "key", "key column name");
@@ -367,9 +367,9 @@ module.exports = function (doc) {
   renameAdaptor("unique-list-items", "remove-duplicate-list-values");
   renameAdaptorOutput("remove-duplicate-list-values", "set", "list");
 
-  renameAdaptor("update-smb-file", "export-file-to-share-drive");
-  renameAdaptorInput("export-file-to-share-drive", "share", "drive address");
-  renameAdaptorInput("export-file-to-share-drive", "update", "drive");
+  renameAdaptor("update-smb-file", "export-file-to-smb-share");
+  renameAdaptorInput("export-file-to-smb-share", "share", "drive address");
+  renameAdaptorInput("export-file-to-smb-share", "update", "drive");
 
   renameAdaptor("upload-file-to-google-drive", "export-file-to-google-drive");
   renameAdaptorInput("export-file-to-google-drive", "folder", "folder url");
