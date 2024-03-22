@@ -56,7 +56,6 @@ module.exports = async function (args) {
           const DMSParts = query.match(/^(\d+[\.,]?\d*)°\s?(-?\d+[\.,]?\d*')?\s?(-?\d+[\.,]?\d*")?\s?([NS]?)\s?(\d+[\.,]?\d*)°\s?(-?\d+[\.,]?\d*')?\s?(-?\d+[\.,]?\d*")?\s?([EW]?)$/i);
           if (DMSParts) {
             const { decimalLatitude, decimalLongitude } = convert(query);
-            console.log({decimalLatitude, decimalLongitude})
             // const [_, latDegrees, latMinutes, latSeconds, latDirection, longDegrees, longMinutes, longSeconds, longDirection] = DMSParts;
             // const latitude = dmsToDecimal(latDegrees.replace(",", "."), latMinutes.replace(",", "."), latSeconds.replace(",", "."), latDirection);
             // const longitude = dmsToDecimal(longDegrees.replace(",", "."), longMinutes.replace(",", "."), longSeconds.replace(",", "."), longDirection);
