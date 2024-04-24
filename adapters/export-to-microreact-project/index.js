@@ -1,3 +1,5 @@
+const validUrl = require("valid-url");
+
 const createMicroreactDocument = require("microreact.js/index.js");
 
 const createProject = require("./utils/create-project.js");
@@ -143,7 +145,7 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
 }
 
 module.exports = async function createMicroreactProject(args) {
-  if (!(/^https?:\/\/.*\/api\//i).test(args["server api"])) {
+  if (!validUrl.isUri(args["server api"])) {
     throw new Error("Invalid Microreact API URL.");
   }
 
