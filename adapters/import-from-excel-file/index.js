@@ -5,38 +5,6 @@ const { Datatable } = require("../../types/datatable.js");
 const parseRange = require("../../utils/spreadsheets/parse-range.js");
 const getRowIndices = require("../../utils/spreadsheets/get-row-indices.js");
 
-function checkRange(worksheetReader, sheetRange) {
-  const requiredRange = parseRange(sheetRange);
-  const fullRange = parseRange(worksheetReader.dimensions.toString());
-
-  if (requiredRange.start.col === null) {
-    requiredRange.start.col = fullRange.start.col;
-  }
-  if (requiredRange.start.row === null) {
-    requiredRange.start.row = fullRange.start.row;
-  }
-  if (requiredRange.end.col === null) {
-    requiredRange.end.col = fullRange.end.col;
-  }
-  if (requiredRange.end.row === null) {
-    requiredRange.end.row = fullRange.end.row;
-  }
-
-  if (
-    requiredRange.start.col < fullRange.start.col
-    ||
-    requiredRange.start.row < fullRange.start.row
-    ||
-    requiredRange.end.col > fullRange.end.col
-    ||
-    requiredRange.end.row > fullRange.end.row
-  ) {
-    throw new Error(`Invalid sheet range ${sheetRange}. Range must be within ${worksheetReader.dimensions}`);
-  }
-
-  return requiredRange;
-}
-
 async function extractWorksheet(
   worksheetReader,
   sheetRange,
@@ -44,17 +12,20 @@ async function extractWorksheet(
 ) {
   const dataWriter = await Datatable.create();
 
-  let range;
+  const requiredRange = parseRange(sheetRange);
+
   let columnNames = null;
   for await (const sheetRow of worksheetReader) {
-    if (!range) {
-      range = checkRange(worksheetReader, sheetRange);
-    }
+    const startCol = (requiredRange.start.col || worksheetReader.dimensions.left);
+    const endCol = (requiredRange.end.col || worksheetReader._columns.length);
+    // if (!range) {
+    //   range = checkRange(worksheetReader, sheetRange);
+    // }
 
-    if (sheetRow.number >= range.start.row) {
+    if (sheetRow.number >= (requiredRange.start.row || worksheetReader.dimensions.top)) {
       if (!columnNames) {
         columnNames = [];
-        for (let index = range.start.col; index <= range.end.col; index++) {
+        for (let index = startCol; index <= endCol; index++) {
           columnNames.push(sheetRow.getCell(index).text);
         }
       }
@@ -63,8 +34,8 @@ async function extractWorksheet(
           continue;
         }
         const dataRow = {};
-        for (let index = range.start.col; index <= range.end.col; index++) {
-          const columnNameIndex = index - range.start.col;
+        for (let index = startCol; index <= endCol; index++) {
+          const columnNameIndex = index - startCol;
           if (sheetRow.getCell(index).value instanceof Date) {
             dataRow[columnNames[columnNameIndex]] = sheetRow.getCell(index).value.toISOString();
           }
@@ -76,7 +47,7 @@ async function extractWorksheet(
       }
     }
 
-    if (sheetRow.number >= range.end.row) {
+    if (requiredRange.end.row && sheetRow.number >= requiredRange.end.row) {
       break;
     }
   }

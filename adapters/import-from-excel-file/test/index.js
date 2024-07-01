@@ -25,7 +25,7 @@ test("import-from-excel-file adaptor", async (t) => {
     );
   });
 
-  await t.test("given an excel file, it should return a datatable", async () => {
+  await t.test("given an excel file and a range, it should return a datatable", async () => {
     const output = await runAdaptor(
       adaptor,
       {
@@ -86,6 +86,20 @@ test("import-from-excel-file adaptor", async (t) => {
     compareFile(
       output.data.getSource(),
       `"a","b","c"\n"1","2","3"\n`,
+    );
+  });
+
+  await t.test("given a large excel file, it should return 6921 rows", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "file": createFile(Path.resolve(__dirname, "..", "..", "..", "dev", "data", "large-excel.xlsx")),
+      },
+    );
+    assert.ok(output.data, "adaptor should return data");
+    assert.equal(
+      await output.data.getNumberOfRows(),
+      6921,
     );
   });
 });
