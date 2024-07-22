@@ -1,4 +1,4 @@
-const { DateFormats, LanguageLocales } = require("../../enums");
+const { DateFormats, LanguageLocales } = require("../../enums.js");
 
 module.exports = {
   "description": "Converts a date/time value to text in a specified format.",
@@ -12,7 +12,15 @@ module.exports = {
       "required": false,
     },
     {
-      "name": "format",
+      "name": "original format",
+      "type": "text",
+      "description": "The format of data in column one based on Unicode Technical Standard #35: https://date-fns.org/v2.0.1/docs/parse#:~:text=Accepted%20format%20string%20patterns%3A.\nIf unspecified, defaults to ISO 8601 date/time.",
+      "required": false,
+      "default": "yyyy-MM-dd'T'HH:mm:ssxxx",
+      "ui": { "can-be-one-of": DateFormats },
+    },
+    {
+      "name": "new format",
       "type": "text",
       "description": "The format of data in column one based on Unicode Technical Standard #35: https://date-fns.org/v2.0.1/docs/parse#:~:text=Accepted%20format%20string%20patterns%3A.\nIf unspecified, defaults to ISO 8601 date/time.",
       "required": false,
