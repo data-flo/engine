@@ -10,7 +10,6 @@ module.exports = async function (args) {
       if (row[args["location column"]]) {
         const query = `${row[args["location column"]]}`;
         const cacheKey = `forward-geocoding ${query}`;
-
         const place = await cache(
           cacheKey,
           () => geocoder(
@@ -19,7 +18,6 @@ module.exports = async function (args) {
           ),
           360 * 24,
         );
-
         if (place) {
           const [latitude, longitude] = formater(place, "position");
           row[args["latitude column"]] = latitude.toFixed(args["decimal places"]);
@@ -30,11 +28,17 @@ module.exports = async function (args) {
           }
         }
       }
+      else {
+        row[args["latitude column"]] = null;
+        row[args["longitude column"]] = null;
+        if (args["place type column"]) {
+          row[args["place type column"]] = null;
+        }
+      }
 
       return row;
     },
   );
-
   return { data };
 };
 
