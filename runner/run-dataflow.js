@@ -1,5 +1,7 @@
 const { performance } = require("perf_hooks");
 
+const debug = require("cgps-stdlib/logger/debug.js");
+
 const parseInputArguments = require("./parse-input-arguments");
 const parseOutputArguments = require("./parse-output-arguments");
 const { sortStagesByExecutionOrder } = require("./execution");
@@ -124,6 +126,7 @@ module.exports = async function (
 
         // Run the transformation as an adaptor or a dataflow based on its type
         if (transformationStep.type === "adaptor") {
+          debug("running adaptor", transformationStep.adaptor, transformationStep.name, transformationStep.description);
           run.outputs[transformationStepName] = await engine.runAdaptor(transformationStep.adaptor, step.inputs);
         }
         // else if (transformationStep.type === "dataflow") {
