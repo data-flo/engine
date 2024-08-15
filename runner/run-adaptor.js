@@ -1,3 +1,5 @@
+const debug = require("cgps-stdlib/logger/debug.js");
+
 const hash = require("../utils/cache/hash.js");
 const cache = require("../utils/cache/index.js");
 // const stopwatch = require("../utils/stopwatch.js");
@@ -14,6 +16,8 @@ module.exports = async function runAdaptor(
     throw new Error("Cannot find manifest in adaptor");
   }
 
+  debug("getting adaptor inputs");
+
   // check input against manifest
   const input = (
     adaptorExecutable.manifest.dynamic
@@ -26,6 +30,8 @@ module.exports = async function runAdaptor(
       )
   );
 
+  debug("calling adaptor executable");
+
   let rawOutput;
   if (useCache) {
     const checksum = hash(input);
@@ -37,6 +43,8 @@ module.exports = async function runAdaptor(
   else {
     rawOutput = await adaptorExecutable.call(this, input);
   }
+
+  debug("got raw outputs");
 
   // stopwatch.report();
 
@@ -54,6 +62,8 @@ module.exports = async function runAdaptor(
         rawOutput,
       )
   );
+
+  debug("got adaptor outputs");
 
   return output;
 };
