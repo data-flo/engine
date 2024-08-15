@@ -4,7 +4,6 @@ const difference = require("../../utils/date/difference.js");
 const { EmptyString } = require("../../utils/constants/index.js");
 
 module.exports = async function (args) {
-  console.error(args)
   await args.data.shouldIncludeColumns(
     args["column one"],
     args["column two"],
