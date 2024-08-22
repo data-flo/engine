@@ -109,6 +109,7 @@ dev/data/amr-watch-metadata/all.csv
 dev/data/amr-watch-metadata/100k.csv
 -cov
 .bin/
+cache/*
 cache.db
 dev/data/amr-watch-metadata/abaumannii_8m.csv
 dev/data/amr-watch-metadata/abaumannii_2m.csv
