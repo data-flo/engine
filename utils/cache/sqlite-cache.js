@@ -1,3 +1,5 @@
+const path = require("node:path");
+
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 
@@ -7,7 +9,7 @@ const stringify = require("./stringify.js");
 
 async function init() {
   const db = await sqlite.open({
-    filename: "cache.db",
+    filename: path.join("cache", "cache.db"),
     driver: sqlite3.Database,
   });
   await db.exec(
