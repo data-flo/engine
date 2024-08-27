@@ -6,7 +6,6 @@ const getAuthorisationHeader = require("./get-authorisation-header");
 
 module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, clientSecret, pageSize = 1000) {
   let url = new URL(slug, "https://five.epicollect.net/api/export/entries/").toString();
-
   const options = {};
 
   if ((clientId || clientSecret)) {
@@ -20,6 +19,7 @@ module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, cli
 
   while (url) {
     const body = await getJsonRequest(
+      "get",
       url,
       {
         map_index: mapIndex,
@@ -28,7 +28,6 @@ module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, cli
       },
       options,
     );
-
     for (const commit of body.data.entries) {
       yield commit;
     }
