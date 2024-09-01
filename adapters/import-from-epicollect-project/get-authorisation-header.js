@@ -1,3 +1,4 @@
+const qs = require("qs");
 const getJsonRequest = require("../../utils/requests/get-as-json");
 
 module.exports = async function (clientId, clientSecret) {
@@ -11,7 +12,7 @@ module.exports = async function (clientId, clientSecret) {
     client_id: clientId,
     client_secret: clientSecret,
   };
-  const response = await getJsonRequest(url, data);
+  const response = await getJsonRequest("post", url, data);
 
   return { Authorization: `Bearer ${response.access_token}` };
 };
