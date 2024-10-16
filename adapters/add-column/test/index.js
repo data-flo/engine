@@ -23,7 +23,7 @@ test("add-column adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column name": "ones",
+        "column names": ["ones"],
         "value": "1",
       },
     );
@@ -41,12 +41,35 @@ test("add-column adaptor", async (t) => {
     );
   });
 
+  await t.test("given a datatable, it should add two columns", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": ["ones 1", "ones 2"],
+        "value": "1",
+      },
+    );
+    assert.ok(output.data);
+    compareFile(
+      output.data.getSource(),
+      `"id","Country","empty","date a","date b","ones 1","ones 2"
+"Bovine","de",,"Jan 29, 2007","2007-01-28","1","1"
+"Gibbon","fr",,,,"1","1"
+"Orangutan",,,,,"1","1"
+"Gorilla",,,,,"1","1"
+"Human","gb",,,,"1","1"
+"Mouse","gb",,,,"1","1"
+`,
+    );
+  });
+
   await t.test("given no value, it should add an empty column", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column name": "ones",
+        "column names": ["ones"],
       },
     );
     assert.ok(output.data);
@@ -67,7 +90,7 @@ test("add-column adaptor", async (t) => {
     await assert.rejects(
       adaptor({
         "data": createDatatable(testCsvFilePath),
-        "column name": "id",
+        "column names": ["id"],
       }),
       new Error("Datatable already includes a column named id"),
     );

@@ -224,6 +224,7 @@ class Datatable {
 
   async shouldExcludeColumns(...columnsToCheck) {
     const allColumns = await this.getColumns();
+
     for (const columnName of columnsToCheck) {
       if (allColumns.includes(columnName)) {
         throw new Error(`Datatable already includes a column named ${columnName}`);

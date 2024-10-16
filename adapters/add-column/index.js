@@ -1,7 +1,13 @@
 module.exports = async function (args) {
-  const data = await args.data.addColumnSync(
-    args["column name"],
-    () => args.value ?? "",
+  await args.data.shouldExcludeColumns(...args["column names"]);
+
+  const data = await args.data.transformSync(
+    (row, context) => {
+      for (const columnName of args["column names"]) {
+        row[columnName] = args.value ?? "";
+      }
+      return row;
+    },
   );
 
   return { data };

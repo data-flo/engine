@@ -1,4 +1,4 @@
-const latestVesion = 3;
+const latestVesion = 4;
 
 module.exports = function (prevDoc) {
   const docVersion = prevDoc.version || 0;
