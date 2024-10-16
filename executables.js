@@ -94,4 +94,5 @@ module.exports["split-geographical-coordinates"] = require("./adapters/split-geo
 module.exports["split-list"] = require("./adapters/split-list/index.js");
 module.exports["summarise-datatable"] = require("./adapters/summarise-datatable/index.js");
 module.exports["transform-columns"] = require("./adapters/transform-columns/index.js");
+module.exports["unique-list-values"] = require("./adapters/unique-list-values/index.js");
 module.exports["workflow-repeater"] = require("./adapters/workflow-repeater/index.js");
