@@ -71,6 +71,7 @@ module.exports = {
       "type": "text",
       "description": "The API access token for a Microreact account.\nSee https://docs.microreact.org/api/access-tokens.",
       "required": true,
+      "ui": { "secret": true },
     },
     {
       "name": "id column",
