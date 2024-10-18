@@ -17,12 +17,12 @@ test("create-list-from-datatable adaptor", async (t) => {
 "Mouse","gb",,,
 `);
 
-  await t.test("given a column in a datatable, it should return a list of the column values", async (t) => {
+  await t.test("given a column in a datatable, it should return a list of the column values", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column name": "id",
+        "column names": ["id"],
       },
     );
     assert.ok(output.list, "adaptor should return list");
@@ -31,17 +31,56 @@ test("create-list-from-datatable adaptor", async (t) => {
     assert.deepEqual(actual, expected);
   });
 
-  await t.test("given a column in a datatable, it should return a list of the column values", async (t) => {
+  await t.test("given a column in a datatable, it should return a list of the column values", async () => {
     const output = await runAdaptor(
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column name": "Country",
+        "column names": ["Country"],
       },
     );
     assert.ok(output.list, "adaptor should return list");
     const actual = output.list;
     const expected = [ "de", "fr", "gb", "gb" ];
+    assert.deepEqual(actual, expected);
+  });
+
+  await t.test("given a column in a datatable, it should return a list of the column values", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": ["Country"],
+        "unique values": true,
+      },
+    );
+    assert.ok(output.list, "adaptor should return list");
+    const actual = output.list;
+    const expected = [ "de", "fr", "gb" ];
+    assert.deepEqual(actual, expected);
+  });
+
+  await t.test("given a column in a datatable, it should return a list of the column values", async () => {
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "column names": ["id", "Country"],
+        "unique values": true,
+      },
+    );
+    assert.ok(output.list, "adaptor should return list");
+    const actual = output.list;
+    const expected = [ "Bovine",
+      "de",
+      "Gibbon",
+      "fr",
+      "Orangutan",
+      "Gorilla",
+      "Human",
+      "gb",
+      "Mouse",
+    ];
     assert.deepEqual(actual, expected);
   });
 
