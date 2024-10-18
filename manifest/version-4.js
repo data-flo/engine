@@ -14,19 +14,6 @@ module.exports = function (doc) {
       }
     }
 
-    if (step.adaptor === "create-list-from-datatable") {
-      const binding = step.binding?.find((x) => x.binding.target === "column name");
-      if (binding) {
-        if (binding.type === "value") {
-          binding.target = "column names";
-          binding.value = [ binding.value ];
-        }
-        else {
-          step.binding.splice(step.binding.indoxOf(binding), 1);
-        }
-      }
-    }
-
     if (step.adaptor === "map-column-values") {
       const originalColumnBinding = step.binding?.find((x) => x.binding.target === "original column");
       const newColumnBinding = step.binding?.find((x) => x.binding.target === "new column");
