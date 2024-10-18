@@ -22,7 +22,7 @@ test("create-list-from-datatable adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column names": ["id"],
+        "column name": "id",
       },
     );
     assert.ok(output.list, "adaptor should return list");
@@ -36,7 +36,7 @@ test("create-list-from-datatable adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column names": ["Country"],
+        "column name": "Country",
       },
     );
     assert.ok(output.list, "adaptor should return list");
@@ -50,37 +50,13 @@ test("create-list-from-datatable adaptor", async (t) => {
       adaptor,
       {
         "data": createDatatable(testCsvFilePath),
-        "column names": ["Country"],
+        "column name": "Country",
         "unique values": true,
       },
     );
     assert.ok(output.list, "adaptor should return list");
     const actual = output.list;
     const expected = [ "de", "fr", "gb" ];
-    assert.deepEqual(actual, expected);
-  });
-
-  await t.test("given a column in a datatable, it should return a list of the column values", async () => {
-    const output = await runAdaptor(
-      adaptor,
-      {
-        "data": createDatatable(testCsvFilePath),
-        "column names": ["id", "Country"],
-        "unique values": true,
-      },
-    );
-    assert.ok(output.list, "adaptor should return list");
-    const actual = output.list;
-    const expected = [ "Bovine",
-      "de",
-      "Gibbon",
-      "fr",
-      "Orangutan",
-      "Gorilla",
-      "Human",
-      "gb",
-      "Mouse",
-    ];
     assert.deepEqual(actual, expected);
   });
 

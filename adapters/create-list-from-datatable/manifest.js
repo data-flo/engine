@@ -1,5 +1,5 @@
 module.exports = {
-  "description": "Creates a list from values of datatable columns.",
+  "description": "Creates a list from values of a datatable column.",
   "group": "Transform",
   "subgroup": "List Manipulation",
   "input": [
@@ -10,9 +10,9 @@ module.exports = {
       "required": true,
     },
     {
-      "name": "column names",
-      "type": "list",
-      "description": "The names of the columns from which the list will be created.",
+      "name": "column name",
+      "type": "text",
+      "description": "The name of the column from which the list will be created.",
       "required": true,
       "ui": { "column-in": "data" },
     },
