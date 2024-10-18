@@ -1,5 +1,7 @@
 const escapeStringRegexp = require("escape-string-regexp");
 
+const isRegexp = require("./is-regexp.js");
+
 module.exports = function makeRegexp(
   expression,
   matchCase = false,
@@ -14,7 +16,7 @@ module.exports = function makeRegexp(
   }
 
   return new RegExp(
-    (expression.startsWith("/") && expression.endsWith("/"))
+    isRegexp(expression)
       ?
       expression.substring(1, expression.length - 1)
       :

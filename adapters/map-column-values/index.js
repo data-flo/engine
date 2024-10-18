@@ -1,6 +1,23 @@
 const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map.js");
 const { EmptyString } = require("../../utils/constants/index.js");
 
+const makeRegexp = require("../../utils/text/make-regexp.js");
+const isRegexp = require("../../utils/text/is-regexp.js");
+
+function findPattern(
+  valuesMapping,
+  originalValue,
+  caseSensitive,
+) {
+  for (const [ pattern, replacement ] of valuesMapping) {
+    if (originalValue.match(regex)) {
+      return [ regex, replacement ];
+    }
+  }
+
+  return undefined;
+}
+
 module.exports = async function mapColumnValues(args) {
   // Check for existing columns
   const existing = [];
@@ -16,23 +33,47 @@ module.exports = async function mapColumnValues(args) {
     await args.data.shouldExcludeColumns(...nonExisting);
   }
 
-  const valuesMap = args["case sensitive"] ? args.values : new CaseInsensitiveMap(args.values);
+  // const valuesMap = args["case sensitive"] ? args.values : new CaseInsensitiveMap(args.values);
+
+  const valuesMapping = [];
+  for (const [key, value] of args.values) {
+    if (isRegexp(key)) {
+      const regex = makeRegexp(
+        key,
+        args["case sensitive"],
+      );
+      valuesMapping.push([ regex, value ]);
+    }
+    else {
+      valuesMapping.push([ key, value ]);
+    }
+  }
+
+  const sensitivity = (!args["case sensitive"]) ? "base" : undefined;
 
   const data = await args.data.transformSync(
     (row) => {
       for (const [sourceCol, targetColOrEmpty] of args["columns"].entries()) {
         const targetCol = targetColOrEmpty || sourceCol;
-        const originalValue = row[sourceCol];
-        const mappedValue = valuesMap.get(originalValue);
-        if (mappedValue !== undefined) {
-          row[targetCol] = mappedValue ?? EmptyString;
+        const originalValue = row[sourceCol] ?? "";
+
+        if (args["unmapped values"] === "include") {
+          row[targetCol] = originalValue;
         }
-        else {
-          if (args["unmapped values"] === "include") {
-            row[targetCol] = originalValue;
+        if (args["unmapped values"] === "blank") {
+          row[targetCol] = EmptyString;
+        }
+
+        for (const [ pattern, replacement ] of valuesMapping) {
+          if (
+            typeof pattern === "string"
+            &&
+            originalValue.toString().localeCompare(pattern, undefined, { sensitivity }) === 0
+          ) {
+            row[targetCol] = replacement;
           }
-          if (args["unmapped values"] === "blank") {
-            row[targetCol] = EmptyString;
+          else if (originalValue.match(pattern)) {
+            row[targetCol] = originalValue.replace(pattern, replacement ?? EmptyString);
           }
         }
       }

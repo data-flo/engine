@@ -169,4 +169,40 @@ test("map-column-values adaptor", async (t) => {
     );
   });
 
+  await t.test("given a datatable and original column, it should write results to the same original column", async () => {
+    const testCsvFilePath = await createTmpTextFile(`"id","Country"
+"Bovine","de"
+"Gibbon","fr"
+"Orangutan",
+"Gorilla",
+"Human","gb"
+"Mouse","GB"
+`);
+
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "columns": [ { key: "Country" } ],
+        "values": [
+          [ "/([a-z]+)/", "lowercase $1" ],
+          [ "/([A-Z]+)/", "uppercase $1" ],
+        ],
+        "case sensitive": true,
+      },
+    );
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"id","Country"
+"Bovine","lowercase de"
+"Gibbon","lowercase fr"
+"Orangutan",
+"Gorilla",
+"Human","lowercase gb"
+"Mouse","uppercase GB"
+`
+    );
+  });
+
 });

@@ -4073,7 +4073,7 @@
       {
         "name": "values",
         "type": "dictionary",
-        "description": "The map of existing values with new values, where the map keys are the existing values in original column, and the map values are the corresponding values to be written to new column.",
+        "description": "The dictionary of existing values with new values, where the dictionary keys are the existing values in original column, and the dictionary values are the corresponding values to be written to new column.\nA dictionary key is treated as a regular expression if it begins and ends with `/` (e.g. `/.*/`).",
         "required": true
       },
       {
