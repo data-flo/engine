@@ -17,7 +17,8 @@ module.exports = {
       "description": "A dictionary of existing column names with new columns, where the dictionary keys are the names of existing columns, and the dictionary values are the names of the columns to which the mapped values are written.\nIf a dictionary value is left blank, mapped values are written to the original column.",
       "required": true,
       "ui": {
-        "keys": { "column-in": "data" },
+        "keys": { "column-in": "data", "label": "Original column" },
+        "values": { "label": "New column" },
       },
     },
     {

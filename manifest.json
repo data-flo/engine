@@ -4066,7 +4066,11 @@
         "required": true,
         "ui": {
           "keys": {
-            "column-in": "data"
+            "column-in": "data",
+            "label": "Original column"
+          },
+          "values": {
+            "label": "New column"
           }
         }
       },
