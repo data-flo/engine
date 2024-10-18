@@ -4077,12 +4077,6 @@
         "required": true
       },
       {
-        "name": "new column",
-        "type": "text",
-        "description": "The name of the new column to which the mapped values will be written.\nIf unspecified, mapped values will be written to the original column.",
-        "required": false
-      },
-      {
         "name": "case sensitive",
         "type": "boolean",
         "description": "Whether lowercase and uppercase letters should be treated as equivalent.\nIf unspecified, defaults to `False` (lowercase and uppercase letters are treated as equivalent).",
