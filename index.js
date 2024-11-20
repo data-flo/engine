@@ -9,9 +9,13 @@ const getAdaptorExecutable = require("./runner/get-adaptor-executable.js");
 // globalTunnel.initialize();
 
 class Engine {
-  defaults = {};
+  options = {};
 
   fsMappings = {};
+
+  constructor(options) {
+    this.options = options;
+  }
 
   async getAdaptorExecutable(name) {
     return getAdaptorExecutable(name);
@@ -22,8 +26,7 @@ class Engine {
     return adaptor.manifest;
   }
 
-  // constructor() {
-  // }
+
 
   // mapFile(filePath) {
   //   return mapFile(
