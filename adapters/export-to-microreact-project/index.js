@@ -7,6 +7,18 @@ const updateProject = require("./utils/update-project.js");
 const getFileUrl = require("./utils/get-file-url.js");
 const getProjectDoc = require("./utils/get-project-doc.js");
 
+function cleanServerApi(url) {
+  if (url.endsWith("/api/")) {
+    return url.substring(0, url.length - 4);
+  }
+
+  if (url.endsWith("/api")) {
+    return url.substring(0, url.length - 3);
+  }
+
+  return url;
+}
+
 function findFile(files, types) {
   for (const fileId of Object.keys(files)) {
     const file = files[fileId];
@@ -29,7 +41,7 @@ function normaliseProjectUrl(projectUrlOrId) {
   return projectId;
 }
 
-async function create(dataUrl, treeUrl, networkUrl, args) {
+async function create(dataUrl, treeUrl, networkUrl, serverApi, args) {
   const request = await createMicroreactDocument({
     name: args.name,
     description: args.description,
@@ -49,7 +61,7 @@ async function create(dataUrl, treeUrl, networkUrl, args) {
   });
 
   const response = await createProject(
-    args["server api"],
+    serverApi,
     args["access token"],
     request,
   );
@@ -60,9 +72,9 @@ async function create(dataUrl, treeUrl, networkUrl, args) {
   };
 }
 
-async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
+async function update(projectId, dataUrl, treeUrl, networkUrl, serverApi, args) {
   const projectDoc = await getProjectDoc(
-    args["server api"],
+    serverApi,
     args["access token"],
     projectId,
   );
@@ -132,7 +144,7 @@ async function update(projectId, dataUrl, treeUrl, networkUrl, args) {
   }
 
   const response = await updateProject(
-    args["server api"],
+    serverApi,
     args["access token"],
     projectId,
     projectDoc,
@@ -149,22 +161,24 @@ module.exports = async function createMicroreactProject(args) {
     throw new Error("Invalid Microreact API URL.");
   }
 
+  const serverApi = cleanServerApi(args["server api"]);
+
   const dataUrl = await getFileUrl(
-    args["server api"],
+    serverApi,
     args["access token"],
     args["data file"],
     args["data url"],
   );
 
   const treeUrl = await getFileUrl(
-    args["server api"],
+    serverApi,
     args["access token"],
     args["tree file"],
     args["tree url"],
   );
 
   const networkUrl = await getFileUrl(
-    args["server api"],
+    serverApi,
     args["access token"],
     args["network file"],
     args["network url"],
@@ -179,6 +193,7 @@ module.exports = async function createMicroreactProject(args) {
       dataUrl,
       treeUrl,
       networkUrl,
+      serverApi,
       args,
     );
   }
@@ -187,6 +202,7 @@ module.exports = async function createMicroreactProject(args) {
       dataUrl,
       treeUrl,
       networkUrl,
+      serverApi,
       args,
     );
   }

@@ -1,10 +1,10 @@
-const apiRequest = require("./api-request");
+const apiRequest = require("./api-request.js");
 
 module.exports = function storeFile(apiUrl, accessToken, fileInput) {
   return apiRequest({
     method: "post",
     baseURL: apiUrl,
-    url: "/files/store/",
+    url: "/api/files/store/",
     data: fileInput,
     headers: {
       "access-token": accessToken,

@@ -180,7 +180,6 @@ module.exports = async function (
         }
       }
       catch (error) {
-        console.error(error);
         step.error = error.message || error;
         step.status = "error";
 
@@ -210,8 +209,12 @@ module.exports = async function (
     run.status = "success";
   }
   catch (error) {
-    console.error(error);
-    run.error = error.message || error;
+    console.error(
+      error.message,
+      error.stack,
+      error && error.response ? error.response.data : "",
+    );
+    run.error = error.message;
     run.status = "error";
   }
 
