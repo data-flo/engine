@@ -64,7 +64,7 @@ module.exports = {
       "type": "text",
       "description": "The URL of the Microreact server on which the project will be created or updated.\nIf unspecified, defaults to `https://microreact.org/`.",
       "required": false,
-      "default": "https://microreact.org/api/",
+      "default": "https://microreact.org/",
     },
     {
       "name": "access token",
