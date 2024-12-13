@@ -2,7 +2,7 @@ module.exports = function (doc) {
 
   for (const step of doc.transform) {
     if (step.adaptor === "add-column") {
-      const columnNameBinding = step.binding?.find((x) => x.binding.target === "column name");
+      const columnNameBinding = step.binding?.find((x) => x.target === "column name");
       if (columnNameBinding) {
         if (columnNameBinding.type === "value") {
           columnNameBinding.target = "column names";
