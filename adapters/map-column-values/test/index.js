@@ -205,4 +205,24 @@ test("map-column-values adaptor", async (t) => {
     );
   });
 
+  await t.test("given a datatable and original column, it should write results to the same original column", async () => {
+    const testCsvFilePath = await createTmpTextFile(`"serotype"\n"5"\n"15C"\n`);
+
+    const output = await runAdaptor(
+      adaptor,
+      {
+        "data": createDatatable(testCsvFilePath),
+        "columns": [ { key: "serotype" } ],
+        "values": [
+          [ "5", "PVC 10" ],
+        ],
+        "unmapped values": "include",
+      },
+    );
+    assert.ok(output.data, "adaptor should return data");
+    compareFile(
+      output.data.getSource(),
+      `"serotype"\n"PVC 10"\n"15C"\n`
+    );
+  });
 });

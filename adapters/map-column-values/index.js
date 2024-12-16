@@ -56,7 +56,6 @@ module.exports = async function mapColumnValues(args) {
       for (const [sourceCol, targetColOrEmpty] of args["columns"].entries()) {
         const targetCol = targetColOrEmpty || sourceCol;
         const originalValue = row[sourceCol] ?? "";
-
         if (args["unmapped values"] === "include") {
           row[targetCol] = originalValue;
         }
@@ -67,10 +66,10 @@ module.exports = async function mapColumnValues(args) {
         for (const [ pattern, replacement ] of valuesMapping) {
           if (
             typeof pattern === "string"
-            &&
-            originalValue.toString().localeCompare(pattern, undefined, { sensitivity }) === 0
           ) {
-            row[targetCol] = replacement;
+            if (originalValue.toString().localeCompare(pattern, undefined, { sensitivity }) === 0) {
+              row[targetCol] = replacement;
+            }
           }
           else if (originalValue.match(pattern)) {
             row[targetCol] = originalValue.replace(pattern, replacement ?? EmptyString);
