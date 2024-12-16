@@ -43,6 +43,13 @@ module.exports = async function (args) {
     data = await datatableWriter.finalise();
   }
 
+  const columns = await data.getColumns();
+  for (let index = 0; index < columns.length; index++) {
+    if (!columns[index]) {
+      throw new Error(`Datatable includes a column without a name at index ${index + 1}`);
+    }
+  }
+
   return { data };
 };
 
