@@ -192,6 +192,7 @@ class Datatable {
   async getInfo() {
     const parser = this.getReader({ info: true });
 
+    // eslint-disable-next-line no-unreachable-loop
     for await (const { info } of parser) {
       parser.end();
       return info;
