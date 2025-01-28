@@ -72,7 +72,7 @@ module.exports = async function mapColumnValues(args) {
             }
           }
           else if (originalValue.match(pattern)) {
-            row[targetCol] = originalValue.replace(pattern, replacement ?? EmptyString);
+            row[targetCol] = replacement ?? EmptyString;
           }
         }
       }
