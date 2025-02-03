@@ -1,22 +1,22 @@
-const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map.js");
+// const CaseInsensitiveMap = require("../../utils/structures/case-insensitive-map.js");
 const { EmptyString } = require("../../utils/constants/index.js");
 
 const makeRegexp = require("../../utils/text/make-regexp.js");
 const isRegexp = require("../../utils/text/is-regexp.js");
 
-function findPattern(
-  valuesMapping,
-  originalValue,
-  caseSensitive,
-) {
-  for (const [ pattern, replacement ] of valuesMapping) {
-    if (originalValue.match(regex)) {
-      return [ regex, replacement ];
-    }
-  }
+// function findPattern(
+//   valuesMapping,
+//   originalValue,
+//   caseSensitive,
+// ) {
+//   for (const [ pattern, replacement ] of valuesMapping) {
+//     if (originalValue.match(regex)) {
+//       return [ regex, replacement ];
+//     }
+//   }
 
-  return undefined;
-}
+//   return undefined;
+// }
 
 module.exports = async function mapColumnValues(args) {
   // Check for existing columns
@@ -36,6 +36,7 @@ module.exports = async function mapColumnValues(args) {
   // const valuesMap = args["case sensitive"] ? args.values : new CaseInsensitiveMap(args.values);
 
   const valuesMapping = [];
+
   for (const [key, value] of args.values) {
     if (isRegexp(key)) {
       const regex = makeRegexp(
@@ -67,7 +68,12 @@ module.exports = async function mapColumnValues(args) {
           if (
             typeof pattern === "string"
           ) {
-            if (originalValue.toString().localeCompare(pattern, undefined, { sensitivity }) === 0) {
+            if (sensitivity) {
+              if (originalValue.toString().localeCompare(pattern, undefined, { sensitivity }) === 0) {
+                row[targetCol] = replacement;
+              }
+            }
+            else if (originalValue.toString() === pattern) {
               row[targetCol] = replacement;
             }
           }
