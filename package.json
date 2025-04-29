@@ -64,6 +64,7 @@
     "sqlite3": "^5.0.0",
     "ssh2-sftp-client": "^5.1.2",
     "stream-to-string": "^1.2.0",
+    "superagent": "^10.2.0",
     "swap-case": "^2.0.2",
     "tap-spec": "^5.0.0",
     "title-case": "^3.0.3",
