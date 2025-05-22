@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const fs = require("fs");
-const { spawn } = require('child_process');
+const { spawn } = require("child_process");
 const debug = require("cgps-stdlib/logger/debug.js");
 
 /**
@@ -44,7 +44,7 @@ module.exports = async function storeFile(apiUrl, accessToken, fileInput) {
 
   const res = await new Promise((resolve, reject) => {
     const curl = spawn(
-      'curl', 
+      "curl",
       [
         "--location",
         "--request",
@@ -55,25 +55,25 @@ module.exports = async function storeFile(apiUrl, accessToken, fileInput) {
         `access-token: ${accessToken}`,
         "--header",
         `Content-Type: application/octet-stream`,
-        `${apiUrl}api/files/store/`
+        `${apiUrl}api/files/store/`,
       ],
     );
 
     const chunks = [];
-    curl.stdout.on('data', (data) => {
+    curl.stdout.on("data", (data) => {
       chunks.push(data.toString());
     });
 
-    curl.stderr.on('data', (data) => {
+    curl.stderr.on("data", (data) => {
       console.error(`stderr: ${data}`);
     });
 
-    curl.on('close', (code) => {
+    curl.on("close", (code) => {
       if (code !== 0) {
         reject(new Error(`Child process exited with code ${code}`));
       }
       else {
-        const json = JSON.parse(chunks.join(''));
+        const json = JSON.parse(chunks.join(""));
         debug("File uploaded to Microreact API", json);
         resolve(json);
       }
