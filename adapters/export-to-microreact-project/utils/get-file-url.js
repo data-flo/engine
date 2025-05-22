@@ -12,7 +12,7 @@ module.exports = async function getFileUrl(apiUrl, accessToken, file, url) {
       file.getReader(),
     );
 
-    return new URL(svaedUrl.url, apiUrl).href;
+    return svaedUrl;
   }
 
   if (url) {
