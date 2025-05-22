@@ -6,13 +6,13 @@ module.exports = async function getFileUrl(apiUrl, accessToken, file, url) {
   if (file) {
     debug("Saving file via Microreact API...");
 
-    const svaedUrl = await storeFile(
+    const savedUrl = await storeFile(
       apiUrl,
       accessToken,
       file.getReader(),
     );
 
-    return svaedUrl;
+    return savedUrl.url;
   }
 
   if (url) {
