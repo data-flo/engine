@@ -14,6 +14,7 @@ module.exports = async function (args) {
     args.url,
     {
       "body": args.body ? args.body.getReader() : undefined,
+      "duplex": args.body ? true : undefined,
       "headers": args.headers,
       "method": args.method,
     },
