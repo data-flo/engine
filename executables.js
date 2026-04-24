@@ -56,6 +56,7 @@ module.exports["import-from-microreact-project"] = require("./adapters/import-fr
 module.exports["import-from-mysql"] = require("./adapters/import-from-mysql/index.js");
 module.exports["import-from-oracle"] = require("./adapters/import-from-oracle/index.js");
 module.exports["import-from-postgres"] = require("./adapters/import-from-postgres/index.js");
+module.exports["import-from-redcap"] = require("./adapters/import-from-redcap/index.js");
 module.exports["import-from-spreadsheet-file"] = require("./adapters/import-from-spreadsheet-file/index.js");
 module.exports["import-from-sql-server"] = require("./adapters/import-from-sql-server/index.js");
 module.exports["import-from-sqlite"] = require("./adapters/import-from-sqlite/index.js");
