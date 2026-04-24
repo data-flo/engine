@@ -2,23 +2,40 @@ const { Datatable } = require("../../types/datatable");
 const GroupMap = require("../../utils/structures/group-map");
 const aggregator = require("../../utils/arrays/aggregator");
 
+
+function appendAggregated(columnName) {
+  return `${columnName} (aggregated)`
+}
+
+function appendMethod([columnName, method]) {
+  return `${columnName} (${method})`
+}
+
 module.exports = async function (args) {
-  const groupedTableColumnNames = [ ...args["group column names"] ];
+  const groupedColumns = [...args["group column names"]];
+  const aggregatedColumns = [...args.aggregations.entries()]
 
   await args.data.shouldIncludeColumns(
-    args["group column names"],
+    groupedColumns,
   );
 
-  for (const key of args.aggregations.keys()) {
-    groupedTableColumnNames.push(key);
-    await args.data.shouldIncludeColumns(key);
-  }
+  await args.data.shouldIncludeColumns(
+    [...args.aggregations.keys()]
+  );
+
+  const columns = [
+    ...groupedColumns.map(appendAggregated),
+    ...aggregatedColumns.map(appendMethod)
+  ]
+
+  const dataWriter = await Datatable.create({ columns });
+
 
   const groups = new GroupMap();
   for await (const row of args.data.getReader()) {
     const groupKeys = [];
-    for (const column of args["group column names"]) {
-      groupKeys.push(row[column]);
+    for (const groupedColumn of groupedColumns) {
+      groupKeys.push(row[groupedColumn]);
     }
     groups.add(
       groupKeys.join(""),
@@ -26,18 +43,16 @@ module.exports = async function (args) {
     );
   }
 
-  const dataWriter = await Datatable.create({ columns: groupedTableColumnNames });
-
   for (const groupRows of groups.values()) {
     const row = {};
 
-    for (const column of args["group column names"]) {
-      row[column] = groupRows[0][column];
+    for (const groupedColumn of groupedColumns) {
+      row[appendAggregated(groupedColumn)] = groupRows[0][groupedColumn];
     }
 
-    for (const [ column, method ] of args.aggregations.entries()) {
-      const aggregatorFunction = aggregator(method, column);
-      row[column] = aggregatorFunction(groupRows);
+    for (const [aggregatedColumn, method] of aggregatedColumns) {
+      const aggregatorFunction = aggregator(method, aggregatedColumn);
+      row[appendMethod([aggregatedColumn, method])] = aggregatorFunction(groupRows);
     }
 
     dataWriter.write(row);
