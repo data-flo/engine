@@ -4,7 +4,7 @@ const sleep = require("../../utils/async/sleep");
 
 const getAuthorisationHeader = require("./get-authorisation-header");
 
-module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, clientSecret, pageSize = 1000) {
+module.exports = async function* fetchEntries(slug, mapIndex = "", clientId, clientSecret, pageSize = 100) {
   let url = new URL(slug, "https://five.epicollect.net/api/export/entries/").toString();
   const options = {};
 
